@@ -1,16 +1,15 @@
 @import "tailwindcss";
 
+@source "../app/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../components/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../pages/**/*.{js,ts,jsx,tsx,mdx}";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
-
-  --font-heading: var(--font-agrandir);
-  --font-body: var(--font-inter-tight);
 }
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -23,20 +22,19 @@ body {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body);
+  font-family: var(--font-inter-tight);
   width: 100%;
 }
 
 /* Typography */
 
 .font-heading {
-  font-family: var(--font-heading);
+  font-family: var(--font-agrandir);
 }
 
 .font-body {
-  font-family: var(--font-body);
+  font-family: var(--font-inter-tight);
 }
-
 
 /* ===== DOSS Outline Animation ===== */
 
@@ -47,10 +45,8 @@ body {
   font-size: 240px;
   font-weight: 700;
   letter-spacing: 18px;
-
   stroke-dasharray: 2200;
   stroke-dashoffset: 2200;
-
   animation: dossDraw 2.5s ease forwards;
 }
 

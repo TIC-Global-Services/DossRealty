@@ -44,8 +44,8 @@ export default function TestimonialSection() {
   const duplicated = [...testimonials, ...testimonials];
 
   return (
-    <section className="bg-[#F7F7F7] py-20 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-5 lg:px-10">
+    <section className="py-20 overflow-hidden">
+      <div className="mx-auto px-5 lg:px-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
           {/* LEFT SIDE */}
@@ -72,25 +72,25 @@ export default function TestimonialSection() {
             </div>
 
             {/* Fade effect */}
-            <div className="absolute top-0 left-0 w-full h-28 bg-gradient-to-b from-[#F7F7F7] to-transparent z-10" />
-            <div className="absolute bottom-0 left-0 w-full h-28 bg-gradient-to-t from-[#F7F7F7] to-transparent z-10" />
+            <div className="absolute top-0 left-0 w-full h-28 bg-gradient-to-b from-white to-transparent z-10" />
+            <div className="absolute bottom-0 left-0 w-full h-28 bg-gradient-to-t from-white to-transparent z-10" />
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="max-w-[500px]">
-            <h2 className="text-[42px] md:text-[56px] font-light leading-[100%] text-[#111] mb-5">
+          <div className="max-w-[550px]">
+            <h2 className="text-[30px] md:text-[48px] font-heading font-normal leading-[100%] text-[#111] mb-5">
               Experiences Shared <br />
               by Our Clients
             </h2>
 
-            <p className="text-[#6B6B6B] text-[16px] leading-[160%] mb-8">
+            <p className="text-[#6B6B6B] text-[16px]  leading-[160%] w-[46ch] mb-8">
               Doss Realty believes great architecture goes beyond
               structures, it creates experiences. Our approach combines
               modern aesthetics, smart planning, and sustainable thinking
               to design spaces that feel refined, practical, and future-ready.
             </p>
 
-            <button className="bg-[#0A2E78] text-white px-8 py-4 rounded-full hover:scale-105 duration-300">
+            <button className="bg-[#00256a] text-white px-8 py-4 rounded-full hover:scale-105 duration-300">
               Get in touch
             </button>
           </div>
@@ -131,7 +131,7 @@ export default function TestimonialSection() {
 
 function Card({ item }: any) {
   return (
-    <div className="bg-white rounded-[30px] p-6 shadow-sm border border-[#ECECEC]">
+    <div className="bg-white rounded-b-[30px] p-6 shadow-sm border-b border-[#ECECEC]">
       <p className="text-[#6B6B6B] text-[15px] leading-[170%] mb-6">
         {item.text}
       </p>

@@ -10,11 +10,9 @@ type Props = {
 export default function SmoothScroll({ children }: Props) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.4,
+      duration: 1.8,
+      lerp: 0.06,
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-      infinite: false,
     });
 
     function raf(time: number) {

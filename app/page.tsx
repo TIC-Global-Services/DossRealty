@@ -1,3 +1,4 @@
+import BrandValues from '@/components/home/BrandValues';
 import Hero from '@/components/home/Hero'
 import InfoGraphics from '@/components/home/InfoGraphics';
 import LivingLocation from '@/components/home/LivingLocation';
@@ -14,6 +15,7 @@ export default function Home() {
       <OurProjects />
       <TestimonialSection />
       <WhyDoss />
+      <BrandValues/>
     </main>
   );
 }

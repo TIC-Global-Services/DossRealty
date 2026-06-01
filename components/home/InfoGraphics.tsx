@@ -21,37 +21,37 @@ const infographicData = [
   {
     id: "01",
     image: image1,
-    label: "View Infographics",
-    title: "Est. 2010",
-    location: "Chennai, India",
+    title: "Oasis Retreat",
+    location: "Provence, France",
+    coordinates: "43°56′18″N  5°21′47″E",
   },
   {
     id: "02",
     image: image2,
-    label: "Our Portfolio",
-    title: "Luxury Living",
-    location: "Bangalore, India",
+    title: "Château Elegance",
+    location: "Marrakech, Morocco",
+    coordinates: "31°37′52″N  8°00′24″W",
   },
   {
     id: "03",
     image: image3,
-    label: "The Team",
-    title: "Premium Villas",
-    location: "Hyderabad, India",
+    title: "Enchanted Oasis Villa",
+    location: "Kyoto, Japan",
+    coordinates: "35°01′12″N  135°46′08″E",
   },
   {
     id: "04",
     image: image4,
-    label: "Recognition",
-    title: "Modern Spaces",
-    location: "Mumbai, India",
+    title: "Azure Serenity",
+    location: "Santorini, Greece",
+    coordinates: "36°25′30″N  25°25′49″E",
   },
   {
     id: "05",
     image: image5,
-    label: "Vision 2030",
-    title: "Future Homes",
-    location: "Delhi, India",
+    title: "Tuscan Dreams",
+    location: "Tuscany, Italy",
+    coordinates: "43°25′00″N  11°09′00″E",
   },
 ];
 
@@ -94,36 +94,27 @@ const InfoGraphics = () => {
       const rect =
         sectionRef.current.getBoundingClientRect();
 
-      const totalScrollableHeight =
-        rect.height - window.innerHeight;
+      const scrollHeight =
+        sectionRef.current.offsetHeight -
+        window.innerHeight;
 
-      const scrollProgress = Math.min(
-        Math.max(
-          -rect.top / totalScrollableHeight,
-          0
-        ),
-        1
+      const progress = Math.min(
+        Math.max(-rect.top / scrollHeight, 0),
+        0.9999
       );
 
-      const index = Math.min(
-        Math.floor(
-          scrollProgress *
-            infographicData.length
-        ),
-        infographicData.length - 1
+      const newIndex = Math.floor(
+        progress * infographicData.length
       );
 
-      setActiveIndex((prev) => {
-        if (prev !== index) {
-          needleSpring.set(
-            NEEDLE_ANGLES[index]
-          );
-        }
-        return index;
-      });
+      if (newIndex !== activeIndex) {
+        setActiveIndex(newIndex);
+
+        needleSpring.set(
+          NEEDLE_ANGLES[newIndex]
+        );
+      }
     };
-
-    handleScroll();
 
     window.addEventListener(
       "scroll",
@@ -131,200 +122,258 @@ const InfoGraphics = () => {
       { passive: true }
     );
 
-    return () =>
+    handleScroll();
+
+    return () => {
       window.removeEventListener(
         "scroll",
         handleScroll
       );
-  }, [needleSpring]);
+    };
+  }, [activeIndex, needleSpring]);
 
-  const arcCircumference =
-    2 * Math.PI * R;
-
+  const arcCircumference = 2 * Math.PI * R;
   const arcDashoffset =
-    arcCircumference *
-    (1 -
-      (activeIndex + 1) /
-        infographicData.length);
+    arcCircumference * (1 - (activeIndex + 1) / infographicData.length);
 
-  const tipX = useTransform(
-    needleSpring,
-    (a) => tipPoint(a).x
-  );
+  const tipX = useTransform(needleSpring, (a) => tipPoint(a).x);
+  const tipY = useTransform(needleSpring, (a) => tipPoint(a).y);
+  const extX = useTransform(needleSpring, (a) => extendedPoint(a).x);
+  const extY = useTransform(needleSpring, (a) => extendedPoint(a).y);
 
-  const tipY = useTransform(
-    needleSpring,
-    (a) => tipPoint(a).y
-  );
-
-  const extX = useTransform(
-    needleSpring,
-    (a) => extendedPoint(a).x
-  );
-
-  const extY = useTransform(
-    needleSpring,
-    (a) => extendedPoint(a).y
-  );
-
-  const jumpTo = (
-    index: number
-  ) => {
+  const jumpTo = (index: number) => {
     if (!sectionRef.current) return;
-
-    const trackHeight =
-      sectionRef.current.offsetHeight;
-
-    const viewportHeight =
-      window.innerHeight;
-
+    const trackHeight = sectionRef.current.offsetHeight;
+    const viewportHeight = window.innerHeight;
     window.scrollTo({
       top:
         sectionRef.current.offsetTop +
-        (index /
-          (infographicData.length - 1)) *
-          (trackHeight -
-            viewportHeight),
+        (index / (infographicData.length - 1)) *
+        (trackHeight - viewportHeight),
       behavior: "smooth",
     });
   };
 
+  const currentData = infographicData[activeIndex];
+
   return (
-    <div
-      ref={sectionRef}
-      className="relative bg-[#F5F5F5]"
-    >
+    <div ref={sectionRef} className="relative bg-[#F5F5F5]">
       {/* Scroll Track */}
-      <div
-        style={{
-          height: `${
-            (infographicData.length - 1) *
-              80 +
-            100
-          }vh`,
-        }}
-      >
+      <div style={{ height: `${infographicData.length * 100}vh` }}>
         {/* Sticky Section */}
-        <section className="sticky top-0 h-screen overflow-hidden flex items-center">
-          <ContainerLayout className="flex items-center justify-between gap-8">
+        <section className="sticky top-0 h-screen overflow-hidden flex flex-col">
 
-            {/* LEFT */}
+          {/* ── Main content row ── */}
+          <ContainerLayout className="flex-1 flex items-center justify-between gap-8 overflow-hidden">
+
+            {/* LEFT — Numbered list with bullet dot */}
             <div className="flex flex-col gap-5 shrink-0">
-              {infographicData.map(
-                (item, index) => (
-                  <button
-                    key={item.id}
-                    onClick={() =>
-                      jumpTo(index)
-                    }
-                    className="text-left relative"
+              {infographicData.map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => jumpTo(index)}
+                  className="relative flex items-center pl-5 text-left"
+                >
+                  {/* Bullet dot slides in from left */}
+                  <motion.span
+                    animate={{
+                      color:
+                        activeIndex === index
+                          ? "#1a1814"
+                          : "#A0A0A0",
+                      fontSize:
+                        activeIndex === index
+                          ? "28px"
+                          : "18px",
+                      fontWeight:
+                        activeIndex === index
+                          ? 600
+                          : 300,
+                      x:
+                        activeIndex === index
+                          ? 12
+                          : 0,
+                      opacity:
+                        activeIndex === index
+                          ? 1
+                          : 0.6,
+                    }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="tracking-wider font-mono block"
                   >
-                    <motion.span
-                      animate={{
-                        color:
-                          activeIndex ===
-                          index
-                            ? "#1a1814"
-                            : "#A0A0A0",
-                        fontSize:
-                          activeIndex ===
-                          index
-                            ? "22px"
-                            : "18px",
-                        fontWeight:
-                          activeIndex ===
-                          index
-                            ? 500
-                            : 300,
-                      }}
-                      transition={{
-                        duration: 0.4,
-                      }}
-                      className="tracking-wider font-mono block"
-                    >
-                      {item.id}
-                    </motion.span>
-
-                    <motion.span
-                      animate={{
-                        scaleX:
-                          activeIndex ===
-                          index
-                            ? 1
-                            : 0,
-                        opacity:
-                          activeIndex ===
-                          index
-                            ? 1
-                            : 0,
-                      }}
-                      transition={{
-                        duration: 0.4,
-                      }}
-                      className="absolute -bottom-0.5 left-0 h-px w-5 bg-[#1a1814] origin-left block"
-                    />
-                  </button>
-                )
-              )}
+                    {item.id}
+                  </motion.span>
+                </button>
+              ))}
             </div>
 
-            {/* CENTER */}
-            <div className="relative flex items-center justify-center flex-1">
+
+            {/* CENTER — Circular destinations carousel */}
+            <div className="relative flex items-center justify-center flex-1 overflow-hidden">
               <div className="relative h-[450px] w-[450px]">
 
-                <div className="absolute inset-0 rounded-full overflow-hidden z-10">
-                  <AnimatePresence mode="wait">
+                {/* Soft glow background */}
+                <motion.div
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    opacity: [0.15, 0.25, 0.15],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute inset-0 rounded-full bg-black/5 blur-[60px]"
+                />
+
+                {/* Previous image preview */}
+                <motion.div
+                  key={`prev-${activeIndex}`}
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: 0.2,
+                    scale: 0.85,
+                    x: -120,
+                  }}
+                  transition={{ duration: 0.9 }}
+                  className="absolute inset-0 rounded-full overflow-hidden blur-[2px]"
+                >
+                  <Image
+                    src={
+                      infographicData[
+                        activeIndex === 0
+                          ? infographicData.length - 1
+                          : activeIndex - 1
+                      ].image
+                    }
+                    alt="previous destination"
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+
+                {/* Next image preview */}
+                <motion.div
+                  key={`next-${activeIndex}`}
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: 0.2,
+                    scale: 0.85,
+                    x: 120,
+                  }}
+                  transition={{ duration: 0.9 }}
+                  className="absolute inset-0 rounded-full overflow-hidden blur-[2px]"
+                >
+                  <Image
+                    src={
+                      infographicData[
+                        (activeIndex + 1) %
+                        infographicData.length
+                      ].image
+                    }
+                    alt="next destination"
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+
+                {/* Main circular image */}
+                <div className="absolute inset-0 rounded-full overflow-hidden z-20 border border-black/10">
+
+                  <AnimatePresence mode="popLayout">
                     <motion.div
                       key={activeIndex}
                       initial={{
+                        x: 180,
+                        scale: 1.15,
                         opacity: 0,
-                        scale: 0.94,
-                        rotate: -10,
                       }}
                       animate={{
-                        opacity: 1,
+                        x: 0,
                         scale: 1,
-                        rotate: 0,
+                        opacity: 1,
                       }}
                       exit={{
+                        x: -180,
+                        scale: 0.9,
                         opacity: 0,
-                        scale: 0.94,
-                        rotate: 10,
                       }}
                       transition={{
-                        duration: 0.75,
+                        duration: 1,
+                        ease: [0.22, 1, 0.36, 1],
                       }}
                       className="absolute inset-0"
                     >
-                      <Image
-                        src={
-                          infographicData[
-                            activeIndex
-                          ].image
-                        }
-                        alt={
-                          infographicData[
-                            activeIndex
-                          ].title
-                        }
-                        fill
-                        className="object-cover"
-                        priority={
-                          activeIndex === 0
-                        }
-                      />
+                      {/* Image parallax */}
+                      <motion.div
+                        animate={{
+                          scale: [1.08, 1],
+                        }}
+                        transition={{
+                          duration: 1.4,
+                          ease: "easeOut",
+                        }}
+                        className="h-full w-full"
+                      >
+                        <Image
+                          src={currentData.image}
+                          alt={currentData.title}
+                          fill
+                          priority={activeIndex === 0}
+                          className="object-cover"
+                        />
+                      </motion.div>
+
+                      {/* Luxury dark overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
                     </motion.div>
                   </AnimatePresence>
                 </div>
 
+                {/* Floating destination card */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeIndex}
+                    initial={{
+                      opacity: 0,
+                      y: 40,
+                      scale: 0.95,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      y: -30,
+                      scale: 0.96,
+                    }}
+                    transition={{
+                      duration: 0.7,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="absolute bottom-[-35px] left-1/2 z-30 -translate-x-1/2 rounded-full border border-white/20 bg-white/70 px-6 py-3 backdrop-blur-xl shadow-xl"
+                  >
+                    <p className="text-[11px] uppercase tracking-[3px] text-[#7A7A7A]">
+                      Destination
+                    </p>
+
+                    <h3 className="mt-1 text-[18px] font-light whitespace-nowrap">
+                      {currentData.title}
+                    </h3>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Compass / needle SVG */}
                 <svg
                   viewBox="0 0 450 450"
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                  style={{
-                    overflow:
-                      "visible",
-                  }}
+                  className="absolute inset-0 w-full h-full pointer-events-none z-30"
                 >
+                  {/* Base ring */}
                   <circle
                     cx={CX}
                     cy={CY}
@@ -335,6 +384,7 @@ const InfoGraphics = () => {
                     opacity="0.13"
                   />
 
+                  {/* Progress arc */}
                   <motion.circle
                     cx={CX}
                     cy={CY}
@@ -342,21 +392,20 @@ const InfoGraphics = () => {
                     fill="none"
                     stroke="#1a1814"
                     strokeWidth="1.2"
-                    opacity="0.3"
+                    opacity="0.35"
                     strokeLinecap="round"
-                    strokeDasharray={
-                      arcCircumference
-                    }
+                    strokeDasharray={arcCircumference}
                     animate={{
-                      strokeDashoffset:
-                        arcDashoffset,
+                      strokeDashoffset: arcDashoffset,
                     }}
                     transition={{
-                      duration: 0.7,
+                      duration: 1,
+                      ease: "easeOut",
                     }}
                     transform={`rotate(-90 ${CX} ${CY})`}
                   />
 
+                  {/* Needle */}
                   <motion.line
                     x1={CX}
                     y1={CY}
@@ -394,55 +443,51 @@ const InfoGraphics = () => {
               </div>
             </div>
 
-            {/* RIGHT */}
-            <div className="max-w-[220px] text-right shrink-0">
+            {/* RIGHT — Villa name + location */}
+            <div className="max-w-[240px] text-right shrink-0">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
                   initial={{
                     opacity: 0,
-                    y: 20,
+                    x: 40,
+                    filter: "blur(10px)",
                   }}
                   animate={{
                     opacity: 1,
-                    y: 0,
+                    x: 0,
+                    filter: "blur(0px)",
                   }}
                   exit={{
                     opacity: 0,
-                    y: -20,
+                    x: -40,
+                    filter: "blur(10px)",
                   }}
                   transition={{
-                    duration: 0.5,
+                    duration: 0.7,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
                 >
                   <p className="text-[10px] uppercase tracking-[3px] text-[#5A5A5A]">
-                    {
-                      infographicData[
-                        activeIndex
-                      ].label
-                    }
+                    Destinations
                   </p>
 
-                  <h2 className="mt-4 text-5xl">
-                    {
-                      infographicData[
-                        activeIndex
-                      ].title
-                    }
+                  <h2 className="mt-4 text-5xl font-light leading-tight tracking-tight">
+                    {currentData.title}
                   </h2>
 
-                  <p className="mt-2 text-sm text-[#707070]">
-                    {
-                      infographicData[
-                        activeIndex
-                      ].location
-                    }
+                  <p className="mt-3 text-sm text-[#707070] tracking-wide">
+                    — {currentData.location}
+                  </p>
+
+                  <p className="mt-2 text-xs text-[#999]">
+                    {currentData.coordinates}
                   </p>
                 </motion.div>
               </AnimatePresence>
             </div>
-
           </ContainerLayout>
+
         </section>
       </div>
     </div>

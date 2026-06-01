@@ -6,7 +6,7 @@ import GlassCard from "@/components/reusable/GlassCard";
 
 export default function WhyDoss() {
   return (
-    <section className="relative h-[100dvh] overflow-hidden mx-5 lg:mx-10 my-20">
+    <section className="relative h-[100dvh] overflow-hidden">
 
       {/* Background Image */}
       <Image
@@ -29,12 +29,11 @@ export default function WhyDoss() {
           className="
             top-8 left-8
             md:top-10 md:left-10
-            lg:top-12 lg:left-12
-            !max-w-[420px]
+            !max-w-[550px]
           "
         >
 
-          <h2 className="font-heading text-black text-[34px] md:text-[48px] font-light leading-[100%] mb-5">
+          <h2 className="font-heading lowercase text-black text-[34px] md:text-[48px] font-light leading-[100%] mb-5">
             Why Doss ?
           </h2>
 
