@@ -11,7 +11,7 @@ export default function Home() {
     <main>
       <Hero />
       <LivingLocation />
-      {/* <InfoGraphics /> */}
+      <InfoGraphics />
       <OurProjects />
       <TestimonialSection />
       <WhyDoss />

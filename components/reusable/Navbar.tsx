@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Menu, X } from "lucide-react";
+
 import PrimaryBtn from "./PrimaryBtn";
 
 const navLinks = [
@@ -31,6 +34,9 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] =
+    useState(false);
+
   return (
     <header
       className="
@@ -52,7 +58,8 @@ const Navbar = () => {
           h-[80px]
           max-w-[1440px]
           items-center
-          px-6
+          justify-between
+          px-5
           lg:px-12
         "
       >
@@ -64,34 +71,22 @@ const Navbar = () => {
             width={160}
             height={50}
             priority
-            className="
-              h-auto
-              w-auto
-              object-contain
-            "
+            className="h-auto w-auto object-contain"
           />
         </Link>
 
-        {/* LINKS */}
-        <nav className="ml-auto mr-10">
-          <ul
-            className="
-              flex
-              items-center
-              gap-8
-            "
-          >
-            {navLinks.map(
-              (link) => (
-                <li
-                  key={link.name}
-                >
+        {/* DESKTOP NAV - SAME */}
+        <div className="hidden lg:flex items-center ml-auto">
+          <nav className="mr-10">
+            <ul className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <li key={link.name}>
                   <Link
                     href={link.href}
                     className="
                       flex
                       items-center
-                      gap-1 
+                      gap-1
                       text-sm
                       font-body
                       text-white
@@ -108,17 +103,111 @@ const Navbar = () => {
                     )}
                   </Link>
                 </li>
-              )
-            )}
-          </ul>
-        </nav>
+              ))}
+            </ul>
+          </nav>
 
-        {/* BUTTON - SEPARATE */}
-        <Link href="/contact">
-          <PrimaryBtn variant="primary" size="lg">
-            Get in Touch
-          </PrimaryBtn>
-        </Link>
+          <Link href="/contact">
+            <PrimaryBtn
+              variant="primary"
+              size="lg"
+            >
+              Get in Touch
+            </PrimaryBtn>
+          </Link>
+        </div>
+
+        {/* MOBILE HAMBURGER */}
+        <button
+          onClick={() =>
+            setIsOpen(!isOpen)
+          }
+          className="
+            lg:hidden
+            text-white
+            z-[60]
+          "
+        >
+          {isOpen ? (
+            <X size={30} />
+          ) : (
+            <Menu size={30} />
+          )}
+        </button>
+      </div>
+
+      {/* MOBILE MENU */}
+      <div
+        className={`
+          lg:hidden
+          absolute
+          left-0
+          top-[80px]
+          w-full
+          overflow-hidden
+          bg-transparent
+          backdrop-blur-xl
+          transition-all
+          duration-500
+          ease-in-out
+          ${
+            isOpen
+              ? "max-h-[500px] opacity-100"
+              : "max-h-0 opacity-0"
+          }
+        `}
+      >
+        <div className="px-6 py-8">
+          <ul className="flex flex-col gap-6">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <Link
+                  href={link.href}
+                  onClick={() =>
+                    setIsOpen(false)
+                  }
+                  className="
+                    flex
+                    items-center
+                    justify-between
+                    text-white
+                    text-lg
+                    font-body
+                    border-b
+                    border-white/10
+                    pb-4
+                  "
+                >
+                  {link.name}
+
+                  {link.hasDropdown && (
+                    <span className="text-sm">
+                      ▼
+                    </span>
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* BUTTON */}
+          <div className="mt-8">
+            <Link
+              href="/contact"
+              onClick={() =>
+                setIsOpen(false)
+              }
+            >
+              <PrimaryBtn
+                variant="primary"
+                size="lg"
+                className="w-full"
+              >
+                Get in Touch
+              </PrimaryBtn>
+            </Link>
+          </div>
+        </div>
       </div>
     </header>
   );

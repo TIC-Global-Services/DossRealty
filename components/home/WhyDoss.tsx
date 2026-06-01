@@ -1,57 +1,114 @@
 "use client";
 
 import Image from "next/image";
+
 import bgImage from "@/assets/home/whyDossBg.jpg";
 import GlassCard from "@/components/reusable/GlassCard";
 
 export default function WhyDoss() {
   return (
-    <section className="relative h-[100dvh] overflow-hidden">
-
+    <section
+      className="
+        relative
+        min-h-[100dvh]
+        md:h-[100dvh]
+        overflow-hidden
+      "
+    >
       {/* Background Image */}
       <Image
         src={bgImage}
         alt="Why Doss"
         fill
         priority
-        className="object-cover"
+        className="object-cover object-left"
       />
 
       {/* Top Gradient Overlay */}
-      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#F7F7F7] via-[#F7F7F7]/60 to-transparent z-[1]" />
+      <div className="absolute top-0 left-0 z-[1] h-40 w-full bg-gradient-to-b from-[#F7F7F7] via-[#F7F7F7]/60 to-transparent" />
 
       {/* Content Wrapper */}
       <div className="relative z-[2] h-full">
 
-        {/* Glass Card */}
-        <GlassCard
-          absolute
-          className="
-            top-8 left-8
-            md:top-10 md:left-10
-            !max-w-[550px]
-          "
-        >
+        {/* MOBILE */}
+        <div className="block md:hidden px-5 pt-6 pb-12">
+          <GlassCard
+            className="
+              !max-w-full
+              !w-full
+            "
+          >
+            <h2 className="mb-5 font-heading text-[34px] font-light lowercase leading-[100%] text-black">
+              Why Doss ?
+            </h2>
 
-          <h2 className="font-heading lowercase text-black text-[34px] md:text-[48px] font-light leading-[100%] mb-5">
-            Why Doss ?
-          </h2>
+            <p className="font-body text-[15px] leading-[165%] text-black">
+              At Doss Realty, we believe every
+              space should reflect purpose,
+              elegance, and long-term value.
+              With a commitment to quality
+              craftsmanship and thoughtful
+              development, we create properties
+              that balance modern living with
+              timeless design.
+              <br />
+              <br />
+              Driven by trust, transparency,
+              and customer satisfaction,
+              Doss Realty believes in
+              developing more than just
+              properties — we create lasting
+              experiences and meaningful
+              communities. Our vision is
+              centered on innovation,
+              sustainable growth, and
+              delivering excellence in every
+              aspect of real estate
+              development.
+            </p>
+          </GlassCard>
+        </div>
 
-          <p className="font-body text-black text-[15px] md:text-[16px] leading-[150%]">
-            At Doss Realty, we believe every space should reflect purpose,
-            elegance, and long-term value. With a commitment to quality
-            craftsmanship and thoughtful development, we create properties
-            that balance modern living with timeless design.
-            <br />
-            <br />
-            Driven by trust, transparency, and customer satisfaction,
-            Doss Realty believes in developing more than just properties —
-            we create lasting experiences and meaningful communities.
-            Our vision is centered on innovation, sustainable growth,
-            and delivering excellence in every aspect of real estate
-            development.
-          </p>
-        </GlassCard>
+        {/* DESKTOP  */}
+        <div className="hidden md:block">
+          <GlassCard
+            absolute
+            className="
+              top-8 left-8
+              md:top-10 md:left-10
+              !max-w-[550px]
+            "
+          >
+            <h2 className="mb-5 font-heading text-[34px] md:text-[48px] font-light lowercase leading-[100%] text-black">
+              Why Doss ?
+            </h2>
+
+            <p className="font-body text-[15px] md:text-[16px] leading-[150%] text-black">
+              At Doss Realty, we believe every
+              space should reflect purpose,
+              elegance, and long-term value.
+              With a commitment to quality
+              craftsmanship and thoughtful
+              development, we create properties
+              that balance modern living with
+              timeless design.
+              <br />
+              <br />
+              Driven by trust, transparency,
+              and customer satisfaction,
+              Doss Realty believes in
+              developing more than just
+              properties — we create lasting
+              experiences and meaningful
+              communities. Our vision is
+              centered on innovation,
+              sustainable growth, and
+              delivering excellence in every
+              aspect of real estate
+              development.
+            </p>
+          </GlassCard>
+        </div>
       </div>
     </section>
   );
