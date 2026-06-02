@@ -22,20 +22,46 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 pt-25 flex h-full items-center">
-        <div className="px-6 md:px-14 lg:px-20">
+      <div
+        className="
+        relative
+        z-10
+        flex
+        min-h-screen
+        items-center
+        pt-[100px]
+        md:pt-[120px]
+      "
+      >
+        <div
+          className="
+          flex
+          w-full
+          items-center
+          px-6
+          md:px-14
+          lg:px-20
+        "
+        >
+          <div className="max-w-[780px]">
 
-          <h1 className="text-white text-[30px] leading-[100%] md:text-[60px] lg:text-[88px] font-light tracking-[-2px]">
-            Elevating Modern  <br/> Living with Purpose
-          </h1>
+            <h1 className="text-white text-[30px] leading-[100%] md:text-[60px] lg:text-[88px] font-light tracking-[-2px]">
+              Elevating Modern
+              <br />
+              Living with Purpose
+            </h1>
 
-          <p className="mt-6 max-w-[560px] text-[16px] md:text-[18px] leading-[120%] text-white/80">
-            Thoughtfully crafted spaces that bring together modern architecture, premium quality, and everyday functionality. 
-            At Doss Realty, every development is designed with purpose — creating environments that offer comfort, elegance, and 
-            long-term value for individuals, families, and communities alike. 
-            Driven by trust and innovation, we create spaces that inspire better living and 
-            meaningful experiences for generations to come.
-          </p>
+            <p className="mt-6 max-w-[560px] text-[16px] md:text-[18px] leading-[120%] text-white/80">
+              Thoughtfully crafted spaces that bring together modern
+              architecture, premium quality, and everyday functionality.
+              At Doss Realty, every development is designed with purpose —
+              creating environments that offer comfort, elegance, and
+              long-term value for individuals, families, and communities alike.
+              Driven by trust and innovation, we create spaces that inspire
+              better living and meaningful experiences for generations to come.
+            </p>
+
+          </div>
         </div>
       </div>
     </section>
