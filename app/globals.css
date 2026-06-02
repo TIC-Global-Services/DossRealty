@@ -83,3 +83,12 @@ html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+
+.testimonial-swiper {
+  overflow: visible !important;
+}
+
+.testimonial-swiper .swiper-wrapper {
+  align-items: stretch;
+}
