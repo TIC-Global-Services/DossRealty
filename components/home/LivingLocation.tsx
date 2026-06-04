@@ -26,14 +26,14 @@ const LivingLocation = () => {
         <Image
           src={fogImg}
           alt="Fog"
-          width={1920}
+          width={2000}
           height={500}
           priority
           className="
             w-full
             h-auto
             object-cover
-            opacity-90
+            opacity-100
             -translate-y-[80%]
           "
         />
@@ -48,7 +48,7 @@ const LivingLocation = () => {
               Luxury Living Begins Here
             </p>
 
-            <h2 className="font-heading text-[30px] md:text-[48px] leading-[95%] tracking-[-0.04em] text-[#111111]">
+            <h2 className="font-heading text-[30px] md:text-[48px] leading-[120%] tracking-[-0.04em] text-[#111111]">
               Crafting a Harmonious Blend of Luxury & Design
             </h2>
           </div>
@@ -92,7 +92,7 @@ const LivingLocation = () => {
               <div className="absolute inset-0 bg-black/10 z-[1]" />
 
               {/* CENTER TITLE */}
-              <div className="absolute inset-0 z-10 flex items-start justify-center pt-10">
+              <div className="absolute inset-0 z-10 flex items-start justify-center pt-20">
                 <h2 className="font-heading text-4xl md:text-5xl text-white text-center">
                   {item.title}
                 </h2>

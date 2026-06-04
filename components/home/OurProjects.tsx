@@ -53,7 +53,7 @@ export default function OurProjects() {
               md:text-[60px]
               font-heading
               tracking-[-0.04em]
-              text-[#111111]
+              text-black
             "
           >
             Recognized for Project Excellence

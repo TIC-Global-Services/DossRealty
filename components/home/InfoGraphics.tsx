@@ -1,14 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import {
-  motion,
-  AnimatePresence,
-  useSpring,
-  useTransform,
-  useScroll,
-} from "framer-motion";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Image, { StaticImageData } from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import ContainerLayout from "@/layout/ContainerLayout";
 
@@ -18,7 +13,16 @@ import image3 from "@/assets/home/infographics/img3.jpg";
 import image4 from "@/assets/home/infographics/img4.jpg";
 import image5 from "@/assets/home/infographics/img5.png";
 
-const infographicData = [
+gsap.registerPlugin(ScrollTrigger);
+
+type InfographicItem = {
+  id: string;
+  image: StaticImageData;
+  stat: string;
+  description: string;
+};
+
+const infographicData: InfographicItem[] = [
   {
     id: "01",
     image: image1,
@@ -51,214 +55,418 @@ const infographicData = [
   },
 ];
 
-const NEEDLE_ANGLES = [216, 234, 252, 270, 288];
+export default function InfoGraphics() {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const stickyRef = useRef<HTMLDivElement | null>(null);
 
-const CX = 225;
-const CY = 225;
-const R  = 222;
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const textRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const numberRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const wheelRef = useRef<HTMLDivElement | null>(null);
+  const lineRef = useRef<HTMLDivElement | null>(null);
 
-function tipPoint(angleDeg: number) {
-  const rad = ((angleDeg - 90) * Math.PI) / 180;
-  return { x: CX + Math.cos(rad) * R, y: CY + Math.sin(rad) * R };
-}
+  const [activeIndex, setActiveIndex] = useState(0);
 
-function extendedPoint(angleDeg: number) {
-  const rad = ((angleDeg - 90) * Math.PI) / 180;
-  return { x: CX + Math.cos(rad) * R * 3.2, y: CY + Math.sin(rad) * R * 3.2 };
-}
-
-const InfoGraphics = () => {
-  const sectionRef    = useRef<HTMLDivElement>(null);
-  const hasEnteredRef = useRef(false);
-
-  const [activeIndex,   setActiveIndex]   = useState(0);
-  const [circleVisible, setCircleVisible] = useState(false);
-
-  const needleSpring = useSpring(NEEDLE_ANGLES[0], {
-    stiffness: 55,
-    damping: 18,
-    mass: 1,
-  });
-
-  // ── useScroll is far more reliable than window.addEventListener("scroll")
-  //    It auto-detects the correct scroll container (window, div, Lenis, etc.)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (latest) => {
-      // Trigger circle scale-up once
-      if (latest > 0.01 && !hasEnteredRef.current) {
-        hasEnteredRef.current = true;
-        setCircleVisible(true);
-      }
-
-      const index = Math.min(
-        Math.floor(latest * infographicData.length),
-        infographicData.length - 1
-      );
-
-      // All three panels update together in the same state write
-      setActiveIndex((prev) => {
-        if (prev !== index) needleSpring.set(NEEDLE_ANGLES[index]);
-        return index;
-      });
-    });
-
-    return unsubscribe;
-  }, [scrollYProgress, needleSpring]);
-
-  const tipX = useTransform(needleSpring, (a) => tipPoint(a).x);
-  const tipY = useTransform(needleSpring, (a) => tipPoint(a).y);
-  const extX = useTransform(needleSpring, (a) => extendedPoint(a).x);
-  const extY = useTransform(needleSpring, (a) => extendedPoint(a).y);
+  const snapPoints = useMemo(
+    () =>
+      infographicData.map((_, i) => i / (infographicData.length - 1)),
+    []
+  );
 
   const jumpTo = (index: number) => {
     if (!sectionRef.current) return;
-    const trackHeight    = sectionRef.current.offsetHeight;
+
+    const sectionTop = sectionRef.current.offsetTop;
+    const sectionHeight = sectionRef.current.offsetHeight;
     const viewportHeight = window.innerHeight;
+
+    const progress = index / (infographicData.length - 1);
+
+    const scrollTarget =
+      sectionTop +
+      progress * (sectionHeight - viewportHeight);
+
     window.scrollTo({
-      top:
-        sectionRef.current.offsetTop +
-        (index / (infographicData.length - 1)) *
-          (trackHeight - viewportHeight),
+      top: scrollTarget,
       behavior: "smooth",
     });
   };
 
-  const currentData = infographicData[activeIndex];
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // ------------------------------------------------
+      // INITIAL STATES
+      // ------------------------------------------------
+
+      gsap.set(imageRefs.current, {
+        opacity: 0,
+        scale: 1.12,
+        filter: "blur(8px)",
+      });
+
+      gsap.set(textRefs.current, {
+        opacity: 0,
+        y: 50,
+        filter: "blur(8px)",
+      });
+
+      gsap.set(numberRefs.current, {
+        opacity: 0.35,
+        y: 10,
+        scale: 0.92,
+      });
+
+      // first active state
+      gsap.set(imageRefs.current[0], {
+        opacity: 1,
+        scale: 1,
+        filter: "blur(0px)",
+      });
+
+      gsap.set(textRefs.current[0], {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+      });
+
+      gsap.set(numberRefs.current[0], {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+      });
+
+      gsap.set(wheelRef.current, {
+        rotation: 0,
+        transformOrigin: "center center",
+      });
+
+      gsap.set(lineRef.current, {
+        rotation: 0,
+        transformOrigin: "left center",
+      });
+
+      // ------------------------------------------------
+      // APPLE-STYLE BREATHING IMAGE
+      // ------------------------------------------------
+
+      imageRefs.current.forEach((image) => {
+        if (!image) return;
+
+        gsap.to(image, {
+          scale: 1.03,
+          duration: 4,
+          repeat: -1,
+          yoyo: true,
+          ease: "power1.inOut",
+        });
+      });
+
+      // ------------------------------------------------
+      // MAIN TIMELINE
+      // ------------------------------------------------
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: () => `+=${window.innerHeight * 4.2}`,
+          pin: true,
+          pinSpacing: true,
+          scrub: 1.2,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+
+      infographicData.forEach((_, index) => {
+        if (index === 0) return;
+
+        const previousImage = imageRefs.current[index - 1];
+        const currentImage = imageRefs.current[index];
+
+        const previousText = textRefs.current[index - 1];
+        const currentText = textRefs.current[index];
+
+        const previousNumber = numberRefs.current[index - 1];
+        const currentNumber = numberRefs.current[index];
+
+
+        tl.to({}, { duration: 0.45 });
+
+
+        tl.addLabel(`transition-${index}`);
+
+        // ANTI-CLOCKWISE ROTATION
+        tl.to(
+          wheelRef.current,
+          {
+            rotation: -(index * 28),
+            duration: 1.4,
+            ease: "power4.inOut",
+          },
+          "<"
+        );
+
+        tl.to(
+          lineRef.current,
+          {
+            rotation: -(index * 28),
+            duration: 1.4,
+            ease: "power4.inOut",
+          },
+          "<"
+        );
+
+        // PREVIOUS IMAGE EXIT
+        tl.to(
+          previousImage,
+          {
+            opacity: 0,
+            scale: 0.92,
+            rotation: 8,
+            filter: "blur(6px)",
+            duration: 1.35,
+            ease: "power3.inOut",
+          },
+          "<"
+        );
+
+        // NEW IMAGE ENTER
+        tl.fromTo(
+          currentImage,
+          {
+            opacity: 0,
+            scale: 1.18,
+            rotation: -8,
+            filter: "blur(8px)",
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            rotation: 0,
+            filter: "blur(0px)",
+            duration: 1.4,
+            ease: "power3.inOut",
+          },
+          "<+0.15"
+        );
+
+        // PREVIOUS TEXT EXIT
+        tl.to(
+          previousText,
+          {
+            opacity: 0,
+            y: -40,
+            filter: "blur(8px)",
+            duration: 0.65,
+            ease: "expo.inOut",
+          },
+          "<"
+        );
+
+        // NEW TEXT ENTER
+        tl.fromTo(
+          currentText,
+          {
+            opacity: 0,
+            y: 50,
+            filter: "blur(8px)",
+          },
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.7,
+            ease: "power4.out",
+          },
+          "<+0.08"
+        );
+
+        // PREVIOUS NUMBER EXIT
+        tl.to(
+          previousNumber,
+          {
+            opacity: 0.35,
+            y: -24,
+            scale: 0.92,
+            duration: 0.55,
+            ease: "power4.out",
+          },
+          "<"
+        );
+
+        // NEW NUMBER ENTER
+        tl.to(
+          currentNumber,
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.65,
+            ease: "power4.out",
+          },
+          "<+0.04"
+        );
+
+        // ACTIVE INDEX UPDATE
+        tl.call(() => {
+          setActiveIndex(index);
+        });
+
+        // HOLD AFTER TRANSITION
+        tl.to({}, { duration: 0.35 });
+      });
+
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: () => `+=${window.innerHeight * 4.2}`,
+        snap: {
+          snapTo: snapPoints,
+          duration: 0.6,
+          ease: "power2.inOut",
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [snapPoints]);
 
   return (
-    // sectionRef must sit on the OUTER scroll-track div, not the sticky child
-    <div ref={sectionRef} className="relative bg-white"
-      style={{ height: `${infographicData.length * 100}vh` }}
+    <section
+      ref={sectionRef}
+      className="relative bg-white"
+      style={{
+        height: "100vh",
+      }}
     >
-      {/* Sticky viewport — pinned while outer div scrolls */}
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
-        <ContainerLayout className="w-full flex items-center justify-between gap-8">
+      <div
+        ref={stickyRef}
+        className="h-screen overflow-hidden"
+      >
+        <ContainerLayout className="h-full">
+          <div className="flex h-full items-center justify-between gap-10">
 
-          {/* ── LEFT: all numbers visible, active = bold ── */}
-          <div className="flex flex-col gap-[18px] shrink-0">
-            {infographicData.map((item, index) => {
-              const isActive = index === activeIndex;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => jumpTo(index)}
-                  className="text-left"
-                >
-                  <motion.span
-                    animate={{
-                      color:      isActive ? "#1a1814" : "#C4C4C4",
-                      fontSize:   isActive ? "18px"   : "13px",
-                      fontWeight: isActive ? 700      : 300,
+            {/* LEFT NUMBERS */}
+            <div className="w-[90px] shrink-0">
+              <div className="flex flex-col gap-5">
+                {infographicData.map((item, index) => (
+                  <button
+                    key={item.id}
+                    ref={(el) => {
+                      numberRefs.current[index] = el;
                     }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="font-mono tracking-wider leading-none block"
+                    onClick={() => jumpTo(index)}
+                    className="group text-left"
                   >
-                    {item.id}
-                  </motion.span>
-                </button>
-              );
-            })}
-          </div>
+                    <span
+                      className={`
+                        block
+                        font-mono
+                        tracking-[0.15em]
+                        leading-none
+                        transition-colors
+                        duration-300
+                        ${activeIndex === index
+                          ? "text-[#1A1814]"
+                          : "text-[#BFBFBF]"
+                        }
+                      `}
+                    >
+                      {item.id}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
 
-          {/* ── CENTER: circle + needle ── */}
-          <div className="relative flex items-center justify-center flex-1">
-            <div className="relative h-[440px] w-[440px]">
+            {/* CENTER IMAGE */}
+            <div className="flex flex-1 items-center justify-center">
+              <div className="relative h-[380px] w-[380px] md:h-[420px] md:w-[420px]">
 
-              {/* Circle — scales up from 0 on entry */}
-              <motion.div
-                className="absolute inset-0 rounded-full overflow-hidden z-10"
-                initial={{ scale: 0 }}
-                animate={{ scale: circleVisible ? 1 : 0 }}
-                transition={{ type: "spring", stiffness: 60, damping: 16, mass: 1.1 }}
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeIndex}
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -100 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="absolute inset-0"
+                {/* OUTER CIRCLE */}
+                <div className="absolute inset-0 rounded-full border border-black/10" />
+
+                {/* ROTATING WHEEL */}
+                <div
+                  ref={wheelRef}
+                  className="absolute inset-0"
+                >
+                  {/* IMAGE CIRCLE */}
+                  <div className="absolute inset-0 overflow-hidden rounded-full">
+
+                    {infographicData.map((item, index) => (
+                      <div
+                        key={item.id}
+                        ref={(el) => {
+                          imageRefs.current[index] = el;
+                        }}
+                        className="absolute inset-0 will-change-transform"
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.stat}
+                          fill
+                          priority={index === 0}
+                          className="object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* ROTATING LINE */}
+                  <div
+                    ref={lineRef}
+                    className="absolute left-1/2 top-1/2 h-[1px] w-[450px] origin-left -translate-y-1/2 bg-black/30"
+                  />
+                </div>
+
+                {/* CENTER DOT */}
+                <div className="absolute left-1/2 top-1/2 z-20 h-[10px] w-[10px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1A1814]" />
+              </div>
+            </div>
+
+            {/* RIGHT CONTENT */}
+            <div className="w-[300px] shrink-0 text-right">
+              <div className="relative min-h-[220px]">
+                {infographicData.map((item, index) => (
+                  <div
+                    key={item.id}
+                    ref={(el) => {
+                      textRefs.current[index] = el;
+                    }}
+                    className="absolute inset-0 will-change-transform"
                   >
-                    <Image
-                      src={currentData.image}
-                      alt={currentData.stat}
-                      fill
-                      className="object-cover"
-                      priority={activeIndex === 0}
-                    />
-                  </motion.div>
-                </AnimatePresence>
-              </motion.div>
+                    <p className="text-[10px] uppercase tracking-[0.3em] text-[#9A9A9A] font-light">
+                      View Infographics
+                    </p>
 
-              {/* Needle SVG */}
-              <svg
-                viewBox="0 0 450 450"
-                className="absolute inset-0 w-full h-full pointer-events-none z-20"
-                style={{ overflow: "visible" }}
-              >
-                <circle
-                  cx={CX} cy={CY} r={R}
-                  fill="none" stroke="#1a1814"
-                  strokeWidth="0.5" opacity="0.1"
-                />
+                    <h2
+                      className="mt-5 font-semibold leading-[0.95] tracking-[-0.04em] text-[#1A1814]"
+                      style={{
+                        fontSize:
+                          item.stat.length > 10
+                            ? "clamp(2.4rem,5vw,4rem)"
+                            : "clamp(3rem,6vw,5rem)",
+                      }}
+                    >
+                      {item.stat}
+                    </h2>
 
-                <motion.line
-                  x1={CX} y1={CY} x2={tipX} y2={tipY}
-                  stroke="#1a1814" strokeWidth="0.7" opacity="0.45"
-                />
-
-                <motion.line
-                  x1={tipX} y1={tipY} x2={extX} y2={extY}
-                  stroke="#1a1814" strokeWidth="0.5" opacity="0.22"
-                />
-
-                <circle cx={CX} cy={CY} r={3} fill="#1a1814" opacity="0.85" />
-
-                <motion.circle
-                  cx={tipX} cy={tipY} r={3.5} fill="#1a1814" opacity="0.85"
-                />
-              </svg>
+                    <p className="mt-4 max-w-[250px] ml-auto text-[13px] leading-[1.6] text-[#8C8C8C]">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-
-          {/* ── RIGHT: label / stat / description ── */}
-          <div className="max-w-[260px] text-right shrink-0">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -24 }}
-                transition={{ duration: 0.45, ease: "easeOut" }}
-              >
-                <p className="text-[10px] uppercase tracking-[3px] text-[#9A9A9A] font-light">
-                  View Infographics
-                </p>
-
-                <h2
-                  className="mt-3 font-semibold text-[#1a1814] leading-none tracking-tight"
-                  style={{ fontSize: currentData.stat.length > 6 ? "2.4rem" : "3rem" }}
-                >
-                  {currentData.stat}
-                </h2>
-
-                <p className="mt-2 text-[12px] text-[#9A9A9A] leading-snug">
-                  {currentData.description}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
         </ContainerLayout>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default InfoGraphics;
+}

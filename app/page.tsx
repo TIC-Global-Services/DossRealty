@@ -15,7 +15,7 @@ export default function Home() {
   <div className="relative z-[100] -mt-[100vh]">
     <LivingLocation />
   </div>
-  {/* <InfoGraphics /> */}
+  <InfoGraphics />
   <OurProjects />
   <TestimonialSection />
   <WhyDoss />

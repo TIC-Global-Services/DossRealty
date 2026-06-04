@@ -40,80 +40,80 @@ export default function LegacyVisionPurpose() {
     return (
         <>
             {/* Desktop */}
-            <section className="hidden h-[100vh] items-center overflow-hidden md:flex md:mt-20 xl:mt-10">
-                <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
-                    <div className="grid grid-cols-3 gap-6 xl:gap-8">
+            <section className="hidden min-h-screen items-center overflow-hidden md:flex md:py-20">
+                <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-8 xl:px-10">
+                    <div className="grid grid-cols-3 gap-5 lg:gap-6 xl:gap-8">
                         {values.map((item, index) => (
                             <div
                                 key={index}
-                                className="relative flex lg:h-[85vh] xl:[85vh] flex-col"
+                                className="
+                                relative
+                                flex
+                                flex-col
+                                min-h-[780px]
+                                lg:min-h-[850px]
+                                xl:min-h-[850px]
+                              "
                             >
-
-                                {/* IMAGE */}
+                                {/* IMAGE — 3/4 */}
                                 <div
-                                    className="
+                                  className={`
                                     group
                                     relative
                                     z-10
-                                    h-[42vh]
-                                    xl:h-[48vh]
-                                    min-h-[280px]
-                                    max-h-[520px]
+                                    aspect-[3/4]
                                     overflow-hidden
                                     rounded-[14px]
                                     shadow-[0_10px_30px_rgba(0,0,0,0.08)]
-                                  "
+                                    ${index === 1 ? "mt-[50px] lg:mt-[60px]" : ""}
+                                  `}
                                 >
                                     <Image
                                         src={item.image}
                                         alt={item.title}
                                         fill
                                         className="
-                                      object-cover
-                                      transition-transform
-                                      duration-700
-                                      ease-out
-                                      group-hover:scale-110
-                                    "
+                                        object-cover
+                                        transition-transform
+                                        duration-700
+                                        ease-out
+                                        group-hover:scale-110
+                                      "
                                     />
                                 </div>
 
-                                {/* VERTICAL LINE - TOUCHING IMAGE */}
+                                {/* LINE */}
                                 <div
                                     className="
-                                      absolute
-                                      left-[48px]
-                                      top-[42vh]
-                                      xl:top-[48vh]
-                                      h-[320px]
-                                      w-[1px]
-                                      bg-[#D5D5D5]
-                                      z-0
-                                    "
+                                    absolute
+                                    left-[36px]
+                                    top-[20%]
+                                    bottom-[-40px]
+                                    w-[1px]
+                                    bg-[#D5D5D5]
+                                    z-0
+                                  "
                                 />
 
-                                {/* CONTENT ALWAYS VISIBLE */}
+                                {/* CONTENT */}
                                 <div
                                     className="
-                                      absolute
-                                      left-[60px]
-                                      top-[calc(42vh+32px)]
-                                      xl:top-[calc(48vh+32px)]
-                                      max-w-[260px]
-                                      min-h-[220px]
-                                      flex
-                                      flex-col
-                                      md:ml-5
+                                      relative
+                                      z-10
+                                      pl-[60px]
+                                      pt-20
+                                      lg:pt-12
+                                      max-w-[95%]
                                     "
                                 >
                                     <h2
                                         className="
-                                        mb-5
-                                        text-[30px]
-                                        md:text-[48px]
+                                        mb-4
+                                        text-[28px]
+                                        lg:text-[36px]
+                                        xl:text-[48px]
                                         font-heading
-                                        tracking-normal
-                                        leading-[90%]
+                                        leading-[100%]
                                         text-[#111111]
                                       "
                                     >
@@ -122,9 +122,9 @@ export default function LegacyVisionPurpose() {
 
                                     <p
                                         className="
-                                        text-[14px]
-                                        md:text-[16px]
-                                        leading-[150%]
+                                        text-[13px]
+                                        lg:text-[14px]
+                                        leading-[160%]
                                         text-[#666666]
                                       "
                                     >
