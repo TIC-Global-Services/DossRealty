@@ -102,55 +102,58 @@ export default function TestimonialSection() {
           </div>
         </div>
 
+
         {/* Desktop */}
-        <div className="hidden items-center gap-16 lg:grid lg:grid-cols-2">
+        <div className="relative hidden h-[700px] lg:block">
 
           {/* LEFT SIDE */}
-          <div className="relative h-[700px] overflow-hidden">
-            <div className="grid h-full grid-cols-2 gap-6">
+          <div className="w-[54%] h-full">
+            <div className="relative h-[700px] overflow-hidden">
+              <div className="grid h-full grid-cols-2 gap-6">
 
-              {/* COLUMN 1 */}
-              <div className="relative overflow-hidden">
-                <div className="animate-scroll-up flex flex-col gap-6">
-                  {duplicated.map(
-                    (item, index) => (
-                      <Card
-                        key={index}
-                        item={item}
-                      />
-                    )
-                  )}
+                {/* COLUMN 1 */}
+                <div className="relative overflow-hidden">
+                  <div className="animate-scroll-up flex flex-col gap-6">
+                    {duplicated.map(
+                      (item, index) => (
+                        <Card
+                          key={index}
+                          item={item}
+                        />
+                      )
+                    )}
+                  </div>
+                </div>
+
+                {/* COLUMN 2 */}
+                <div className="relative overflow-hidden">
+                  <div className="animate-scroll-down flex flex-col gap-6">
+                    {duplicated.map(
+                      (item, index) => (
+                        <Card
+                          key={index}
+                          item={item}
+                        />
+                      )
+                    )}
+                  </div>
                 </div>
               </div>
 
-              {/* COLUMN 2 */}
-              <div className="relative overflow-hidden">
-                <div className="animate-scroll-down flex flex-col gap-6">
-                  {duplicated.map(
-                    (item, index) => (
-                      <Card
-                        key={index}
-                        item={item}
-                      />
-                    )
-                  )}
-                </div>
-              </div>
+              {/* Fade */}
+              <div className="absolute left-0 top-0 z-10 h-28 w-full bg-gradient-to-b from-white to-transparent" />
+              <div className="absolute bottom-0 left-0 z-10 h-28 w-full bg-gradient-to-t from-white to-transparent" />
             </div>
-
-            {/* Fade */}
-            <div className="absolute left-0 top-0 z-10 h-28 w-full bg-gradient-to-b from-white to-transparent" />
-            <div className="absolute bottom-0 left-0 z-10 h-28 w-full bg-gradient-to-t from-white to-transparent" />
           </div>
 
-          {/* RIGHT SIDE */}
-          <div className="max-w-[550px]">
-            <h2 className="mb-5 text-[30px] font-heading font-normal leading-[100%] text-[#111] md:text-[48px]">
+          {/* RIGHT SIDE - FIXED POSITION */}
+          <div className="absolute right-0 top-1/2 max-w-[550px] -translate-y-1/2">
+            <h2 className="mb-5 text-[30px] font-regular font-normal leading-[50px] tracking-tight text-[#111] md:text-[48px]">
               Experiences Shared <br />
               by Our Clients
             </h2>
 
-            <p className="mb-8 w-[46ch] text-[16px] leading-[160%] text-[#6B6B6B]">
+            <p className="mb-8 w-[46ch] text-[16px] leading-[20px] text-[#6B6B6B]">
               Doss Realty believes great
               architecture goes beyond
               structures, it creates
@@ -163,7 +166,7 @@ export default function TestimonialSection() {
               future-ready.
             </p>
 
-            <button className="rounded-full bg-[#00256a] px-8 py-4 text-white duration-300 hover:scale-105">
+            <button className="rounded-full bg-[#00256a] px-12 py-3 text-white duration-300 hover:scale-105">
               Get in touch
             </button>
           </div>
@@ -223,13 +226,22 @@ export default function TestimonialSection() {
 
 function Card({ item }: any) {
   return (
-    <div className="rounded-b-[30px] border-b border-[#ECECEC] bg-white p-6 shadow-sm">
-      <p className="mb-6 text-[15px] leading-[170%] text-[#6B6B6B]">
+    <div
+      className="
+        rounded-[32px]
+        border
+        border-white
+        bg-white
+        p-4
+        shadow-[0px_4px_4px_rgba(233,227,220,0.25),0px_1px_1px_rgba(166,101,24,0.08)]
+      "
+    >
+      <p className="mb-6 text-[16px] leading-[24px] text-[#6B6B6B]">
         {item.text}
       </p>
 
       <div className="flex items-center gap-3">
-        <div className="relative h-12 w-12 overflow-hidden rounded-full">
+        <div className="relative h-[40px] w-[40px] overflow-hidden rounded-full">
           <Image
             src={item.image}
             alt={item.name}
@@ -239,11 +251,11 @@ function Card({ item }: any) {
         </div>
 
         <div>
-          <h4 className="text-[16px] font-medium text-[#111]">
+          <h4 className="text-[16px] font-medium leading-[20px] text-[#111]">
             {item.name}
           </h4>
 
-          <p className="text-[14px] text-[#7B7B7B]">
+          <p className="text-[16px] leading-[20px] text-[#7B7B7B]">
             {item.location}
           </p>
         </div>

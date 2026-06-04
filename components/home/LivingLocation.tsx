@@ -3,6 +3,7 @@ import { MapPin } from "lucide-react";
 
 import leftLocation from "@/assets/home/luxury_img.jpg";
 import rightLocation from "@/assets/home/stay_img.jpg";
+import fogImg from "@/assets/home/hero/cloudImgmain.png";
 
 const locations = [
   {
@@ -19,9 +20,27 @@ const locations = [
 
 const LivingLocation = () => {
   return (
-    <section className="bg-[#F7F7F7] py-0">
+    <section className="relative py-0 overflow-visible bg-white">
+      {/* TOP FOG */}
+      <div className="absolute -top-20 left-0 z-[20] w-full pointer-events-none">
+        <Image
+          src={fogImg}
+          alt="Fog"
+          width={1920}
+          height={500}
+          priority
+          className="
+            w-full
+            h-auto
+            object-cover
+            opacity-90
+            -translate-y-[80%]
+          "
+        />
+      </div>
+
       {/* TOP CONTENT */}
-      <div className="max-w-[1440px] mx-auto px-5 md:px-8 lg:px-10 pt-10 md:pt-14 pb-8 md:pb-12">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-5 md:px-8 lg:px-10 pt-10 md:pt-14 pb-8 md:pb-12">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
           {/* LEFT SIDE */}
           <div className="max-w-[650px]">
@@ -49,31 +68,31 @@ const LivingLocation = () => {
       </div>
 
       {/* IMAGE GRID */}
-      <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2">
         {locations.map((item, index) => (
           <div
             key={index}
             className="group relative overflow-hidden"
           >
             <div className="relative h-[50vh] md:h-screen overflow-hidden">
-              {/* Image */}
+              {/* IMAGE */}
               <Image
                 src={item.image}
                 alt={item.title}
                 fill
                 className="
                   object-cover
-                  transition
+                  transition-transform
                   duration-700
                   group-hover:scale-105
                 "
               />
 
-              {/* Overlay */}
+              {/* DARK OVERLAY */}
               <div className="absolute inset-0 bg-black/10 z-[1]" />
 
               {/* CENTER TITLE */}
-              <div className="absolute inset-0 z-10 flex items-start pt-10 justify-center">
+              <div className="absolute inset-0 z-10 flex items-start justify-center pt-10">
                 <h2 className="font-heading text-4xl md:text-5xl text-white text-center">
                   {item.title}
                 </h2>
@@ -83,9 +102,7 @@ const LivingLocation = () => {
               <div
                 className="
                   absolute z-10 flex items-center gap-2
-
                   bottom-6 right-5
-                  
                   lg:bottom-10 lg:left-1/2
                   lg:right-auto lg:-translate-x-1/2
                 "

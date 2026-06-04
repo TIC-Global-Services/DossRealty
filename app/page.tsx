@@ -8,14 +8,18 @@ import WhyDoss from '@/components/home/WhyDoss';
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <LivingLocation />
-      <InfoGraphics />
-      <OurProjects />
-      <TestimonialSection />
-      <WhyDoss />
-      <BrandValues/>
-    </main>
+    <main className="overflow-x-hidden">
+  <Hero />
+
+  {/* NEXT SECTION OVER HERO */}
+  <div className="relative z-[100] -mt-[100vh]">
+    <LivingLocation />
+  </div>
+  {/* <InfoGraphics /> */}
+  <OurProjects />
+  <TestimonialSection />
+  <WhyDoss />
+  <BrandValues />
+</main>
   );
 }

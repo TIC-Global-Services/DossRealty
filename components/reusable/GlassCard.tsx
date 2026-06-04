@@ -5,7 +5,7 @@ import React from "react";
 type GlassCardProps = {
   children: React.ReactNode;
   className?: string;
-  absolute?: boolean; //control positioning
+  absolute?: boolean;
 };
 
 const GlassCard: React.FC<GlassCardProps> = ({
@@ -23,7 +23,7 @@ const GlassCard: React.FC<GlassCardProps> = ({
         backdrop-blur-md
         border border-white/30
         rounded-2xl
-        shadow-[inset_-1px_-1px_4px_0_rgba(0,0,0,0.25)]
+        shadow-[inset_0px_1px_2px_rgba(255,255,255,0.8)]
         p-4 sm:p-5 md:p-6
         ${className}
       `}

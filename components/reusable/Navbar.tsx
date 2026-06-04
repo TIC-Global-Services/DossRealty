@@ -3,7 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+} from "lucide-react";
 
 import PrimaryBtn from "./PrimaryBtn";
 
@@ -75,8 +79,8 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* DESKTOP NAV - SAME */}
-        <div className="hidden lg:flex items-center ml-auto">
+        {/* DESKTOP NAV */}
+        <div className="ml-auto hidden items-center lg:flex">
           <nav className="mr-10">
             <ul className="flex items-center gap-8">
               {navLinks.map((link) => (
@@ -84,22 +88,31 @@ const Navbar = () => {
                   <Link
                     href={link.href}
                     className="
+                      group
                       flex
                       items-center
-                      gap-1
+                      gap-1.5
                       text-sm
                       font-body
                       text-white
                       transition
+                      duration-300
                       hover:opacity-70
                     "
                   >
                     {link.name}
 
                     {link.hasDropdown && (
-                      <span className="text-xs">
-                        ▼
-                      </span>
+                      <ChevronDown
+                        size={16}
+                        strokeWidth={1.8}
+                        className="
+                          transition-transform
+                          duration-300
+                          ease-out
+                          group-hover:rotate-180
+                        "
+                      />
                     )}
                   </Link>
                 </li>
@@ -123,9 +136,9 @@ const Navbar = () => {
             setIsOpen(!isOpen)
           }
           className="
-            lg:hidden
-            text-white
             z-[60]
+            text-white
+            lg:hidden
           "
         >
           {isOpen ? (
@@ -139,7 +152,6 @@ const Navbar = () => {
       {/* MOBILE MENU */}
       <div
         className={`
-          lg:hidden
           absolute
           left-0
           top-[80px]
@@ -150,6 +162,7 @@ const Navbar = () => {
           transition-all
           duration-500
           ease-in-out
+          lg:hidden
           ${
             isOpen
               ? "max-h-[500px] opacity-100"
@@ -170,20 +183,21 @@ const Navbar = () => {
                     flex
                     items-center
                     justify-between
-                    text-white
-                    text-lg
-                    font-body
                     border-b
                     border-white/10
                     pb-4
+                    text-lg
+                    font-body
+                    text-white
                   "
                 >
                   {link.name}
 
                   {link.hasDropdown && (
-                    <span className="text-sm">
-                      ▼
-                    </span>
+                    <ChevronDown
+                      size={18}
+                      strokeWidth={1.8}
+                    />
                   )}
                 </Link>
               </li>

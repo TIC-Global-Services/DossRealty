@@ -5,7 +5,18 @@ import Navbar from "@/components/reusable/Navbar";
 import Footer from "@/components/reusable/Footer";
 import SmoothScroll from "@/components/provider/SmoothScroll";
 
-import { agrandir, interTight } from "@/app/fonts";
+import {
+  agrandirRegular,
+  agrandirWideLight,
+  agrandirGrandHeavy,
+  agrandirGrandLight,
+  agrandirNarrow,
+  agrandirTextBold,
+  agrandirThinItalic,
+  agrandirTight,
+  agrandirWideBlack,
+  interTight,
+} from "@/app/fonts";
 
 export const metadata: Metadata = {
   title: "Doss Realty",
@@ -20,7 +31,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${agrandir.variable} ${interTight.variable}`}
+        className={`
+          ${agrandirRegular.variable}
+          ${agrandirWideLight.variable}
+          ${agrandirGrandHeavy.variable}
+          ${agrandirGrandLight.variable}
+          ${agrandirNarrow.variable}
+          ${agrandirTextBold.variable}
+          ${agrandirThinItalic.variable}
+          ${agrandirTight.variable}
+          ${agrandirWideBlack.variable}
+          ${interTight.variable}
+        `}
       >
         <SmoothScroll>
           <Navbar />

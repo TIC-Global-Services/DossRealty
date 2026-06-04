@@ -28,13 +28,12 @@ export default function OurProjects() {
   return (
     <section
       className="
-    pt-[10px]
-    md:pt-10
-    overflow-hidden
-  "
+        pt-[10px]
+        md:pt-10
+        overflow-hidden
+      "
     >
-      <div className="w-full mx-auto ">
-
+      <div className="w-full mx-auto">
         {/* TOP CENTER HEADING */}
         <div
           className="
@@ -48,7 +47,6 @@ export default function OurProjects() {
             mb-16
           "
         >
-
           <h2
             className="
               text-[42px]
@@ -61,31 +59,10 @@ export default function OurProjects() {
             Recognized for Project Excellence
           </h2>
 
-          <Link href={"/projects"}>
-            <button
-              className="
-              mt-8
-              inline-flex
-              items-center
-              justify-center
-              rounded-full
-              bg-[#111111]
-              text-white
-              px-8
-              md:px-10
-              py-4 md:py-6
-              text-[15px]
-              md:text-[16px]
-              font-heading font-normal
-              hover:scale-[1.03]
-              hover:bg-[#222222]
-              transition-all
-              duration-300
-              cursor-pointer
-            "
-            >
-              View Projects
-            </button>
+          <Link href="/projects">
+            <button className="mt-0 rounded-full font-bold bg-white px-8 py-4 shadow-md transition duration-300 hover:scale-105">
+                View Projects
+              </button>
           </Link>
         </div>
 
@@ -136,10 +113,7 @@ export default function OurProjects() {
                     "
                   />
 
-                  {/* DARK OVERLAY */}
-                  <div className="absolute inset-0 bg-black/10 z-[1]" />
-
-                  {/* CONTENT */}
+                  {/* CONTENT AREA */}
                   <div
                     className="
                       absolute
@@ -149,50 +123,105 @@ export default function OurProjects() {
                       w-full
                     "
                   >
-                    {/* FULL WIDTH OVERLAY */}
+                    {/* GLASS CONTENT STRIP */}
                     <div
                       className="
-                      w-full
-                      bg-black/20
-                      backdrop-blur-md
-                      border-t
-                      border-white/20
-                      py-5
-                    "
+                        relative
+                        w-full
+                        min-h-[145px]
+                        md:min-h-[165px]
+                        overflow-hidden
+                        flex
+                        items-end
+                      "
                     >
-                      {/* CONTENT CONTAINER */}
+                      {/* FIGMA BACKGROUND */}
+                      <div className="absolute inset-0 z-0 overflow-hidden">
+                        {/* REAL BLUR */}
+                        <div
+                          className="absolute inset-0"
+                          style={{
+                            backdropFilter:
+                              "blur(5px)",
+                            WebkitBackdropFilter:
+                              "blur(5px)",
+
+                            WebkitMaskImage:
+                              "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.25) 30%, rgba(0,0,0,1) 100%)",
+
+                            maskImage:
+                              "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.25) 30%, rgba(0,0,0,1) 100%)",
+                          }}
+                        />
+
+                        {/* GRADIENT TINT */}
+                        <div
+                          className="absolute inset-0"
+                          style={{
+                            background:
+                              index === 0
+                                ? `
+                                linear-gradient(
+                                  155.23deg,
+                                  rgba(0,0,0,0.08) 0%,
+                                  rgba(0,0,0,0.55) 100%,
+                                  rgba(0,0,0,0.75) 100%
+                                )
+                              `
+                                : `
+                                linear-gradient(
+                                  155.23deg,
+                                  rgba(0,0,0,0.1) 0%,
+                                  rgba(0,0,0,0.63) 100%
+                                )
+                              `,
+                          }}
+                        />
+                      </div>
+
+                      {/* CONTENT */}
                       <div
                         className="
-                        max-w-[1440px]
-                        mx-auto
-                        px-5
-                        md:px-8
-                      "
-                      >
-                        <div className="max-w-[550px]">
-                          <h3
-                            className="
-                          text-white
-                          text-[32px]
-                          md:text-[44px]
-                          font-light
-                          leading-[100%]
-                          mb-4
+                          relative
+                          z-[2]
+                          w-full
+                          py-6
+                          md:py-8
                         "
-                          >
-                            {project.title}
-                          </h3>
-
-                          <p
-                            className="
-                            text-white/80
-                            text-[15px]
-                            md:text-[16px]
-                            leading-[150%]
+                      >
+                        <div
+                          className="
+                            max-w-[1440px]
+                            mx-auto
+                            px-5
+                            md:px-20
                           "
-                          >
-                            {project.description}
-                          </p>
+                        >
+                          <div className="max-w-[550px]">
+                            <h3
+                              className=" font-regular
+                                text-white
+                                text-[18px]
+                                md:text-[26px]
+                                font-light
+                                leading-[18px]
+                                mb-4
+                              "
+                            >
+                              {project.title}
+                            </h3>
+
+                            <p
+                              className="font-body font-light w-[42ch]
+                                text-[#FFFFFF80]
+                                text-[15px]
+                                md:text-[14px]
+                                leading-[15px]
+                              "
+                            >
+                              {project.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -206,3 +235,4 @@ export default function OurProjects() {
     </section>
   );
 }
+
