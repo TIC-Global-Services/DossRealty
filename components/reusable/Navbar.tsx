@@ -121,12 +121,22 @@ const Navbar = () => {
           </nav>
 
           <Link href="/contact">
-            <PrimaryBtn
-              variant="primary"
-              size="lg"
+            <button
+              className="font-regular
+            rounded-full
+            border border-white
+            bg-transparent
+            px-8 lg:px-6
+            py-3 lg:py-2
+            text-sm lg:text-base
+            text-white
+            transition-all duration-300
+            hover:bg-white/20
+            hover:scale-105 cursor-pointer
+          "
             >
               Get in Touch
-            </PrimaryBtn>
+            </button>
           </Link>
         </div>
 
