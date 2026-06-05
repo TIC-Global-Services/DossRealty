@@ -190,13 +190,13 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Social */}
+          {/* Social
           <div className="mt-8 flex items-center gap-5">
             <FaWhatsapp className="text-[22px]" />
             <MdOutlineEmail className="text-[24px]" />
             <FaFacebookF className="text-[18px]" />
             <FaInstagram className="text-[22px]" />
-          </div>
+          </div> */}
         </div>
       </ContainerLayout>
     </footer>

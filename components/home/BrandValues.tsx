@@ -8,11 +8,13 @@ import { motion } from "framer-motion";
 import legacyImg from "@/assets/home/legacyImg.png";
 import visionImg from "@/assets/home/visionImg.png";
 import purposeImg from "@/assets/home/purposeImg.png";
+import purposeMobileImg from "@/assets/home/puposeMobileImg.jpg";
 
 type ValueCard = {
     title: string;
     description: string;
     image: StaticImageData;
+    mobileImage?: StaticImageData;
 };
 
 const values: ValueCard[] = [
@@ -29,11 +31,16 @@ const values: ValueCard[] = [
         image: visionImg,
     },
     {
-        title: "Purpose",
-        description:
-            "Our purpose goes beyond building homes and developments — we create spaces designed to enrich everyday life. Every Doss Realty project is planned with care to bring together comfort, functionality, and long-term value in the right location.",
-        image: purposeImg,
-    },
+    title: "Purpose",
+    description:
+      "Our purpose goes beyond building homes and developments — we create spaces designed to enrich everyday life. Every Doss Realty project is planned with care to bring together comfort, functionality, and long-term value in the right location.",
+
+    // desktop image
+    image: purposeImg,
+
+    // mobile image
+    mobileImage: purposeMobileImg,
+  },
 ];
 
 export default function LegacyVisionPurpose() {
@@ -170,10 +177,10 @@ export default function LegacyVisionPurpose() {
                                     {/* IMAGE */}
                                     <div className="relative h-[500px] overflow-hidden rounded-[20px]">
                                         <Image
-                                            src={item.image}
-                                            alt={item.title}
-                                            fill
-                                            className="object-cover"
+                                          src={item.mobileImage || item.image}
+                                          alt={item.title}
+                                          fill
+                                          className="object-cover"
                                         />
                                     </div>
 

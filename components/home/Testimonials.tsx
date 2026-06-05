@@ -78,12 +78,12 @@ export default function TestimonialSection() {
 
           {/* Content Below */}
           <div className="mt-10">
-            <h2 className="mb-5 text-[34px] font-heading font-normal leading-[100%] text-[#111]">
+            <h2 className="mb-5 text-[24px] font-heading font-normal leading-[120%] text-[#111]">
               Experiences Shared <br />
               by Our Clients
             </h2>
 
-            <p className="mb-8 text-[15px] leading-[170%] text-[#6B6B6B]">
+            <p className="mb-8 text-[13px] leading-[140%] text-[#6B6B6B]">
               Doss Realty believes great
               architecture goes beyond
               structures, it creates
@@ -96,7 +96,7 @@ export default function TestimonialSection() {
               future-ready.
             </p>
 
-            <button className="rounded-full bg-[#00256a] px-7 py-4 text-white">
+            <button className="rounded-full bg-[#00256a] px-7 py-2 text-white">
               Get in touch
             </button>
           </div>
@@ -236,12 +236,12 @@ function Card({ item }: any) {
         shadow-[0px_4px_4px_rgba(233,227,220,0.25),0px_1px_1px_rgba(166,101,24,0.08)]
       "
     >
-      <p className="mb-6 text-[16px] leading-[24px] text-[#6B6B6B]">
+      <p className="mb-6 text-[13px] leading-[16px] md:leading-[24px] text-[#6B6B6B]">
         {item.text}
       </p>
 
       <div className="flex items-center gap-3">
-        <div className="relative h-[40px] w-[40px] overflow-hidden rounded-full">
+        <div className="relative h-[30px] w-[30px] md:h-[40px] md:w-[40px] overflow-hidden rounded-full">
           <Image
             src={item.image}
             alt={item.name}
@@ -251,11 +251,11 @@ function Card({ item }: any) {
         </div>
 
         <div>
-          <h4 className="text-[16px] font-medium leading-[20px] text-[#111]">
+          <h4 className="text-[12px] font-medium leading-[20px] text-[#111]">
             {item.name}
           </h4>
 
-          <p className="text-[16px] leading-[20px] text-[#7B7B7B]">
+          <p className="text-[12px] leading-[20px] text-[#7B7B7B]">
             {item.location}
           </p>
         </div>

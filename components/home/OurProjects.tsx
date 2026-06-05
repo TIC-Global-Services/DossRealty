@@ -6,20 +6,47 @@ import { motion } from "framer-motion";
 
 import project1 from "@/assets/home/project1.jpg";
 import project2 from "@/assets/home/project2.jpg";
+import project2Mobile from "@/assets/home/project2mobile.jpg";
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+
+  mobileTitle?: string;
+  mobileDescription?: string;
+
+  image: any;
+  mobileImage?: any;
+
+  href: string;
+};
+
+const projects: Project[] = [
   {
     title: "Serene Grove Villas",
     description:
       "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
+
     image: project1,
     href: "/projects/luxury-villa",
   },
+
   {
+    // Desktop content
     title: "Signature Villa Community",
     description:
       "An exclusive collection of premium villas designed to offer modern comfort, elegant architecture, and a vibrant community lifestyle.",
+
+    // Mobile content
+    mobileTitle: "The Art of Villa Living",
+
+    mobileDescription:
+      "Experience refined living through thoughtfully crafted villas that blend contemporary design, luxurious comfort, and serene surroundings.",
+
+    // Images
     image: project2,
+    mobileImage: project2Mobile,
+
     href: "/projects/premium-urban",
   },
 ];
@@ -28,12 +55,13 @@ export default function OurProjects() {
   return (
     <section
       className="
-        pt-[10px]
+        mt-20
         md:pt-10
         overflow-hidden
       "
     >
       <div className="w-full mx-auto">
+
         {/* TOP CENTER HEADING */}
         <div
           className="
@@ -49,7 +77,7 @@ export default function OurProjects() {
         >
           <h2
             className="
-              text-[42px]
+              text-[24px]
               md:text-[60px]
               font-heading
               tracking-[-0.04em]
@@ -60,9 +88,9 @@ export default function OurProjects() {
           </h2>
 
           <Link href="/projects">
-            <button className="mt-0 rounded-full font-bold bg-white px-8 py-4 shadow-md transition duration-300 hover:scale-105">
-                View Projects
-              </button>
+            <button className="mt-5 md:mt-0 text-white rounded-full font-regular bg-[#00256a] px-8 py-2 shadow-md transition duration-300 hover:scale-105">
+              View Projects
+            </button>
           </Link>
         </div>
 
@@ -100,12 +128,31 @@ export default function OurProjects() {
                     group
                   "
                 >
-                  {/* IMAGE */}
+                  {/* DESKTOP IMAGE */}
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
                     className="
+                      hidden
+                      md:block
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-105
+                    "
+                  />
+
+                  {/* MOBILE IMAGE */}
+                  <Image
+                    src={
+                      project.mobileImage ||
+                      project.image
+                    }
+                    alt={project.title}
+                    fill
+                    className="
+                      md:hidden
                       object-cover
                       transition-transform
                       duration-700
@@ -135,9 +182,10 @@ export default function OurProjects() {
                         items-end
                       "
                     >
-                      {/* FIGMA BACKGROUND */}
+                      {/* BACKGROUND */}
                       <div className="absolute inset-0 z-0 overflow-hidden">
-                        {/* REAL BLUR */}
+
+                        {/* BLUR */}
                         <div
                           className="absolute inset-0"
                           style={{
@@ -154,27 +202,27 @@ export default function OurProjects() {
                           }}
                         />
 
-                        {/* GRADIENT TINT */}
+                        {/* GRADIENT */}
                         <div
                           className="absolute inset-0"
                           style={{
                             background:
                               index === 0
                                 ? `
-                                linear-gradient(
-                                  155.23deg,
-                                  rgba(0,0,0,0.08) 0%,
-                                  rgba(0,0,0,0.55) 100%,
-                                  rgba(0,0,0,0.75) 100%
-                                )
-                              `
+                                  linear-gradient(
+                                    155.23deg,
+                                    rgba(0,0,0,0.08) 0%,
+                                    rgba(0,0,0,0.55) 100%,
+                                    rgba(0,0,0,0.75) 100%
+                                  )
+                                `
                                 : `
-                                linear-gradient(
-                                  155.23deg,
-                                  rgba(0,0,0,0.1) 0%,
-                                  rgba(0,0,0,0.63) 100%
-                                )
-                              `,
+                                  linear-gradient(
+                                    155.23deg,
+                                    rgba(0,0,0,0.1) 0%,
+                                    rgba(0,0,0,0.63) 100%
+                                  )
+                                `,
                           }}
                         />
                       </div>
@@ -198,8 +246,10 @@ export default function OurProjects() {
                           "
                         >
                           <div className="max-w-[550px]">
+
+                            {/* TITLE */}
                             <h3
-                              className=" font-regular
+                              className="
                                 text-white
                                 text-[18px]
                                 md:text-[26px]
@@ -208,22 +258,42 @@ export default function OurProjects() {
                                 mb-4
                               "
                             >
-                              {project.title}
+                              <span className="hidden md:inline">
+                                {project.title}
+                              </span>
+
+                              <span className="md:hidden">
+                                {project.mobileTitle ||
+                                  project.title}
+                              </span>
                             </h3>
 
+                            {/* DESCRIPTION */}
                             <p
-                              className="font-body font-light w-[42ch]
+                              className="
+                                font-body
+                                font-light
+                                w-[42ch]
                                 text-[#FFFFFF80]
                                 text-[15px]
                                 md:text-[14px]
                                 leading-[15px]
                               "
                             >
-                              {project.description}
+                              <span className="hidden md:inline">
+                                {project.description}
+                              </span>
+
+                              <span className="md:hidden">
+                                {project.mobileDescription ||
+                                  project.description}
+                              </span>
                             </p>
+
                           </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
@@ -235,4 +305,3 @@ export default function OurProjects() {
     </section>
   );
 }
-
