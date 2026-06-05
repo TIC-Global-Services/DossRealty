@@ -376,7 +376,7 @@ export default function InfoGraphics() {
                       alt={item.stat}
                       fill
                       priority={index === 0}
-                      className="object-cover scale-[1.08]"
+                      className="object-cover scale-[1.06] -rotate-45"
                     />
                   </div>
                 ))}
