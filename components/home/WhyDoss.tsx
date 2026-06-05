@@ -38,11 +38,11 @@ export default function WhyDoss() {
               !w-full
             "
           >
-            <h2 className="mb-5 font-heading text-[34px] font-light lowercase leading-[100%] text-black">
+            <h2 className="mb-5 font-regular text-[34px] tracking-tight lowercase leading-[100%] text-black">
               Why Doss ?
             </h2>
 
-            <p className="font-body text-[15px] leading-[165%] text-black">
+            <p className="font-body text-[15px] leading-[20px] text-black">
               At Doss Realty, we believe every
               space should reflect purpose,
               elegance, and long-term value.
@@ -76,14 +76,14 @@ export default function WhyDoss() {
             className="
               top-8 left-8
               md:top-10 md:left-10
-              !max-w-[550px]
+              !max-w-[550px] !px-8
             "
           >
-            <h2 className="mb-5 font-heading text-[34px] md:text-[48px] font-light lowercase leading-[100%] text-black">
-              Why Doss ?
+            <h2 className="mb-5 font-regular text-[34px] md:text-[48px] tracking-tight lowercase leading-[100%] text-black">
+              Why Doss?
             </h2>
 
-            <p className="font-body text-[15px] md:text-[16px] leading-[150%] text-black">
+            <p className="font-body text-[15px] md:text-[16px] leading-[20px] text-black">
               At Doss Realty, we believe every
               space should reflect purpose,
               elegance, and long-term value.

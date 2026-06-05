@@ -71,7 +71,7 @@ const Footer = () => {
               </div>
 
               {/* Center */}
-              <div className="flex flex-1 items-center justify-center text-center">
+              <div className="flex flex-1 items-center justify-center text-center pt-6">
                 <div>
                   <p className="text-[42px] font-heading text-white">
                     Build Beyond
