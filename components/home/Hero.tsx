@@ -509,10 +509,7 @@ export default function Hero() {
               min-[1800px]:max-w-[2200px]
               "
               style={{
-                transform:
-                  window.innerWidth < 768
-                    ? "translate(-49%, -50%) scale(0.92)"
-                    : "translate(-50%, -50%) scale(1.05)",
+                transform:"translate(-50%, -50%)",
                 aspectRatio:
                   "1040 / 1080",
               }}
