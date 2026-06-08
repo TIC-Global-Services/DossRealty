@@ -93,7 +93,7 @@ const LivingLocation = () => {
       className="relative overflow-visible bg-white py-0"
     >
       {/* TOP FOG */}
-      <div className="pointer-events-none absolute -top-20 left-0 z-[20] w-full">
+      <div className="pointer-events-none absolute -top-20 left-0 z-[40] w-full">
         <Image
           src={fogImg}
           alt="Fog"
@@ -102,8 +102,8 @@ const LivingLocation = () => {
           priority
           className="
             h-auto
-            w-full
-            -translate-y-[80%]
+            w-full -translate-y-[40%]
+            md:-translate-y-[80%]
             object-cover
             opacity-100
           "
