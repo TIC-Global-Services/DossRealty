@@ -475,18 +475,12 @@ export default function Hero() {
             absolute left-0 right-0
             z-[10]
             will-change-transform
+            top-[56vh]
+            h-[46vh]
+            md:top-[48vh]
+            md:h-[100vh]
           "
             style={{
-              top:
-                window.innerWidth < 768
-                  ? "56vh"
-                  : "48vh",
-
-              height:
-                window.innerWidth < 768
-                  ? "46vh"
-                  : "100vh",
-
               transformOrigin:
                 "bottom center",
             }}
