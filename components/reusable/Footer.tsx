@@ -8,7 +8,6 @@ import {
 } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
-import ContainerLayout from "@/layout/ContainerLayout";
 
 const footerLinks = [
   { name: "Home", href: "/" },
@@ -21,9 +20,7 @@ const footerLinks = [
 const Footer = () => {
   return (
     <footer className="w-full bg-white px-4 py-6 md:px-8 md:py-8">
-      <ContainerLayout
-        disablePaddingX
-        disablePaddingY
+      <div
         className="rounded-[32px] bg-[#121212ff] text-white overflow-hidden"
       >
         {/* DESKTOP  */}
@@ -198,7 +195,7 @@ const Footer = () => {
             <FaInstagram className="text-[22px]" />
           </div> */}
         </div>
-      </ContainerLayout>
+      </div>
     </footer>
   );
 };

@@ -48,7 +48,7 @@ export default function LegacyVisionPurpose() {
         <>
             {/* Desktop */}
             <section className="hidden min-h-screen items-center overflow-hidden md:flex md:py-20">
-                <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-8 xl:px-10">
+                <div className="mx-auto w-full px-6 lg:px-8 xl:px-10">
                     <div className="grid grid-cols-3 gap-5 lg:gap-6 xl:gap-8">
                         {values.map((item, index) => (
                             <div
