@@ -163,7 +163,7 @@ export default function TestimonialSection() {
 
           {/* RIGHT SIDE */}
           <div className="absolute right-0 top-1/2 max-w-[550px] -translate-y-1/2">
-            <h2 className="mb-5 text-[30px] font-regular font-normal leading-[50px] tracking-tight text-[#121212] md:text-[48px]">
+            <h2 className="mb-5 text-[30px] font-small font-normal leading-[50px] tracking-tight text-[#121212] md:text-[48px]">
               Experiences Shared <br />
               by Our Clients
             </h2>

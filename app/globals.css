@@ -17,7 +17,7 @@
       --font-agrandir-wide-light
     );
 
-  --font-regular:
+  --font-small:
     var(
       --font-agrandir-regular
     );
@@ -64,7 +64,7 @@
     sans-serif !important;
 }
 
-.font-regular {
+.font-small {
   font-family:
     var(--font-agrandir-regular),
     sans-serif !important;

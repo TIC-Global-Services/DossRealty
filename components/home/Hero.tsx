@@ -439,7 +439,7 @@ export default function Hero() {
             ref={heroTextRef}
             id="hero-text"
             className="
-            absolute inset-0 z-10 pointer-events-auto
+            absolute inset-0 z-0 pointer-events-auto
             flex flex-col items-center text-center
             px-[20px]
             pt-[22vh]
@@ -467,7 +467,7 @@ export default function Hero() {
                 For What Comes Next.
               </p>
 
-              <PrimaryBtn style={{isolation: "isolate"}} mode="dark" className="ghost mt-6 z-[9999] cursor-pointer translate-x-80 border border-white
+              <PrimaryBtn style={{isolation: "isolate"}} mode="dark" className="ghost font-small mt-6 z-[9999] cursor-pointer flex mx-auto border border-white
                       bg-[rgba(255,255,255,0.10)]
                       backdrop-blur-[20px]
                       shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]
@@ -540,7 +540,7 @@ export default function Hero() {
             will-change-transform
             top-[56vh]
             h-[46vh]
-            md:top-[30vh]
+            md:top-[35vh]
             md:h-[150vh]
           "
             style={{

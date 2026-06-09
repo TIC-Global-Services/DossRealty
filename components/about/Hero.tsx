@@ -1,12 +1,59 @@
 "use client";
 
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
 
 import heroBg from "@/assets/about/aboutHeroImg.jpg";
 
 const Hero = () => {
+  const sectionRef =
+    useRef<HTMLElement>(null);
+
+  const contentRef =
+    useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        delay: 0.3,
+      });
+
+      // Heading reveal
+      tl.from(".hero-title-line", {
+        y: 100,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.18,
+        ease: "power4.out",
+      });
+
+      // Paragraph reveal
+      tl.from(
+        ".hero-para",
+        {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+        },
+        "-=0.6"
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative min-h-screen w-full overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="
+        relative
+        min-h-screen
+        w-full
+        overflow-hidden
+      "
+    >
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -24,41 +71,83 @@ const Hero = () => {
       {/* Content */}
       <div
         className="
-        relative
-        z-10
-        flex
-        min-h-screen
-        items-center
-        pt-[100px]
-        md:pt-[120px]
-      "
+          relative
+          z-10
+          flex
+          min-h-screen
+          items-center
+          pt-[100px]
+          md:pt-[120px]
+        "
       >
         <div
           className="
-          flex
-          w-full
-          items-center
-          px-6
-          md:px-14
-          lg:px-20
-        "
+            flex
+            w-full
+            items-center
+            px-6
+            md:px-14
+            lg:px-20
+          "
         >
-          <div className="max-w-[780px]">
+          <div
+            ref={contentRef}
+            className="max-w-[780px]"
+          >
+            {/* TITLE */}
+            <h1
+              className="
+                text-white
+                text-[30px]
+                leading-[1.1]
+                md:text-[60px]
+                uppercase
+                font-heading
+                font-[300]
+              "
+            >
+              <div className="overflow-hidden">
+                <span className="hero-title-line block">
+                  Elevating Modern
+                </span>
+              </div>
 
-            <h1 className="text-white text-[30px] leading-[77px] md:text-[60px] uppercase tracking-normal  font-heading font-[300]">
-              Elevating Modern
-              <br />
-              Living with Purpose
+              <div className="overflow-hidden">
+                <span className="hero-title-line block">
+                  Living with Purpose
+                </span>
+              </div>
             </h1>
 
-            <p className="mt-6 max-w-[650px] text-[16px] md:text-[18px] leading-[21px] tracking-normal text-white/90">
-              DOSS Realty is driven by a vision to shape enduring legacies through transformative real estate. 
-              Built on over three decades of experience, we bring together integrity, strategic vision, and 
-              disciplined execution to deliver developments of lasting significance. Guided by a commitment to 
-              craftsmanship, distinctive design, and uncompromising quality, we create communities that enrich lives, 
-              preserve wealth, and stand as enduring expressions of our pursuit of excellence.
+            {/* PARAGRAPH */}
+            <p
+              className="
+                hero-para
+                mt-6
+                max-w-[650px]
+                text-[16px]
+                md:text-[18px]
+                leading-[21px]
+                text-white/90
+              "
+            >
+              DOSS Realty is driven by a vision
+              to shape enduring legacies through
+              transformative real estate. Built
+              on over three decades of
+              experience, we bring together
+              integrity, strategic vision, and
+              disciplined execution to deliver
+              developments of lasting
+              significance. Guided by a
+              commitment to craftsmanship,
+              distinctive design, and
+              uncompromising quality, we create
+              communities that enrich lives,
+              preserve wealth, and stand as
+              enduring expressions of our pursuit
+              of excellence.
             </p>
-
           </div>
         </div>
       </div>

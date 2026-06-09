@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PrimaryBtn from "./PrimaryBtn";
 
 type FAQItem = {
   question: string;
@@ -50,13 +51,26 @@ const FAQ = ({
   return (
     <section className="py-16 md:px-10 md:py-12">
       <div
-        className="mx-auto max-w-[1440px] rounded-[40px] px-5 md:px-14 md:py-20"
+        className="
+          mx-auto
+          rounded-[40px]
+          px-5
+          md:px-14
+          md:py-20
+        "
         style={{
           backgroundColor: bgColor,
         }}
       >
-        <div className="grid gap-14 md:mx-20 md:items-center lg:grid-cols-[58%_42%]">
-
+        <div
+          className="
+          grid
+          gap-14
+          md:mx-20
+          lg:grid-cols-[58%_42%]
+          lg:items-start
+        "
+        >
           {/* LEFT FAQ */}
           <div className="space-y-4">
             {faqData.map(
@@ -66,9 +80,7 @@ const FAQ = ({
                   index;
 
                 return (
-                  <div
-                    key={index}
-                  >
+                  <div key={index}>
                     {/* Question */}
                     <button
                       onClick={() =>
@@ -88,15 +100,30 @@ const FAQ = ({
                         px-4
                         py-4
                         text-left
+                        transition-all
+                        duration-300
                       "
                     >
-                      <span className="text-[18px] font-medium text-[#222]">
+                      <span
+                        className="
+                          text-[18px]
+                          font-medium
+                          text-[#222]
+                        "
+                      >
                         {
                           item.question
                         }
                       </span>
 
-                      <span className="text-[28px] text-[#222]">
+                      <span
+                        className="
+                          text-[28px]
+                          text-[#222]
+                          transition-transform
+                          duration-300
+                        "
+                      >
                         {isOpen
                           ? "−"
                           : "+"}
@@ -109,21 +136,32 @@ const FAQ = ({
                         overflow-hidden
                         transition-all
                         duration-500
-                        ${
-                          isOpen
-                            ? "max-h-[200px] mt-3"
-                            : "max-h-0"
+                        ease-in-out
+                        ${isOpen
+                          ? "max-h-[300px] mt-3"
+                          : "max-h-0"
                         }
                       `}
                     >
                       <div
-                        className="rounded-[24px] px-8 py-7"
+                        className="
+                          rounded-[24px]
+                          px-8
+                          py-7
+                        "
                         style={{
                           backgroundColor:
                             answerBgColor,
                         }}
                       >
-                        <p className="text-[18px] font-medium leading-[150%] text-[#111]">
+                        <p
+                          className="
+                            text-[18px]
+                            font-medium
+                            leading-[150%]
+                            text-[#111]
+                          "
+                        >
                           {
                             item.answer
                           }
@@ -137,42 +175,55 @@ const FAQ = ({
           </div>
 
           {/* RIGHT CONTENT */}
-          <div className="lg:pl-10">
+          <div
+            className="
+            lg:self-center
+            lg:pl-10
+          "
+          >
             <h2
               className="
-                font-heading
-                text-[24px]
-                md:text-[48px]
-                leading-[90%]
-                tracking-[-0.05em]
-                text-[#00256A]
-              "
+              font-heading
+              text-[24px]
+              md:text-[48px]
+              leading-[90%]
+              tracking-[-0.05em]
+              text-[#00256A]
+            "
             >
               {heading}
             </h2>
 
-            <p className="mt-5 max-w-[420px] text-[16px] leading-[160%] text-[#666]">
+            <p
+              className="
+              mt-5
+              max-w-[420px]
+              text-[16px]
+              leading-[20px]
+              text-[#717171ff]
+            "
+            >
               {description}
             </p>
 
-            <button
+            <PrimaryBtn
               onClick={buttonAction}
-              className="
+              className="text-[16px] font-[700] hover:text-black
                 mt-8
                 rounded-full
+                border
+                border-[rgba(199,168,94,1)]
                 bg-[#00256A]
-                px-10
-                py-4
                 text-white
-                transition
+                shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)]
+                transition-all
                 duration-300
                 hover:scale-105
               "
             >
               {buttonText}
-            </button>
+            </PrimaryBtn>
           </div>
-
         </div>
       </div>
     </section>

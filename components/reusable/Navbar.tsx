@@ -24,6 +24,38 @@ const navLinks = [
     name: "Projects",
     href: "/projects",
     hasDropdown: true,
+    dropdown: {
+      projects: [
+        {
+          title: "Lorem",
+          location: "Anna Nagar",
+        },
+        {
+          title: "Lorem",
+          location: "xxxxx",
+        },
+        {
+          title: "Lorem",
+          location: "xxxxx",
+        },
+        {
+          title: "Lorem",
+          location: "xxxxx",
+        },
+        {
+          title: "Lorem",
+          location: "xxxxx",
+        },
+        {
+          title: "Lorem",
+          location: "xxxxx",
+        },
+      ],
+      status: [
+        "Active",
+        "Delivered",
+      ],
+    },
   },
   {
     name: "Contact",
@@ -76,7 +108,11 @@ const Navbar = () => {
             width={160}
             height={50}
             priority
-            className="h-auto w-auto object-contain"
+            className="
+              h-auto
+              w-auto
+              object-contain
+            "
           />
         </Link>
 
@@ -84,64 +120,215 @@ const Navbar = () => {
         <div className="ml-auto hidden items-center lg:flex">
           <nav className="mr-10">
             <ul className="flex items-center gap-[40px]">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
+
+              {navLinks.map(
+                (link) => (
+                  <li
+                    key={link.name}
                     className="
                       group
-                      flex
-                      items-center text-[18px]
-                      gap-0.5 tracking-wide
-                      text-sm
-                      font-body
-                      text-white
-                      transition
-                      duration-300
-                      hover:opacity-70
+                      relative
+                      py-[-4]
                     "
                   >
-                    {link.name}
+                    <Link
+                      href={link.href}
+                      className="
+                        flex
+                        items-center
+                        gap-0.5
+                        text-sm
+                        font-body
+                        tracking-wide
+                        text-white
+                        transition
+                        duration-300
+                        hover:opacity-70
+                      "
+                    >
+                      {link.name}
 
-                    {link.hasDropdown && (
-                      <ChevronDown
-                        size={16}
-                        strokeWidth={1.8}
-                        className="
-                          transition-transform
+                      {link.hasDropdown && (
+                        <ChevronDown
+                          size={16}
+                          strokeWidth={
+                            1.8
+                          }
+                          className="
+                            transition-transform
+                            duration-300
+                            ease-out
+                            group-hover:rotate-180
+                          "
+                        />
+                      )}
+                    </Link>
+
+                    {/* PROJECTS DROPDOWN */}
+                    {link.hasDropdown &&
+                      link.dropdown && (
+                        <div
+                          className="
+                          invisible
+                          absolute
+                          left-1/2
+                          top-[48px]
+                          z-[100]
+                          w-[480px]
+                          -translate-x-1/2
+                          rounded-[18px]
+                          border
+                          border-white/20
+                           bg-[rgba(255,255,255,0.10)]
+                          opacity-0
+                          backdrop-blur-[100%]
+                          shadow-[
+                            inset_0_1px_1px_rgba(255,255,255,0.25),
+                            0_10px_40px_rgba(0,0,0,0.08)
+                          ]
+                          transition-all
                           duration-300
                           ease-out
-                          group-hover:rotate-180
+                          group-hover:visible
+                          group-hover:opacity-100
                         "
-                      />
-                    )}
-                  </Link>
-                </li>
-              ))}
+                        >
+                          <div className="grid grid-cols-[68%_32%] gap-8 p-8">
+
+                            {/* LEFT */}
+                            <div>
+                              <h3
+                                className="
+                                text-[16px]
+                                uppercase
+                                tracking-[1px]
+                                underline
+                                text-black
+                              "
+                              >
+                                All Projects
+                              </h3>
+
+                              <div
+                                className="
+                                mt-8
+                                grid
+                                grid-cols-2
+                                gap-x-8
+                                gap-y-8
+                              "
+                              >
+                                {link.dropdown.projects.map(
+                                  (
+                                    project,
+                                    index
+                                  ) => (
+                                    <Link
+                                      key={index}
+                                      href="/projects"
+                                      className="
+                                      transition
+                                      duration-300
+                                      hover:opacity-70
+                                    "
+                                    >
+                                      <p
+                                        className="
+                                        text-[18px]
+                                        font-medium
+                                        text-black
+                                      "
+                                      >
+                                        {project.title}
+                                      </p>
+
+                                      <p
+                                        className="
+                                        mt-1
+                                        text-[14px]
+                                        text-black/40
+                                      "
+                                      >
+                                        {project.location}
+                                      </p>
+                                    </Link>
+                                  )
+                                )}
+                              </div>
+                            </div>
+
+                            {/* RIGHT */}
+                            <div>
+                              <h3
+                                className="
+                                text-[16px]
+                                uppercase
+                                tracking-[1px]
+                                underline
+                                text-black
+                              "
+                              >
+                                Project Status
+                              </h3>
+
+                              <div className="mt-8 space-y-5">
+                                {link.dropdown.status.map(
+                                  (
+                                    item,
+                                    index
+                                  ) => (
+                                    <button
+                                      key={index}
+                                      className="
+                                      block
+                                      text-left
+                                      text-[18px]
+                                      text-black
+                                      transition
+                                      duration-300
+                                      hover:opacity-70
+                                    "
+                                    >
+                                      {item}
+                                    </button>
+                                  )
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                  </li>
+                )
+              )}
             </ul>
           </nav>
 
+          {/* BUTTON */}
           <Link href="/contact">
             <button
-              className="font-regular
-            rounded-full
-            border border-white
-            bg-transparent
-            px-8 lg:px-6
-            py-3 lg:py-2
-            text-sm lg:text-base
-            text-white
-            transition-all duration-300
-            hover:bg-white/20
-            hover:scale-105 cursor-pointer
-          "
+              className="
+                rounded-full
+                border
+                border-white
+                bg-transparent
+                px-8
+                py-3
+                text-sm
+                text-white
+                transition-all
+                duration-300
+                hover:scale-105
+                hover:bg-white/20
+                cursor-pointer
+              "
             >
               Get in Touch
             </button>
           </Link>
         </div>
 
-        {/* MOBILE HAMBURGER */}
+        {/* MOBILE MENU */}
         <button
           onClick={() =>
             setIsOpen(!isOpen)
@@ -168,54 +355,52 @@ const Navbar = () => {
           top-[80px]
           w-full
           overflow-hidden
-          bg-transparent
+          bg-black/20
           backdrop-blur-xl
           transition-all
           duration-500
           ease-in-out
           lg:hidden
-          ${
-            isOpen
-              ? "max-h-[500px] opacity-100"
-              : "max-h-0 opacity-0"
+          ${isOpen
+            ? "max-h-[500px] opacity-100"
+            : "max-h-0 opacity-0"
           }
         `}
       >
         <div className="px-6 py-8">
           <ul className="flex flex-col gap-6">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  href={link.href}
-                  onClick={() =>
-                    setIsOpen(false)
-                  }
-                  className="
-                    flex
-                    items-center
-                    justify-between
-                    border-b
-                    border-white/10
-                    pb-4
-                    text-lg
-                    font-body
-                    text-white
-                  "
-                >
-                  {link.name}
+            {navLinks.map(
+              (link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    onClick={() =>
+                      setIsOpen(false)
+                    }
+                    className="
+                      flex
+                      items-center
+                      justify-between
+                      border-b
+                      border-white/10
+                      pb-4
+                      text-lg
+                      text-white
+                    "
+                  >
+                    {link.name}
 
-                  {link.hasDropdown && (
-                    <ChevronDown
-                      size={18}
-                      strokeWidth={1.8}
-                    />
-                  )}
-                </Link>
-              </li>
-            ))}
+                    {link.hasDropdown && (
+                      <ChevronDown
+                        size={18}
+                      />
+                    )}
+                  </Link>
+                </li>
+              )
+            )}
           </ul>
 
-          {/* BUTTON */}
           <div className="mt-8">
             <Link
               href="/contact"
@@ -223,10 +408,7 @@ const Navbar = () => {
                 setIsOpen(false)
               }
             >
-              <PrimaryBtn
-                variant="primary"
-                className="w-full"
-              >
+              <PrimaryBtn className="w-full">
                 Get in Touch
               </PrimaryBtn>
             </Link>

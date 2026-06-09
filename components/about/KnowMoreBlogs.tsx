@@ -35,7 +35,7 @@ const KnowMoreBlogs = () => {
             <FAQ
                 faqData={faqData}
                 heading={`Know more \n about Blogs`}
-                description="Insights, ideas, and stories crafted to inspire."
+                description="Insights, ideas, and stories crafted to inspire, inform, and spark new perspectives."
                 buttonText="Contact Us"
                 defaultOpenIndex={1}
             />

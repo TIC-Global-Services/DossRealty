@@ -1,9 +1,8 @@
 "use client";
 
-import Image, {
-  StaticImageData,
-} from "next/image";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import Image, {StaticImageData,} from "next/image";
+import { motion,} from "framer-motion";
 
 import image1 from "@/assets/about/loopImg.jpg";
 import image2 from "@/assets/about/loopImg2.jpg";
@@ -21,17 +20,19 @@ const loopItems: LoopItem[] = [
     image: image1,
     title: "Private villa pool",
     description:
-      "Thoughtfully crafted spaces designed for elevated lifestyles.",
+      "Private Spaces",
   },
   {
     image: image2,
-    title: "Grand luxury pool estate",
+    title:
+      "Grand luxury pool estate",
     description:
       "Where Grandeur Finds Its Address",
   },
   {
     image: image3,
-    title: "Coastal pool + hill view",
+    title:
+      "Coastal pool + hill view",
     description:
       "Luxury Framed by Nature",
   },
@@ -44,15 +45,29 @@ const loopItems: LoopItem[] = [
 ];
 
 const ImageLoop = () => {
+  const [activeGroup, setActiveGroup] =
+    useState(0);
+
   const duplicatedItems = [
     ...loopItems,
     ...loopItems,
   ];
 
-  return (
-    <section className="overflow-visible py-10 md:py-20">
+  // SWITCH ACTIVE IMAGES
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveGroup((prev) =>
+        prev === 0 ? 1 : 0
+      );
+    }, 2500);
 
-      <div className="relative overflow-hidden px-5">
+    return () =>
+      clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="overflow-hidden py-10 md:py-20">
+      <div className="relative overflow-hidden">
 
         {/* LOOP TRACK */}
         <motion.div
@@ -64,100 +79,101 @@ const ImageLoop = () => {
             ease: "linear",
             repeat: Infinity,
           }}
-          className="flex w-max items-center gap-6"
+          className="
+            flex
+            items-center
+            gap-8
+            w-max
+          "
         >
           {duplicatedItems.map(
             (item, index) => {
               const originalIndex =
                 index % 4;
 
-              const scaleAnimation =
+              // 1 & 3
+              const firstGroup =
                 originalIndex === 0 ||
-                originalIndex === 2
-                  ? {
-                      scale: [
-                        1,
-                        1.08,
-                        1,
-                        1,
-                      ],
-                    }
-                  : {
-                      scale: [
-                        1,
-                        1,
-                        1.08,
-                        1,
-                      ],
-                    };
+                originalIndex === 2;
+
+              // 2 & 4
+              const secondGroup =
+                originalIndex === 1 ||
+                originalIndex === 3;
+
+              const isActive =
+                activeGroup === 0
+                  ? firstGroup
+                  : secondGroup;
 
               return (
-                <motion.div
+                <div
                   key={index}
-                  animate={
-                    scaleAnimation
-                  }
-                  transition={{
-                    duration: 6,
-                    repeat:
-                      Infinity,
-                    ease:
-                      "easeInOut",
-                  }}
                   className="
-                    w-[300px]
-                    shrink-0
-                    origin-center
-                    md:w-[320px]
-                  "
+                  w-[360px]
+                  shrink-0
+                "
                 >
-                  {/* IMAGE */}
+                  {/* FIXED IMAGE AREA */}
                   <div
                     className="
-                      relative
-                      h-[380px]
-                      overflow-hidden
-                      rounded-[24px]
-                      md:h-[300px]
-                    "
+                    relative
+                    h-[360px]
+                    w-[360px]
+                  "
                   >
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
+                    <motion.div
+                      animate={{
+                        height: isActive
+                          ? 360
+                          : 237.59,
+                      }}
+                      transition={{
+                        duration: 1,
+                        ease: "easeInOut",
+                      }}
                       className="
-                        object-cover
-                        object-bottom
-                      "
-                    />
+                      absolute
+                      bottom-0
+                      left-0
+                      w-full
+                      overflow-hidden
+                      rounded-[10px]
+                    "
+                    >
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
                   </div>
 
                   {/* CONTENT */}
                   <div className="mt-5">
                     <h3
                       className="
-                        font-heading
-                        text-[14px]
-                        md:text-[18px]
-                        text-[#111]
-                      "
+                      uppercase
+                      text-[18px]
+                      text-[#666]
+                    "
                     >
                       {item.title}
                     </h3>
 
                     <p
                       className="
-                        text-[16px]
-                        leading-[140%]
-                        text-[#666]
-                      "
+                      mt-2
+                      text-[18px]
+                      leading-[140%]
+                      text-[#777]
+                    "
                     >
-                      {
-                        item.description
-                      }
+                      {item.description}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               );
             }
           )}

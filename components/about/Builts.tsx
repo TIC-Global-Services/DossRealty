@@ -35,16 +35,16 @@ const Builts = () => {
   return (
     <>
       <section className="py-16 md:py-20">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
+        <div className="mx-auto px-5 md:px-8 lg:px-10">
 
           {/* IMAGE SECTION */}
-          <div className="relative h-[500px] overflow-hidden rounded-[10px] md:h-[400px]">
+          <div className="relative group h-[500px] overflow-hidden rounded-[10px] md:h-[400px]">
 
             <Image
               src={builtImg}
               alt="Built Spaces"
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-300 ease-out group-hover:scale-110"
             />
 
             {/* CONTENT */}

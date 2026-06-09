@@ -19,7 +19,7 @@ export default function EnquiryBtn() {
     >
       {/* WHATSAPP */}
       <a
-        href="https://wa.me/918333033337"
+        href="https://wa.me/91123456789"
         target="_blank"
         rel="noopener noreferrer"
         className="
@@ -58,7 +58,7 @@ export default function EnquiryBtn() {
 
       {/* CALL */}
       <a
-        href="tel:+918333033337"
+        href="tel:+91123456789"
         className="
           group
           flex

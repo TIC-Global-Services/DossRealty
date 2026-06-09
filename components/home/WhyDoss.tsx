@@ -38,7 +38,7 @@ export default function WhyDoss() {
               !w-full
             "
           >
-            <h2 className="mb-5 font-regular text-[34px] tracking-tight lowercase leading-[100%] text-black">
+            <h2 className="mb-5 font-small text-[34px] tracking-tight lowercase leading-[100%] text-black">
               Why Doss ?
             </h2>
 
@@ -79,7 +79,7 @@ export default function WhyDoss() {
               !max-w-[550px] !px-10
             "
           >
-            <h2 className="mb-5 font-regular text-[34px] md:text-[48px] tracking-tight lowercase leading-[100%] text-black">
+            <h2 className="mb-5 font-small text-[34px] md:text-[48px] tracking-tight lowercase leading-[100%] text-black">
               Why Doss?
             </h2>
 

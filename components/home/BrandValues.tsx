@@ -138,7 +138,7 @@ export default function LegacyVisionPurpose() {
                                     text-[28px]
                                     lg:text-[36px]
                                     xl:text-[48px]
-                                    font-regular
+                                    font-small
                                     leading-[50px]
                                     tracking-tighter
                                     text-[#111111]

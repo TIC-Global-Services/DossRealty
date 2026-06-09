@@ -81,7 +81,7 @@ export default function OurProjects() {
             className="
               text-[24px]
               md:text-[48px]
-              font-regular font-[400]
+              font-small font-[400]
               tracking-[-0.04em]
               text-black
             "
@@ -297,7 +297,7 @@ export default function OurProjects() {
 
                             {/* TITLE */}
                             <h3
-                              className="font-regular
+                              className="font-small
                                 text-white
                                 text-[18px]
                                 md:text-[26px]

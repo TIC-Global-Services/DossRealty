@@ -167,7 +167,7 @@ const Leadership = () => {
                 {selectedLeader.name}
               </h2>
 
-              <p className="mt-8 text-[16px] md:text-[20px] font-regular tracking-normal leading-[28px%] text-[#00000080]">
+              <p className="mt-8 text-[16px] md:text-[20px] font-small tracking-normal leading-[28px%] text-[#00000080]">
                 {selectedLeader.description}
               </p>
             </div>
