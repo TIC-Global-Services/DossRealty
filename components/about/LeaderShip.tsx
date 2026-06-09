@@ -18,21 +18,18 @@ type Leader = {
 
 const leaders: Leader[] = [
   {
-    name: "Bill",
+    name: "Varun V.P",
     role: "Managing Director",
     image: founder1,
     subHeading: "Founder's Note",
-    description:
-      "At Doss Realty, our vision is rooted in creating meaningful spaces that balance innovation, quality, and long-term value. Every development is thoughtfully planned to shape experiences that stand the test of time while building communities for tomorrow.",
-  },
-  {
-    name: "Bill",
+    description:"Varun V.P. leads the strategic direction, product vision, and growth initiatives of DOSS Realty. Holding a Bachelor of Engineering (Honours) in Engineering Business Management from the University of Warwick, United Kingdom, he combines entrepreneurial thinking with a deep passion for creating real estate that stands apart in quality, planning, and long-term relevance."},
+{
+    name: "Guru V.P",
     role: "Managing Director",
     image: founder2,
     subHeading: "Leadership & Growth",
-    description:
-      "With a passion for excellence and strategic planning, our leadership team focuses on delivering projects that reflect trust, craftsmanship, and customer satisfaction through every stage of development.",
-  },
+    description:"Guru V.P. oversees the financial strategy, investment philosophy, and long-term growth initiatives of DOSS Realty. Holding a Bachelor of Arts (Honours) in Political Science from O.P. Jindal Global University, New Delhi, he brings a market-oriented perspective to the company's investment and expansion decisions." 
+},
 ];
 
 const Leadership = () => {
@@ -41,7 +38,7 @@ const Leadership = () => {
 
   return (
     <>
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-14">
         <div className="mx-auto max-w-[1440px] px-5 md:px-20">
           <div className="grid gap-12 lg:grid-cols-[35%_65%] lg:items-center">
 
@@ -52,16 +49,6 @@ const Leadership = () => {
               </h2>
 
               <div className="mt-5 h-[1px] w-full bg-[#C8CDD2]" />
-
-              <p className="mt-6 max-w-[420px] text-[18px] leading-[140%] text-[#404040]">
-                At the heart of Doss Realty is a vision-driven team committed to shaping exceptional living spaces with purpose and precision. 
-                Guided by deep market insight, thoughtful planning, and a passion for quality, 
-                we create developments that reflect modern aspirations while standing the test of time.
-              </p>
-
-              <button className="mt-8 rounded-full font-bold bg-white px-8 py-4 shadow-md transition duration-300 hover:scale-105">
-                Learn More
-              </button>
             </div>
 
             {/* RIGHT SIDE */}
@@ -114,7 +101,7 @@ const Leadership = () => {
           }
         >
           <div
-            className="relative w-full max-w-[1100px] overflow-hidden rounded-[30px] bg-white"
+            className="relative w-screen h-[500px] overflow-hidden bg-white"
             onClick={(e) =>
               e.stopPropagation()
             }
@@ -123,7 +110,7 @@ const Leadership = () => {
               onClick={() =>
                 setSelectedLeader(null)
               }
-              className="absolute right-5 top-5 z-20 text-[32px]"
+              className="absolute right-5 top-5 z-20 text-[40px]"
             >
               ×
             </button>
@@ -131,7 +118,7 @@ const Leadership = () => {
             <div className="grid md:grid-cols-2">
 
               {/* LEFT IMAGE */}
-              <div className="relative h-[400px] md:h-[500px]">
+              <div className="relative h-[400px] md:h-screen">
                 <Image
                   src={
                     selectedLeader.image
@@ -146,32 +133,45 @@ const Leadership = () => {
 
               {/* RIGHT CONTENT */}
               <div className="flex items-center p-8 md:p-14">
-                <div>
-                  <p className="mb-4 text-[14px] uppercase tracking-[0.08em] text-[#00256A]">
-                    {
-                      selectedLeader.subHeading
-                    }
-                  </p>
+            <div className="relative">
 
-                  <h2 className="font-heading text-[38px] md:text-[56px] leading-[95%] tracking-[-0.04em] text-[#111]">
-                    {
-                      selectedLeader.name
-                    }
-                  </h2>
+              <svg
+                viewBox="0 0 170 120"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="
+                  absolute hidden md:block
+                  -top-20
+                  left-[-10px]
+                  w-[60px]
+                  h-auto
+                  pointer-events-none
+                  z-10
+                "
+              >
+                <path
+                  d="M35 22C35 9.8 44.8 0 57 0H76V31H62C58.1 31 55 34.1 55 38V54H91V120H35V22Z"
+                  fill="#00256A"
+                />
+                <path
+                  d="M112 22C112 9.8 121.8 0 134 0H153V31H139C135.1 31 132 34.1 132 38V54H168V120H112V22Z"
+                  fill="#00256A"
+                />
+              </svg>
 
-                  <p className="mt-3 text-[18px] text-[#666]">
-                    {
-                      selectedLeader.role
-                    }
-                  </p>
+              <p className="mb-4 md:text-[16px] uppercase font-heading font-[300] leading-[100%] tracking-normal text-[#000000]">
+                {selectedLeader.role}
+              </p>
 
-                  <p className="mt-8 text-[16px] leading-[180%] text-[#444]">
-                    {
-                      selectedLeader.description
-                    }
-                  </p>
-                </div>
-              </div>
+              <h2 className="font-wide font-[700] leading-[100%] tracking-normal uppercase text-[38px] md:text-[40px]">
+                {selectedLeader.name}
+              </h2>
+
+              <p className="mt-8 text-[16px] md:text-[20px] font-regular tracking-normal leading-[28px%] text-[#00000080]">
+                {selectedLeader.description}
+              </p>
+            </div>
+          </div>
             </div>
           </div>
         </div>

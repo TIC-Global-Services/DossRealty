@@ -19,21 +19,21 @@ type ValueCard = {
 
 const values: ValueCard[] = [
     {
-        title: "Legacy",
+        title: "Distinctive Design",
         description:
-            "At Doss Realty, our legacy is built on trust, commitment, and the relationships we continue to nurture with every project we deliver. We believe that quality construction and honest business practices create more than developments — they create lasting confidence.",
+            "Measured proportions, composed planning, and a visual language shaped to feel timeless rather than temporary.",
         image: legacyImg,
     },
     {
-        title: "Vision",
+        title: "Craftmanship",
         description:
-            "Our vision is to create thoughtfully planned spaces that redefine modern living while delivering lasting value. At Doss Realty, we focus on blending smart design, strategic locations, and quality construction to build spaces that meet today’s lifestyle and tomorrow’s aspirations.",
+            "A quiet mastery to how spaces are felt, from the rhythm of a façade to the quiet meeting of light, texture, and form.",
         image: visionImg,
     },
     {
-    title: "Purpose",
+    title: "Uncompromising Quality",
     description:
-      "Our purpose goes beyond building homes and developments — we create spaces designed to enrich everyday life. Every Doss Realty project is planned with care to bring together comfort, functionality, and long-term value in the right location.",
+      "Materials, methods, and finishes selected with discipline, so every development carries a sense of permanence.",
 
     // desktop image
     image: purposeImg,
@@ -48,98 +48,120 @@ export default function LegacyVisionPurpose() {
         <>
             {/* Desktop */}
             <section className="hidden min-h-screen items-center overflow-hidden md:flex md:py-20">
-                <div className="mx-auto w-full px-6 lg:px-8 xl:px-10">
+                <div className="mx-auto w-full px-6 lg:px-8 xl:px-15">
                     <div className="grid grid-cols-3 gap-5 lg:gap-6 xl:gap-8">
-                        {values.map((item, index) => (
-                            <div
-                                key={index}
-                                className="
+                        {values.map((item, index) => {
+                          const initialAnimation =
+                            index === 0
+                              ? { opacity: 0, x: -120 } 
+                              : index === 1
+                              ? { opacity: 0, y: 120 } 
+                              : { opacity: 0, x: 120 };
+
+                          return (
+                            <motion.div
+                              key={index}
+                              initial={initialAnimation}
+                              whileInView={{
+                                opacity: 1,
+                                x: 0,
+                                y: 0,
+                              }}
+                              viewport={{
+                                once: true,
+                                amount: 0.25,
+                              }}
+                              transition={{
+                                duration: 1,
+                                ease: [0.22, 1, 0.36, 1],
+                                delay: index * 0.15,
+                              }}
+                              className="
                                 relative
                                 flex
                                 flex-col
-                                min-h-[780px]
-                                lg:min-h-[850px]
-                                xl:min-h-[850px]
                               "
                             >
-                                {/* IMAGE — 3/4 */}
-                                <div
-                                  className={`
-                                    group
-                                    relative
-                                    z-10
-                                    aspect-[3/4]
-                                    overflow-hidden
-                                    rounded-[14px]
-                                    shadow-[0_10px_30px_rgba(0,0,0,0.08)]
-                                    ${index === 1 ? "mt-[50px] lg:mt-[60px]" : ""}
-                                  `}
-                                >
-                                    <Image
-                                        src={item.image}
-                                        alt={item.title}
-                                        fill
-                                        className="
-                                        object-cover
-                                        transition-transform
-                                        duration-700
-                                        ease-out
-                                        group-hover:scale-110
-                                      "
-                                    />
-                                </div>
-
-                                {/* LINE */}
-                                <div
-                                    className="
-                                    absolute
-                                    left-[36px]
-                                    top-[20%]
-                                    bottom-[-40px]
-                                    w-[1px]
-                                    bg-[#D5D5D5]
-                                    z-0
+                              {/* IMAGE — 3/4 */}
+                              <div
+                                className={`
+                                  group
+                                  relative
+                                  z-10
+                                  aspect-[3/4]
+                                  overflow-hidden
+                                  rounded-[14px]
+                                  shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+                                  ${index === 1 ? "mt-[50px] lg:mt-[60px]" : ""}
+                                `}
+                              >
+                                <Image
+                                  src={item.image}
+                                  alt={item.title}
+                                  fill
+                                  className="
+                                    object-cover
+                                    transition-transform
+                                    duration-700
+                                    ease-out
+                                    group-hover:scale-110
                                   "
                                 />
+                              </div>
+                                
+                              {/* LINE */}
+                              <div
+                                className="
+                                  absolute
+                                  left-[36px]
+                                  top-[20%]
+                                  bottom-[-40px]
+                                  w-[1px]
+                                  bg-[#D5D5D5]
+                                  z-0
+                                "
+                              />
 
-                                {/* CONTENT */}
-                                <div
-                                    className="
-                                      relative
-                                      z-10
-                                      pl-[60px]
-                                      pt-20
-                                      lg:pt-12
-                                      max-w-[95%]
-                                    "
+                              {/* CONTENT */}
+                              <div
+                                className="
+                                  relative
+                                  z-10
+                                  pl-[60px]
+                                  pt-20
+                                  lg:pt-12
+                                "
+                              >
+                                <h2
+                                  className="
+                                    mb-4
+                                    text-[28px]
+                                    lg:text-[36px]
+                                    xl:text-[48px]
+                                    font-regular
+                                    leading-[50px]
+                                    tracking-tighter
+                                    text-[#111111]
+                                  "
                                 >
-                                    <h2
-                                        className="
-                                        mb-4
-                                        text-[28px]
-                                        lg:text-[36px]
-                                        xl:text-[48px]
-                                        font-heading
-                                        leading-[100%]
-                                        text-[#111111]
-                                      "
-                                    >
-                                        {item.title}
-                                    </h2>
-
-                                    <p
-                                        className="
-                                        text-[13px]
-                                        lg:text-[14px]
-                                        leading-[160%]
-                                        text-[#666666]
-                                      "
-                                    >
-                                        {item.description}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
+                                  {item.title}
+                                </h2>
+                                
+                                <p
+                                  className="
+                                    w-[33ch]
+                                    text-[13px]
+                                    md:text-[16px]
+                                    leading-[20px]
+                                    text-[#666666]
+                                  "
+                                >
+                                  {item.description}
+                                </p>
+                              </div>
+                            </motion.div>
+                          );
+                        })}
                     </div>
                 </div>
             </section>

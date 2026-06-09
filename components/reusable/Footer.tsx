@@ -49,9 +49,6 @@ const Footer = () => {
 
                 {/* Right */}
                 <div className="text-right">
-                  <h3 className="text-[30px] font-heading font-normal">
-                    Menu
-                  </h3>
 
                   <div className="mt-4 flex flex-wrap gap-5 justify-end">
                     {footerLinks.map((link) => (

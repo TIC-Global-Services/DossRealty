@@ -8,6 +8,8 @@ import project1 from "@/assets/home/project1.jpg";
 import project2 from "@/assets/home/project2.jpg";
 import project2Mobile from "@/assets/home/project2mobile.jpg";
 
+import PrimaryBtn from "../reusable/PrimaryBtn";
+
 type Project = {
   title: string;
   description: string;
@@ -23,9 +25,9 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Serene Grove Villas",
+    title: "Metropettai",
     description:
-      "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
+      "Metropettai is a modern community defined by connection. Located at the intersection of the upcoming Metro corridor, the Chennai–Bengaluru Highway, and the Outer Ring Road, it oﬀers direct access to the people, places, and opportunities that shape everyday life. Surrounded by leading employment hubs, educational institutions, and evolving infrastructure, Metropettai is designed for those who value access, opportunity, and long-term relevance.",
 
     image: project1,
     href: "/projects/luxury-villa",
@@ -33,9 +35,9 @@ const projects: Project[] = [
 
   {
     // Desktop content
-    title: "Signature Villa Community",
+    title: "Metropettai",
     description:
-      "An exclusive collection of premium villas designed to offer modern comfort, elegant architecture, and a vibrant community lifestyle.",
+      "Metropettai is a modern community defined by connection. Located at the intersection of the upcoming Metro corridor, the Chennai–Bengaluru Highway, and the Outer Ring Road, it oﬀers direct access to the people, places, and opportunities that shape everyday life. Surrounded by leading employment hubs, educational institutions, and evolving infrastructure, Metropettai is designed for those who value access, opportunity, and long-term relevance.",
 
     // Mobile content
     mobileTitle: "The Art of Villa Living",
@@ -78,8 +80,8 @@ export default function OurProjects() {
           <h2
             className="
               text-[24px]
-              md:text-[60px]
-              font-heading
+              md:text-[48px]
+              font-regular font-[400]
               tracking-[-0.04em]
               text-black
             "
@@ -88,9 +90,9 @@ export default function OurProjects() {
           </h2>
 
           <Link href="/projects">
-            <button className="mt-5 md:mt-0 text-white rounded-full font-regular bg-[#00256a] px-8 py-2 shadow-md transition duration-300 hover:scale-105">
+            <PrimaryBtn mode="light" className="mt-5 text-black transition duration-300 hover:scale-105">
               View Projects
-            </button>
+            </PrimaryBtn>
           </Link>
         </div>
 
@@ -159,6 +161,53 @@ export default function OurProjects() {
                       group-hover:scale-105
                     "
                   />
+
+                  {/* TOP OVERLAY */}
+                  <div className="absolute top-15 left-15 right-15 z-[3] flex items-start justify-between">
+
+                    {/* ACTIVE STATUS */}
+                    <div
+                      className="
+                      flex items-center gap-2
+                      h-[40px]              
+                    "
+                    >
+                      <span className="relative flex">
+                        {/* solid dot */}
+                        <span
+                          className="
+                          relative inline-flex
+                          h-[5px] w-[5px]
+                          rounded-full
+                          bg-yellow-400
+                        "
+                        />
+                      </span>
+
+                      <span className="text-white text-[14px] font-light">
+                        Active
+                      </span>
+                    </div>
+
+                    {/* GLASS BUTTON */}
+                    <button
+                      className="
+                      h-[44px]
+                      px-5.5
+                      rounded-full
+                      text-white text-[13px]
+                      md:text-[16px] tracking-wide
+                      border border-white/20
+                      bg-[rgba(255,255,255,0.10)]
+                      backdrop-blur-[20px]
+                      shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]
+                      transition duration-300
+                      hover:bg-white/20
+                    "
+                    >
+                      Plots
+                    </button>
+                  </div>
 
                   {/* CONTENT AREA */}
                   <div
@@ -239,17 +288,16 @@ export default function OurProjects() {
                       >
                         <div
                           className="
-                            max-w-[1440px]
                             mx-auto
                             px-5
                             md:px-20
                           "
                         >
-                          <div className="max-w-[550px]">
+                          <div className="max-w-full">
 
                             {/* TITLE */}
                             <h3
-                              className="
+                              className="font-regular
                                 text-white
                                 text-[18px]
                                 md:text-[26px]
@@ -273,11 +321,11 @@ export default function OurProjects() {
                               className="
                                 font-body
                                 font-light
-                                w-[42ch]
+                                w-full
                                 text-[#FFFFFF80]
                                 text-[15px]
-                                md:text-[14px]
-                                leading-[15px]
+                                md:text-[16px]
+                                leading-[20px]
                               "
                             >
                               <span className="hidden md:inline">

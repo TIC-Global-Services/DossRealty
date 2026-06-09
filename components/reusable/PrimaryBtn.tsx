@@ -6,7 +6,6 @@ import { twMerge } from "tailwind-merge";
 
 type Variant = "primary" | "outline" | "ghost";
 type Mode = "dark" | "light";
-type Size = "sm" | "md" | "lg" | "xl";
 
 type PrimaryBtnProps =
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -15,45 +14,39 @@ type PrimaryBtnProps =
     animated?: boolean;
     variant?: Variant;
     mode?: Mode;
-    size?: Size;
   };
 
 export default function PrimaryBtn({
   text,
   children,
   loading = false,
-  animated = true,
   variant = "primary",
   mode = "dark",
-  size = "md",
   className,
   ...props
 }: PrimaryBtnProps) {
-  const sizeStyles: Record<Size, string> = {
-    sm: "px-3 py-2 text-xs",
-    md: "px-5 py-2.5 text-sm",
-    lg: "px-6 py-3 text-sm",
-    xl: "px-4 py-8 text-base",
-  };
-
   const baseStyles = `
     relative group
-    rounded-full
+    w-[160px]
+    h-[44px]
+    rounded-[100px]
     flex items-center justify-center
     overflow-hidden isolate
-    font-medium tracking-wide
-    backdrop-blur-sm
-    transition-all duration-300 ease-out
-    active:scale-[0.96]
+    font-medium text-[16px]
+    tracking-wide
     cursor-pointer
+    transition-all duration-300 ease-out
+    active:scale-[0.97]
+    backdrop-blur-[20px]
   `;
 
   const darkVariants: Record<Variant, string> = {
     primary: `
+      bg-[rgba(255,255,255,0.1)]
       text-white
       border border-white/20
-      shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_8px_32px_rgba(0,0,0,0.25)]
-      hover:bg-white/20
+      shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_32px_rgba(0,0,0,0.25)]
+      hover:bg-[rgba(255,255,255,0.16)]
       hover:border-white/30
     `,
     outline: `
@@ -72,23 +65,23 @@ export default function PrimaryBtn({
 
   const lightVariants: Record<Variant, string> = {
     primary: `
+      bg-[rgba(255,255,255,0.1)]
       text-black
-      border border-white
-      shadow-[inset_0_1px_1px_rgba(0,0,0,0.08),0_8px_32px_rgba(0,0,0,0.12)]
-      hover:bg-white/60
-      hover:border-white/80
+      border border-white/40
+      shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_32px_rgba(0,0,0,0.12)]
+      hover:bg-[rgba(255,255,255,0.2)]
     `,
     outline: `
       bg-transparent
       text-black
-      border border-black/30
-      hover:bg-black/10
+      border border-black/20
+      hover:bg-black/5
     `,
     ghost: `
       bg-transparent
       text-black/70
       hover:text-black
-      hover:bg-black/10
+      hover:bg-black/5
     `,
   };
 
@@ -100,18 +93,24 @@ export default function PrimaryBtn({
   return (
     <button
       className={twMerge(
-        clsx(
-          baseStyles,
-          sizeStyles[size],
-          variantStyles,
-          className
-        )
+        clsx(baseStyles, variantStyles, className)
       )}
       {...props}
     >
+      {/* glass shine */}
+      <span
+        className="
+          absolute inset-0
+          bg-gradient-to-b
+          from-white/20
+          to-transparent
+          pointer-events-none
+        "
+      />
+
       <span className="relative z-10 flex items-center gap-2">
         {loading ? (
-          <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+          <span className="h-4 w-8 border-2 border-white/40 border-t-white rounded-full animate-spin" />
         ) : (
           children ?? text
         )}

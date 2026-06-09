@@ -358,7 +358,7 @@ export default function InfoGraphics() {
   }, [snapPoints]);
 
   return (
-    <section ref={sectionRef} className="relative bg-white" style={{ height: "100vh" }}>
+    <section ref={sectionRef} className="relative min-h-screen bg-white">
 
       {/* DESKTOP layout */}
       <div className="hidden md:grid h-full grid-cols-[120px_1fr_320px] items-center px-10">
@@ -390,67 +390,87 @@ export default function InfoGraphics() {
 
         {/* CENTER — circular image with wipe clip */}
         <div className="flex items-center justify-center md:ml-[15%] xl:ml-[18%]">
-          <div className="relative h-[380px] w-[380px] md:h-[420px] md:w-[420px]">
+  <div className="relative h-[clamp(260px,40vw,420px)] w-[clamp(260px,40vw,420px)]">
 
-            <div className="absolute inset-0 z-[3] rounded-full border border-black/10" />
+    <div className="absolute inset-0 z-[3] rounded-full border border-black/10" />
 
-            <div className="absolute inset-0 z-[2] overflow-hidden rounded-full">
-              <svg
-                style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
-                aria-hidden="true"
+    <div className="absolute inset-0 z-[2] overflow-hidden rounded-full">
+      <svg
+        style={{
+          position: "absolute",
+          width: 0,
+          height: 0,
+          overflow: "hidden",
+        }}
+        aria-hidden="true"
+      >
+        <defs>
+          {infographicData.map((item, index) =>
+            index > 0 ? (
+              <clipPath
+                key={item.id}
+                id={`wipe-clip-desktop-${index}`}
+                clipPathUnits="userSpaceOnUse"
               >
-                <defs>
-                  {infographicData.map((item, index) =>
-                    index > 0 ? (
-                      <clipPath
-                        key={item.id}
-                        id={`wipe-clip-desktop-${index}`} 
-                        clipPathUnits="userSpaceOnUse"
-                      >
-                        <path
-                          ref={(el) => { desktopClipRefs.current[index] = el; }}  
-                          d={arcClipPath(0)}
-                        />
-                      </clipPath>
-                    ) : null
-                  )}
-                </defs>
-              </svg>
-
-              {infographicData.map((item, index) => (
-                <div
-                  key={item.id}
-                  ref={(el) => { desktopImageRefs.current[index] = el; }} 
-                  className="absolute inset-0 will-change-transform backface-hidden"
-                  style={{
-                    zIndex: index,
-                    clipPath: index > 0 ? `url(#wipe-clip-desktop-${index})` : undefined, 
+                <path
+                  ref={(el) => {
+                    desktopClipRefs.current[index] = el;
                   }}
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.stat}
-                    fill
-                    priority={index === 0}
-                    className="object-cover scale-[1.06] -rotate-45"
-                  />
-                </div>
-              ))}
-            </div>
+                  d={arcClipPath(0)}
+                />
+              </clipPath>
+            ) : null
+          )}
+        </defs>
+      </svg>
 
-            {/* Fixed diagonal line */}
-            <svg
-              className="pointer-events-none absolute inset-0 z-[5] h-full w-full overflow-visible"
-              viewBox="0 0 420 420"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line x1="210" y1="210" x2="-100" y2="520" stroke="#1A1814" strokeWidth="1" opacity="20" />
-            </svg>
-
-            {/* Center dot */}
-            <div className="absolute left-1/2 top-1/2 z-[10] h-[20px] w-[20px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1A1814]" />
-          </div>
+      {infographicData.map((item, index) => (
+        <div
+          key={item.id}
+          ref={(el) => {
+            desktopImageRefs.current[index] = el;
+          }}
+          className="absolute inset-0 will-change-transform backface-hidden"
+          style={{
+            zIndex: index,
+            clipPath:
+              index > 0
+                ? `url(#wipe-clip-desktop-${index})`
+                : undefined,
+          }}
+        >
+          <Image
+            src={item.image}
+            alt={item.stat}
+            fill
+            priority={index === 0}
+            className="object-cover scale-[1.06] -rotate-45"
+          />
         </div>
+      ))}
+    </div>
+
+    {/* Fixed diagonal line */}
+    <svg
+      className="pointer-events-none absolute inset-0 z-[5] h-full w-full overflow-visible"
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <line
+        x1="50"
+        y1="50"
+        x2="-20"
+        y2="120"
+        stroke="#1A1814"
+        strokeWidth="0.3"
+        opacity="0.2"
+      />
+    </svg>
+
+    {/* Center dot */}
+    <div className="absolute left-1/2 top-1/2 z-[10] h-[16px] w-[16px] md:h-[20px] md:w-[20px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1A1814]" />
+  </div>
+</div>
 
         {/* RIGHT — stat text */}
         <div className="flex justify-center text-center">

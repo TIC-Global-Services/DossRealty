@@ -103,7 +103,7 @@ const LivingLocation = () => {
           className="
             h-auto
             w-full -translate-y-[40%]
-            md:-translate-y-[80%]
+            md:-translate-y-[70%]
             object-cover
             opacity-100
           "

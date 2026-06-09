@@ -10,6 +10,8 @@ import cloudImg from "@/assets/home/hero/cloudImg.png";
 import houseImg from "@/assets/home/hero/house_img.png";
 import fogImg from "@/assets/home/hero/cloudImgmain.png";
 
+import PrimaryBtn from "../reusable/PrimaryBtn";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -205,7 +207,6 @@ export default function Hero() {
 
       gsap.set(smokeRef.current, {
         yPercent: 40,
-        opacity: 40,
       });
 
       gsap.set(logoRef.current, {
@@ -246,7 +247,7 @@ export default function Hero() {
         scrollTrigger: {
           trigger: rootRef.current,
           start: "top top",
-          end: "+=2000",
+          end: "+=1200",
           pin: true,
           scrub: 2,
           anticipatePin: 1,
@@ -269,7 +270,7 @@ export default function Hero() {
       tl.to(
         houseRef.current,
         {
-          scale: 1.9,
+          scale: 1.8,
           ease: "power1.out",
           duration: 7,
           force3D: true,
@@ -305,7 +306,7 @@ export default function Hero() {
           duration: 0.35,
           ease: "power1.out",
         },
-        3.95
+        2.95
       );
 
       tl.to(
@@ -315,7 +316,7 @@ export default function Hero() {
           duration: 0.35,
           ease: "power1.out",
         },
-        3.95
+        2.95
       );
 
       tl.to(
@@ -325,18 +326,17 @@ export default function Hero() {
           duration: 0.6,
           ease: "power2.out",
         },
-        4.0
+        3.0
       );
 
       tl.to(
         compositeInnerRef.current,
         {
-          scale: 1.8,
-          yPercent: -30,
+          yPercent: -20,
           ease: "none",
           duration: 4,
         },
-        4.1
+        3.1
       );
 
       tl.to(
@@ -344,9 +344,9 @@ export default function Hero() {
         {
           yPercent: 0,
           ease: "none",
-          duration: 4.5,
+          duration: 6.5,
         },
-        4.5
+        0
       );
 
       const isMobile =
@@ -382,7 +382,7 @@ export default function Hero() {
           {
             x: 240,
             ease: "power2.out",
-            duration: 5,
+            duration: 6.5,
           },
           0
         );
@@ -392,7 +392,7 @@ export default function Hero() {
           {
             x: -240,
             ease: "power2.out",
-            duration: 5,
+            duration: 6.5,
           },
           0
         );
@@ -439,7 +439,7 @@ export default function Hero() {
             ref={heroTextRef}
             id="hero-text"
             className="
-            absolute inset-0 z-50 pointer-events-auto
+            absolute inset-0 z-10 pointer-events-auto
             flex flex-col items-center text-center
             px-[20px]
             pt-[22vh]
@@ -467,24 +467,15 @@ export default function Hero() {
                 For What Comes Next.
               </p>
 
-              <button
-                className="
-                mt-6 font-regular font-[400] leading-[20px]
-                rounded-full
-                border border-white/50
-                bg-white/10
-                backdrop-blur-lg
-                text-white
-                transition-all duration-300
-                hover:bg-white/20 hover:scale-105
-                cursor-pointer
-                px-6
-                py-3
-                text-[clamp(13px,1vw,16px)]
-              "
+              <PrimaryBtn style={{isolation: "isolate"}} mode="dark" className="ghost mt-6 z-[9999] cursor-pointer translate-x-80 border border-white
+                      bg-[rgba(255,255,255,0.10)]
+                      backdrop-blur-[20px]
+                      shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]
+                      transition duration-300
+                      hover:bg-white/20"
               >
                 Explore Properties
-              </button>
+              </PrimaryBtn>
             </div>
           </div>
 
@@ -497,7 +488,7 @@ export default function Hero() {
             top-[40%]
             right-[-30%]
             md:top-[10%]
-            md:right-[-12%]
+            md:right-[-30%]
             z-[0]
           "
           >
@@ -523,7 +514,7 @@ export default function Hero() {
             top-[40%]
             left-[-30%]
             md:top-[10%]
-            md:left-[-12%] z-[0]
+            md:left-[-30%] z-[0]
           "
           >
             <Image
@@ -605,10 +596,10 @@ export default function Hero() {
                     src={houseImg}
                     alt="Building visible through letterforms"
                     fill
-                    className="object-contain"
+                    className="object-cover"
                     style={{
                       objectPosition:
-                        "center 40%",
+                        "center  55%",
                     }}
                   />
                 </div>
@@ -690,9 +681,32 @@ export default function Hero() {
           </div>
 
 
+
           {/* ── BOTTOM FOG ── */}
-          <div ref={smokeRef} className="absolute bottom-0 md:bottom-[-40%] left-0 z-[20] md:z-0 w-full pointer-events-none">
-            <Image src={fogImg} alt="Bottom fog" width={1920} height={500} priority className="w-full h-auto object-cover md:opacity-60" />
+          <div
+            ref={smokeRef}
+            className="
+              absolute
+              -bottom-50
+              left-0
+              w-full
+              h-screen
+              z-[60]
+              pointer-events-none
+              overflow-hidden
+            "
+          >
+            <Image
+              src={fogImg}
+              alt="Bottom fog"
+              fill
+              priority
+              className="
+                object-cover object-right
+                md:object-bottom
+                md:opacity-100
+              "
+            />
           </div>
         </div>
 

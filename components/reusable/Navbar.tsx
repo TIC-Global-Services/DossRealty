@@ -28,12 +28,14 @@ const navLinks = [
   {
     name: "Contact",
     href: "/contact",
-    hasDropdown: true,
   },
   {
-    name: "EN",
-    href: "/en",
-    hasDropdown: true,
+    name: "NRI",
+    href: "/nri",
+  },
+  {
+    name: "Careers",
+    href: "/careers",
   },
 ];
 
@@ -81,7 +83,7 @@ const Navbar = () => {
         {/* DESKTOP NAV */}
         <div className="ml-auto hidden items-center lg:flex">
           <nav className="mr-10">
-            <ul className="flex items-center gap-8">
+            <ul className="flex items-center gap-[40px]">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -89,8 +91,8 @@ const Navbar = () => {
                     className="
                       group
                       flex
-                      items-center
-                      gap-1.5
+                      items-center text-[18px]
+                      gap-0.5 tracking-wide
                       text-sm
                       font-body
                       text-white
@@ -223,7 +225,6 @@ const Navbar = () => {
             >
               <PrimaryBtn
                 variant="primary"
-                size="lg"
                 className="w-full"
               >
                 Get in Touch

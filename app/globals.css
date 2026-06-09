@@ -37,7 +37,7 @@
       --font-agrandir-narrow
     );
 
-  --font-text-bold:
+  --font-secondary:
     var(
       --font-agrandir-text-bold
     );
@@ -45,7 +45,7 @@
   --font-tight:
     var(--font-agrandir-tight);
 
-  --font-wide-black:
+  --font-wide:
     var(
       --font-agrandir-wide-black
     );
@@ -88,10 +88,9 @@
     sans-serif !important;
 }
 
-.font-text-bold {
+.font-secondary {
   font-family:
-    var(--font-agrandir-text-bold),
-    sans-serif !important;
+    var(--font-agrandir-text-bold);
 }
 
 .font-tight {
@@ -100,7 +99,7 @@
     sans-serif !important;
 }
 
-.font-wide-black {
+.font-wide {
   font-family:
     var(--font-agrandir-wide-black),
     sans-serif !important;
