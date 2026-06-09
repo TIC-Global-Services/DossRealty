@@ -108,32 +108,32 @@ const WORDMARK: Array<{
       sw: 15,
     },
     {
-      t: "translate(468,640) scale(0.01660156,-0.013)",
+      t: "translate(440,640) scale(0.01660156,-0.013)",
       d: PR,
       sw: 100,
     },
     {
-      t: "translate(495,640) scale(0.01660156,-0.013)",
+      t: "translate(464,640) scale(0.01660156,-0.013)",
       d: PE,
       sw: 100,
     },
     {
-      t: "translate(518,640) scale(0.01660156,-0.013)",
+      t: "translate(488,640) scale(0.01660156,-0.013)",
       d: PA,
       sw: 100,
     },
     {
-      t: "translate(545,640) scale(0.01660156,-0.013)",
+      t: "translate(512,640) scale(0.01660156,-0.013)",
       d: PL,
       sw: 100,
     },
     {
-      t: "translate(565,640) scale(0.01660156,-0.013)",
+      t: "translate(528,640) scale(0.01660156,-0.013)",
       d: PT,
       sw: 100,
     },
     {
-      t: "translate(590,640) scale(0.01660156,-0.013)",
+      t: "translate(550,640) scale(0.01660156,-0.013)",
       d: PY,
       sw: 100,
     },
@@ -191,6 +191,8 @@ export default function Hero() {
     ce.style.setProperty("-webkit-mask-size", "100% 100%");
     ce.style.setProperty("mask-repeat", "no-repeat");
     ce.style.setProperty("-webkit-mask-repeat", "no-repeat");
+    ce.style.setProperty("mask-position", "0px 0px");
+    ce.style.setProperty("-webkit-mask-position","0px 0px");
 
     const ctx = gsap.context(() => {
       gsap.set(rootRef.current, {
