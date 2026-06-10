@@ -1,25 +1,97 @@
+"use client";
+
+import {
+  useLayoutEffect,
+  useRef,
+} from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import journeyImg from "@/assets/nri/journeyImg.png";
 
+gsap.registerPlugin(
+  ScrollTrigger
+);
+
 const PropertyJourney = () => {
+  const textRef =
+    useRef<HTMLDivElement>(null);
+
+  const imageRef =
+    useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+
+      /* TEXT REVEAL */
+      gsap.set(textRef.current, {
+        opacity: 0,
+        y: 80,
+      });
+
+      gsap.to(textRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: "top 80%",
+          toggleActions:
+            "play none none reverse",
+        },
+      });
+
+      /* IMAGE REVEAL */
+      gsap.set(imageRef.current, {
+        opacity: 0,
+        y: 100,
+        scale: 0.96,
+      });
+
+      gsap.to(imageRef.current, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.3,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: imageRef.current,
+          start: "top 85%",
+          toggleActions:
+            "play none none reverse",
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-16 md:py-20">
-      <div className="mx-20 max-w-[1440px] px-5 md:px-8 lg:px-10">
+    <section className="py-16 md:py-14">
+      <div className="mx-auto px-5 md:px-8 lg:px-15">
 
         {/* TOP CONTENT */}
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
-
+        <div
+          ref={textRef}
+          className="
+            grid
+            gap-8
+            lg:grid-cols-2
+            lg:gap-2
+          "
+        >
           {/* LEFT */}
-          <div className="lg:pt-10">
+          <div>
             <h2
               className="
                 font-heading
                 text-[24px]
-                md:text-[48px]
-                leading-[92%]
-                tracking-[-0.05em]
+                leading-[50px]
+                tracking-[-0.48px]
                 text-[#111111]
+                md:text-[46px]
               "
             >
               Your Property
@@ -30,45 +102,46 @@ const PropertyJourney = () => {
           </div>
 
           {/* RIGHT */}
-          <div className="lg:pt-10">
+          <div>
             <p
               className="
-                max-w-[620px]
-                text-[15px]
-                md:text-[16px]
-                leading-[180%]
+                w-[62ch]
+                text-[15px] tracking-[-0.48px]
+                leading-[20px]
                 text-[#6B6B6B]
+                md:text-[16px]
               "
             >
-              Secure your ideal property from anywhere
-              in the world with complete transparency
-              and trusted support. Seamless virtual
-              assistance, verified documentation, and
-              end-to-end guidance for effortless remote
-              investments. Invest confidently in premium
-              real estate while we manage every step on
-              your behalf.
+              Secure your ideal property from anywhere in the world with complete transparency and trusted support. Seamless virtual
+              assistance, verified documentation, and end-to-end guidance for effortless remote investments. Invest confidently in premium
+              real estate while we manage every step onyour behalf.
             </p>
           </div>
-
         </div>
 
         {/* IMAGE */}
-        <div className="mt-12 md:mt-10">
-          <div className="relative overflow-hidden rounded-[20px] md:rounded-[24px]">
-
+        <div
+          ref={imageRef}
+          className="mt-12 md:mt-6"
+        >
+          <div
+            className="
+              relative
+              overflow-hidden
+              rounded-[10px]
+            "
+          >
             <Image
               src={journeyImg}
               alt="Property Journey"
               className="
                 h-[300px]
-                md:h-[500px]
                 w-full
-                object-cover
+                object-cover object-bottom
+                md:h-[460px]
               "
               priority
             />
-
           </div>
         </div>
 

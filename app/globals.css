@@ -27,7 +27,7 @@
       --font-agrandir-grand-heavy
     );
 
-  --font-grand-light:
+  --font-grand:
     var(
       --font-agrandir-grand-light
     );
@@ -76,7 +76,7 @@
     sans-serif !important;
 }
 
-.font-grand-light {
+.font-grand {
   font-family:
     var(--font-agrandir-grand-light),
     sans-serif !important;

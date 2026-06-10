@@ -1,20 +1,70 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import bannerImg from "@/assets/contact/partnerBg.jpg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function PartnerSection() {
   const [activeTab, setActiveTab] = useState<"partner" | "job">("partner");
   const [showModal, setShowModal] = useState(false);
 
+  const cardRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Card animation
+      gsap.from(cardRef.current, {
+        y: 80,
+        opacity: 0,
+        scale: 0.96,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top 80%",
+        },
+      });
+
+      // Content stagger
+      gsap.from(contentRef.current?.children || [], {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out",
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top 80%",
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <>
-      <section className="py-16 lg:py-16">
+      <section className="py-12 lg:py-16">
         <div className="px-6 lg:px-12">
-          <div className="relative overflow-hidden rounded-[10px] min-h-[300px] md:min-h-[320px]">
-
+          <div
+            ref={cardRef}
+            className="
+              relative
+              overflow-hidden
+              rounded-[10px]
+              min-h-[300px]
+              md:min-h-[320px]
+              will-change-transform
+            "
+          >
             {/* Background */}
             <Image
               src={bannerImg}
@@ -25,18 +75,26 @@ export default function PartnerSection() {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 bg-black/25" />
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col justify-between h-full p-8 md:p-12 lg:p-16">
-
+            <div
+              ref={contentRef}
+              className="
+                relative z-10
+                flex flex-col
+                justify-between
+                h-full
+                p-8 md:p-12 lg:p-16
+              "
+            >
               {/* Top Content */}
               <div className="max-w-[520px]">
                 <h2
                   className="
                     text-white
-                    font-heading
-                    leading-[95%]
+                    font-small
+                    leading-[50px] tracking-[-1.44px]
                     text-[32px]
                     md:text-[48px]
                   "
@@ -58,27 +116,28 @@ export default function PartnerSection() {
                     text-white/90
                     text-[14px]
                     md:text-[16px]
-                    leading-[160%]
-                    max-w-[450px]
+                    leading-[20px] tracking-[-0.48px]
+                    max-w-[550px]
                   "
                 >
                   {activeTab === "partner"
                     ? "Collaborate with Doss Realty and become a part of our growing network of trusted channel partners and real estate associates."
-                    : "Build your future with a team committed to thoughtful development, lasting relationships, and excellence in every space we create."}
+                    : "At Doss Realty, we believe great spaces are built by great people. Join our team and grow with a company driven by trust, innovation, and a long-term vision for creating meaningful developments across Chennai."}
                 </p>
 
                 <button
                   onClick={() => setShowModal(true)}
                   className="
-                    mt-6
+                    mt-6 font-regular
                     bg-white
                     text-[#032B7A]
-                    px-6
+                    px-8
                     py-3
                     rounded-full
-                    text-[14px]
+                    text-[16px] md:leading-[20px] md:tracking-[-0.48px]
                     font-medium
                     transition-all
+                    duration-300
                     hover:scale-105
                   "
                 >
@@ -88,53 +147,96 @@ export default function PartnerSection() {
                 </button>
               </div>
 
-              {/* Tabs */}
+              {/* Premium Glass Tabs */}
               <div className="flex justify-center mt-12">
-                <div className="bg-white rounded-full p-[4px] shadow-lg flex items-center">
+                <div
+                  className="
+                    relative
+                    flex
+                    items-center
+                    rounded-full
+                    bg-[rgba(255,255,255,0.14)]
+                    backdrop-blur-[20px]
+                    border border-white/10
+                    p-[6px]
+                    shadow-[0_10px_35px_rgba(0,0,0,0.25)]
+                    overflow-hidden
+                  "
+                >
+                  {/* Active Slider */}
+                  <span
+                    className={`
+                      absolute
+                      top-[6px]
+                      left-[6px]
+                      h-[42px]
+                      rounded-full
+                      bg-white
+                      shadow-[0_4px_20px_rgba(0,0,0,0.12)]
+                      transition-all
+                      duration-500
+                      ease-[cubic-bezier(0.22,1,0.36,1)]
+                      ${
+                        activeTab === "partner"
+                          ? "translate-x-0 w-[145px]"
+                          : "translate-x-[145px] w-[120px]"
+                      }
+                    `}
+                  />
 
+                  {/* Channel Partner */}
                   <button
                     onClick={() => setActiveTab("partner")}
                     className={`
-                      px-6
-                      py-2
+                      relative
+                      z-10
+                      flex
+                      h-[42px]
+                      w-[145px]
+                      items-center
+                      justify-center
                       rounded-full
-                      text-[12px]
-                      md:text-[13px]
+                      md:text-[14px] md:leading-[16px] md:tracking-[-0.48px]
                       font-medium
                       transition-all
+                      duration-300
                       ${
                         activeTab === "partner"
-                          ? "bg-[#032B7A] text-white"
-                          : "text-[#2F3147]"
+                          ? "text-[#032B7A]"
+                          : "text-white/80 hover:text-white"
                       }
                     `}
                   >
                     Channel Partner
                   </button>
 
+                  {/* Job Enquiry */}
                   <button
                     onClick={() => setActiveTab("job")}
                     className={`
-                      px-6
-                      py-2
+                      relative
+                      z-10
+                      flex
+                      h-[42px]
+                      w-[120px]
+                      items-center
+                      justify-center
                       rounded-full
-                      text-[12px]
-                      md:text-[13px]
+                      md:text-[14px] md:leading-[16px] md:tracking-[-0.48px]
                       font-medium
                       transition-all
+                      duration-300
                       ${
                         activeTab === "job"
-                          ? "bg-[#032B7A] text-white"
-                          : "text-[#2F3147]"
+                          ? "text-[#032B7A]"
+                          : "text-white/80 hover:text-white"
                       }
                     `}
                   >
                     Job Enquiry
                   </button>
-
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -144,37 +246,25 @@ export default function PartnerSection() {
       {showModal && (
         <div
           className="
-            fixed
-            inset-0
-            z-[9999]
-            flex
-            items-center
-            justify-center
-            bg-black/40
-            backdrop-blur-sm
-            p-4
+            fixed inset-0 z-[9999]
+            flex items-center justify-center
+            bg-black/40 backdrop-blur-sm p-4
           "
         >
           <div
             className="
-              relative
-              bg-white
-              rounded-[24px]
-              w-full
-              max-w-[550px]
+              relative bg-white rounded-[24px]
+              w-full max-w-[550px]
               max-h-[90vh]
               shadow-[0_20px_80px_rgba(0,0,0,0.15)]
-              p-8
-              md:p-12
+              p-8 md:p-12
             "
           >
             {/* Close */}
             <button
               onClick={() => setShowModal(false)}
               className="
-                absolute
-                top-5
-                right-5
+                absolute top-5 right-5
                 text-[#2F3147]
                 text-[28px]
                 leading-none
@@ -234,9 +324,10 @@ export default function PartnerSection() {
                       className="
                         bg-[#032B7A]
                         text-white
-                        px-10
-                        py-3
+                        px-10 py-3
                         rounded-full
+                        transition duration-300
+                        hover:scale-105
                       "
                     >
                       Send inquiry
@@ -281,9 +372,10 @@ export default function PartnerSection() {
                       className="
                         bg-[#032B7A]
                         text-white
-                        px-10
-                        py-3
+                        px-10 py-3
                         rounded-full
+                        transition duration-300
+                        hover:scale-105
                       "
                     >
                       Apply now

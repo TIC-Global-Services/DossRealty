@@ -14,23 +14,26 @@ const Hero = () => {
         alt="Hero Background"
         fill
         priority
-        className="object-cover object-[20%_20%]"
+        className="object-cover object-[80%_30%]"
       />
+
+      {/* Overlay */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/20 via-black/20 to-black/20"/>
 
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-5">
-        <div className="max-w-[900px] text-center">
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-5 pt-[20vh] md:pt-[20vh] lg:pt-[20vh]">
+        <div className="max-w-[900px] text-center self-start">
 
           {/* Heading */}
           <h1
-            className="
+            className="capitalize
               font-heading
               text-white
               text-[24px]
               md:text-[48px]
-              leading-[95%]
-              tracking-[-0.04em]
+              leading-[50px]
+              tracking-[-1.44px]
             "
           >
            Global Living, Indian Roots
@@ -38,13 +41,12 @@ const Hero = () => {
 
           {/* Paragraph */}
           <p
-            className="
+            className="capitalize
               mx-auto
-              mt-6
-              max-w-[780px]
+              mt-2
               text-[15px]
               md:text-[18px]
-              leading-[170%]
+              leading-[20px]
               text-white/80
             "
           >

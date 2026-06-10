@@ -33,12 +33,18 @@ const KnowMore = () => {
     return (
         <>
             <FAQ
-                faqData={faqData}
-                heading={`Everything \n You Need To Know`}
-                description="Find answers to common questions about our architectural process, project planning, timelines, and design approach."
-                buttonText="Contact Us"
-                defaultOpenIndex={1}
-            />
+                  faqData={faqData}
+                  heading={
+                    <>
+                      Everything
+                      <br />
+                      You Need to Know
+                    </>
+                  }
+                  description="Find answers to common questions about our architectural process, project planning, timelines, and design approach."
+                  buttonText="Contact Us"
+                  defaultOpenIndex={1}
+                />
         </>
     );
 };

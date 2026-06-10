@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import {
   FaWhatsapp,
   FaInstagram,
   FaFacebookF,
 } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-
 
 const footerLinks = [
   { name: "Home", href: "/" },
@@ -18,20 +19,23 @@ const footerLinks = [
 ];
 
 const Footer = () => {
+  const pathname = usePathname();
+
   return (
     <footer className="w-full bg-white px-4 py-6 md:px-8 md:py-8">
-      <div
-        className="rounded-[32px] bg-[#121212ff] text-white overflow-hidden"
-      >
-        {/* DESKTOP  */}
+      <div className="overflow-hidden rounded-[32px] bg-[#121212] text-white">
+
+        {/* DESKTOP */}
         <div className="hidden lg:block">
           <div className="flex flex-col justify-between px-[20px] py-14">
-            <div className="flex px-10 flex-col justify-between">
+            <div className="flex flex-col justify-between px-10">
+
               {/* Top Section */}
               <div className="flex justify-between gap-10">
+
                 {/* Left */}
                 <div className="max-w-[500px]">
-                  <h3 className="text-[30px] font-heading leading-none">
+                  <h3 className="font-heading text-[30px] leading-none">
                     About{" "}
                     <span className="text-[#B59A52]">
                       Doss Realty
@@ -49,29 +53,53 @@ const Footer = () => {
 
                 {/* Right */}
                 <div className="text-right">
+                  <div className="mt-4 flex flex-wrap justify-end gap-5">
 
-                  <div className="mt-4 flex flex-wrap gap-5 justify-end">
-                    {footerLinks.map((link) => (
-                      <Link
-                        key={link.name}
-                        href={link.href}
-                        className="text-sm text-[#D0D0D0] transition duration-300 hover:text-[#B59A52]"
-                      >
-                        {link.name}
-                      </Link>
-                    ))}
+                    {footerLinks.map((link) => {
+                      const isActive =
+                        pathname === link.href;
+
+                      return (
+                        <Link
+                          key={link.name}
+                          href={link.href}
+                          className={`
+                            text-sm
+                            transition
+                            duration-300
+                            hover:text-[#B59A52]
+                            ${
+                              isActive
+                                ? "text-[#B59A52]"
+                                : "text-[#D0D0D0]"
+                            }
+                          `}
+                        >
+                          {link.name}
+                        </Link>
+                      );
+                    })}
+
                   </div>
                 </div>
               </div>
 
               {/* Center */}
-              <div className="flex flex-1 items-center justify-center text-center pt-6">
+              <div className="flex flex-1 items-center justify-center pt-6 text-center">
                 <div>
-                  <p className="text-[42px] font-heading text-white">
+                  <p className="font-heading text-[42px] text-white">
                     Build Beyond
                   </p>
 
-                  <h2 className="font-heading leading-[0.9] tracking-[-0.05em] text-white text-[200px]">
+                  <h2
+                    className="
+                      font-heading
+                      text-[200px]
+                      leading-[0.9]
+                      tracking-[-0.05em]
+                      text-white
+                    "
+                  >
                     Ordinary
                   </h2>
                 </div>
@@ -79,6 +107,7 @@ const Footer = () => {
 
               {/* Bottom */}
               <div className="flex items-center justify-between pt-10">
+
                 <p className="text-[16px] text-[#AFAFAF]">
                   Copyright © 2026{" "}
                   <span className="text-[#B59A52]">
@@ -87,22 +116,53 @@ const Footer = () => {
                   All Rights Reserved.
                 </p>
 
+                {/* Social */}
                 <div className="flex items-center gap-5">
+
                   <Link href="#">
-                    <FaWhatsapp className="text-[22px]" />
+                    <FaWhatsapp
+                      className="
+                        text-[22px]
+                        transition
+                        duration-300
+                        hover:text-[#B59A52]
+                      "
+                    />
                   </Link>
 
                   <Link href="#">
-                    <MdOutlineEmail className="text-[24px]" />
+                    <MdOutlineEmail
+                      className="
+                        text-[24px]
+                        transition
+                        duration-300
+                        hover:text-[#B59A52]
+                      "
+                    />
                   </Link>
 
                   <Link href="#">
-                    <FaFacebookF className="text-[18px]" />
+                    <FaFacebookF
+                      className="
+                        text-[18px]
+                        transition
+                        duration-300
+                        hover:text-[#B59A52]
+                      "
+                    />
                   </Link>
 
                   <Link href="#">
-                    <FaInstagram className="text-[22px]" />
+                    <FaInstagram
+                      className="
+                        text-[22px]
+                        transition
+                        duration-300
+                        hover:text-[#B59A52]
+                      "
+                    />
                   </Link>
+
                 </div>
 
                 <p className="text-[16px] text-[#AFAFAF]">
@@ -112,34 +172,53 @@ const Footer = () => {
                   </span>
                 </p>
               </div>
+
             </div>
           </div>
         </div>
 
-        {/* Mobile Layout */}
-        <div className="lg:hidden px-5 py-8">
+        {/* MOBILE */}
+        <div className="px-5 py-8 lg:hidden">
+
           {/* Menu */}
           <div>
-            <h3 className="text-[24px] font-heading text-left">
+            <h3 className="text-left font-heading text-[24px]">
               Menu
             </h3>
 
             <div className="mt-5 flex flex-wrap gap-x-5 gap-y-3">
-              {footerLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm text-[#D0D0D0]"
-                >
-                  {link.name}
-                </Link>
-              ))}
+
+              {footerLinks.map((link) => {
+                const isActive =
+                  pathname === link.href;
+
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`
+                      text-sm
+                      transition
+                      duration-300
+                      hover:text-[#B59A52]
+                      ${
+                        isActive
+                          ? "text-[#B59A52]"
+                          : "text-[#D0D0D0]"
+                      }
+                    `}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+
             </div>
           </div>
 
           {/* About */}
           <div className="mt-10">
-            <h3 className="text-[26px] font-heading leading-none">
+            <h3 className="font-heading text-[26px] leading-none">
               About{" "}
               <span className="text-[#B59A52]">
                 Doss Realty
@@ -157,17 +236,25 @@ const Footer = () => {
 
           {/* Heading */}
           <div className="mt-14 text-center">
-            <p className="text-[24px] font-heading">
+            <p className="font-heading text-[24px]">
               Build Beyond
             </p>
 
-            <h2 className="font-heading text-[62px] leading-[0.95] tracking-[-0.05em]">
+            <h2
+              className="
+                font-heading
+                text-[62px]
+                leading-[0.95]
+                tracking-[-0.05em]
+              "
+            >
               Ordinary
             </h2>
           </div>
 
           {/* Bottom */}
           <div className="mt-10 flex justify-between gap-4">
+
             <p className="max-w-[140px] text-[13px] leading-[1.6] text-[#AFAFAF]">
               Copyright © 2026{" "}
               <span className="text-[#B59A52]">
@@ -184,13 +271,54 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Social
+          {/* Social */}
           <div className="mt-8 flex items-center gap-5">
-            <FaWhatsapp className="text-[22px]" />
-            <MdOutlineEmail className="text-[24px]" />
-            <FaFacebookF className="text-[18px]" />
-            <FaInstagram className="text-[22px]" />
-          </div> */}
+
+            <Link href="#">
+              <FaWhatsapp
+                className="
+                  text-[22px]
+                  transition
+                  duration-300
+                  hover:text-[#B59A52]
+                "
+              />
+            </Link>
+
+            <Link href="#">
+              <MdOutlineEmail
+                className="
+                  text-[24px]
+                  transition
+                  duration-300
+                  hover:text-[#B59A52]
+                "
+              />
+            </Link>
+
+            <Link href="#">
+              <FaFacebookF
+                className="
+                  text-[18px]
+                  transition
+                  duration-300
+                  hover:text-[#B59A52]
+                "
+              />
+            </Link>
+
+            <Link href="#">
+              <FaInstagram
+                className="
+                  text-[22px]
+                  transition
+                  duration-300
+                  hover:text-[#B59A52]
+                "
+              />
+            </Link>
+
+          </div>
         </div>
       </div>
     </footer>

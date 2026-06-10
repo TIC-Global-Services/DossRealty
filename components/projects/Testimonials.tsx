@@ -81,30 +81,29 @@ const Testimonials = () => {
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
 
         {/* HEADING */}
-        <div className="mx-auto max-w-[900px] text-center">
+        <div className="mx-auto text-center">
           <h2
             className="
               font-heading
               text-[32px]
-              md:text-[58px]
-              leading-[95%]
-              tracking-[-0.04em]
+              md:text-[48px]
+              leading-[54px]
+              tracking-[-1.44px]
               text-[#00256A]
             "
           >
-            Spaces Designed with Trust
-            & Satisfaction
+            Spaces Designed with Trust & Satisfaction
           </h2>
 
           <p
             className="
               mx-auto
-              mt-5
+              mt-2
               max-w-[700px]
               text-[15px]
               md:text-[16px]
-              leading-[160%]
-              text-[#666]
+              leading-[20px] tracking-[-0.48px]
+              text-[#717171]
             "
           >
             Hear from homeowners and
@@ -173,7 +172,7 @@ const Testimonials = () => {
                       <div className="flex items-center gap-4">
 
                         {/* IMAGE */}
-                        <div className="relative h-[80px] w-[80px] shrink-0 overflow-hidden rounded-full">
+                        <div className="relative h-[100px] w-[100px] shrink-0 overflow-hidden rounded-full">
                           <Image
                             src={
                               item.image
@@ -188,23 +187,23 @@ const Testimonials = () => {
 
                         {/* INFO */}
                         <div>
-                          <h3 className="text-[24px] font-medium text-[#222]">
+                          <h3 className="text-[14px] md:text-[22px] md:leading-[24px] font-small tracking-[-2%] text-[#222]">
                             {
                               item.name
                             }
                           </h3>
 
-                          <p className="text-[15px] text-[#777]">
+                          <p className="text-[13px] md:text-[14px] md:leading-[16px] tracking-[-3%] text-[#000000]">
                             {
                               item.country
                             }
                           </p>
 
                           {/* STARS */}
-                          <div className="mt-2 flex gap-1 text-[#D0A93E]">
+                          <div className="mt-2.5 flex gap-1 text-[#D0A93E]">
                             {[
                               ...Array(
-                                6
+                                5
                               ),
                             ].map(
                               (
@@ -228,9 +227,9 @@ const Testimonials = () => {
                       <p
                         className="
                           mt-6
-                          text-[15px]
-                          leading-[165%]
-                          text-[#666]
+                          md:text-[14px]
+                          leading-[16px]
+                          text-[#606060]
                         "
                       >
                         {`"${item.review}"`}

@@ -1,10 +1,46 @@
 "use client";
 
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import heroBg from "@/assets/projects/heroImg.jpg";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Hero = () => {
+  const cardRef =
+    useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.set(cardRef.current, {
+        opacity: 0,
+        y: 120,
+        scale: 0.92,
+        filter: "blur(10px)",
+      });
+
+      gsap.to(cardRef.current, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: "blur(0px)",
+        duration: 1.4,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top 85%",
+          toggleActions:
+            "play none none reverse",
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className="relative">
 
@@ -36,6 +72,7 @@ const Hero = () => {
           "
         >
           <div
+            ref={cardRef}
             className="
               rounded-[32px]
               bg-white
@@ -46,24 +83,30 @@ const Hero = () => {
               md:py-10
               lg:px-16
               lg:py-16
+              will-change-transform
             "
           >
             <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
 
               {/* LEFT */}
-              <div className="lg:w-[40%]">
+              <div className="lg:w-[50%]">
                 <h2
                   className="
+                    px-5
                     font-heading
                     text-[32px]
-                    md:text-[48px]
-                    lg:text-[70px]]
-                    leading-[95%]
+                    leading-[38px]
                     tracking-[-0.04em]
                     text-[#00256A]
+                    md:text-[70px]
+                    md:leading-[65px]
                   "
                 >
-                  Spaces Built <br/> for Modern <br /> Living
+                  Spaces Built
+                  <br />
+                  for Modern
+                  <br />
+                  Living
                 </h2>
               </div>
 
@@ -71,27 +114,35 @@ const Hero = () => {
               <div
                 className="
                   hidden
-                  lg:block
                   h-[180px]
                   w-[1px]
                   bg-[#E2E2E2]
+                  lg:block
                 "
               />
 
               {/* RIGHT */}
-              <div className="lg:w-[60%]">
+              <div className="lg:w-[50%]">
                 <p
                   className="
+                    ml-8
+                    max-w-[420px]
+                    px-2
                     text-[15px]
+                    leading-[20px]
+                    text-[#6c7072]
                     md:text-[18px]
-                    leading-[170%]
-                    text-[#666]
-                    max-w-[620px]
                   "
                 >
-                  Each Doss Realty project reflects our commitment to quality, thoughtful planning, and creating homes that offer comfort, 
-                  value, and lasting distinction. From elegant residences to inspiring developments, 
-                  our projects are created to deliver exceptional living experiences for today and generations ahead.
+                  Each Doss Realty project reflects our
+                  commitment to quality, thoughtful
+                  planning, and creating homes that
+                  offer comfort, value, and lasting
+                  distinction. From elegant residences
+                  to inspiring developments, our
+                  projects are created to deliver
+                  exceptional living experiences for
+                  today and generations ahead.
                 </p>
               </div>
 

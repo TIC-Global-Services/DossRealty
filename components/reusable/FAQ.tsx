@@ -11,7 +11,7 @@ type FAQItem = {
 type AccordionSectionProps = {
   faqData: FAQItem[];
 
-  heading: string;
+  heading: React.ReactNode;
   description: string;
 
   buttonText?: string;
@@ -67,7 +67,7 @@ const FAQ = ({
           grid
           gap-14
           md:mx-20
-          lg:grid-cols-[58%_42%]
+          lg:grid-cols-[50%_50%]
           lg:items-start
         "
         >
@@ -178,15 +178,15 @@ const FAQ = ({
           <div
             className="
             lg:self-center
-            lg:pl-10
+            lg:ml-8
           "
           >
             <h2
-              className="
+              className="w-[14ch]
               font-heading
               text-[24px]
               md:text-[48px]
-              leading-[90%]
+              leading-[50px]
               tracking-[-0.05em]
               text-[#00256A]
             "
