@@ -1,0 +1,333 @@
+"use client";
+
+import {
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import img1 from "@/assets/projects/metropettai/location1.jpg";
+
+const highlights = [
+  {
+    title: "Prime Locations",
+    description:
+      "Enjoy seamless access to key destinations, modern infrastructure, and thriving communities designed for future growth.",
+  },
+  {
+    title: "Connectivity",
+    description:
+      "Well-connected roads and transport routes make commuting effortless and everyday travel smoother.",
+  },
+  {
+    title: "Flood-Resilient Location",
+    description:
+      "Thoughtfully planned in a location designed to support long-term sustainability and safety.",
+  },
+  {
+    title: "Growth Value",
+    description:
+      "Located in a fast-developing corridor offering strong appreciation and investment potential.",
+  },
+];
+
+const LocationHighlights = () => {
+  const [activeIndex, setActiveIndex] =
+    useState<number | null>(0);
+
+  const sectionRef =
+    useRef<HTMLDivElement>(null);
+
+  const headerRef =
+    useRef<HTMLDivElement>(null);
+
+  const accordionRef =
+    useRef<HTMLDivElement>(null);
+
+  const imageRef =
+    useRef<HTMLDivElement>(null);
+
+  const toggleAccordion = (
+    index: number
+  ) => {
+    setActiveIndex((prev) =>
+      prev === index
+        ? null
+        : index
+    );
+  };
+
+  useLayoutEffect(() => {
+    gsap.registerPlugin(
+      ScrollTrigger
+    );
+
+    const ctx =
+      gsap.context(() => {
+        const tl =
+          gsap.timeline({
+            scrollTrigger: {
+              trigger:
+                sectionRef.current,
+              start:
+                "top 75%",
+            },
+          });
+
+        // HEADER REVEAL
+        tl.from(
+          headerRef.current
+            ?.children || [],
+          {
+            y: 40,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.15,
+            ease:
+              "power3.out",
+          }
+        );
+
+        // ACCORDION REVEAL
+        tl.from(
+          accordionRef.current
+            ?.children || [],
+          {
+            y: 60,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.15,
+            ease:
+              "power3.out",
+          },
+          "-=0.5"
+        );
+
+        // IMAGE REVEAL
+        tl.from(
+          imageRef.current,
+          {
+            scale: 0.96,
+            opacity: 0,
+            duration: 1.2,
+            ease:
+              "power3.out",
+          },
+          "-=0.8"
+        );
+      },
+      sectionRef
+    );
+
+    return () =>
+      ctx.revert();
+  }, []);
+
+  return (
+    <section className="py-4 md:py-8">
+      <div
+        ref={sectionRef}
+        className="
+          mx-auto
+          px-5
+          md:px-8
+          lg:px-12
+        "
+      >
+        {/* HEADER */}
+        <div
+          ref={headerRef}
+          className="text-center"
+        >
+          <h2
+            className="
+              font-heading
+              text-[34px]
+              font-[300]
+              uppercase
+              tracking-[-1px]
+              text-[#111]
+              md:text-[48px]
+              md:leading-[60px]
+              md:tracking-[-1.44px]
+            "
+          >
+            Building Spaces,
+            Creating Trust
+          </h2>
+
+          <p
+            className="
+              mt-4
+              text-[15px]
+              text-[#8A8A8A]
+              md:text-[16px]
+              md:leading-[24px]
+              md:tracking-[-0.48px]
+            "
+          >
+            Location key
+            highlights
+          </p>
+        </div>
+
+        {/* CONTENT */}
+        <div
+          className="
+            mt-14
+            flex
+            justify-between
+            gap-4
+            lg:flex-row
+          "
+        >
+          {/* LEFT SIDE */}
+          <div
+            ref={
+              accordionRef
+            }
+            className="
+              w-1/2
+              rounded-[10px]
+              bg-[#F0F0F0]
+              p-8
+              md:p-10
+            "
+          >
+            {highlights.map(
+              (
+                item,
+                index
+              ) => {
+                const isOpen =
+                  activeIndex ===
+                  index;
+
+                return (
+                  <div
+                    key={
+                      index
+                    }
+                    className="
+                      border-b
+                      border-[#E2E2E2]
+                      py-8
+                      last:border-none
+                    "
+                  >
+                    <button
+                      onClick={() =>
+                        toggleAccordion(
+                          index
+                        )
+                      }
+                      className="w-full text-left"
+                    >
+                      <div className="flex items-start justify-between">
+                        {/* CONTENT */}
+                        <div>
+                          <h3
+                            className={`
+                              text-[18px]
+                              transition-all
+                              duration-300
+                              md:text-[30px]
+                              md:leading-[35px]
+                              ${
+                                isOpen
+                                  ? "font-medium text-[#111]"
+                                  : "text-[#C9C9C9]"
+                              }
+                            `}
+                          >
+                            {
+                              item.title
+                            }
+                          </h3>
+
+                          {isOpen && (
+                            <p
+                              className="
+                                mt-5
+                                max-w-[420px]
+                                text-[15px]
+                                leading-[24px]
+                                text-[#666]
+                                md:text-[16px]
+                                md:leading-[20px]
+                                md:tracking-[-0.48px]
+                              "
+                            >
+                              {
+                                item.description
+                              }
+                            </p>
+                          )}
+                        </div>
+
+                        {/* + / - BUTTON */}
+                        <div
+                          className="
+                            flex
+                            h-[52px]
+                            w-[52px]
+                            shrink-0
+                            items-center
+                            justify-center
+                            rounded-full
+                            bg-black
+                            text-white
+                          "
+                        >
+                          <span
+                            className="
+                              text-[28px]
+                              font-light
+                              leading-none
+                            "
+                          >
+                            {isOpen
+                              ? "−"
+                              : "+"}
+                          </span>
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                );
+              }
+            )}
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <div
+            ref={imageRef}
+            className="
+              relative
+              w-1/2
+              min-h-[420px]
+              overflow-hidden
+              rounded-[10px]
+              md:min-h-[450px]
+            "
+          >
+            <Image
+              src={img1}
+              alt="Location Highlights"
+              fill
+              priority
+              className="
+                object-cover
+              "
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default LocationHighlights;

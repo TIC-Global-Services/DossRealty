@@ -11,22 +11,22 @@ const items = [
   {
     title: "PRIME LOCATIONS",
     description:
-      "Strategically located developments offering excellent connectivity and long-term value.",
+      "Our projects are strategically positioned to offer excellent connectivity, convenience, and long-term investment potential.",
   },
   {
     title: "QUALITY THAT ENDURES",
     description:
-      "Superior craftsmanship and attention to detail that stand the test of time.",
+      "From planning to execution, we focus on superior construction standards and attention to detail that stand the test of time.",
   },
   {
     title: "TRUST & TRANSPARENCY",
     description:
-      "Clear communication and integrity throughout every stage of the process.",
+      "We build lasting relationships through integrity, clear communication, and a customer-first approach at every stage.",
   },
   {
     title: "MODERN LIVING EXPERIENCES",
     description:
-      "Designed for contemporary lifestyles with comfort, convenience and elegance.",
+      "Our developments are designed to complement contemporary lifestyles with comfort, elegance, and purposeful spaces.",
   },
 ];
 
@@ -99,16 +99,12 @@ export default function WhyWorkWithUs() {
             </div>
 
             {/* Intro */}
-            <p className="max-w-[1100px] text-[#555555] text-[14px] md:text-[16px] lg:text-[18px] leading-[170%] mb-8">
-              At Doss Realty, we believe exceptional spaces are created
-              through thoughtful vision, quality craftsmanship, and a
-              commitment to lasting value. Every development is designed
-              to elevate modern living while reflecting elegance,
-              comfort, and trust.
-            </p>
+            <h2 className="max-w-[1100px] pl-20 uppercase text-[#555555] text-[14px] md:text-[16px] lg:text-[30px] leading-[24px] mb-8">
+             We Are: Builders
+            </h2>
 
             {/* Items */}
-            <div className="space-y-5 lg:space-y-6">
+            <div className="space-y-5 lg:space-y-6 lg:pl-20">
 
               {items.map((item, index) => {
                 const active = index === activeIndex;

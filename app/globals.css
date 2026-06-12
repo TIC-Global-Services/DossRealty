@@ -225,4 +225,48 @@ html.lenis body {
     forwards;
 }
 
+@keyframes galleryLoop {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-33.33%);
+  }
+}
+
+.gallery-track {
+  animation: galleryLoop 18s linear infinite;
+}
+
+/* Default Small Images */
+.gallery-item {
+  width: 18vw;
+  height: 380px;
+  transition:
+    transform 0.8s ease,
+    width 0.8s ease,
+    height 0.8s ease;
+}
+
+/* Center Image Bigger */
+.gallery-item:nth-child(3n + 2) {
+  width: 52vw;
+  height: 520px;
+  transform: scale(1.02);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .gallery-item {
+    width: 38vw;
+    height: 240px;
+  }
+
+  .gallery-item:nth-child(3n + 2) {
+    width: 70vw;
+    height: 320px;
+  }
+}
+
 
