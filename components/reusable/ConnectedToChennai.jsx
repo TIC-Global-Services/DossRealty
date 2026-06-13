@@ -5,12 +5,20 @@ import {
   useRef,
   useState,
 } from "react";
-import ChennaiMap from "./ChennaiMap";
+import dynamic from "next/dynamic";
+
 import gsap from "gsap";
 import {
   ScrollTrigger,
 } from "gsap/ScrollTrigger";
 import Image from "next/image";
+
+const ChennaiMap = dynamic(
+  () => import("./ChennaiMap"),
+  {
+    ssr: false,
+  }
+);
 
 gsap.registerPlugin(
   ScrollTrigger
