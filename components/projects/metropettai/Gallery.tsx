@@ -9,21 +9,16 @@ import img3 from "@/assets/projects/metropettai/galleryImg3.jpg";
 
 const images = [img1, img2, img3];
 
-// ── Carousel geometry ─────────────────────────────────────────────────────────
-// Viewport:  |← 21vw →|← 2.5vw →|←── 53vw center ──→|← 2.5vw →|← 21vw →|
-//             left peek   gap                             gap     right peek
-// Every image anchors at `left: 50%` (viewport centre) and slides via translateX.
-// ─────────────────────────────────────────────────────────────────────────────
 
-const CW  = 53;   // centre image width  (vw)
-const SW  = 40;   // side   image width  (vw) — mostly clipped off-screen
-const GAP = 2.5;  // gap between images  (vw)
+const CW  = 53;   
+const SW  = 40;   
+const GAP = 2.5; 
 
 const TX: Record<string, string> = {
-  center:   `-${CW / 2}vw`,            // −26.5vw → image centred
-  right:    `${CW / 2 + GAP}vw`,       //  +29vw  → left edge just right of centre image
-  left:     `-${CW / 2 + GAP + SW}vw`, // −69vw   → right edge just left of centre image
-  offRight: `110vw`,                    // invisible, beyond right edge
+  center:   `-${CW / 2}vw`,           
+  right:    `${CW / 2 + GAP}vw`,       
+  left:     `-${CW / 2 + GAP + SW}vw`, 
+  offRight: `110vw`,                   
 };
 
 const SIZE: Record<string, { width: string; height: string }> = {
@@ -46,12 +41,6 @@ export default function Gallery() {
     return "left";
   };
 
-  /**
-   * Loop strategy for the wrap-around image (was "left", must reappear on right):
-   *   Paint 1 — instantly teleport it to offRight (transition: none)
-   *   Paint 2 — re-enable transitions + bump active index
-   *           → image slides in smoothly from the right  ✓
-   */
   const advance = useCallback(() => {
     const leftIdx = ((active - 1) % n + n) % n;
     setJumpIdx(leftIdx);
@@ -69,9 +58,9 @@ export default function Gallery() {
   }, [advance]);
 
   return (
-    <section className="overflow-hidden py-8 md:py-10">
+    <section className="overflow-hidden py-8 md:py-14">
 
-      {/* ── Carousel ─────────────────────────────────────────────────────── */}
+      {/* Carousel */}
       <div className="relative overflow-hidden" style={{ height: 520 }}>
         {images.map((img, i) => {
           const s       = slot(i);
@@ -103,7 +92,7 @@ export default function Gallery() {
         })}
       </div>
 
-      {/* ── Button ───────────────────────────────────────────────────────── */}
+      {/* Button */}
       <div className="mt-10 flex justify-center">
         <button className="rounded-full bg-[#00256A] px-8 py-3 text-[15px] text-white transition duration-300 hover:scale-105">
           view gallery

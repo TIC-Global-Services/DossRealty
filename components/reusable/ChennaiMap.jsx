@@ -148,9 +148,11 @@ export default function ChennaiMap({
   activeMinute,
 }) {
   const currentPlaces =
-    LOCATION_DATA[
-      activeMinute
-    ]?.places || [];
+  activeMinute === 0
+    ? []
+    : LOCATION_DATA[
+        activeMinute
+      ]?.places || [];
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-[#F4F4F4]">
@@ -214,22 +216,23 @@ export default function ChennaiMap({
       </MapContainer>
 
       {/* Left Card */}
-      <div
-        className="
-          absolute
-          bottom-10
-          left-8
-          z-[1000]
-          w-[300px]
-          rounded-[22px]
-          border
-          border-[#E8E8E8]
-          bg-white/95
-          p-5
-          shadow-xl
-          backdrop-blur-md
-        "
-      >
+      {activeMinute !== 0 && (
+  <div
+    className="
+      absolute
+      bottom-10
+      left-8
+      z-[1000]
+      w-[300px]
+      rounded-[22px]
+      border
+      border-[#E8E8E8]
+      bg-white/95
+      p-5
+      shadow-xl
+      backdrop-blur-md
+    "
+  >
         <div className="space-y-3">
           {currentPlaces.map(
             (
@@ -303,6 +306,8 @@ export default function ChennaiMap({
           )}
         </div>
       </div>
+      )}
     </div>
+       
   );
 }

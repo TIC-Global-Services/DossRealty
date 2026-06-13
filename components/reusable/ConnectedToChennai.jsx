@@ -34,7 +34,7 @@ export default function ConnectedToChennai() {
   const [
     activeMinute,
     setActiveMinute,
-  ] = useState(5);
+  ] = useState(0);
 
   useEffect(() => {
     const ctx =
@@ -62,25 +62,19 @@ export default function ConnectedToChennai() {
                   const progress =
                     self.progress;
 
-                  if (
-                    progress <
-                    0.33
-                  ) {
-                    setActiveMinute(
-                      5
-                    );
-                  } else if (
-                    progress <
-                    0.66
-                  ) {
-                    setActiveMinute(
-                      10
-                    );
-                  } else {
-                    setActiveMinute(
-                      20
-                    );
-                  }
+                  if (progress < 0.15) {
+  setActiveMinute(0);
+} else if (
+  progress < 0.5
+) {
+  setActiveMinute(5);
+} else if (
+  progress < 0.9
+) {
+  setActiveMinute(10);
+} else {
+  setActiveMinute(20);
+}
                 },
             },
           }
