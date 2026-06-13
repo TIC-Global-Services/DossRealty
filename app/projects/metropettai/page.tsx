@@ -18,7 +18,7 @@ const page = () => {
     <DossEdge />
     <Highlights />
     <ConnectedToChennaiTitle />
-    {/* <ConnectedToChennai /> */}
+    <ConnectedToChennai />
     <Gallery />
     <LocationHighlights />
     <KnowMore />

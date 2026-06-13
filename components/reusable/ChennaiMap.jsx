@@ -169,7 +169,10 @@ export default function ChennaiMap({
         keyboard={false}
         className="h-full w-full grayscale"
       >
-        <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png" />
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; OpenStreetMap contributors &copy; CARTO'
+        />
 
         <FlyToLocation
           activeMinute={
