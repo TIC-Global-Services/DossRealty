@@ -1,284 +1,290 @@
 "use client";
 
-import {
-  useLayoutEffect,
-  useRef,
-} from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-interface Card {
-  title: string;
-  subtitle: string;
-  description: string;
-  bg: string;
-}
+gsap.registerPlugin(ScrollTrigger);
 
-const CARDS: Card[] = [
-  {
-    title:
-      "WE CREATE SPACES THAT",
-    subtitle: "INSPIRE",
-    description:
-      "Designed with timeless architecture and thoughtful aesthetics.",
-    bg: "#C5A556",
-  },
-  {
-    title:
-      "WE CREATE SPACES THAT",
-    subtitle: "OFFER",
-    description:
-      "Prime locations with excellent connectivity and everyday convenience.",
-    bg: "#032B7A",
-  },
+const JOB_LIST = [
+  "Executive / Sr Executive - Sales (Location - Chennai)",
+  "Assistant Manager - Contracts (Compliance)",
+  "Quality Engineer / Assistant Manager Quality (Location Chennai)",
+  "Executive / Senior Executive Contracts",
 ];
 
 export default function BuiltForLiving() {
   const sectionRef =
+    useRef<HTMLElement>(null);
+
+  const goldCardRef =
     useRef<HTMLDivElement>(null);
 
-  const yellowCardRef =
+  const navyCardRef =
     useRef<HTMLDivElement>(null);
 
-  const blueCardRef =
-    useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.set(goldCardRef.current, {
+        y: 640,
+        zIndex: 10,
+      });
 
-  useLayoutEffect(() => {
-    gsap.registerPlugin(
-      ScrollTrigger
-    );
+      gsap.set(navyCardRef.current, {
+        y: 850,
+        zIndex: 20,
+      });
 
-    const ctx =
-      gsap.context(() => {
-        const tl =
-          gsap.timeline({
-            scrollTrigger: {
-              trigger:
-                sectionRef.current,
-              start:
-                "top top",
-              end:
-                "+=1200",
-              scrub: 1,
-              pin: true,
-              anticipatePin: 1,
-            },
-          });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=1800",
+          scrub: 1.5,
+          pin: true,
+          anticipatePin: 1,
+        },
+      });
 
-        // YELLOW CARD EXIT
-        tl.to(
-          yellowCardRef.current,
-          {
-            y: -320,
-            scale: 0.92,
-            opacity: 0,
-            ease: "power2.out",
-          },
-          0
-        );
+      tl.to(goldCardRef.current, {
+        y: 0,
+        ease: "power3.out",
+        duration: 0.4,
+      });
 
-        // BLUE CARD STACK UP
-        tl.to(
-          blueCardRef.current,
-          {
-            y: 0,
-            scale: 1,
-            ease: "power2.out",
-          },
-          0
-        );
-      },
-      sectionRef
-    );
+      tl.to({}, { duration: 0.15 });
 
-    return () =>
-      ctx.revert();
+      tl.to(
+        navyCardRef.current,
+        {
+          y: 90,
+          ease: "power4.out",
+          duration: 0.55,
+        }
+      );
+
+      tl.to(
+        goldCardRef.current,
+        {
+          y: -10,
+          scale: 0.97,
+          ease: "power2.out",
+          duration: 0.3,
+        },
+        "<"
+      );
+    });
+
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
       className="
-        relative
+        flex
         h-screen
-        overflow-hidden
+        items-center
+        bg-white
+        px-8
+        md:px-16
+        lg:px-24
       "
     >
+      {/* LEFT CONTENT */}
       <div
         className="
           flex
-          h-full
-          items-center
-          px-6
-          md:px-10
-          lg:px-16
+          flex-1
+          flex-col
+          lg:pl-24
         "
       >
-        <div
+        <h2
           className="
-            grid
-            w-full
-            items-center
-            gap-16
-            lg:grid-cols-2
+            mb-8
+            text-[24px]
+            md:text-[50px]
+            md:leading-[55px]
+            font-heading
+            leading-[1.05]
+            text-[#1E1E1E]
           "
         >
-          {/* LEFT */}
-          <div className="max-w-[550px]">
-            <h2
-              className="
-                text-[38px]
-                font-light
-                leading-[95%]
-                text-[#2F3147]
-                md:text-[54px]
-                lg:text-[64px]
-                xl:text-[72px]
-              "
-            >
-              Built for Living,
-              <br />
-              Built with Purpose
-            </h2>
+          View opening
+          <br />
+          positions
+        </h2>
+
+        <ul className="mb-10 space-y-2">
+          {JOB_LIST.map(
+            (job, i) => (
+              <li
+                key={i}
+                className="
+                  flex
+                  items-start
+                  gap-3
+                  text-[14px]
+                  md:text-[20px]
+                  md:leading-[26px]
+                  text-[#00000080]
+                "
+              >
+                <span
+                  className="
+                    mt-[10px]
+                    h-[5px]
+                    w-[5px]
+                    flex-shrink-0
+                    rounded-full
+                    bg-gray-500
+                  "
+                />
+
+                {job}
+              </li>
+            )
+          )}
+        </ul>
+
+        <button
+          type="button"
+          className="
+            w-fit
+            rounded-full
+            bg-[#00256A]
+            px-10
+            py-3
+            text-sm
+            md:text-[16px]
+            font-medium
+            text-white
+            transition
+            duration-300
+            hover:scale-105
+          "
+        >
+          Apply now
+        </button>
+      </div>
+
+      {/* RIGHT STACK */}
+      <div
+        className="
+          relative
+          h-[560px]
+          w-[415px]
+          flex-shrink-0
+        "
+      >
+        {/* GOLD CARD */}
+        <div
+          ref={goldCardRef}
+          className="
+            absolute
+            left-0
+            top-0
+            z-10
+            h-[415px]
+            w-[415px]
+            rounded-[28px]
+            bg-[#BFA55A]
+            p-10
+            shadow-[0_25px_60px_rgba(0,0,0,0.18)]
+            will-change-transform
+          "
+        >
+          <div className="flex h-full flex-col justify-between">
+            <div>
+              <h2
+                className="
+                  text-sm
+                  md:text-[44px]
+                  md:leading-[48px]
+                  md:tracking-[-3px]
+                  uppercase
+                  text-white
+                "
+              >
+                WE CREATE
+                <br />
+                SPACES THAT
+                <br />
+                INSPIRE
+              </h2>
+            </div>
 
             <p
               className="
-                mt-6
-                text-[14px]
-                leading-[180%]
-                text-[#666]
-                md:text-[16px]
-                lg:text-[18px]
+                max-w-[300px]
+                text-sm
+                md:text-[20px]
+                leading-relaxed
+                text-white/75
               "
             >
-              Creating elegant
-              spaces that bring
-              together comfort,
-              quality, and timeless
-              design. Designed with
-              purpose and built to
-              deliver comfort,
-              convenience, and
-              long-term value.
+              Designed with timeless
+              architecture and
+              thoughtful aesthetics.
             </p>
           </div>
+        </div>
 
-          {/* RIGHT STACK */}
-          <div className="flex justify-center lg:justify-end">
-            <div
+        {/* NAVY CARD */}
+        <div
+          ref={navyCardRef}
+          className="
+            absolute
+            left-0
+            top-0
+            z-20
+            h-[415px]
+            w-[415px]
+            rounded-[28px]
+            bg-[#1A2857]
+            p-10
+            shadow-[0_25px_60px_rgba(0,0,0,0.18)]
+            will-change-transform
+          "
+        >
+          <div className="flex h-full flex-col justify-between">
+            <div>
+              <h2
+                className="
+                  text-sm
+                  md:text-[44px]
+                  md:leading-[48px]
+                  md:tracking-[-3px]
+                  uppercase
+                  text-white
+                "
+              >
+                WE CREATE
+                <br />
+                SPACES THAT
+                <br />
+                OFFER
+              </h2>
+            </div>
+
+            <p
               className="
-                relative
-                h-[420px]
-                w-[320px]
-                overflow-hidden
-                rounded-[24px]
-                md:w-[360px]
+                max-w-[300px]
+                text-sm
+                md:text-[20px]
+                leading-relaxed
+                text-white/75
               "
             >
-              {/* YELLOW CARD */}
-              <div
-                ref={
-                  yellowCardRef
-                }
-                className="
-                  absolute
-                  inset-0
-                  z-10
-                "
-              >
-                <CardContent
-                  card={
-                    CARDS[0]
-                  }
-                />
-              </div>
-
-              {/* BLUE CARD */}
-              <div
-                ref={
-                  blueCardRef
-                }
-                className="
-                  absolute
-                  inset-0
-                  z-20
-                  translate-y-[180px]
-                  scale-[0.93]
-                "
-              >
-                <CardContent
-                  card={
-                    CARDS[1]
-                  }
-                />
-              </div>
-            </div>
+              Prime locations with
+              excellent connectivity
+              and everyday
+              convenience.
+            </p>
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function CardContent({
-  card,
-}: {
-  card: Card;
-}) {
-  return (
-    <div
-      className="
-        flex
-        h-full
-        flex-col
-        rounded-[24px]
-        p-8
-        shadow-[0_20px_60px_rgba(0,0,0,0.18)]
-      "
-      style={{
-        backgroundColor:
-          card.bg,
-      }}
-    >
-      <div>
-        <h3
-          className="
-            text-[26px]
-            font-semibold
-            leading-tight
-            text-white
-            md:text-[28px]
-          "
-        >
-          {card.title}
-        </h3>
-
-        <h3
-          className="
-            mt-1
-            text-[26px]
-            font-semibold
-            leading-tight
-            text-white
-            md:text-[28px]
-          "
-        >
-          {card.subtitle}
-        </h3>
-      </div>
-
-      <p
-        className="
-          mt-auto
-          max-w-[220px]
-          pt-20
-          text-[14px]
-          leading-[160%]
-          text-white/80
-        "
-      >
-        {card.description}
-      </p>
-    </div>
   );
 }
