@@ -6,7 +6,8 @@ import Hero from '@/components/projects/metropettai/Hero'
 import Highlights from '@/components/projects/metropettai/Highlights'
 import LocationHighlights from '@/components/projects/metropettai/LocationHighlights'
 import EnquiryBtn from '@/components/reusable/EnquiryBtn'
-import React from 'react'
+import ConnectedToChennai from '@/components/reusable/ConnectedToChennai'
+import ConnectedToChennaiTitle from '@/components/projects/metropettai/ConnectedToChennaiTitle'
 
 const page = () => {
   return (
@@ -16,6 +17,8 @@ const page = () => {
     <About />
     <DossEdge />
     <Highlights />
+    <ConnectedToChennaiTitle />
+    <ConnectedToChennai />
     <Gallery />
     <LocationHighlights />
     <KnowMore />
