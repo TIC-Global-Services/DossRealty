@@ -187,29 +187,25 @@ const Navbar = () => {
                       link.dropdown && (
                         <div
                           className="
-                            invisible
-                            absolute
-                            left-1/2
-                            top-[48px]
-                            z-[100]
-                            w-[480px]
-                            -translate-x-1/2
-                            rounded-[18px]
-                            border
-                            border-white/20
-                            bg-[rgba(255,255,255,0.10)]
-                            opacity-0
-                            backdrop-blur-[100%]
-                            shadow-[
-                              inset_0_1px_1px_rgba(255,255,255,0.25),
-                              0_10px_40px_rgba(0,0,0,0.08)
-                            ]
-                            transition-all
-                            duration-300
-                            ease-out
-                            group-hover:visible
-                            group-hover:opacity-100
-                          "
+                          invisible
+                          absolute
+                          left-1/2
+                          top-[48px]
+                          z-[100]
+                          w-[480px]
+                          -translate-x-1/2
+                          rounded-[20px]
+                          border
+                          border-[#EAEAEA]
+                          bg-white
+                          opacity-0
+                          shadow-[0_15px_50px_rgba(0,0,0,0.08)]
+                          transition-all
+                          duration-300
+                          ease-out
+                          group-hover:visible
+                          group-hover:opacity-100
+                        "
                         >
                           <div className="grid grid-cols-[68%_32%] gap-8 p-8">
                             {/* LEFT */}

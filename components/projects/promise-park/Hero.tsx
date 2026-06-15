@@ -118,7 +118,7 @@ const Hero = () => {
             {/* Vertical Line */}
             <div
               className="
-                h-[160px]
+                h-[120px]
                 w-[2px]
                 bg-white
               "

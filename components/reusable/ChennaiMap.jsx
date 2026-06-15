@@ -1,98 +1,60 @@
 "use client";
 
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  useMap,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
+
 import L from "leaflet";
 import { useEffect } from "react";
-import {
-  LOCATION_DATA,
-  PROJECT_LOCATION,
-} from "../../data/locationData";
 
-function FlyToLocation({
-  activeMinute,
-}) {
+import { LOCATION_DATA, PROJECT_LOCATION } from "../../data/locationData";
+
+function FlyToLocation({ activeMinute }) {
   const map = useMap();
 
   useEffect(() => {
-    const data =
-      LOCATION_DATA[
-        activeMinute
-      ];
+    const data = LOCATION_DATA[activeMinute];
 
     if (data) {
-      map.flyTo(
-        data.center,
-        data.zoom,
-        {
-          duration: 2,
-          easeLinearity: 0.5,
-        }
-      );
+      map.flyTo(data.center, data.zoom, {
+        duration: 2,
+        easeLinearity: 0.5,
+      });
     }
   }, [activeMinute, map]);
 
   return null;
 }
 
-
 const ICON_MAP = {
-  Airport:
-    "/airport.png",
+  Airport: "/airport.png",
 
-  Station:
-    "/station.png",
+  Station: "/station.png",
 
-  Road:
-    "/road.png",
+  Road: "/road.png",
 
-  Hospital:
-    "/hospital.png",
+  Hospital: "/hospital.png",
 
-  School:
-    "/school.png",
+  School: "/school.png",
 
-  Cinemas:
-    "/cinema.png",
+  Cinemas: "/cinema.png",
 
-  College:
-    "/college.png",
+  College: "/college.png",
 
-  IT:
-    "/it.png",
+  IT: "/it.png",
 
-  Bus:
-    "/bus.png",
+  Bus: "/bus.png",
 
-  Metro:
-    "/metro.png",
+  Metro: "/metro.png",
 };
 
 const getIcon = (name) => {
-  const key =
-    Object.keys(
-      ICON_MAP
-    ).find((k) =>
-      name.includes(k)
-    );
+  const key = Object.keys(ICON_MAP).find((k) => name.includes(k));
 
-  return key
-    ? ICON_MAP[key]
-    : "/location.png";
+  return key ? ICON_MAP[key] : "/location.png";
 };
 
-
-const createPin = (
-  title,
-  icon
-) =>
+const createPin = (title, icon) =>
   L.divIcon({
-    className:
-      "custom-pin",
+    className: "custom-pin",
 
     html: `
       <div style="
@@ -135,32 +97,31 @@ const createPin = (
       </div>
     `,
 
-    iconSize: [
-      180, 50,
-    ],
+    iconSize: [180, 50],
 
-    iconAnchor: [
-      90, 25,
-    ],
+    iconAnchor: [90, 25],
   });
 
 export default function ChennaiMap({
-  activeMinute,
+  activeMinute = 0,
+  simpleMode = false,
+  pinLocation = null,
+  pinTitle = "Location",
 }) {
-  const currentPlaces =
-  activeMinute === 0
+  const currentPlaces = simpleMode
     ? []
-    : LOCATION_DATA[
-        activeMinute
-      ]?.places || [];
+    : activeMinute === 0
+      ? []
+      : LOCATION_DATA[activeMinute]?.places || [];
+
+  const center =
+    simpleMode && pinLocation ? pinLocation : PROJECT_LOCATION.position;
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-[#F4F4F4]">
       <MapContainer
-        center={
-          PROJECT_LOCATION.position
-        }
-        zoom={12}
+        center={center}
+        zoom={simpleMode ? 16 : 12}
         zoomControl={false}
         attributionControl={false}
         dragging={true}
@@ -169,145 +130,65 @@ export default function ChennaiMap({
         scrollWheelZoom={false}
         boxZoom={false}
         keyboard={false}
-        className="h-full w-full grayscale"
+        className={`h-full w-full ${simpleMode ? "" : "grayscale"}`}
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-          attribution='&copy; OpenStreetMap contributors &copy; CARTO'
+          attribution="&copy; OpenStreetMap contributors &copy; CARTO"
         />
 
-        <FlyToLocation
-          activeMinute={
-            activeMinute
-          }
-        />
+        {!simpleMode && <FlyToLocation activeMinute={activeMinute} />}
 
-        {/* Project Marker */}
+        {/* Main Marker */}
         <Marker
           position={
-            PROJECT_LOCATION.position
+            simpleMode && pinLocation ? pinLocation : PROJECT_LOCATION.position
           }
           icon={createPin(
-            "Metropettai",
-            "/location.png"
+            simpleMode ? pinTitle : "Metropettai",
+            "/location.png",
           )}
         />
 
         {/* Dynamic Markers */}
-        {currentPlaces.map(
-          (
-            place,
-            index
-          ) => (
+        {!simpleMode &&
+          currentPlaces.map((place, index) => (
             <Marker
               key={index}
-              position={
-                place.position
-              }
-              icon={createPin(
-                place.name,
-                getIcon(
-                  place.name
-                )
-              )}
+              position={place.position}
+              icon={createPin(place.name, getIcon(place.name))}
             />
-          )
-        )}
+          ))}
       </MapContainer>
 
-      {/* Left Card */}
-      {activeMinute !== 0 && (
-  <div
-    className="
-      absolute
-      bottom-10
-      left-8
-      z-[1000]
-      w-[300px]
-      rounded-[22px]
-      border
-      border-[#E8E8E8]
-      bg-white/95
-      p-5
-      shadow-xl
-      backdrop-blur-md
-    "
-  >
-        <div className="space-y-3">
-          {currentPlaces.map(
-            (
-              place,
-              index
-            ) => (
-              <div
-                key={index}
-                className="
-                  flex
-                  items-center
-                  justify-between
-                "
-              >
+      {/* Bottom Card */}
+      {!simpleMode && activeMinute !== 0 && (
+        <div className="absolute bottom-10 left-8 z-[1000] w-[300px] rounded-[22px] border border-[#E8E8E8] bg-white/95 p-5 shadow-xl backdrop-blur-md">
+          <div className="space-y-3">
+            {currentPlaces.map((place, index) => (
+              <div key={index} className="flex items-center justify-between">
                 <div className="flex min-w-0 items-center gap-3">
-                  {/* Icon */}
-                  <div
-                    className="
-                      flex
-                      h-9
-                      w-9
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-full
-                      border
-                      border-[#ECECEC]
-                      bg-[#F7F7F7]
-                    "
-                  >
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#ECECEC] bg-[#F7F7F7]">
                     <img
-                      src={getIcon(
-                        place.name
-                      )}
-                      alt={
-                        place.name
-                      }
+                      src={getIcon(place.name)}
+                      alt={place.name}
                       className="h-4 w-10 object-contain"
                     />
                   </div>
 
-                  {/* Place Name */}
-                  <span
-                    className="
-                      truncate
-                      text-[12px]
-                      font-medium
-                      text-[#4D4D4D]
-                    "
-                  >
-                    {
-                      place.name
-                    }
+                  <span className="truncate text-[12px] font-medium text-[#4D4D4D]">
+                    {place.name}
                   </span>
                 </div>
 
-                {/* Distance */}
-                <span
-                  className="
-                    shrink-0
-                    text-[12px]
-                    text-[#8A8A8A]
-                  "
-                >
-                  {
-                    place.distance
-                  }
+                <span className="text-[12px] text-[#8A8A8A]">
+                  {place.distance}
                 </span>
               </div>
-            )
-          )}
+            ))}
+          </div>
         </div>
-      </div>
       )}
     </div>
-       
   );
 }

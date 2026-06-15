@@ -32,10 +32,7 @@ export default function ContactSection() {
                 </p>
 
                 <p className="text-[#000000] md:text-[16px] leading-[24px] md:tracking-normal font-[300]">
-                  Plot No. XX, Block A
-                  <br />
-                  Demo Layout,
-                  Chennai
+                  Number : +91 99629 96977 <br /> Address: 14, Prathap Palace, Porur-Kundrathur Main Road, Kovur, Chennai-128
                 </p>
               </div>
 
@@ -55,7 +52,7 @@ export default function ContactSection() {
                   href="mailto:info@dossrealty.com"
                   className="block text-sm md:text-[18px] md:leading-[20px] font-heading font-[300] underline"
                 >
-                  info@dossrealty.com
+                  info@dossrealty.in
                 </a>
               </div>
             </div>
@@ -77,6 +74,7 @@ export default function ContactSection() {
                   relative
                   transition-colors
                   duration-300
+                  cursor-pointer
                   ${
                     activeTab === "contact"
                       ? "text-black"
@@ -111,6 +109,7 @@ export default function ContactSection() {
                   relative
                   transition-colors
                   duration-300
+                  cursor-pointer
                   ${
                     activeTab === "refer"
                       ? "text-[#2F3147]"
@@ -229,6 +228,7 @@ export default function ContactSection() {
                           transition
                           duration-300
                           hover:scale-105
+                          cursor-pointer
                         "
                       >
                         Send inquiry
@@ -358,6 +358,7 @@ export default function ContactSection() {
                           transition
                           duration-300
                           hover:scale-105
+                          cursor-pointer
                         "
                       >
                         Send inquiry

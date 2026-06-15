@@ -448,7 +448,7 @@ export default function Hero() {
             md:px-6
             md:pt-[16vh]
             lg:pt-[18vh]
-            xl:pt-[20vh]
+            xl:pt-[16vh]
             "
           >
             <div className="max-w-[min(90vw,900px)]">
@@ -469,16 +469,34 @@ export default function Hero() {
                 For What Comes Next.
               </p>
 
-              <PrimaryBtn style={{isolation: "isolate"}} mode="dark" className="ghost font-small mt-6 z-[9999] cursor-pointer flex mx-auto border border-white
-                      bg-[rgba(255,255,255,0.10)]
-                      backdrop-blur-[20px]
-                      shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]
-                      transition duration-300
-                      hover:bg-white/20"
+              
+            </div>
+            <button
+                className="
+                  relative
+                  isolate
+                  overflow-hidden
+                  mt-5
+                  px-6
+                  py-2.5
+                  rounded-[60px]
+                
+                  bg-[rgba(255,255,255,0.1)]
+                  backdrop-blur-[20px]
+                  text-white
+                
+                  before:content-['']
+                  before:absolute
+                  before:inset-[1px]
+                  before:rounded-[inherit]
+                  before:pointer-events-none
+                  before:[box-shadow:inset_0_1px_0_rgba(255,255,255,0.65),inset_0_-1px_0_rgba(255,255,255,0.65)]
+                  before:[mask-image:linear-gradient(to_right,transparent_0%,white_12%,white_88%,transparent_100%)]
+                  before:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,white_12%,white_88%,transparent_100%)]
+                "
               >
                 Explore Properties
-              </PrimaryBtn>
-            </div>
+              </button>
           </div>
 
           {/* Left Cloud */}

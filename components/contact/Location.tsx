@@ -1,12 +1,21 @@
-import Image from "next/image";
+"use client";
 
-import mapImg from "@/assets/contact/map.png"; 
+import dynamic from "next/dynamic";
+
+const ChennaiMap = dynamic(
+  () =>
+    import(
+      "@/components/reusable/ChennaiMap"
+    ),
+  {
+    ssr: false,
+  }
+);
 
 const Location = () => {
   return (
-    <section className="py-14 lg:py-16 ">
+    <section className="py-14 lg:py-16">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
-
         <div
           className="
             grid
@@ -27,17 +36,20 @@ const Location = () => {
               lg:h-[380px]
             "
           >
-            <Image
-              src={mapImg}
-              alt="Location Map"
-              fill
-              className="object-cover"
+            <ChennaiMap
+              simpleMode
+              pinLocation={
+                [
+                  13.0328,
+                  80.1268,
+                ] as any
+              }
+              pinTitle="Doss Realty"
             />
           </div>
 
           {/* RIGHT CONTENT */}
           <div className="max-w-[420px]">
-
             <h2
               className="
                 font-small
@@ -63,33 +75,46 @@ const Location = () => {
                 tracking-[-0.48px]
               "
             >
-              Serene Grove Villas is located in a well-connected
-              residential area with easy access to schools,
-              healthcare, shopping destinations, business hubs,
-              and major transport routes.
+              Serene Grove Villas is
+              located in a
+              well-connected
+              residential area
+              with easy access
+              to schools,
+              healthcare,
+              shopping
+              destinations,
+              business hubs,
+              and major
+              transport routes.
             </p>
 
-            <button
-              className="
-                mt-8 font-small leading-[20px]
-                rounded-full
-                bg-[#002D80]
-                px-8
-                py-3
-                text-white
-                text-[16px]
-                font-medium
-                transition
-                duration-300
-                hover:scale-105
-              "
+            <a
+              href="https://maps.google.com/?q=13.0328,80.1268"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              View Location Map
-            </button>
-
+              <button
+                className="
+                  mt-8
+                  rounded-full
+                  bg-[#002D80]
+                  px-8
+                  py-3
+                  text-white
+                  text-[16px]
+                  font-medium
+                  transition
+                  duration-300
+                  hover:scale-105
+                  cursor-pointer
+                "
+              >
+                View Location Map
+              </button>
+            </a>
           </div>
         </div>
-
       </div>
     </section>
   );

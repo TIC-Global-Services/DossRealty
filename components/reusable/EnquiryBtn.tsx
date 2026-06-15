@@ -1,21 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import shareIcon from '@/assets/home/shareIcon.png'
-import whatsAppIcon from '@/assets/home/whatsappIcon.png'
+import shareIcon from "@/assets/chatIcons/chatImg.png";
+import whatsAppIcon from "@/assets/chatIcons/whatsAppImg.png";
 
 export default function EnquiryBtn() {
   return (
     <div
-      className="
-        fixed
-        -right-5
-        bottom-5
-        z-[10000]
-        flex
-        flex-col
-        gap-3
-      "
+      className="fixed right-4 bottom-8 z-[10000] flex flex-col gap-4"
     >
       {/* WHATSAPP */}
       <a
@@ -23,70 +15,54 @@ export default function EnquiryBtn() {
         target="_blank"
         rel="noopener noreferrer"
         className="
-          group
           flex
-          h-[42px]
-          w-[75px]
+          h-[68px]
+          w-[68px]
           items-center
           justify-center
           rounded-full
-
-          border border-white/20
-          bg-[rgba(255,255,255,0.18)]
-
-          backdrop-blur-[24px]
-          shadow-[
-            inset_0_1px_1px_rgba(255,255,255,0.35),
-            0_8px_30px_rgba(0,0,0,0.12)
-          ]
-
+          border border-[#4b5563]
+          bg-[rgba(0,37,106,0.3)]
+          backdrop-blur-md
+          shadow-md
           transition-all
           duration-300
-          hover:scale-105
-          hover:bg-white/25
+          hover:scale-110
         "
       >
         <Image
-           src={whatsAppIcon}
-           alt="shareIcon"
-           width={10}
-           height={10}
-           priority
-           className="h-5 w-5 object-contain"
-         />
+          src={whatsAppIcon}
+          alt="Whatsapp"
+          width={30}
+          height={30}
+          priority
+          className="object-contain"
+        />
       </a>
 
       {/* CALL */}
       <a
         href="tel:+91123456789"
         className="
-          group
           flex
-          h-[42px]
-          w-[75px]
+          h-[68px]
+          w-[68px]
           items-center
           justify-center
           rounded-full
-
-          border border-white/20
-          bg-[rgba(255,255,255,0.18)]
-
-          backdrop-blur-[24px]
-          shadow-[
-            inset_0_1px_1px_rgba(255,255,255,0.35),
-            0_8px_30px_rgba(0,0,0,0.12)
-          ]
-
+          border border-[#4b5563]
+          bg-[rgba(0,37,106,0.3)]
+          backdrop-blur-md
+          shadow-md
           transition-all
           duration-300
-          hover:scale-105
-          hover:bg-white/25
+          hover:scale-110
         "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="28"
+          height="28"
           viewBox="0 0 24 24"
           fill="black"
         >
@@ -94,43 +70,35 @@ export default function EnquiryBtn() {
         </svg>
       </a>
 
-      {/* TELEGRAM */}
+      {/* CHAT */}
       <a
         href="https://t.me/"
         target="_blank"
         rel="noopener noreferrer"
         className="
-          group
           flex
-          h-[42px]
-          w-[75px]
+          h-[68px]
+          w-[68px]
           items-center
           justify-center
           rounded-full
-
-          border border-white/20
-          bg-[rgba(255,255,255,0.18)]
-
-          backdrop-blur-[24px]
-          shadow-[
-            inset_0_1px_1px_rgba(255,255,255,0.35),
-            0_8px_30px_rgba(0,0,0,0.12)
-          ]
-
+          border border-[#4b5563]
+          bg-[rgba(0,37,106,0.3)]
+          backdrop-blur-md
+          shadow-md
           transition-all
           duration-300
-          hover:scale-105
-          hover:bg-white/25
+          hover:scale-110
         "
       >
         <Image
-           src={shareIcon}
-           alt="shareIcon"
-           width={10}
-           height={10}
-           priority
-           className="h-5 w-5 object-contain"
-         />
+          src={shareIcon}
+          alt="Chat"
+          width={30}
+          height={30}
+          priority
+          className="object-contain"
+        />
       </a>
     </div>
   );

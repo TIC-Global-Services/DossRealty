@@ -118,6 +118,7 @@ const ProjectSection = () => {
                 text-[15px]
                 transition-all
                 duration-300
+                cursor-pointer
                 ${
                   activeTab === "active"
                     ? "bg-[#00256A] text-white"
@@ -141,6 +142,7 @@ const ProjectSection = () => {
                 text-[15px]
                 transition-all
                 duration-300
+                cursor-pointer
                 ${
                   activeTab ===
                   "delivered"
@@ -158,20 +160,22 @@ const ProjectSection = () => {
         <div className="grid gap-5 lg:grid-cols-2">
           {projects.map(
             (project, index) => {
-              const isMetropettai =
-                project.title ===
-                "Metropettai";
+              const isClickable =
+              project.title === "Metropettai" ||
+              project.title === "Promise Park";
 
               return (
                 <Link
                   key={index}
-                  href={
-                    isMetropettai
+                 href={
+                    project.title === "Metropettai"
                       ? "/projects/metropettai"
+                      : project.title === "Promise Park"
+                      ? "/projects/promise-park"
                       : "#"
                   }
                   className={
-                    !isMetropettai
+                    !isClickable
                       ? "pointer-events-none"
                       : ""
                   }
@@ -204,7 +208,7 @@ const ProjectSection = () => {
                       rounded-[10px]
                       md:aspect-[16/9]
                       ${
-                        isMetropettai
+                        isClickable
                           ? "cursor-pointer"
                           : "cursor-default"
                       }
@@ -279,6 +283,7 @@ const ProjectSection = () => {
                           duration-300
                           hover:bg-white/20
                           md:text-[16px]
+                          cursor-pointer
                         "
                       >
                         {activeTab ===

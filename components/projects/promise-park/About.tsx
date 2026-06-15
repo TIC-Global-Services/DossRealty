@@ -68,7 +68,7 @@ const About = () => {
       ref={sectionRef}
       className="py-16 md:py-24"
     >
-      <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-40">
+      <div className="mx-auto px-5 md:px-8 lg:px-20">
 
         {/* TOP INFO */}
         <div
@@ -153,13 +153,13 @@ const About = () => {
           <p
             className="
               mt-6
-              max-w-[700px]
+              max-w-[1100px]
               w-[102ch]
               text-[15px]
-              leading-[20px]
+              leading-[24px]
               text-[#717171]
               md:text-[18px]
-              md:leading-[20px]
+              md:leading-[30px]
               md:tracking-[0.48px]
             "
           >

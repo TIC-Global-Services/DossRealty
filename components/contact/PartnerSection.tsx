@@ -139,6 +139,7 @@ export default function PartnerSection() {
                     transition-all
                     duration-300
                     hover:scale-105
+                    cursor-pointer
                   "
                 >
                   {activeTab === "partner"
@@ -199,6 +200,7 @@ export default function PartnerSection() {
                       md:text-[14px] md:leading-[16px] md:tracking-[-0.48px]
                       font-medium
                       transition-all
+                      cursor-pointer
                       duration-300
                       ${
                         activeTab === "partner"
@@ -224,6 +226,7 @@ export default function PartnerSection() {
                       rounded-full
                       md:text-[14px] md:leading-[16px] md:tracking-[-0.48px]
                       font-medium
+                      cursor-pointer
                       transition-all
                       duration-300
                       ${
@@ -268,6 +271,7 @@ export default function PartnerSection() {
                 text-[#2F3147]
                 text-[28px]
                 leading-none
+                cursor-pointer
               "
             >
               ×
@@ -328,6 +332,7 @@ export default function PartnerSection() {
                         rounded-full
                         transition duration-300
                         hover:scale-105
+                        cursor-pointer
                       "
                     >
                       Send inquiry
@@ -376,6 +381,7 @@ export default function PartnerSection() {
                         rounded-full
                         transition duration-300
                         hover:scale-105
+                        cursor-pointer
                       "
                     >
                       Apply now

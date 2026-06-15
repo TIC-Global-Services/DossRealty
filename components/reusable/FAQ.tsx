@@ -30,7 +30,7 @@ const FAQ = ({
   buttonText = "Contact Us",
   buttonAction,
   defaultOpenIndex = 0,
-  bgColor = "#FEF9F380",
+  bgColor = "#fef9f3",
   answerBgColor = "#DED1AD",
 }: AccordionSectionProps) => {
   const [activeIndex, setActiveIndex] =

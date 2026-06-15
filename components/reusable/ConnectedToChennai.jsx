@@ -5,8 +5,8 @@ import {
   useRef,
   useState,
 } from "react";
-import dynamic from "next/dynamic";
 
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import {
   ScrollTrigger,
@@ -42,7 +42,7 @@ export default function ConnectedToChennai() {
         gsap.to(
           carRef.current,
           {
-            x: "78vw",
+            x: "83vw",
             ease: "none",
 
             scrollTrigger: {
@@ -62,19 +62,35 @@ export default function ConnectedToChennai() {
                   const progress =
                     self.progress;
 
-                  if (progress < 0.15) {
-  setActiveMinute(0);
-} else if (
-  progress < 0.5
-) {
-  setActiveMinute(5);
-} else if (
-  progress < 0.9
-) {
-  setActiveMinute(10);
-} else {
-  setActiveMinute(20);
-}
+                  if (
+                    progress < 0.34
+                  ) {
+                    setActiveMinute(
+                      0
+                    );
+                  } else if (
+                    progress >=
+                      0.34 &&
+                    progress <
+                      0.64
+                  ) {
+                    setActiveMinute(
+                      5
+                    );
+                  } else if (
+                    progress >=
+                      0.64 &&
+                    progress <
+                      0.92
+                  ) {
+                    setActiveMinute(
+                      10
+                    );
+                  } else {
+                    setActiveMinute(
+                      20
+                    );
+                  }
                 },
             },
           }
@@ -88,82 +104,146 @@ export default function ConnectedToChennai() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex h-screen flex-col overflow-hidden bg-white"
+      className="
+        relative
+        flex
+        h-screen
+        flex-col
+        overflow-hidden
+        bg-white
+      "
     >
       {/* Timeline */}
-      <div className="relative mt-4 flex-shrink-0 px-4">
-        {/* Line */}
-        <div className="absolute top-[50px] left-0 h-[1px] w-full bg-black" />
+      <div className="relative flex-shrink-0 px-10 pt-8">
+        <div className="relative h-[90px]">
 
-        {/* Car */}
-        <div
-          ref={carRef}
-          className="absolute left-0 z-20 flex flex-col items-center"
-        >
-          {/* Dynamic text */}
+          {/* Line Segments */}
+          <div className="absolute left-[7.5%] top-[58px] h-[1px] w-[28%] bg-black" />
+
+          <div className="absolute left-[37%] top-[58px] h-[1px] w-[28.5%] bg-black" />
+
+          <div className="absolute left-[67%] top-[58px] h-[1px] w-[25%] bg-black" />
+
+          <div className="absolute right-[0.5%] top-[58px] h-[1px] w-[6%] bg-black" />
+
+          {/* Car */}
           <div
+            ref={carRef}
             className="
-              mb-1
-              text-[14px]
-              font-bold
-              text-black
+              absolute
+              left-[2%]
+              top-[5px]
+              z-20
+              flex
+              flex-col
+              items-center
             "
           >
-            Doss Realty
+            <div
+              className="
+                mb-1
+                text-center
+                text-[14px]
+                leading-[14px]
+                text-black
+              "
+            >
+              Doss
+              <br />
+              Realty
+            </div>
+
+            <Image
+              src="/car.png"
+              alt="car"
+              width={78}
+              height={42}
+              className="object-contain"
+            />
           </div>
 
-          {/* Car image */}
-          <Image
-            src="/car.png"
-            alt="car"
-            width={75}
-            height={45}
-            className="object-contain"
-          />
-        </div>
-
-        {/* Timeline points */}
-        <div className="flex justify-around pt-2">
-          {[5, 10, 20].map(
-            (
-              minute
-            ) => (
-              <div
-                key={
-                  minute
+          {/* 5 Minutes */}
+          <div className="absolute left-[34%] top-0 flex flex-col items-center pt-2">
+            <p
+              className={`
+                text-[13px]
+                leading-[14px]
+                text-center
+                text-black
+                transition-all
+                duration-300
+                ${
+                  activeMinute ===
+                  5
+                    ? "opacity-0"
+                    : "opacity-100"
                 }
-                className="flex flex-col items-center"
-              >
-                <p
-                  className={`mb-4 text-sm transition-all duration-300 ${
-                    activeMinute ===
-                    minute
-                      ? "font-bold text-black"
-                      : "text-gray-500"
-                  }`}
-                >
-                  {
-                    minute
-                  }{" "}
-                  MINUTES
-                </p>
+              `}
+            >
+              5
+              <br />
+              MINUTES
+            </p>
 
-                <div
-                  className={`h-3 w-3 rounded-full transition-all duration-300 ${
-                    activeMinute ===
-                    minute
-                      ? "scale-110 bg-black"
-                      : "bg-gray-300"
-                  }`}
-                />
-              </div>
-            )
-          )}
+            <div className="mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
+          </div>
+
+          {/* 10 Minutes */}
+          <div className="absolute left-[64%] top-0 flex flex-col items-center pt-2">
+            <p
+              className={`
+                text-[13px]
+                leading-[14px]
+                text-center
+                text-black
+                transition-all
+                duration-300
+                ${
+                  activeMinute ===
+                  10
+                    ? "opacity-0"
+                    : "opacity-100"
+                }
+              `}
+            >
+              10
+              <br />
+              MINUTES
+            </p>
+
+            <div className="mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
+          </div>
+
+          {/* 20 Minutes */}
+          <div className="absolute right-[5%] top-0 flex flex-col items-center pt-2">
+            <p
+              className={`
+                text-[13px]
+                leading-[14px]
+                text-center
+                text-black
+                transition-all
+                duration-300
+                ${
+                  activeMinute ===
+                  20
+                    ? "opacity-0"
+                    : "opacity-100"
+                }
+              `}
+            >
+              20
+              <br />
+              MINUTES
+            </p>
+
+            <div className="mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
+          </div>
         </div>
       </div>
 
       {/* Map */}
-      <div className="mt-10 min-h-0 flex-1">
+      <div className="mt-2 min-h-0 flex-1">
         <ChennaiMap
           activeMinute={
             activeMinute
