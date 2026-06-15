@@ -1,5 +1,7 @@
-import React from "react";
+"use client";
 
+import React from "react";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
@@ -14,36 +16,63 @@ const Hero = () => {
       "
     >
       <div className="max-w-[700px]">
-
-        <h1
+        {/* Heading */}
+        <motion.h1
+          initial={{
+            opacity: 0,
+            y: 50,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+          }}
           className="
-            font-heading
+            font-small
             text-[#111111]
             text-[34px]
-            md:text-[52px]
-            leading-[100%]
-            tracking-[-0.04em]
+            md:text-[60px]
+            leading-[66px]
+            tracking-[-1.8px]
           "
         >
           Learn Before You Invest
-        </h1>
+        </motion.h1>
 
-        <p
+        {/* Paragraph */}
+        <motion.p
+          initial={{
+            opacity: 0,
+            y: 50,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.8,
+            delay: 0.2,
+            ease: "easeOut",
+          }}
           className="
             mx-auto
-            mt-5
-            max-w-[520px]
+            mt-4
+            max-w-[600px]
             text-[#666666]
             text-[14px]
             md:text-[16px]
-            leading-[170%]
+            leading-[24px]
+            tracking-[-0.48px]
           "
         >
-          Gain practical insights, tips, and
-          essential knowledge to make informed
-          real estate decisions with confidence.
-        </p>
-
+          Clear, practical insights to help you make informed
+          property decisions. Thoughtful perspectives, market
+          insights, and stories shaping the future of modern
+          real estate.
+        </motion.p>
       </div>
     </section>
   );
