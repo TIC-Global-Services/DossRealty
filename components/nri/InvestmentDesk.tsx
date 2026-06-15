@@ -66,7 +66,7 @@ const InvestmentDesk = () => {
 
   return (
     <section className="py-16 md:py-20">
-      <div className="mx-auto px-5 md:px-8 lg:px-20">
+      <div className="mx-auto px-5 md:px-24">
 
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
 

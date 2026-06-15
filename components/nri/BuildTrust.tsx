@@ -127,6 +127,7 @@ const BuildTrust = () => {
         ref={sectionRef}
         className="
           mx-auto
+          max-w-[1440px]
           px-5
           md:px-8
           lg:px-18

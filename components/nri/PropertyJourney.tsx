@@ -70,7 +70,7 @@ const PropertyJourney = () => {
 
   return (
     <section className="py-16 md:py-14">
-      <div className="mx-auto px-5 md:px-8 lg:px-15">
+      <div className="mx-auto px-5 md:px-24">
 
         {/* TOP CONTENT */}
         <div
@@ -105,7 +105,7 @@ const PropertyJourney = () => {
           <div>
             <p
               className="
-                w-[62ch]
+                w-[58ch]
                 text-[15px] tracking-[-0.48px]
                 leading-[20px]
                 text-[#6B6B6B]

@@ -81,7 +81,7 @@ export default function BuiltForLiving() {
   return (
     <section
       ref={sectionRef}
-      className="
+      className="mx-auto
         flex
         h-screen
         items-center
@@ -97,7 +97,6 @@ export default function BuiltForLiving() {
           flex
           flex-1
           flex-col
-          lg:pl-24
         "
       >
         <h2

@@ -1,6 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const items = [
   {
@@ -31,129 +35,165 @@ const items = [
 ];
 
 export default function WhyWorkWithUs() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const [progress, setProgress] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef =
+    useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-
-      const rect = sectionRef.current.getBoundingClientRect();
-
-      const totalScroll =
-        sectionRef.current.offsetHeight -
-        window.innerHeight;
-
-      const currentScroll = Math.min(
-        Math.max(-rect.top, 0),
-        totalScroll
+    const ctx = gsap.context(() => {
+      // Heading reveal
+      gsap.from(
+        ".reveal-heading",
+        {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger:
+              sectionRef.current,
+            start:
+              "top 80%",
+          },
+        }
       );
 
-      const percentage = currentScroll / totalScroll;
-
-      setProgress(percentage * 100);
-
-      const currentStep = Math.min(
-        items.length - 1,
-        Math.floor(percentage * items.length)
+      // Stagger items reveal
+      gsap.from(
+        ".reveal-item",
+        {
+          y: 50,
+          opacity: 0,
+          duration: 0.9,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger:
+              ".items-wrapper",
+            start:
+              "top 85%",
+          },
+        }
       );
+    }, sectionRef);
 
-      setActiveIndex(currentStep);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () =>
+      ctx.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative h-[100vh] bg-[#F4EFE3]"
+      className="
+        bg-[#F4EFE3]
+        py-20
+      "
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="h-full flex items-center">
-          <div className="max-h-[90vh] mx-10 overflow-hidden">
+      <div
+        className="
+          mx-auto
+          max-w-[1440px]
+          px-6
+          md:px-10
+          lg:px-16
+        "
+      >
+        {/* Heading */}
+        <h2
+          className="
+            reveal-heading
+            font-heading
+            font-[300]
+            text-[#39384C]
+            text-[36px]
+            leading-none
+            md:text-[50px]
+            md:leading-[52px]
+          "
+        >
+          Why work with us
+        </h2>
 
-            {/* Heading */}
-            <h2 className="text-[#31304A] text-[36px] md:text-[48px] lg:text-[60px] font-light leading-none">
-              Why work with us
-            </h2>
+        {/* Progress Bar */}
+        <div className="mt-6 mb-8 reveal-heading">
+          <div
+            className="
+              h-[2px]
+              w-[60%]
+            "
+            style={{
+              background:
+                "linear-gradient(90deg, #39384C 0%, #3E3D4C 75%, #C7A85E 75%, #C7A85E 100%)",
+            }}
+          />
+        </div>
 
-            {/* Progress Bar */}
-            <div className="mt-6 mb-8">
-              <div className="relative h-[2px] bg-[#D7CBAE] overflow-hidden">
-                <div
-                  className="absolute left-0 top-0 h-full bg-[#31304A] transition-all duration-500"
-                  style={{
-                    width: `${progress}%`,
-                  }}
-                />
+        {/* Intro */}
+        <h2
+          className="
+            reveal-heading
+            font-heavy
+            font-[800]
+            max-w-[1100px]
+            uppercase
+            text-[#39384C]
+            text-[14px]
+            leading-[24px]
+            mb-10
+            lg:pl-20
+            md:text-[30px]
+          "
+        >
+          We Are: Builders
+        </h2>
+
+        {/* Items */}
+        <div
+          className="
+            items-wrapper
+            space-y-8
+            lg:pl-20
+          "
+        >
+          {items.map(
+            (
+              item,
+              index
+            ) => (
+              <div
+                key={index}
+                className="
+                  reveal-item
+                  pb-2
+                "
+              >
+                <h3
+                  className="
+                    font-grand
+                    text-[#31304A]
+                    text-[18px]
+                    tracking-wide
+                    mb-3
+                    md:text-[20px]
+                    md:leading-[24px]
+                  "
+                >
+                  {item.title}
+                </h3>
+
+                <p
+                  className="
+                    text-[14px]
+                    leading-[180%]
+                    text-[#39384c]
+                    md:text-[16px]
+                    md:leading-[18px]
+                  "
+                >
+                  {item.description}
+                </p>
               </div>
-            </div>
-
-            {/* Intro */}
-            <h2 className="max-w-[1100px] pl-20 uppercase text-[#555555] text-[14px] md:text-[16px] lg:text-[30px] leading-[24px] mb-8">
-             We Are: Builders
-            </h2>
-
-            {/* Items */}
-            <div className="space-y-5 lg:space-y-6 lg:pl-20">
-
-              {items.map((item, index) => {
-                const active = index === activeIndex;
-
-                return (
-                  <div key={index}>
-                    <h3
-                      className={`
-                        text-[18px]
-                        md:text-[20px]
-                        lg:text-[22px]
-                        font-semibold
-                        tracking-wide
-                        transition-all
-                        duration-500
-                        ${
-                          active
-                            ? "text-[#31304A]"
-                            : "text-[#B8B8B8]"
-                        }
-                      `}
-                    >
-                      {item.title}
-                    </h3>
-
-                    <div
-                      className={`
-                        overflow-hidden
-                        transition-all
-                        duration-500
-                        ease-in-out
-                        ${
-                          active
-                            ? "max-h-[200px] opacity-100 mt-3"
-                            : "max-h-0 opacity-0"
-                        }
-                      `}
-                    >
-                      <p className="max-w-[900px] text-[14px] md:text-[16px] lg:text-[18px] leading-[180%] text-[#555555]">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-
-            </div>
-
-          </div>
+            )
+          )}
         </div>
       </div>
     </section>
