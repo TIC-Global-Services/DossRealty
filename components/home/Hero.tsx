@@ -484,7 +484,7 @@ export default function Hero() {
                   bg-[rgba(255,255,255,0.1)]
                   backdrop-blur-[20px]
                   text-white
-                
+                  cursor-pointer
                   before:content-['']
                   before:absolute
                   before:inset-[1px]
