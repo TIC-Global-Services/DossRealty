@@ -23,7 +23,8 @@ const highlights = [
       "Well-connected roads and transport routes make commuting effortless and everyday travel smoother.",
   },
   {
-    title: "Flood-Resilient Location",
+    title:
+      "Flood-Resilient Location",
     description:
       "Thoughtfully planned in a location designed to support long-term sustainability and safety.",
   },
@@ -34,168 +35,172 @@ const highlights = [
   },
 ];
 
-const LocationHighlights = () => {
-  const [activeIndex, setActiveIndex] =
-    useState<number | null>(0);
+const LocationHighlights =
+  () => {
+    const [
+      activeIndex,
+      setActiveIndex,
+    ] = useState<
+      number | null
+    >(0);
 
-  const sectionRef =
-    useRef<HTMLDivElement>(null);
+    const sectionRef =
+      useRef<HTMLDivElement>(
+        null
+      );
 
-  const headerRef =
-    useRef<HTMLDivElement>(null);
+    const headerRef =
+      useRef<HTMLDivElement>(
+        null
+      );
 
-  const accordionRef =
-    useRef<HTMLDivElement>(null);
+    const accordionRef =
+      useRef<HTMLDivElement>(
+        null
+      );
 
-  const imageRef =
-    useRef<HTMLDivElement>(null);
+    const imageRef =
+      useRef<HTMLDivElement>(
+        null
+      );
 
-  const toggleAccordion = (
-    index: number
-  ) => {
-    setActiveIndex((prev) =>
-      prev === index
-        ? null
-        : index
-    );
-  };
-
-  useLayoutEffect(() => {
-    gsap.registerPlugin(
-      ScrollTrigger
-    );
-
-    const ctx =
-      gsap.context(() => {
-        const tl =
-          gsap.timeline({
-            scrollTrigger: {
-              trigger:
-                sectionRef.current,
-              start:
-                "top 75%",
-            },
-          });
-
-        // HEADER REVEAL
-        tl.from(
-          headerRef.current
-            ?.children || [],
-          {
-            y: 40,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.15,
-            ease:
-              "power3.out",
-          }
+    const toggleAccordion =
+      (
+        index: number
+      ) => {
+        setActiveIndex(
+          (prev) =>
+            prev === index
+              ? null
+              : index
         );
+      };
 
-        // ACCORDION REVEAL
-        tl.from(
-          accordionRef.current
-            ?.children || [],
-          {
-            y: 60,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.15,
-            ease:
-              "power3.out",
+    useLayoutEffect(() => {
+      gsap.registerPlugin(
+        ScrollTrigger
+      );
+
+      const ctx =
+        gsap.context(
+          () => {
+            const tl =
+              gsap.timeline(
+                {
+                  scrollTrigger:
+                    {
+                      trigger:
+                        sectionRef.current,
+                      start:
+                        "top 75%",
+                    },
+                }
+              );
+
+            // HEADER
+            tl.from(
+              headerRef
+                .current
+                ?.children ||
+                [],
+              {
+                y: 40,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease:
+                  "power3.out",
+              }
+            );
+
+            // CONTENT
+            tl.from(
+              accordionRef
+                .current
+                ?.children ||
+                [],
+              {
+                y: 60,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease:
+                  "power3.out",
+              },
+              "-=0.5"
+            );
+
+            // IMAGE
+            tl.from(
+              imageRef.current,
+              {
+                scale: 0.96,
+                opacity: 0,
+                duration: 1.2,
+                ease:
+                  "power3.out",
+              },
+              "-=0.8"
+            );
           },
-          "-=0.5"
+          sectionRef
         );
 
-        // IMAGE REVEAL
-        tl.from(
-          imageRef.current,
-          {
-            scale: 0.96,
-            opacity: 0,
-            duration: 1.2,
-            ease:
-              "power3.out",
-          },
-          "-=0.8"
-        );
-      },
-      sectionRef
-    );
+      return () =>
+        ctx.revert();
+    }, []);
 
-    return () =>
-      ctx.revert();
-  }, []);
-
-  return (
-    <section className="py-4 md:py-8">
-      <div
-        ref={sectionRef}
-        className="
-          mx-auto
-          px-5
-          md:px-8
-          lg:px-12
-        "
-      >
-        {/* HEADER */}
+    return (
+      <section className="py-4 md:py-8">
         <div
-          ref={headerRef}
-          className="text-center"
-        >
-          <h2
-            className="
-              font-heading
-              text-[34px]
-              font-[300]
-              uppercase
-              tracking-[-1px]
-              text-[#111]
-              md:text-[48px]
-              md:leading-[60px]
-              md:tracking-[-1.44px]
-            "
-          >
-            Building Spaces,
-            Creating Trust
-          </h2>
-
-          <p
-            className="
-              mt-4
-              text-[15px]
-              text-[#8A8A8A]
-              md:text-[16px]
-              md:leading-[24px]
-              md:tracking-[-0.48px]
-            "
-          >
-            Location key
-            highlights
-          </p>
-        </div>
-
-        {/* CONTENT */}
-        <div
+          ref={sectionRef}
           className="
-            mt-14
-            flex
-            justify-between
-            gap-4
-            lg:flex-row
+            mx-auto
+            px-5
+            md:px-8
+            lg:px-12
           "
         >
-          {/* LEFT SIDE */}
+          {/* HEADER */}
           <div
-            ref={
-              accordionRef
-            }
-            className="
-              w-1/2
-              rounded-[10px]
-              bg-[#F0F0F0]
-              p-8
-              md:p-10
-            "
+            ref={headerRef}
+            className="text-center"
+          >
+            <h2
+              className="
+                font-heading
+                text-[24px] leading-[38px] tracking-normal
+                font-[300]
+                uppercase
+                text-[#111]
+                md:text-[48px]
+                md:leading-[60px]
+                md:tracking-[-1.44px]
+              "
+            >
+              <span className="block md:hidden">Building Spaces, <br/> Creating Trust</span>
+              <span className="hidden md:block">Building Spaces, Creating Trust</span>
+            </h2>
+
+            <p
+              className="
+                mt-4
+                text-[16px]
+                text-[#8A8A8A]
+                md:text-[16px]
+                leading-[24px]
+                tracking-[-0.48px]
+              "
+            >
+              Location key
+              highlights
+            </p>
+          </div>
+
+          {/* MOBILE LAYOUT */}
+          <div
+            ref={accordionRef}
+            className="mt-10 flex flex-col gap-4 lg:hidden"
           >
             {highlights.map(
               (
@@ -208,72 +213,47 @@ const LocationHighlights = () => {
 
                 return (
                   <div
-                    key={
-                      index
-                    }
+                    key={index}
                     className="
-                      border-b
-                      border-[#E2E2E2]
-                      py-8
-                      last:border-none
+                      overflow-hidden
+                      rounded-[10px]
+                      bg-[#F0F0F0]
                     "
                   >
+                    {/* HEADER */}
                     <button
                       onClick={() =>
                         toggleAccordion(
                           index
                         )
                       }
-                      className="w-full text-left"
+                      className="w-full p-5 text-left"
                     >
-                      <div className="flex items-start justify-between">
-                        {/* CONTENT */}
-                        <div>
-                          <h3
-                            className={`
-                              text-[18px]
-                              transition-all
-                              duration-300
-                              md:text-[30px]
-                              md:leading-[35px]
-                              ${
-                                isOpen
-                                  ? "font-medium text-[#111]"
-                                  : "text-[#C9C9C9]"
-                              }
-                            `}
-                          >
-                            {
-                              item.title
+                      <div className="flex items-start justify-between gap-4">
+                        <h3
+                          className={`
+                            text-[20px]
+                            leading-[35px]
+                            transition-all
+                            duration-300
+                            ${
+                              isOpen
+                                ? "font-medium text-[#111]"
+                                : "text-[#8A8A8A]"
                             }
-                          </h3>
+                          `}
+                        >
+                          {
+                            item.title
+                          }
+                        </h3>
 
-                          {isOpen && (
-                            <p
-                              className="
-                                mt-5
-                                max-w-[420px]
-                                text-[15px]
-                                leading-[24px]
-                                text-[#666]
-                                md:text-[16px]
-                                md:leading-[20px]
-                                md:tracking-[-0.48px]
-                              "
-                            >
-                              {
-                                item.description
-                              }
-                            </p>
-                          )}
-                        </div>
-
-                        {/* + / - BUTTON */}
+                        {/* + / - */}
                         <div
                           className="
                             flex
-                            h-[52px]
-                            w-[52px]
+                            h-[32px]
+                            w-[32px]
                             shrink-0
                             items-center
                             justify-center
@@ -282,13 +262,7 @@ const LocationHighlights = () => {
                             text-white
                           "
                         >
-                          <span
-                            className="
-                              text-[28px]
-                              font-light
-                              leading-none
-                            "
-                          >
+                          <span className="text-[16px] font-light leading-none">
                             {isOpen
                               ? "−"
                               : "+"}
@@ -296,38 +270,213 @@ const LocationHighlights = () => {
                         </div>
                       </div>
                     </button>
+
+                    {/* CONTENT */}
+                    <div
+                      className={`
+                        overflow-hidden
+                        transition-all
+                        duration-500
+                        ${
+                          isOpen
+                            ? "max-h-[600px]"
+                            : "max-h-0"
+                        }
+                      `}
+                    >
+                      <div className="px-5 pb-5">
+                        <p
+                          className="
+                            text-[13px]
+                            leading-[20px]
+                            tracking-[-0.48px]
+                            text-[#666]
+                          "
+                        >
+                          {
+                            item.description
+                          }
+                        </p>
+
+                        {/* IMAGE */}
+                        <div
+                          className="
+                            relative
+                            mt-5
+                            h-[200px]
+                            overflow-hidden
+                            rounded-[10px]
+                          "
+                        >
+                          <Image
+                            src={img1}
+                            alt={
+                              item.title
+                            }
+                            fill
+                            priority
+                            className="object-cover object-top"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 );
               }
             )}
           </div>
 
-          {/* RIGHT IMAGE */}
+          {/* DESKTOP LAYOUT */}
           <div
-            ref={imageRef}
             className="
-              relative
-              w-1/2
-              min-h-[420px]
-              overflow-hidden
-              rounded-[10px]
-              md:min-h-[450px]
+              mt-14
+              hidden
+              justify-between
+              gap-4
+              lg:flex
             "
           >
-            <Image
-              src={img1}
-              alt="Location Highlights"
-              fill
-              priority
+            {/* LEFT SIDE */}
+            <div
+              ref={
+                accordionRef
+              }
               className="
-                object-cover
+                w-1/2
+                rounded-[10px]
+                bg-[#F0F0F0]
+                p-8
+                md:p-10
               "
-            />
+            >
+              {highlights.map(
+                (
+                  item,
+                  index
+                ) => {
+                  const isOpen =
+                    activeIndex ===
+                    index;
+
+                  return (
+                    <div
+                      key={
+                        index
+                      }
+                      className="
+                        border-b
+                        border-[#E2E2E2]
+                        py-8
+                        last:border-none
+                      "
+                    >
+                      <button
+                        onClick={() =>
+                          toggleAccordion(
+                            index
+                          )
+                        }
+                        className="w-full text-left"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h3
+                              className={`
+                                text-[18px]
+                                transition-all
+                                duration-300
+                                md:text-[30px]
+                                md:leading-[35px]
+                                ${
+                                  isOpen
+                                    ? "font-medium text-[#111]"
+                                    : "text-[#C9C9C9]"
+                                }
+                              `}
+                            >
+                              {
+                                item.title
+                              }
+                            </h3>
+
+                            {isOpen && (
+                              <p
+                                className="
+                                  mt-5
+                                  max-w-[420px]
+                                  text-[15px]
+                                  leading-[24px]
+                                  text-[#666]
+                                  md:text-[16px]
+                                  md:leading-[20px]
+                                  md:tracking-[-0.48px]
+                                "
+                              >
+                                {
+                                  item.description
+                                }
+                              </p>
+                            )}
+                          </div>
+
+                          {/* + / - */}
+                          <div
+                            className="
+                              flex
+                              h-[52px]
+                              w-[52px]
+                              shrink-0
+                              items-center
+                              justify-center
+                              rounded-full
+                              bg-black
+                              text-white
+                            "
+                          >
+                            <span
+                              className="
+                                text-[28px]
+                                font-light
+                                leading-none
+                              "
+                            >
+                              {isOpen
+                                ? "−"
+                                : "+"}
+                            </span>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+
+            {/* RIGHT IMAGE */}
+            <div
+              ref={imageRef}
+              className="
+                relative
+                w-1/2
+                min-h-[420px]
+                overflow-hidden
+                rounded-[10px]
+                md:min-h-[450px]
+              "
+            >
+              <Image
+                src={img1}
+                alt="Location Highlights"
+                fill
+                priority
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
-};
+      </section>
+    );
+  };
 
 export default LocationHighlights;

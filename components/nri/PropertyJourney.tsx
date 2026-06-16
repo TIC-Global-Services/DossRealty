@@ -69,7 +69,7 @@ const PropertyJourney = () => {
   }, []);
 
   return (
-    <section className="py-16 md:py-14">
+    <section className="py-4 md:py-14">
       <div className="mx-auto px-5 md:px-24">
 
         {/* TOP CONTENT */}
@@ -77,7 +77,7 @@ const PropertyJourney = () => {
           ref={textRef}
           className="
             grid
-            gap-8
+            gap-4
             lg:grid-cols-2
             lg:gap-2
           "
@@ -87,17 +87,18 @@ const PropertyJourney = () => {
             <h2
               className="
                 font-heading
-                text-[24px]
-                leading-[50px]
+                text-[24px] leading-[30px]
+                md:leading-[50px]
                 tracking-[-0.48px]
                 text-[#111111]
                 md:text-[46px]
               "
             >
-              Your Property
+             <span className="hidden md:block">Your Property
               <br />
               Journey,
-              Simplified
+              Simplified</span>
+            <span className="md:hidden">Your Property Journey, <br/> Simplified</span>
             </h2>
           </div>
 
@@ -105,8 +106,8 @@ const PropertyJourney = () => {
           <div>
             <p
               className="
-                w-[58ch]
-                text-[15px] tracking-[-0.48px]
+                md:w-[58ch]
+                text-[16px] tracking-[-0.48px]
                 leading-[20px]
                 text-[#6B6B6B]
                 md:text-[16px]
@@ -135,7 +136,7 @@ const PropertyJourney = () => {
               src={journeyImg}
               alt="Property Journey"
               className="
-                h-[300px]
+                h-[340px]
                 w-full
                 object-cover object-bottom
                 md:h-[460px]

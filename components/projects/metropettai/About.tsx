@@ -1,6 +1,9 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import {
+  useLayoutEffect,
+  useRef,
+} from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";
 import gsap from "gsap";
@@ -9,34 +12,50 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import aboutImg from "@/assets/projects/metropettai/heroBg.png";
 
 const About = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const topInfoRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLDivElement>(null);
+  const sectionRef =
+    useRef<HTMLDivElement>(null);
+
+  const topInfoRef =
+    useRef<HTMLDivElement>(null);
+
+  const contentRef =
+    useRef<HTMLDivElement>(null);
+
+  const videoRef =
+    useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(
+      ScrollTrigger
+    );
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
-      });
+      const tl =
+        gsap.timeline({
+          scrollTrigger: {
+            trigger:
+              sectionRef.current,
+            start: "top 75%",
+          },
+        });
 
-      // TOP INFO REVEAL
-      tl.from(topInfoRef.current?.children || [], {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: "power3.out",
-      });
-
-      // HEADING + TEXT REVEAL
+      // TOP INFO
       tl.from(
-        contentRef.current?.children || [],
+        topInfoRef.current
+          ?.children || [],
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+        }
+      );
+
+      // CONTENT
+      tl.from(
+        contentRef.current
+          ?.children || [],
         {
           y: 50,
           opacity: 0,
@@ -47,7 +66,7 @@ const About = () => {
         "-=0.3"
       );
 
-      // VIDEO IMAGE REVEAL
+      // VIDEO
       tl.from(
         videoRef.current,
         {
@@ -69,26 +88,32 @@ const About = () => {
       className="py-16 md:py-24"
     >
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-40">
-
         {/* TOP INFO */}
         <div
           ref={topInfoRef}
           className="
             flex
-            flex-wrap
-            items-center
-            justify-center
-            gap-y-4
-            text-center
+            flex-col
+            items-start
+            gap-4
             text-[15px]
             text-[#1F1F1F]
+
+            md:flex-row
+            md:flex-wrap
+            md:items-center
+            md:justify-center
+            md:gap-y-4
+            md:text-center
             md:gap-x-10
           "
         >
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
+            <div className=" h-5 w-[1px] bg-black md:hidden" />
             <span className="font-small text-sm md:text-[18px] md:leading-[20px]">
               Area :
             </span>
+
             <span className="font-small text-sm text-[#C7A85E] md:text-[18px] md:leading-[20px]">
               10 Acres
             </span>
@@ -96,10 +121,12 @@ const About = () => {
 
           <div className="hidden h-5 w-[1px] bg-black md:block" />
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
+            <div className=" h-5 w-[1px] bg-black md:block" />
             <span className="font-small text-sm md:text-[18px] md:leading-[20px]">
               Year of build:
             </span>
+
             <span className="font-small text-sm text-[#C59D5F] md:text-[18px] md:leading-[20px]">
               2026
             </span>
@@ -107,10 +134,12 @@ const About = () => {
 
           <div className="hidden h-5 w-[1px] bg-black md:block" />
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
+            <div className=" h-5 w-[1px] bg-black md:block" />
             <span className="font-small text-sm md:text-[18px] md:leading-[20px]">
               Property status:
             </span>
+
             <span className="font-small text-sm text-[#C59D5F] md:text-[18px] md:leading-[20px]">
               Active
             </span>
@@ -118,10 +147,12 @@ const About = () => {
 
           <div className="hidden h-5 w-[1px] bg-black md:block" />
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
+            <div className=" h-5 w-[1px] bg-black md:block" />
             <span className="font-small text-sm md:text-[18px] md:leading-[20px]">
               Size :
             </span>
+
             <span className="font-small text-sm text-[#C59D5F] md:text-[18px] md:leading-[20px]">
               270 Units
             </span>
@@ -129,7 +160,7 @@ const About = () => {
         </div>
 
         {/* LINE */}
-        <div className="mt-8 border-b border-[#D9D9D9]" />
+        <div className="hidden md:block mt-8 border-b border-[#D9D9D9]" />
 
         {/* CONTENT */}
         <div
@@ -139,12 +170,12 @@ const About = () => {
           <h2
             className="
               font-heading
-              text-[42px]
+              text-[24px]
               font-[300]
               tracking-[0px]
               text-[#111]
               md:text-[46px]
-              md:leading-[50px]
+              leading-[50px]
             "
           >
             About the project
@@ -153,24 +184,35 @@ const About = () => {
           <p
             className="
               mt-6
-              max-w-[700px]
-              w-[102ch]
-              text-[15px]
+              text-[16px]
               leading-[20px]
               text-[#717171]
+
+              md:max-w-[700px]
+              md:w-[102ch]
               md:text-[18px]
               md:leading-[20px]
               md:tracking-[0.48px]
             "
           >
-            Metropettai is a modern community defined by connection.
-            Located at the intersection of the upcoming Metro corridor,
-            the Chennai–Bengaluru Highway, and the Outer Ring Road,
-            it oﬀers direct access to the people, places, and opportunities
-            that shape everyday life. Surrounded by leading employment hubs,
-            educational institutions, and evolving infrastructure,
-            Metropettai is designed for those who value access,
-            opportunity, and long-term relevance.
+            Metropettai is a modern
+            community defined by
+            connection. Located at the
+            intersection of the upcoming
+            Metro corridor, the
+            Chennai–Bengaluru Highway,
+            and the Outer Ring Road, it
+            oﬀers direct access to the
+            people, places, and
+            opportunities that shape
+            everyday life. Surrounded by
+            leading employment hubs,
+            educational institutions,
+            and evolving infrastructure,
+            Metropettai is designed for
+            those who value access,
+            opportunity, and long-term
+            relevance.
           </p>
         </div>
 
@@ -187,8 +229,8 @@ const About = () => {
               rounded-[10px]
             "
           >
-            {/* IMAGE / VIDEO THUMBNAIL */}
-            <div className="relative h-[320px] md:h-[450px]">
+            {/* IMAGE */}
+            <div className="relative h-[460px] md:h-[450px]">
               <Image
                 src={aboutImg}
                 alt="About Project"
@@ -216,15 +258,16 @@ const About = () => {
                 -translate-x-1/2
                 -translate-y-1/2
                 items-center
-                gap-4
+                gap-3
                 text-white
+                md:gap-4
               "
             >
               <div
                 className="
                   flex
-                  h-[60px]
-                  w-[60px]
+                  h-[52px]
+                  w-[52px]
                   items-center
                   justify-center
                   rounded-full
@@ -233,6 +276,9 @@ const About = () => {
                   transition
                   duration-300
                   group-hover:scale-110
+
+                  md:h-[60px]
+                  md:w-[60px]
                 "
               >
                 <Play
@@ -243,8 +289,10 @@ const About = () => {
 
               <span
                 className="
-                  text-[24px]
+                  whitespace-nowrap
+                  text-[18px]
                   font-[300]
+
                   md:text-[38px]
                 "
               >
@@ -253,7 +301,6 @@ const About = () => {
             </button>
           </div>
         </div>
-
       </div>
     </section>
   );

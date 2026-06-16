@@ -97,7 +97,7 @@ const Navbar = () => {
         ${
           isBlogsPage
             ? "bg-transparent border-transparent"
-            : "border-b border-white/10 bg-black/15 backdrop-blur-[10px]"
+            : "lg:border-b lg:border-white/10 lg:bg-black/15 lg:backdrop-blur-[10px]"
         }
       `}
     >
@@ -140,10 +140,7 @@ const Navbar = () => {
                 (link) => (
                   <li
                     key={link.name}
-                    className="
-                      group
-                      relative
-                    "
+                    className="group relative"
                   >
                     <Link
                       href={link.href}
@@ -169,68 +166,44 @@ const Navbar = () => {
                       {link.hasDropdown && (
                         <ChevronDown
                           size={16}
-                          strokeWidth={
-                            1.8
-                          }
-                          className="
-                            transition-transform
-                            duration-300
-                            ease-out
-                            group-hover:rotate-180
-                          "
+                          strokeWidth={1.8}
+                          className="transition-transform duration-300 ease-out group-hover:rotate-180"
                         />
                       )}
                     </Link>
 
-                    {/* PROJECTS DROPDOWN */}
+                    {/* DROPDOWN */}
                     {link.hasDropdown &&
                       link.dropdown && (
                         <div
                           className="
-                          invisible
-                          absolute
-                          left-1/2
-                          top-[48px]
-                          z-[100]
-                          w-[480px]
-                          -translate-x-1/2
-                          rounded-[20px]
-                          border
-                          border-[#EAEAEA]
-                          bg-white
-                          opacity-0
-                          shadow-[0_15px_50px_rgba(0,0,0,0.08)]
-                          transition-all
-                          duration-300
-                          ease-out
-                          group-hover:visible
-                          group-hover:opacity-100
-                        "
+                            invisible
+                            absolute
+                            left-1/2
+                            top-[48px]
+                            z-[100]
+                            w-[480px]
+                            -translate-x-1/2
+                            rounded-[20px]
+                            border
+                            border-[#EAEAEA]
+                            bg-white
+                            opacity-0
+                            shadow-[0_15px_50px_rgba(0,0,0,0.08)]
+                            transition-all
+                            duration-300
+                            ease-out
+                            group-hover:visible
+                            group-hover:opacity-100
+                          "
                         >
                           <div className="grid grid-cols-[68%_32%] gap-8 p-8">
-                            {/* LEFT */}
                             <div>
-                              <h3
-                                className="
-                                  text-[16px]
-                                  uppercase
-                                  tracking-[1px]
-                                  underline
-                                  text-black
-                                "
-                              >
+                              <h3 className="text-[16px] uppercase tracking-[1px] underline text-black">
                                 All Projects
                               </h3>
 
-                              <div
-                                className="
-                                  mt-8
-                                  grid
-                                  grid-cols-2
-                                  gap-x-8
-                                  gap-y-8
-                                "
-                              >
+                              <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-8">
                                 {link.dropdown.projects.map(
                                   (
                                     project,
@@ -239,11 +212,7 @@ const Navbar = () => {
                                     <Link
                                       key={index}
                                       href="/projects"
-                                      className="
-                                        transition
-                                        duration-300
-                                        hover:opacity-70
-                                      "
+                                      className="transition duration-300 hover:opacity-70"
                                     >
                                       <p className="text-[18px] font-medium text-black">
                                         {
@@ -262,17 +231,8 @@ const Navbar = () => {
                               </div>
                             </div>
 
-                            {/* RIGHT */}
                             <div>
-                              <h3
-                                className="
-                                  text-[16px]
-                                  uppercase
-                                  tracking-[1px]
-                                  underline
-                                  text-black
-                                "
-                              >
+                              <h3 className="text-[16px] uppercase tracking-[1px] underline text-black">
                                 Project Status
                               </h3>
 
@@ -284,15 +244,7 @@ const Navbar = () => {
                                   ) => (
                                     <button
                                       key={index}
-                                      className="
-                                        block
-                                        text-left
-                                        text-[18px]
-                                        text-black
-                                        transition
-                                        duration-300
-                                        hover:opacity-70
-                                      "
+                                      className="block text-left text-[18px] text-black transition duration-300 hover:opacity-70"
                                     >
                                       {item}
                                     </button>
@@ -312,7 +264,9 @@ const Navbar = () => {
           {/* BUTTON */}
           <Link href="/contact">
             <button
-              className={`font-small text-[16px]
+              className={`
+                font-small
+                text-[16px]
                 rounded-full
                 border
                 bg-transparent
@@ -335,7 +289,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* MOBILE MENU */}
+        {/* MOBILE MENU BUTTON */}
         <button
           onClick={() =>
             setIsOpen(!isOpen)
@@ -350,41 +304,80 @@ const Navbar = () => {
             }
           `}
         >
-          {isOpen ? (
-            <X size={30} />
-          ) : (
-            <Menu size={30} />
-          )}
+          <Menu size={30} />
         </button>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU OVERLAY */}
       <div
         className={`
-          absolute
-          left-0
-          top-[80px]
+          fixed
+          top-0
+          right-0
+          z-[100]
+          h-screen
           w-full
-          overflow-hidden
-          ${
-            isBlogsPage
-              ? "bg-white/90"
-              : "bg-black/20"
-          }
-          backdrop-blur-xl
-          transition-all
+          bg-white
+          transition-transform
           duration-500
           ease-in-out
           lg:hidden
           ${
             isOpen
-              ? "max-h-[500px] opacity-100"
-              : "max-h-0 opacity-0"
+              ? "translate-x-0"
+              : "translate-x-full"
           }
         `}
       >
-        <div className="px-6 py-8">
-          <ul className="flex flex-col gap-6">
+        {/* TOP BAR */}
+        <div
+          className="
+            flex
+            h-[80px]
+            items-center
+            justify-between
+            border-b
+            border-black/10
+            px-5
+          "
+        >
+          <Link
+            href="/"
+            onClick={() =>
+              setIsOpen(false)
+            }
+          >
+            <Image
+              src="/blackLogo.png"
+              alt="Doss Realty Logo"
+              width={160}
+              height={50}
+              priority
+            />
+          </Link>
+
+          <button
+            onClick={() =>
+              setIsOpen(false)
+            }
+            className="text-black"
+          >
+            <X size={30} />
+          </button>
+        </div>
+
+        {/* MENU CONTENT */}
+        <div
+          className="
+            flex
+            h-[calc(100vh-80px)]
+            flex-col
+            justify-between
+            px-6
+            py-8
+          "
+        >
+          <ul className="flex flex-col gap-7">
             {navLinks.map(
               (link) => (
                 <li key={link.name}>
@@ -393,25 +386,23 @@ const Navbar = () => {
                     onClick={() =>
                       setIsOpen(false)
                     }
-                    className={`
+                    className="
                       flex
                       items-center
                       justify-between
                       border-b
-                      pb-4
-                      text-lg
-                      ${
-                        isBlogsPage
-                          ? "border-black/10 text-black"
-                          : "border-white/10 text-white"
-                      }
-                    `}
+                      border-black/10
+                      pb-5
+                      text-[22px]
+                      font-medium
+                      text-black
+                    "
                   >
                     {link.name}
 
                     {link.hasDropdown && (
                       <ChevronDown
-                        size={18}
+                        size={20}
                       />
                     )}
                   </Link>
@@ -420,18 +411,16 @@ const Navbar = () => {
             )}
           </ul>
 
-          <div className="mt-8">
-            <Link
-              href="/contact"
-              onClick={() =>
-                setIsOpen(false)
-              }
-            >
-              <PrimaryBtn className="w-full">
-                Get in Touch
-              </PrimaryBtn>
-            </Link>
-          </div>
+          <Link
+            href="/contact"
+            onClick={() =>
+              setIsOpen(false)
+            }
+          >
+            <PrimaryBtn mode="light" className="w-full">
+              Get in Touch
+            </PrimaryBtn>
+          </Link>
         </div>
       </div>
     </header>

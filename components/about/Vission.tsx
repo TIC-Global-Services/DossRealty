@@ -12,8 +12,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Vission = () => {
   const sectionRef = useRef<HTMLElement>(null);
+
+  // Desktop pin
   const pinWrapRef = useRef<HTMLDivElement>(null);
-  const colorImageRef = useRef<HTMLDivElement>(null);
+
+  // Separate refs for animation
+  const mobileColorImageRef =
+    useRef<HTMLDivElement>(null);
+
+  const desktopColorImageRef =
+    useRef<HTMLDivElement>(null);
 
   const textRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -25,7 +33,8 @@ const Vission = () => {
         scrollTrigger: {
           trigger: textRef.current,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          toggleActions:
+            "play none none reverse",
         },
       });
 
@@ -39,7 +48,9 @@ const Vission = () => {
 
       // HEADING WORD STAGGER
       const words =
-        headingRef.current?.querySelectorAll(".word");
+        headingRef.current?.querySelectorAll(
+          ".word"
+        );
 
       if (words?.length) {
         gsap.from(words, {
@@ -55,14 +66,36 @@ const Vission = () => {
         });
       }
 
-      // IMAGE REVEAL
+      // MOBILE IMAGE REVEAL
       gsap.fromTo(
-        colorImageRef.current,
+        mobileColorImageRef.current,
         {
-          clipPath: "inset(100% 0% 0% 0%)",
+          clipPath:
+            "inset(100% 0% 0% 0%)",
         },
         {
-          clipPath: "inset(0% 0% 0% 0%)",
+          clipPath:
+            "inset(0% 0% 0% 0%)",
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "+=50%",
+            scrub: 1,
+          },
+        }
+      );
+
+      // DESKTOP IMAGE REVEAL
+      gsap.fromTo(
+        desktopColorImageRef.current,
+        {
+          clipPath:
+            "inset(100% 0% 0% 0%)",
+        },
+        {
+          clipPath:
+            "inset(0% 0% 0% 0%)",
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -73,13 +106,17 @@ const Vission = () => {
         }
       );
 
-      // PIN SECTION
-      ScrollTrigger.create({
-        trigger: pinWrapRef.current,
-        start: "top top",
-        end: "+=100%",
-        pin: true,
-        scrub: true,
+      // DESKTOP PIN ONLY
+      ScrollTrigger.matchMedia({
+        "(min-width: 768px)": () => {
+          ScrollTrigger.create({
+            trigger: pinWrapRef.current,
+            start: "top top",
+            end: "+=100%",
+            pin: true,
+            scrub: true,
+          });
+        },
       });
     }, sectionRef);
 
@@ -98,8 +135,9 @@ const Vission = () => {
       >
         <p
           className="
+            leading-[21px]
             mb-4
-            text-[14px]
+            text-[13px]
             font-semibold
             md:text-[16px]
             uppercase
@@ -114,10 +152,12 @@ const Vission = () => {
           ref={headingRef}
           className="
             font-heading
-            text-[34px]
+            text-[30px]
+            leading-[36px]
+            tracking-normal
             md:text-[60px]
-            leading-[1.1]
-            tracking-[-2.3px]
+            md:leading-[1.1]
+            md:tracking-[-2.3px]
             text-[#111111]
           "
         >
@@ -131,7 +171,7 @@ const Vission = () => {
               timeless
             </span>
           </span>{" "}
-          <span className="inline-block overflow-hidden">
+          <span className="hidden md:inline-block overflow-hidden">
             <span className="word inline-block">
               value
             </span>
@@ -140,8 +180,12 @@ const Vission = () => {
           <br />
 
           <span className="inline-block overflow-hidden">
-            <span className="word inline-block">
+            <span className="hidden word md:inline-block">
               through
+            </span>
+
+            <span className="word inline-block md:hidden">
+              value through
             </span>
           </span>{" "}
           <span className="inline-block overflow-hidden">
@@ -157,13 +201,54 @@ const Vission = () => {
         </h2>
       </div>
 
-      {/* PINNED IMAGE SECTION */}
-      <div className="h-[200vh]">
+      {/* MOBILE */}
+      <div className="block md:hidden relative h-[40vh] overflow-hidden">
+        <div
+          className="
+            sticky
+            top-0
+            h-[40vh]
+            flex
+            items-center
+            justify-center
+            bg-white
+            overflow-hidden
+          "
+        >
+          <div className="relative h-[34vh] min-h-[180px] w-full">
+            {/* Outline */}
+            <Image
+              src={missionOutlineImg}
+              alt="Mission Sketch"
+              fill
+              priority
+              className="object-contain"
+            />
+
+            {/* Color Reveal */}
+            <div
+              ref={mobileColorImageRef}
+              className="absolute inset-0"
+            >
+              <Image
+                src={missionColorImg}
+                alt="Mission Color"
+                fill
+                priority
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* DESKTOP */}
+      <div className="hidden md:block md:h-[200vh]">
         <div
           ref={pinWrapRef}
           className="relative h-screen overflow-hidden"
         >
-          {/* Outline Image */}
+          {/* Outline */}
           <Image
             src={missionOutlineImg}
             alt="Mission Sketch"
@@ -174,7 +259,7 @@ const Vission = () => {
 
           {/* Color Reveal */}
           <div
-            ref={colorImageRef}
+            ref={desktopColorImageRef}
             className="absolute inset-0"
           >
             <Image

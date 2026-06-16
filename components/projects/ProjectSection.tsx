@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 import Link from "next/link";
 import Image, {
   StaticImageData,
@@ -20,13 +23,13 @@ const activeProjects: Project[] = [
   {
     title: "Promise Park",
     description:
-    "Located on the Kanchi–Arakkonam Highway in the heart of Kanchipuram, this ready-to-build community offers approved plots, completed infrastructure, and easy access to schools, hospitals, temples, and everyday conveniences. With a familiar location and a strong foundation in place, it provides the perfect setting to build your future with confidence.",    
+      "Located on the Kanchi–Arakkonam Highway in the heart of Kanchipuram, this ready-to-build community offers approved plots, completed infrastructure, and easy access to schools, hospitals, temples, and everyday conveniences. With a familiar location and a strong foundation in place, it provides the perfect setting to build your future with confidence.",
     image: project1,
   },
   {
     title: "Metropettai",
     description:
-    "Metropettai is a well-connected modern community strategically located near the upcoming Metro corridor, Chennai–Bengaluru Highway, and Outer Ring Road. Surrounded by key employment hubs, educational institutions, and growing infrastructure, it offers seamless access, everyday convenience, and strong long-term value.",    
+      "Metropettai is a well-connected modern community strategically located near the upcoming Metro corridor, Chennai–Bengaluru Highway, and Outer Ring Road. Surrounded by key employment hubs, educational institutions, and growing infrastructure, it offers seamless access, everyday convenience, and strong long-term value.",
     image: project2,
   },
 ];
@@ -86,15 +89,53 @@ const ProjectSection = () => {
   const [activeTab, setActiveTab] =
     useState("active");
 
+  const [
+    showAllDelivered,
+    setShowAllDelivered,
+  ] = useState(false);
+
+  const [isMobile, setIsMobile] =
+    useState(false);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(
+        window.innerWidth < 768
+      );
+    };
+
+    checkScreen();
+
+    window.addEventListener(
+      "resize",
+      checkScreen
+    );
+
+    return () =>
+      window.removeEventListener(
+        "resize",
+        checkScreen
+      );
+  }, []);
+
+  // Reset when tab changes
+  useEffect(() => {
+    setShowAllDelivered(false);
+  }, [activeTab]);
+
+  // Projects logic
   const projects =
     activeTab === "active"
       ? activeProjects
+      : isMobile &&
+        !showAllDelivered
+      ? deliveredProjects.slice(0, 4)
       : deliveredProjects;
 
   return (
     <section className="py-10 md:py-12">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
-
         {/* TOGGLE */}
         <div className="mb-14 flex justify-center">
           <div
@@ -112,15 +153,17 @@ const ProjectSection = () => {
                 setActiveTab("active")
               }
               className={`
-                rounded-full
-                px-8
-                py-3
-                text-[15px]
+                rounded-full px-15 py-2.5
+                md:px-8
+                md:py-3
+                text-[13px]
+                md:text-[15px]
                 transition-all
                 duration-300
                 cursor-pointer
                 ${
-                  activeTab === "active"
+                  activeTab ===
+                  "active"
                     ? "bg-[#00256A] text-white"
                     : "text-[#999]"
                 }
@@ -133,13 +176,16 @@ const ProjectSection = () => {
 
             <button
               onClick={() =>
-                setActiveTab("delivered")
+                setActiveTab(
+                  "delivered"
+                )
               }
               className={`
-                rounded-full
-                px-8
-                py-3
-                text-[15px]
+                rounded-full px-15 py-2.5
+                md:px-8
+                md:py-3
+                text-[13px]
+                md:text-[15px]
                 transition-all
                 duration-300
                 cursor-pointer
@@ -161,16 +207,20 @@ const ProjectSection = () => {
           {projects.map(
             (project, index) => {
               const isClickable =
-              project.title === "Metropettai" ||
-              project.title === "Promise Park";
+                project.title ===
+                  "Metropettai" ||
+                project.title ===
+                  "Promise Park";
 
               return (
                 <Link
                   key={index}
-                 href={
-                    project.title === "Metropettai"
+                  href={
+                    project.title ===
+                    "Metropettai"
                       ? "/projects/metropettai"
-                      : project.title === "Promise Park"
+                      : project.title ===
+                        "Promise Park"
                       ? "/projects/promise-park"
                       : "#"
                   }
@@ -215,7 +265,7 @@ const ProjectSection = () => {
                     `}
                   >
                     {/* IMAGE */}
-                    <div className="relative h-[320px] overflow-hidden md:h-[370px]">
+                    <div className="relative h-[300px] overflow-hidden md:h-[370px]">
                       <Image
                         src={project.image}
                         alt={project.title}
@@ -258,7 +308,7 @@ const ProjectSection = () => {
                           `}
                         />
 
-                        <span className="text-[14px] text-white">
+                        <span className="text-[13px] leading-[18px] md:text-[14px] text-white">
                           {activeTab ===
                           "active"
                             ? "Active"
@@ -283,7 +333,6 @@ const ProjectSection = () => {
                           duration-300
                           hover:bg-white/20
                           md:text-[16px]
-                          cursor-pointer
                         "
                       >
                         {activeTab ===
@@ -293,18 +342,9 @@ const ProjectSection = () => {
                       </button>
                     </div>
 
-                    {/* CONTENT AREA */}
+                    {/* CONTENT */}
                     <div className="absolute bottom-0 left-0 z-[2] w-full">
-                      <div
-                        className="
-                          relative
-                          flex
-                          min-h-[145px]
-                          w-full
-                          items-end
-                          overflow-hidden
-                        "
-                      >
+                      <div className="relative flex md:min-h-[145px] w-full items-end overflow-hidden">
                         <div className="absolute inset-0 z-0 overflow-hidden">
                           <div
                             className="absolute inset-0"
@@ -323,25 +363,21 @@ const ProjectSection = () => {
                           <div
                             className="absolute inset-0"
                             style={{
-                              background: `
-                                linear-gradient(
-                                  155.23deg,
-                                  rgba(0,0,0,0.01) 0%,
-                                  rgba(0,0,0,0.55) 100%,
-                                  rgba(0,0,0,0.63) 100%
-                                )
-                              `,
+                              background:
+                                "linear-gradient(155.23deg, rgba(0,0,0,0.01) 0%, rgba(0,0,0,0.55) 100%, rgba(0,0,0,0.63) 100%)",
                             }}
                           />
                         </div>
 
                         <div className="relative z-[2] w-full py-6 md:py-8">
                           <div className="px-5 md:px-8">
-                            <h3 className="text-[18px] text-white md:text-[26px]">
-                              {project.title}
+                            <h3 className="text-[13px] text-white md:text-[26px]">
+                              {
+                                project.title
+                              }
                             </h3>
 
-                            <p className="mt-2 max-w-[500px] w-[60ch] text-[13px] leading-[15px] text-[#FFFFFF80] font-[300]">
+                            <p className="mt-2 w-[54ch] md:max-w-[500px] md:w-[60ch] text-[11px] md:text-[13px] leading-[15px] text-[#FFFFFF80] font-[300]">
                               {
                                 project.description
                               }
@@ -356,6 +392,37 @@ const ProjectSection = () => {
             }
           )}
         </div>
+
+        {/* MOBILE VIEW MORE */}
+        {activeTab ===
+          "delivered" &&
+          isMobile &&
+          !showAllDelivered &&
+          deliveredProjects.length >
+            4 && (
+            <div className="mt-8 flex justify-center">
+              <button
+                onClick={() =>
+                  setShowAllDelivered(
+                    true
+                  )
+                }
+                className="
+                  rounded-full
+                  bg-[#00256A]
+                  px-6
+                  py-3
+                  text-[14px]
+                  text-white
+                  transition
+                  duration-300
+                  hover:opacity-90
+                "
+              >
+                View More
+              </button>
+            </div>
+          )}
       </div>
     </section>
   );

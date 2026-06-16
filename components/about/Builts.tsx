@@ -35,49 +35,83 @@ const Builts = () => {
   return (
     <>
       <section className="py-16 md:py-20">
-        <div className="mx-auto px-5 md:px-8 lg:px-10">
-
+        <div className="mx-auto px-0 md:px-8 lg:px-10">
           {/* IMAGE SECTION */}
-          <div className="relative group h-[500px] overflow-hidden rounded-[10px] md:h-[400px]">
-
+          <div className="relative group h-screen overflow-hidden md:rounded-[10px] md:h-[400px]">
             <Image
               src={builtImg}
               alt="Built Spaces"
               fill
-              className="object-cover transition-transform duration-300 ease-out group-hover:scale-110"
+              className="
+                object-cover
+                scale-105
+                md:scale-100
+                transition-transform
+                duration-300
+                ease-out
+                group-hover:scale-110
+              "
             />
+
+            {/* MOBILE OVERLAY */}
+            <div
+              className="
+                absolute inset-0
+                md:hidden
+                bg-black/40
+                z-[1]
+              "
+            />
+
 
             {/* CONTENT */}
             <div
               className="
-                absolute inset-0
-                flex items-center justify-end
-                p-6 md:p-10 lg:p-16
-              "
+              absolute inset-0
+              z-10
+              flex items-center justify-center
+              md:justify-end
+              px-8 md:p-10 lg:p-16
+            "
             >
-              <div className="max-w-[500px] text-white">
-
+              <div
+                className="
+                w-full
+                max-w-[260px]
+                md:max-w-[500px]
+                text-center
+                md:text-left
+                text-white
+              "
+              >
                 <h2
                   className="
-                    font-heading font-[300]
-                    text-[24px] md:text-[30px]
-                    leading-[35px]
-                    text-white
-                  "
+                  font-heading
+                  font-[300] tracking-normal
+                  text-[20px]
+                  leading-[24px]
+                  md:text-[30px]
+                  md:leading-[35px]
+                  text-white
+                "
                 >
-                  Built on Trust.
+                <span className="hidden md:block">Built on Trust. Driven
                   <br />
-                  Driven by Purpose.
+                  by Purpose.</span>
+                <span className="block md:hidden">Built on Trust. Driven
+                  <br />
+                  by Purpose.</span>
                 </h2>
 
                 <p
-                  className="
-                    mt-6
-                    text-[15px]
-                    md:text-[18px]
-                    leading-[21px]
-                    text-[#F5F4F2]
-                  "
+                  className="font-[300]
+                  mt-5
+                  text-[16px] tracking-normal
+                  leading-[21px]
+                  md:text-[18px]
+                  md:leading-[21px]
+                  text-[#F5F4F2]
+                "
                 >
                   Clients Built on Trust
                   represents the strong
@@ -87,20 +121,33 @@ const Builts = () => {
                   quality.
                 </p>
 
-                <PrimaryBtn
-                  mode="dark"
-                  onClick={() =>
-                    setOpen(true)
-                  }
-                  className="
-                    mt-6
-                    text-white
-                    transition duration-300
-                    hover:scale-105
-                  "
+                <div className="mt-5 flex justify-center md:justify-start">
+                  {/* Gradient border shell — 1px gradient paint */}
+                <div
+                  className="p-px rounded-full w-[150px] h-[40px] flex-shrink-0"
+                  
                 >
-                  Read More
-                </PrimaryBtn>
+                  <PrimaryBtn
+                    mode="dark"
+                    onClick={() => setOpen(true)}
+                    className="
+                      !w-full !h-full
+                      !rounded-full
+                      !border-0
+                      !bg-transparent
+                      !backdrop-blur-[6px]
+                      text-[13px] md:text-[16px]
+                      text-white tracking-[0.05em]
+                      shadow-[inset_0_1.5px_0_rgba(255,255,255,0.1),inset_0_-1px_0_rgba(255,255,255,0.1),0_2px_16px_rgba(0,0,0,0.1),0_1px_3px_rgba(0,0,0,0.1)]
+                      hover:!bg-white/[0.22]
+                      hover:scale-105
+                      transition-all duration-300
+                    "
+                  >
+                    Read more
+                  </PrimaryBtn>
+                </div>
+                </div>
               </div>
             </div>
           </div>

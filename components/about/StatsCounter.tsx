@@ -40,7 +40,7 @@ const StatsCounter = () => {
   return (
     <section
       ref={ref}
-      className="py-20 md:py-24"
+      className="py-10 md:py-24"
     >
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
         <div className="grid grid-cols-1 gap-14 text-center sm:grid-cols-3 md:gap-10">
@@ -68,11 +68,11 @@ const StatsCounter = () => {
               {/* NUMBER */}
               <h2
                 className="
-                  text-[34px]
+                  text-[20px] leading-[38px] tracking-normal font-[300]
                   md:text-[44px]
-                  font-semibold
-                  leading-none
-                  tracking-[-0.03em]
+                  md:font-semibold
+                  md:leading-none
+                  md:tracking-[-0.03em]
                   text-[#202020]
                 "
               >
@@ -89,11 +89,11 @@ const StatsCounter = () => {
 
               {/* TEXT */}
               <p
-                className="
-                  mt-3
-                  max-w-[240px]
-                  text-[14px]
-                  leading-[150%]
+                className="mt-2
+                  md:mt-3 text-[16px] leading-[19px] tracking-normal
+                  max-w-[300px]
+                  md:text-[14px]
+                  md:leading-[150%]
                   text-[#444]
                 "
               >

@@ -80,7 +80,7 @@ const ShapeTheFuture = () => {
       className="py-16 md:py-24 overflow-hidden"
     >
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
-        <div className="flex flex-col gap-12 lg:flex-row">
+        <div className="flex flex-col gap-4 md:gap-12 lg:flex-row">
           
           {/* LEFT SIDE */}
           <div
@@ -88,7 +88,7 @@ const ShapeTheFuture = () => {
             className="lg:w-[30%] lg:translate-y-30"
           >
             <p
-              className="ml-2 mb-4 text-[14px]
+              className="ml-1 md:ml-2 mb-4 text-[14px]
               md:text-[16px] font-semibold
               uppercase leading-[26px]
               tracking-[1.6%] text-[#111111]"
@@ -98,15 +98,18 @@ const ShapeTheFuture = () => {
 
             <h2
               className="font-heading
-              text-[34px]
+              text-[30px] leading-[38px]
               md:text-[52px]
-              leading-[95%]
+              md:leading-[95%]
               tracking-[-0.04em]
               text-[#111111]"
             >
-              Shaping <br />
+             <span className="hidden md:block">Shaping <br />
               the Future <br />
-              of Living
+              of Living</span>
+
+              <span className="block md:hidden">Shaping the Future <br />
+              of Living</span>
             </h2>
           </div>
 
@@ -115,14 +118,14 @@ const ShapeTheFuture = () => {
             {/* TEXT */}
             <div
               ref={textRef}
-              className="max-w-[90ch]"
+              className="md:max-w-[90ch]"
             >
               <p
                 className="font-small
-                text-[14px]
-                md:text-[18px]
-                leading-[21px]
-                tracking-[1px]
+                text-[13px] leading-[16px] tracking-normal
+                md:text-[18px] 
+                md:leading-[21px]
+                md:tracking-[1px]
                 text-[#222A2C]"
               >
                 At Doss Realty, our vision is to shape the future of real estate
@@ -141,10 +144,10 @@ const ShapeTheFuture = () => {
 
               <p
                 className="font-small
-                text-[14px]
+                text-[13px] leading-[16px] tracking-normal
                 md:text-[18px]
-                leading-[21px]
-                tracking-[1px]
+                md:leading-[21px]
+                md:tracking-[1px]
                 text-[#222A2C]"
               >
                 Driven by integrity and a customer-first approach, Doss Realty
@@ -157,7 +160,7 @@ const ShapeTheFuture = () => {
             {/* IMAGE */}
             <div
               ref={imageWrapperRef}
-              className="mt-10 relative h-[350px] md:h-[400px]
+              className="mt-10 relative h-[230px] md:h-[400px]
               overflow-hidden rounded-[10px]"
             >
               <div

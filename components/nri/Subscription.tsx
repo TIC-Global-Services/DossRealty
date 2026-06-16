@@ -5,30 +5,112 @@ import phoneImg from "@/assets/nri/phoneImg.png";
 
 export default function Subscription() {
   return (
-    <section className="py-[40px]">
-      <div className="max-w-[1440px] mx-10 px-5">
-        <div className="bg-[#00256a] rounded-[10px] h-[400px] flex items-center justify-between overflow-visible">
+    <section className="py-10 md:py-[40px]">
+      <div className="mx-5 max-w-[1440px] md:mx-10 md:px-5">
+        <div
+          className="h-[80vh]
+            overflow-hidden
+            rounded-[10px]
+            bg-[#00256a]
 
-          {/* Left Content */}
-          <div className="pl-[50px] md:pl-[90px] py-12">
-            <h2 className="text-white font-light text-[32px] md:text-[40px] leading-[95%] tracking-[-0.02em] max-w-[520px]">
+            flex
+            flex-col
+            items-center
+
+            md:h-[400px]
+            md:flex-row
+            md:items-center
+            md:justify-between
+          "
+        >
+          {/* LEFT CONTENT */}
+          <div
+            className="
+              w-full
+              px-5
+              pt-10
+              text-center
+
+              md:px-8
+
+              lg:pl-[90px]
+              lg:pr-0
+              lg:py-12
+              lg:text-left
+            "
+          >
+            <h2
+              className="
+                max-w-[520px]
+                text-[30px]
+                font-light
+                leading-[95%]
+                tracking-[-0.02em]
+                text-white
+                md:text-[40px]
+                lg:max-w-[520px]
+              "
+            >
               Subscribe for weekly
               <br />
               real estate insights
             </h2>
 
-            <p className="text-white text-[14px] md:text-[16px] leading-[150%] mt-6 max-w-[470px] opacity-90">
-              Invest in premium real estate opportunities in India with
-              confidence, wherever you are in the world. Doss Realty offers
-              transparent processes, trusted guidance, and seamless support
-              tailored for NRI investors.
+            <p
+              className="
+                mx-auto
+                mt-6
+                max-w-[470px]
+                text-[14px]
+                leading-[150%]
+                text-white
+                opacity-90
+
+                md:text-[16px]
+
+                lg:mx-0
+              "
+            >
+              Invest in premium
+              real estate
+              opportunities in
+              India with
+              confidence,
+              wherever you are
+              in the world. Doss
+              Realty offers
+              transparent
+              processes, trusted
+              guidance, and
+              seamless support
+              tailored for NRI
+              investors.
             </p>
 
-            <div className="relative mt-8 w-full max-w-[500px]">
+            {/* INPUT */}
+            <div
+              className="
+                relative
+                mx-auto
+                mt-8
+                w-full
+                max-w-[500px]
+
+                lg:mx-0
+              "
+            >
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full h-[56px] rounded-full bg-white px-6 pr-[120px] outline-none"
+                className="
+                  h-[56px]
+                  w-full
+                  rounded-full
+                  bg-white
+                  px-6
+                  pr-[120px]
+                  outline-none
+                "
               />
 
               <button
@@ -36,13 +118,13 @@ export default function Subscription() {
                   absolute
                   right-[6px]
                   top-1/2
-                  -translate-y-1/2
                   h-[44px]
-                  px-8
+                  -translate-y-1/2
+                  cursor-pointer
                   rounded-full
                   bg-[#002878]
+                  px-8
                   text-white
-                  cursor-pointer
                 "
               >
                 Subscribe
@@ -50,22 +132,35 @@ export default function Subscription() {
             </div>
           </div>
 
-          {/* Right Phone Image */}
-          <div className="hidden lg:flex items-end justify-center pr-10 self-end">
+          {/* IMAGE */}
+          <div
+            className="
+              mt-8
+              flex
+              w-full
+              items-end
+              justify-center
+
+              lg:mt-0
+              lg:pr-10
+              lg:self-end
+            "
+          >
             <Image
               src={phoneImg}
               alt="Doss Realty Mobile App"
               className="
-                w-[420px]
-                md:w-[800px]
-                h-auto
+                w-[280px]
                 object-contain
-                -translate-y-0
+
+                md:w-[360px]
+
+                lg:w-[420px]
+                lg:translate-y-0
               "
               priority
             />
           </div>
-
         </div>
       </div>
     </section>

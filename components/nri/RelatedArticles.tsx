@@ -124,8 +124,12 @@ const RelatedArticles = () => {
         <div
           className="
             mt-6
-            grid
-            gap-[20px]
+            flex
+            flex-col
+            gap-8
+
+            lg:grid
+            lg:gap-[20px]
             lg:grid-cols-[minmax(0,580px)_minmax(0,580px)]
             lg:items-start
             lg:justify-between
@@ -138,8 +142,8 @@ const RelatedArticles = () => {
           >
             <div
               className="
-                relative
-                aspect-[4/4.1]
+                relative h-[450px]
+                md:aspect-[4/4.1]
                 w-full
                 overflow-hidden
                 rounded-[10px]
@@ -216,208 +220,248 @@ const RelatedArticles = () => {
           </Link>
 
           {/* RIGHT SIDE */}
-          <div className="flex flex-col">
-            {/* TOP TWO ARTICLES */}
-            <div
-              className="
-                grid
-                gap-[20px]
-                md:grid-cols-2
-              "
-            >
-              {/* ARTICLE 1 */}
-              <Link
-                href="/blogs"
-                className="group"
-              >
-                <div
-                  className="
-                    relative
-                    aspect-[4/4.2]
-                    w-full
-                    overflow-hidden
-                    rounded-[12px]
-                    md:rounded-[10px]
-                  "
-                >
-                  <Image
-                    src={
-                      article2
-                    }
-                    alt=""
-                    fill
-                    className="
-                      object-cover
-                      transition-transform
-                      duration-700
-                      ease-out
-                      group-hover:scale-110
-                    "
-                  />
-                </div>
+          {/* RIGHT SIDE */}
+<div className="flex flex-col">
+  {/* ARTICLES */}
+  <div
+    className="
+      flex
+      flex-col
+      gap-8
 
-                <div
-                  className="
-                    max-w-[250px]
-                  "
-                  ref={(el) => {
-                    if (el)
-                      textRevealRef.current[2] =
-                        el;
-                  }}
-                >
-                  <h3
-                    className="
-                      mt-4
-                      text-[14px]
-                      font-[500]
-                      leading-[115%]
-                      tracking-[-0.6px]
-                      text-[#111111]
-                      md:text-[20px]
-                    "
-                  >
-                    Key Benefits of
-                    Investing in
-                    Chennai Real
-                    Estate for NRIs
-                  </h3>
+      md:grid
+      md:gap-[20px]
+      md:grid-cols-2
+    "
+  >
+    {/* ARTICLE 1 */}
+    <Link
+      href="/blogs"
+      className="
+        group
+        mx-auto
+        flex
+        w-[290px]
+        flex-col
+        items-center
 
-                  <p
-                    className="
-                      mt-3
-                      text-[14px]
-                      leading-[20px]
-                      text-[#717171]
-                      md:text-[16px]
-                    "
-                  >
-                    Explore why
-                    Chennai continues
-                    to attract NRI
-                    investors through
-                    strong
-                    infrastructure
-                    growth.
-                  </p>
-                </div>
-              </Link>
+        md:w-auto
+        md:items-start
+      "
+    >
+      <div
+        className="
+          relative
+          h-[295px]
+          w-[290px]
+          overflow-hidden
+          rounded-[12px]
 
-              {/* ARTICLE 2 */}
-              <Link
-                href="/blogs"
-                className="group"
-              >
-                <div
-                  className="
-                    relative
-                    aspect-[4/4.2]
-                    w-full
-                    overflow-hidden
-                    rounded-[10px]
-                    md:rounded-[10px]
-                  "
-                >
-                  <Image
-                    src={
-                      article3
-                    }
-                    alt=""
-                    fill
-                    className="
-                      object-cover
-                      object-bottom
-                      transition-transform
-                      duration-700
-                      ease-out
-                      group-hover:scale-110
-                    "
-                  />
-                </div>
+          md:aspect-[4/4.2]
+          md:h-auto
+          md:w-full
+          md:rounded-[10px]
+        "
+      >
+        <Image
+          src={article2}
+          alt=""
+          fill
+          className="
+            object-cover
+            transition-transform
+            duration-700
+            ease-out
+            group-hover:scale-110
+          "
+        />
+      </div>
 
-                <div
-                  className="
-                    max-w-[250px]
-                  "
-                  ref={(el) => {
-                    if (el)
-                      textRevealRef.current[3] =
-                        el;
-                  }}
-                >
-                  <h3
-                    className="
-                      mt-4
-                      text-[14px]
-                      font-[500]
-                      leading-[25px]
-                      tracking-[-0.6px]
-                      text-[#111111]
-                      md:text-[20px]
-                    "
-                  >
-                    Key Benefits of
-                    Investing in
-                    Chennai Real
-                    Estate for NRIs
-                  </h3>
+      <div
+        className="
+          w-[290px]
+          text-center
 
-                  <p
-                    className="
-                      mt-3
-                      text-[14px]
-                      leading-[20px]
-                      text-[#717171]
-                      md:text-[16px]
-                    "
-                  >
-                    Explore why
-                    Chennai continues
-                    to attract NRI
-                    investors through
-                    strong
-                    infrastructure
-                    growth.
-                  </p>
-                </div>
-              </Link>
-            </div>
+          md:max-w-[250px]
+          md:text-left
+        "
+        ref={(el) => {
+          if (el)
+            textRevealRef.current[2] =
+              el;
+        }}
+      >
+        <h3
+          className="text-start
+            mt-4
+            text-[14px]
+            font-[500]
+            leading-[115%]
+            tracking-[-0.6px]
+            text-[#111111]
+            md:text-[20px]
+          "
+        >
+          Key Benefits of
+          Investing in
+          Chennai Real
+          Estate for NRIs
+        </h3>
 
-            {/* BUTTON */}
-            <div
-              ref={(el) => {
-                if (el)
-                  textRevealRef.current[4] =
-                    el;
-              }}
-              className="
-                mt-10
-                flex
-                justify-end
-              "
-            >
-              <Link href="/blogs">
-                <PrimaryBtn
-                  className="font-small
-                    rounded-full
-                    bg-[#00256A]
-                    text-[16px]
-                    tracking-[-0.48px]
-                    text-white
-                    transition
-                    duration-300
-                    hover:scale-105
-                    hover:text-black
-                  "
-                >
-                  Browse all articles
-                </PrimaryBtn>
-              </Link>
-            </div>
-          </div>
+        <p
+          className="text-start
+            mt-3
+            text-[14px]
+            leading-[20px]
+            text-[#717171]
+            md:text-[16px]
+          "
+        >
+          Explore why
+          Chennai continues
+          to attract NRI
+          investors through
+          strong
+          infrastructure
+          growth.
+        </p>
+      </div>
+    </Link>
+
+    {/* ARTICLE 2 */}
+    <Link
+      href="/blogs"
+      className="
+        group
+        mx-auto
+        flex
+        w-[290px]
+        flex-col
+        items-center
+
+        md:w-auto
+        md:items-start
+      "
+    >
+      <div
+        className="
+          relative
+          h-[295px]
+          w-[290px]
+          overflow-hidden
+          rounded-[10px]
+
+          md:aspect-[4/4.2]
+          md:h-auto
+          md:w-full
+        "
+      >
+        <Image
+          src={article3}
+          alt=""
+          fill
+          className="
+            object-cover
+            object-bottom
+            transition-transform
+            duration-700
+            ease-out
+            group-hover:scale-110
+          "
+        />
+      </div>
+
+      <div
+        className="
+          w-[290px]
+          text-center
+
+          md:max-w-[250px]
+          md:text-left
+        "
+        ref={(el) => {
+          if (el)
+            textRevealRef.current[3] =
+              el;
+        }}
+      >
+        <h3
+          className="w-[290px] text-start
+            mt-4
+            text-[14px] leading-[20px]
+            font-[500]
+            md:leading-[25px]
+            tracking-[-0.6px]
+            text-[#111111]
+            md:text-[20px]
+          "
+        >
+          Key Benefits of
+          Investing in
+          Chennai Real
+          Estate for NRIs
+        </h3>
+
+        <p
+          className="text-start
+            mt-3
+            text-[14px]
+            leading-[20px]
+            text-[#717171]
+            md:text-[16px]
+          "
+        >
+          Explore why
+          Chennai continues
+          to attract NRI
+          investors through
+          strong
+          infrastructure
+          growth.
+        </p>
+      </div>
+    </Link>
+  </div>
+
+  {/* BUTTON */}
+  <div
+    ref={(el) => {
+      if (el)
+        textRevealRef.current[4] =
+          el;
+    }}
+    className="
+      mt-10
+      flex
+      justify-center
+
+      lg:justify-end
+    "
+  >
+    <Link href="/blogs">
+      <PrimaryBtn
+        className="
+          font-small
+          rounded-full
+          bg-[#00256A]
+          text-[16px]
+          tracking-[-0.48px]
+          text-white
+          transition
+          duration-300
+          hover:scale-105
+          hover:text-black
+        "
+      >
+        Browse all articles
+      </PrimaryBtn>
+    </Link>
+  </div>
+</div>
         </div>
       </div>
     </section>
   );
 };
+
 export default RelatedArticles;

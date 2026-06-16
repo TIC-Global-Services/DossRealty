@@ -91,21 +91,21 @@ const FAQ = ({
                         flex
                         w-full
                         items-center
-                        justify-between
-                        rounded-[24px]
+                        justify-between rounded-full
+                        md:rounded-[24px]
                         border
                         border-[#E2E2E2]
-                        bg-white
-                        px-4
-                        py-4
-                        text-left
+                        bg-white px-2 py-2
+                        md:px-4
+                        md:py-4 
+                        md:text-left
                         transition-all
                         duration-300
                       "
                     >
                       <span
-                        className="
-                          text-[18px]
+                        className="text-[13px]
+                          md:text-[18px]
                           font-medium
                           text-[#222]
                         "
@@ -155,8 +155,8 @@ const FAQ = ({
                         }}
                       >
                         <p
-                          className="
-                            text-[18px]
+                          className="text-[13px]
+                            md:text-[18px]
                             font-medium
                             leading-[150%]
                             text-[#111]
@@ -186,12 +186,12 @@ const FAQ = ({
             "
           >
             <h2
-              className="
-                w-[14ch]
+              className="tracking-normal
+                md:w-[14ch]
                 font-heading
                 text-[24px]
-                leading-[38px]
-                tracking-[-0.05em]
+                leading-[50px]
+                md:tracking-[-0.05em]
                 text-[#00256A]
                 md:text-[48px]
                 md:leading-[50px]
@@ -203,9 +203,9 @@ const FAQ = ({
             <p
               className="
                 mt-5
-                max-w-[420px]
-                text-[16px]
-                leading-[20px]
+                max-w-[420px] text-[13px] leading-[20px] tracking-[-0.48px]
+                md:text-[16px]
+                md:leading-[20px]
                 text-[#717171]
               "
             >
@@ -216,13 +216,13 @@ const FAQ = ({
               onClick={
                 buttonAction
               }
-              className="
+              className="w-[140px] h-[40px] md:w-[180px] md:h-[44px]
                 mt-8
                 rounded-full
                 border
                 border-[rgba(199,168,94,1)]
                 bg-[#00256A]
-                text-[16px]
+                md:text-[16px] text-[13px]
                 font-[700]
                 text-white
                 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)]

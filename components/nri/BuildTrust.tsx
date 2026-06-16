@@ -1,6 +1,10 @@
 "use client";
 
-import {useState,useLayoutEffect,useRef,} from "react";
+import {
+  useState,
+  useLayoutEffect,
+  useRef,
+} from "react";
 import Image from "next/image";
 import {
   ChevronLeft,
@@ -37,8 +41,22 @@ const contentSlides = [
   },
 ];
 
+const mobileImages = [
+  {
+    image: trust1,
+    text: "• Verified properties with transparent processes and trusted end-to-end assistance.",
+  },
+  {
+    image: trust2,
+    text: "• Seamless remote investment support designed for secure and hassle-free ownership.",
+  },
+];
+
 const BuildTrust = () => {
   const [activeSlide, setActiveSlide] =
+    useState(0);
+
+  const [mobileImageIndex, setMobileImageIndex] =
     useState(0);
 
   const sectionRef =
@@ -58,8 +76,6 @@ const BuildTrust = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-
-      /* TEXT REVEAL */
       gsap.from(
         [
           headingRef.current,
@@ -79,7 +95,6 @@ const BuildTrust = () => {
         }
       );
 
-      /* IMAGE REVEAL */
       gsap.from(
         [
           image1Ref.current,
@@ -101,7 +116,8 @@ const BuildTrust = () => {
       );
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () =>
+      ctx.revert();
   }, []);
 
   const nextSlide = () => {
@@ -121,6 +137,23 @@ const BuildTrust = () => {
     );
   };
 
+  const nextImage = () => {
+    setMobileImageIndex(
+      (prev) =>
+        (prev + 1) %
+        mobileImages.length
+    );
+  };
+
+  const prevImage = () => {
+    setMobileImageIndex(
+      (prev) =>
+        prev === 0
+          ? mobileImages.length - 1
+          : prev - 1
+    );
+  };
+
   return (
     <section className="py-14 md:py-16">
       <div
@@ -134,7 +167,6 @@ const BuildTrust = () => {
         "
       >
         <div className="grid gap-12 lg:grid-cols-[30%_70%]">
-
           {/* LEFT CONTENT */}
           <div className="flex flex-col justify-center">
             <div key={activeSlide}>
@@ -143,28 +175,35 @@ const BuildTrust = () => {
                 className="
                   font-heading
                   text-[24px]
-                  leading-[50px]
-                  tracking-[-1.44px]
+                  leading-[36px]
+                  md:tracking-[-1.44px]
                   text-[#111111]
                   md:text-[48px]
+                  md:leading-[50px]
                 "
               >
-                {
-                  contentSlides[
-                    activeSlide
-                  ].heading
-                }
+               <span className="md:hidden"> Building Trust Through
+                <br className="md:hidden" />
+                Design</span>
+
+                <span className="hidden md:inline">
+                  {
+                    contentSlides[
+                      activeSlide
+                    ].heading
+                  }
+                </span>
               </h2>
 
               <p
                 ref={descriptionRef}
                 className="
                   mt-6
-                  w-[38ch]
-                  text-[15px]
+                  text-[16px]
                   leading-[24px]
                   tracking-[-0.48px]
                   text-[#6B6B6B]
+                  md:w-[38ch]
                   md:text-[16px]
                 "
               >
@@ -176,144 +215,140 @@ const BuildTrust = () => {
               </p>
             </div>
 
-            {/* NAVIGATION */}
-            <div className="mt-6 flex gap-4">
-              <button
-                onClick={prevSlide}
+            {/* MOBILE IMAGE */}
+            <div className="mt-8 lg:hidden">
+              <div
                 className="
+                relative
+                h-[520px]
+                overflow-hidden
+                rounded-[10px]
+              "
+              >
+                <Image
+                  src={
+                    mobileImages[
+                      mobileImageIndex
+                    ].image
+                  }
+                  alt="Trust Image"
+                  fill
+                  className="object-cover"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10" />
+
+                <div className="absolute left-0 top-0 p-5">
+                  <p className="text-[16px] leading-[20px] tracking-[-0.48px] text-white">
+                    {mobileImageIndex ===
+                      0 ? (
+                      <>
+                        • Verified properties
+                        with transparent processes
+                        <br />
+                        <span className="pl-3">
+                          and trusted
+                          end-to-end
+                          assistance.
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        • Seamless remote
+                        investment support designed
+                        <br />
+                        <span className="pl-3">
+                          for secure
+                          and hassle-free
+                          ownership.
+                        </span>
+                      </>
+                    )}
+                  </p>
+                </div>
+              </div>
+
+              {/* BUTTONS BELOW */}
+              <div className="mt-8 flex justify-center gap-4 md:mt-5">
+                <button
+                  onClick={prevImage}
+                  className="
                   flex
                   h-12
-                  w-12 cursor-pointer
+                  w-12
                   items-center
                   justify-center
                   rounded-full
                   bg-[#00256A]
                   text-white
-                  transition
-                  duration-300
-                  hover:scale-105
                 "
+                >
+                  <ChevronLeft
+                    size={18}
+                  />
+                </button>
+
+                <button
+                  onClick={nextImage}
+                  className="
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-[#00256A]
+                  text-white
+                "
+                >
+                  <ChevronRight
+                    size={18}
+                  />
+                </button>
+              </div>
+            </div>
+
+            {/* DESKTOP NAV */}
+            <div className="mt-6 hidden gap-4 lg:flex">
+              <button
+                onClick={prevSlide}
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-[#00256A] text-white"
               >
-                <ChevronLeft
-                  size={18}
-                />
+                <ChevronLeft size={18} />
               </button>
 
               <button
                 onClick={nextSlide}
-                className="
-                  flex
-                  h-12
-                  w-12 cursor-pointer
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-[#00256A]
-                  text-white
-                  transition
-                  duration-300
-                  hover:scale-105
-                "
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-[#00256A] text-white"
               >
-                <ChevronRight
-                  size={18}
-                />
+                <ChevronRight size={18} />
               </button>
             </div>
           </div>
 
-          {/* RIGHT IMAGES */}
-          <div className="grid gap-0 md:grid-cols-2">
-
-            {/* IMAGE 1 */}
+          {/* DESKTOP IMAGES */}
+          <div className="hidden gap-0 md:grid md:grid-cols-2">
             <div
               ref={image1Ref}
-              className="group
-                relative
-                h-[600px]
-                w-[370px]
-                overflow-hidden
-                rounded-[10px]
-              "
+              className="group relative h-[600px] w-[370px] overflow-hidden rounded-[10px]"
             >
               <Image
                 src={trust1}
                 alt="Trust Image"
-                className="
-                  h-full
-                  w-full
-                  scale-[1]
-                  object-cover
-                  transition-transform
-                  duration-300
-                  ease-out
-                  group-hover:scale-[1.15]
-                "
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.15]"
               />
-
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10" />
-
-              <div className="absolute left-0 top-0 p-7">
-                <p
-                  className="
-                    max-w-[40ch]
-                    text-[16px]
-                    font-[500]
-                    leading-[20px]
-                    tracking-[-0.48px]
-                    text-white
-                  "
-                >
-                  • Verified properties with transparent processes <br /> <span className="pl-3">and trusted end-to-end assistance.</span>
-                </p>
-              </div>
             </div>
 
-            {/* IMAGE 2 */}
             <div
               ref={image2Ref}
-              className="group
-                relative
-                h-[600px]
-                w-[370px]
-                overflow-hidden
-                rounded-[10px]
-              "
+              className="group relative h-[600px] w-[370px] overflow-hidden rounded-[10px]"
             >
               <Image
                 src={trust2}
                 alt="Trust Image"
-                className="
-                h-full
-                w-full
-                scale-[1]
-                object-cover
-                transition-transform
-                duration-300
-                ease-out
-                group-hover:scale-[1.15]
-              "
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.15]"
               />
-
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10" />
-
-              <div className="absolute left-0 top-0 p-6">
-                <p
-                  className="
-                    max-w-[50ch]
-                    text-[16px]
-                    font-[500]
-                    leading-[20px]
-                    tracking-[-0.48px]
-                    text-white
-                  "
-                >
-                  • Seamless remote investment support
-                  designed <br />  <span className="pl-3">for secure and hassle-free ownership.</span>
-                </p>
-              </div>
             </div>
-
           </div>
         </div>
       </div>

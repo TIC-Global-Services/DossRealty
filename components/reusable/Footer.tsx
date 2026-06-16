@@ -182,11 +182,7 @@ const Footer = () => {
 
           {/* Menu */}
           <div>
-            <h3 className="text-left font-heading text-[24px]">
-              Menu
-            </h3>
-
-            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-3">
+            <div className="mt-5 flex flex-wrap gap-x-10 gap-y-3">
 
               {footerLinks.map((link) => {
                 const isActive =
@@ -218,14 +214,14 @@ const Footer = () => {
 
           {/* About */}
           <div className="mt-10">
-            <h3 className="font-heading text-[26px] leading-none">
+            <h3 className="font-heading text-[16px] md:text-[26px] leading-none">
               About{" "}
               <span className="text-[#B59A52]">
                 Doss Realty
               </span>
             </h3>
 
-            <p className="mt-4 text-sm leading-[1.7] text-[#B8B8B8]">
+            <p className="mt-4 text-[13px] leading-[16px] md:text-sm md:leading-[1.7] text-[#B8B8B8]">
               We Craft Functional Luxury,
               Focusing On Intentional Design &
               Bringing It To Life With Ethical
@@ -236,16 +232,16 @@ const Footer = () => {
 
           {/* Heading */}
           <div className="mt-14 text-center">
-            <p className="font-heading text-[24px]">
+            <p className="font-small text-[16px] leading-[50px] md:text-[24px]">
               Build Beyond
             </p>
 
             <h2
               className="
-                font-heading
-                text-[62px]
-                leading-[0.95]
-                tracking-[-0.05em]
+                font-small text-[48px] leading-[50px] tracking-[-1.44px]
+                md:text-[62px]
+                md:leading-[0.95]
+                md:tracking-[-0.05em]
               "
             >
               Ordinary
@@ -255,7 +251,7 @@ const Footer = () => {
           {/* Bottom */}
           <div className="mt-10 flex justify-between gap-4">
 
-            <p className="max-w-[140px] text-[13px] leading-[1.6] text-[#AFAFAF]">
+            <p className="max-w-[140px] text-[13px] leading-[24px] text-[#AFAFAF]">
               Copyright © 2026{" "}
               <span className="text-[#B59A52]">
                 Doss Realty
@@ -263,7 +259,7 @@ const Footer = () => {
               All Rights Reserved.
             </p>
 
-            <p className="max-w-[150px] text-right text-[13px] leading-[1.6] text-[#AFAFAF]">
+            <p className="max-w-[150px] text-right text-[13px] leading-[24px] text-[#AFAFAF]">
               Designed & Developed by{" "}
               <span className="text-[#B59A52]">
                 the internet company
@@ -272,7 +268,7 @@ const Footer = () => {
           </div>
 
           {/* Social */}
-          <div className="mt-8 flex items-center gap-5">
+          <div className="mt-8 hidden md:block items-center gap-5">
 
             <Link href="#">
               <FaWhatsapp

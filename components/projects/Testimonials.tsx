@@ -85,9 +85,9 @@ const Testimonials = () => {
           <h2
             className="
               font-heading
-              text-[32px]
+              text-[30px] leading-[36px]
               md:text-[48px]
-              leading-[54px]
+              md:leading-[54px]
               tracking-[-1.44px]
               text-[#00256A]
             "
@@ -96,13 +96,13 @@ const Testimonials = () => {
           </h2>
 
           <p
-            className="
+            className="mt-5 max-w-[350px]
               mx-auto
-              mt-2
-              max-w-[700px]
-              text-[15px]
+              md:mt-2
+              md:max-w-[700px] 
+              text-[13px] leading-[16px]
               md:text-[16px]
-              leading-[20px] tracking-[-0.48px]
+              md:leading-[20px] tracking-[-0.48px]
               text-[#717171]
             "
           >
@@ -154,10 +154,10 @@ const Testimonials = () => {
                   }) => (
                     <div
                       className={`
-                        rounded-[24px]
+                        rounded-[10px]
                         bg-white
                         p-6
-                        shadow-[0_4px_20px_rgba(0,0,0,0.04)]
+                        shadow-[0_4px_20px_rgba(0,0,0,0.10)]
                         transition-all
                         duration-500
                         h-full
@@ -172,7 +172,7 @@ const Testimonials = () => {
                       <div className="flex items-center gap-4">
 
                         {/* IMAGE */}
-                        <div className="relative h-[100px] w-[100px] shrink-0 overflow-hidden rounded-full">
+                        <div className="relative w-[50px] h-[50px] md:h-[100px] md:w-[100px] shrink-0 overflow-hidden rounded-full">
                           <Image
                             src={
                               item.image
@@ -187,20 +187,20 @@ const Testimonials = () => {
 
                         {/* INFO */}
                         <div>
-                          <h3 className="text-[14px] md:text-[22px] md:leading-[24px] font-small tracking-[-2%] text-[#222]">
+                          <h3 className="text-[16px] md:text-[22px] leading-[24px] font-small tracking-[-2%] text-[#222]">
                             {
                               item.name
                             }
                           </h3>
 
-                          <p className="text-[13px] md:text-[14px] md:leading-[16px] tracking-[-3%] text-[#000000]">
+                          <p className="text-[13px] md:text-[14px] leading-[16px] tracking-[-3%] text-[#000000]">
                             {
                               item.country
                             }
                           </p>
 
                           {/* STARS */}
-                          <div className="mt-2.5 flex gap-1 text-[#D0A93E]">
+                          <div className="mt-1 md:mt-2.5 flex gap-1 text-[#D0A93E]">
                             {[
                               ...Array(
                                 5
@@ -226,7 +226,7 @@ const Testimonials = () => {
                       {/* REVIEW */}
                       <p
                         className="
-                          mt-6
+                          mt-6 text-[13px]
                           md:text-[14px]
                           leading-[16px]
                           text-[#606060]

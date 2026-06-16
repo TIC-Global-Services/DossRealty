@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image, {StaticImageData,} from "next/image";
-import { motion,} from "framer-motion";
+import Image, {
+  StaticImageData,
+} from "next/image";
+import { motion } from "framer-motion";
 
 import image1 from "@/assets/about/loopImg.jpg";
 import image2 from "@/assets/about/loopImg2.jpg";
@@ -19,20 +21,17 @@ const loopItems: LoopItem[] = [
   {
     image: image1,
     title: "Private villa pool",
-    description:
-      "Private Spaces",
+    description: "Private Spaces",
   },
   {
     image: image2,
-    title:
-      "Grand luxury pool estate",
+    title: "Grand luxury pool estate",
     description:
       "Where Grandeur Finds Its Address",
   },
   {
     image: image3,
-    title:
-      "Coastal pool + hill view",
+    title: "Coastal pool + hill view",
     description:
       "Luxury Framed by Nature",
   },
@@ -48,12 +47,40 @@ const ImageLoop = () => {
   const [activeGroup, setActiveGroup] =
     useState(0);
 
+  const [activeMobileIndex, setActiveMobileIndex] =
+    useState(0);
+
+  const [isMobile, setIsMobile] =
+    useState(false);
+
   const duplicatedItems = [
     ...loopItems,
     ...loopItems,
   ];
 
-  // SWITCH ACTIVE IMAGES
+  // Detect screen size
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(
+        window.innerWidth < 768
+      );
+    };
+
+    checkScreen();
+
+    window.addEventListener(
+      "resize",
+      checkScreen
+    );
+
+    return () =>
+      window.removeEventListener(
+        "resize",
+        checkScreen
+      );
+  }, []);
+
+  // DESKTOP animation
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveGroup((prev) =>
@@ -65,10 +92,22 @@ const ImageLoop = () => {
       clearInterval(interval);
   }, []);
 
-  return (
-    <section className="overflow-hidden py-10 md:py-20">
-      <div className="relative overflow-hidden">
+  // MOBILE animation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveMobileIndex(
+        (prev) =>
+          (prev + 1) % loopItems.length
+      );
+    }, 2500);
 
+    return () =>
+      clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="overflow-hidden py-14 md:py-20">
+      <div className="relative overflow-hidden">
         {/* LOOP TRACK */}
         <motion.div
           animate={{
@@ -82,64 +121,93 @@ const ImageLoop = () => {
           className="
             flex
             items-center
-            gap-8
+            gap-4
+            md:gap-8
             w-max
+            px-4 md:px-0
           "
         >
           {duplicatedItems.map(
             (item, index) => {
               const originalIndex =
-                index % 4;
+                index % loopItems.length;
 
-              // 1 & 3
+              // DESKTOP GROUPING
               const firstGroup =
                 originalIndex === 0 ||
                 originalIndex === 2;
 
-              // 2 & 4
               const secondGroup =
                 originalIndex === 1 ||
                 originalIndex === 3;
 
-              const isActive =
+              const desktopActive =
                 activeGroup === 0
                   ? firstGroup
                   : secondGroup;
+
+              // MOBILE ACTIVE IMAGE
+              const mobileActive =
+                originalIndex ===
+                activeMobileIndex;
+
+              // FINAL ACTIVE STATE
+              const isActive =
+                isMobile
+                  ? mobileActive
+                  : desktopActive;
+
+              // HEIGHTS
+              const activeHeight =
+                isMobile ? 240 : 360;
+
+              const inactiveHeight =
+                isMobile ? 160 : 237.59;
 
               return (
                 <div
                   key={index}
                   className="
-                  w-[360px]
-                  shrink-0
-                "
+                    w-[240px]
+                    sm:w-[280px]
+                    md:w-[360px]
+                    shrink-0
+                  "
                 >
-                  {/* FIXED IMAGE AREA */}
+                  {/* IMAGE AREA */}
                   <div
                     className="
-                    relative
-                    h-[360px]
-                    w-[360px]
-                  "
+                      relative
+                      h-[240px]
+                      w-[240px]
+
+                      sm:h-[280px]
+                      sm:w-[280px]
+
+                      md:h-[360px]
+                      md:w-[360px]
+                    "
                   >
                     <motion.div
                       animate={{
-                        height: isActive
-                          ? 360
-                          : 237.59,
+                        height:
+                          isActive
+                            ? activeHeight
+                            : inactiveHeight,
                       }}
                       transition={{
                         duration: 1,
-                        ease: "easeInOut",
+                        ease:
+                          "easeInOut",
                       }}
                       className="
-                      absolute
-                      bottom-0
-                      left-0
-                      w-full
-                      overflow-hidden
-                      rounded-[10px]
-                    "
+                        absolute
+                        bottom-0
+                        left-0
+                        w-full
+                        overflow-hidden
+                        rounded-[10px]
+                      "
                     >
                       <Image
                         src={item.image}
@@ -151,24 +219,26 @@ const ImageLoop = () => {
                   </div>
 
                   {/* CONTENT */}
-                  <div className="mt-5">
+                  <div className="mt-4 md:mt-5">
                     <h3
                       className="
-                      uppercase
-                      text-[18px]
-                      text-[#666]
-                    "
+                        uppercase
+                        text-[14px]
+                        md:text-[18px]
+                        text-[#666]
+                      "
                     >
                       {item.title}
                     </h3>
 
                     <p
                       className="
-                      mt-2
-                      text-[18px]
-                      leading-[140%]
-                      text-[#777]
-                    "
+                        mt-2
+                        text-[15px]
+                        md:text-[18px]
+                        leading-[140%]
+                        text-[#777]
+                      "
                     >
                       {item.description}
                     </p>

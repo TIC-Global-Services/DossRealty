@@ -43,10 +43,8 @@ const Hero = () => {
 
   return (
     <section className="relative">
-
       {/* HERO */}
       <div className="relative h-[90vh] min-h-[700px] overflow-visible">
-
         {/* Background Image */}
         <Image
           src={heroBg}
@@ -74,10 +72,10 @@ const Hero = () => {
           <div
             ref={cardRef}
             className="
-              rounded-[32px]
+              rounded-[10px]
               bg-white
               shadow-[0_20px_60px_rgba(0,0,0,0.08)]
-              px-6
+              px-8
               py-8
               md:px-10
               md:py-10
@@ -86,66 +84,79 @@ const Hero = () => {
               will-change-transform
             "
           >
-            <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
-
-              {/* LEFT */}
+            <div
+              className="
+                flex
+                flex-col
+                gap-6
+                md:flex-row
+                md:items-center
+              "
+            >
+              {/* TOP / LEFT */}
               <div className="lg:w-[50%]">
                 <h2
                   className="
-                    px-5
                     font-heading
-                    text-[32px]
-                    leading-[38px]
-                    tracking-[-0.04em]
+                    text-[30px]
+                    leading-[33px] tracking-normal
+                    md:tracking-[-0.04em]
                     text-[#00256A]
                     md:text-[70px]
                     md:leading-[65px]
+                    md:px-5
+                    text-left
                   "
                 >
-                  Spaces Built
+                <span className="hidden md:block">Spaces Built
                   <br />
                   for Modern
                   <br />
-                  Living
+                  Living</span> 
+                  <span className="md:hidden block">Spaces Built for Modern Living</span> 
                 </h2>
               </div>
 
-              {/* CENTER LINE */}
+              {/* DESKTOP CENTER LINE ONLY */}
               <div
-                className="
-                  hidden
-                  h-[180px]
-                  w-[1px]
+                className="w-[350px] h-[1px]
+                  md:h-[180px]
+                  md:w-[1px]
                   bg-[#E2E2E2]
-                  lg:block
                 "
               />
 
-              {/* RIGHT */}
+              {/* BOTTOM / RIGHT */}
               <div className="lg:w-[50%]">
                 <p
-                  className="
-                    ml-8
-                    max-w-[420px]
-                    px-2
-                    text-[15px]
+                  className="max-w-[330px]
+                    text-[16px] tracking-normal
                     leading-[20px]
                     text-[#6c7072]
                     md:text-[18px]
+                    md:ml-8
+                    md:max-w-[420px]
+                    md:px-2
+                    text-left
+                    md:leading-[20px]
                   "
                 >
-                  Each Doss Realty project reflects our
-                  commitment to quality, thoughtful
-                  planning, and creating homes that
-                  offer comfort, value, and lasting
-                  distinction. From elegant residences
-                  to inspiring developments, our
-                  projects are created to deliver
-                  exceptional living experiences for
-                  today and generations ahead.
+                  Each Doss Realty project
+                  reflects our commitment
+                  to quality, thoughtful
+                  planning, and creating
+                  homes that offer comfort,
+                  value, and lasting
+                  distinction. From elegant
+                  residences to inspiring
+                  developments, our
+                  projects are created to
+                  deliver exceptional
+                  living experiences for
+                  today and generations
+                  ahead.
                 </p>
               </div>
-
             </div>
           </div>
         </div>

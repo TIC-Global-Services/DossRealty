@@ -14,7 +14,7 @@ const Hero = () => {
         alt="Hero Background"
         fill
         priority
-        className="object-cover object-[80%_30%]"
+        className="object-cover object-[20%] md:object-[80%_30%]"
       />
 
       {/* Overlay */}
@@ -44,7 +44,7 @@ const Hero = () => {
             className="capitalize
               mx-auto
               mt-2
-              text-[15px]
+              text-[13px] tracking-normal
               md:text-[18px]
               leading-[20px]
               text-white/80

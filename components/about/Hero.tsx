@@ -98,24 +98,31 @@ const Hero = () => {
             <h1
               className="
                 text-white
-                text-[30px]
-                leading-[1.1]
+                text-[36px]
+                leading-[40px]
+                md:leading-[1.1]
                 md:text-[60px]
                 uppercase
                 font-heading
                 font-[300]
               "
             >
-              <div className="overflow-hidden">
+              <div className="hidden md:block overflow-hidden">
                 <span className="hero-title-line block">
                   Elevating Modern
                 </span>
               </div>
 
-              <div className="overflow-hidden">
+              <div className="hidden md:block overflow-hidden">
                 <span className="hero-title-line block">
                   Living with Purpose
                 </span>
+              </div>
+
+              <div className="md:hidden block">
+                <span>Elevating</span> <br/>
+                <span>Modern Living</span> <br/>
+                <span>with Purpose</span>
               </div>
             </h1>
 
@@ -123,30 +130,19 @@ const Hero = () => {
             <p
               className="
                 hero-para
-                mt-6
-                max-w-[650px]
-                text-[16px]
+                mt-6 w-[40ch]
+                md:max-w-[650px]
+                text-[13px]
+                leading-[16px]
                 md:text-[18px]
-                leading-[21px]
+                md:leading-[21px]
                 text-white/90
               "
             >
-              DOSS Realty is driven by a vision
-              to shape enduring legacies through
-              transformative real estate. Built
-              on over three decades of
-              experience, we bring together
-              integrity, strategic vision, and
-              disciplined execution to deliver
-              developments of lasting
-              significance. Guided by a
-              commitment to craftsmanship,
-              distinctive design, and
-              uncompromising quality, we create
-              communities that enrich lives,
-              preserve wealth, and stand as
-              enduring expressions of our pursuit
-              of excellence.
+              DOSS Realty is driven by a vision to shape enduring legacies through transformative real estate. Built on over three decades of
+              experience, we bring together integrity, strategic vision, and disciplined execution to deliver developments of lasting
+              significance. Guided by a commitment to craftsmanship, distinctive design, and uncompromising quality, we create
+              communities that enrich lives, preserve wealth, and stand as enduring expressions of our pursuit of excellence.
             </p>
           </div>
         </div>
