@@ -42,6 +42,7 @@ export default function Subscription() {
                   rounded-full
                   bg-[#002878]
                   text-white
+                  cursor-pointer
                 "
               >
                 Subscribe

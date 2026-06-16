@@ -398,7 +398,7 @@ const RelatedArticles = () => {
             >
               <Link href="/blogs">
                 <PrimaryBtn
-                  className="
+                  className="font-small
                     rounded-full
                     bg-[#00256A]
                     text-[16px]
@@ -407,6 +407,7 @@ const RelatedArticles = () => {
                     transition
                     duration-300
                     hover:scale-105
+                    hover:text-black
                   "
                 >
                   Browse all articles

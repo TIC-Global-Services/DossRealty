@@ -203,6 +203,7 @@ export default function OurProjects() {
                       shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]
                       transition duration-300
                       hover:bg-white/20
+                      cursor-pointer
                     "
                     >
                       Plots

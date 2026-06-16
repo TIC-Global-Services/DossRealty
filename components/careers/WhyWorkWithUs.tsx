@@ -1,80 +1,133 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+import gsap from "gsap";
+import {
+  ScrollTrigger,
+} from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(
+  ScrollTrigger
+);
 
 const items = [
   {
-    title: "THOUGHTFUL DESIGN APPROACH",
+    title:
+      "THOUGHTFUL DESIGN APPROACH",
     description:
       "We create spaces that blend functionality with refined aesthetics, ensuring every detail contributes to a seamless living experience.",
   },
   {
-    title: "PRIME LOCATIONS",
+    title:
+      "PRIME LOCATIONS",
     description:
       "Our projects are strategically positioned to offer excellent connectivity, convenience, and long-term investment potential.",
   },
   {
-    title: "QUALITY THAT ENDURES",
+    title:
+      "QUALITY THAT ENDURES",
     description:
       "From planning to execution, we focus on superior construction standards and attention to detail that stand the test of time.",
   },
   {
-    title: "TRUST & TRANSPARENCY",
+    title:
+      "TRUST & TRANSPARENCY",
     description:
       "We build lasting relationships through integrity, clear communication, and a customer-first approach at every stage.",
   },
   {
-    title: "MODERN LIVING EXPERIENCES",
+    title:
+      "MODERN LIVING EXPERIENCES",
     description:
       "Our developments are designed to complement contemporary lifestyles with comfort, elegance, and purposeful spaces.",
   },
 ];
 
+const words = [
+  "Builders",
+  "Researchers",
+  "Risk Takers",
+  "Historians",
+  "Designers",
+  "Innovators",
+  "Strategists",
+  "Curious"
+];
+
 export default function WhyWorkWithUs() {
   const sectionRef =
-    useRef<HTMLDivElement>(null);
+    useRef<HTMLDivElement>(
+      null
+    );
 
+  const [
+    currentWord,
+    setCurrentWord,
+  ] = useState(0);
+
+  // Auto text change
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Heading reveal
-      gsap.from(
-        ".reveal-heading",
-        {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger:
-              sectionRef.current,
-            start:
-              "top 80%",
-          },
-        }
-      );
+    const interval =
+      setInterval(() => {
+        setCurrentWord(
+          (prev) =>
+            (prev + 1) %
+            words.length
+        );
+      }, 1000);
 
-      // Stagger items reveal
-      gsap.from(
-        ".reveal-item",
-        {
-          y: 50,
-          opacity: 0,
-          duration: 0.9,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger:
-              ".items-wrapper",
-            start:
-              "top 85%",
-          },
-        }
+    return () =>
+      clearInterval(
+        interval
       );
-    }, sectionRef);
+  }, []);
+
+  // GSAP animation
+  useEffect(() => {
+    const ctx =
+      gsap.context(() => {
+        // Heading reveal
+        gsap.from(
+          ".reveal-heading",
+          {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease:
+              "power3.out",
+            scrollTrigger: {
+              trigger:
+                sectionRef.current,
+              start:
+                "top 80%",
+            },
+          }
+        );
+
+        // Stagger items reveal
+        gsap.from(
+          ".reveal-item",
+          {
+            y: 50,
+            opacity: 0,
+            duration: 0.9,
+            stagger: 0.15,
+            ease:
+              "power3.out",
+            scrollTrigger: {
+              trigger:
+                ".items-wrapper",
+              start:
+                "top 85%",
+            },
+          }
+        );
+      }, sectionRef);
 
     return () =>
       ctx.revert();
@@ -127,7 +180,7 @@ export default function WhyWorkWithUs() {
           />
         </div>
 
-        {/* Intro */}
+        {/* Auto Change Title */}
         <h2
           className="
             reveal-heading
@@ -143,7 +196,25 @@ export default function WhyWorkWithUs() {
             md:text-[30px]
           "
         >
-          We Are: Builders
+          We Are:{" "}
+          <span
+            key={
+              currentWord
+            }
+            className="
+              inline-block
+              text-[#39384C]
+              animate-pulse
+              transition-all
+              duration-500
+            "
+          >
+            {
+              words[
+                currentWord
+              ]
+            }
+          </span>
         </h2>
 
         {/* Items */}
@@ -177,7 +248,9 @@ export default function WhyWorkWithUs() {
                     md:leading-[24px]
                   "
                 >
-                  {item.title}
+                  {
+                    item.title
+                  }
                 </h3>
 
                 <p
@@ -189,7 +262,9 @@ export default function WhyWorkWithUs() {
                     md:leading-[18px]
                   "
                 >
-                  {item.description}
+                  {
+                    item.description
+                  }
                 </p>
               </div>
             )

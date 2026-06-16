@@ -10,15 +10,11 @@ type FAQItem = {
 
 type AccordionSectionProps = {
   faqData: FAQItem[];
-
   heading: React.ReactNode;
   description: string;
-
   buttonText?: string;
   buttonAction?: () => void;
-
   defaultOpenIndex?: number;
-
   bgColor?: string;
   answerBgColor?: string;
 };
@@ -55,26 +51,29 @@ const FAQ = ({
           mx-auto
           rounded-[40px]
           px-5
+          py-10
           md:px-14
           md:py-20
         "
         style={{
-          backgroundColor: bgColor,
+          backgroundColor:
+            bgColor,
         }}
       >
+        {/* Wrapper */}
         <div
           className="
-          grid
-          gap-14
-          md:mx-20
-          lg:grid-cols-[50%_50%]
-          lg:items-start
-        "
+            relative
+            md:mx-20
+          "
         >
           {/* LEFT FAQ */}
-          <div className="space-y-4">
+          <div className="space-y-4 md:w-[50%]">
             {faqData.map(
-              (item, index) => {
+              (
+                item,
+                index
+              ) => {
                 const isOpen =
                   activeIndex ===
                   index;
@@ -137,9 +136,10 @@ const FAQ = ({
                         transition-all
                         duration-500
                         ease-in-out
-                        ${isOpen
-                          ? "max-h-[300px] mt-3"
-                          : "max-h-0"
+                        ${
+                          isOpen
+                            ? "max-h-[300px] mt-3"
+                            : "max-h-0"
                         }
                       `}
                     >
@@ -177,48 +177,59 @@ const FAQ = ({
           {/* RIGHT CONTENT */}
           <div
             className="
-            lg:self-center
-            lg:ml-8
-          "
+              mt-14
+              md:absolute
+              md:right-0
+              md:top-[80px]
+              md:mt-0
+              md:w-[42%]
+            "
           >
             <h2
-              className="w-[14ch]
-              font-heading
-              text-[24px]
-              md:text-[48px]
-              leading-[50px]
-              tracking-[-0.05em]
-              text-[#00256A]
-            "
+              className="
+                w-[14ch]
+                font-heading
+                text-[24px]
+                leading-[38px]
+                tracking-[-0.05em]
+                text-[#00256A]
+                md:text-[48px]
+                md:leading-[50px]
+              "
             >
               {heading}
             </h2>
 
             <p
               className="
-              mt-5
-              max-w-[420px]
-              text-[16px]
-              leading-[20px]
-              text-[#717171ff]
-            "
+                mt-5
+                max-w-[420px]
+                text-[16px]
+                leading-[20px]
+                text-[#717171]
+              "
             >
               {description}
             </p>
 
             <PrimaryBtn
-              onClick={buttonAction}
-              className="text-[16px] font-[700] hover:text-black
+              onClick={
+                buttonAction
+              }
+              className="
                 mt-8
                 rounded-full
                 border
                 border-[rgba(199,168,94,1)]
                 bg-[#00256A]
+                text-[16px]
+                font-[700]
                 text-white
                 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)]
                 transition-all
                 duration-300
                 hover:scale-105
+                hover:text-black
               "
             >
               {buttonText}

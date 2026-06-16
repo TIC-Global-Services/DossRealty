@@ -162,6 +162,7 @@ export default function BuiltForLiving() {
             transition
             duration-300
             hover:scale-105
+            cursor-pointer
           "
         >
           Apply now
