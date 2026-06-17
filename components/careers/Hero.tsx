@@ -85,7 +85,7 @@ const Hero = () => {
               text-white
               text-[24px]
               md:text-[48px]
-              md:leading-[50px]
+              leading-[50px]
               md:tracking-[-1.44px]
             "
           >
@@ -99,7 +99,7 @@ const Hero = () => {
               mx-auto
               mt-4
               max-w-[780px]
-              text-[15px]
+              text-[13px]
               leading-[20px]
               text-white/90
               md:text-[18px]

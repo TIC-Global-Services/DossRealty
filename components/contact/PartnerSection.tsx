@@ -5,14 +5,145 @@ import Image from "next/image";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import bannerImg from "@/assets/contact/partnerBg.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const gmailValidation = z
+  .string()
+  .min(1, "Email is required")
+  .email("Invalid email address")
+  .refine(
+    (email) => email.toLowerCase().endsWith("@gmail.com"),
+    {
+      message: "Only Gmail addresses are allowed",
+    }
+  );
+
+const phoneValidation = z
+  .string()
+  .min(1, "Phone number is required")
+  .length(10, "Phone number must be 10 digits")
+  .regex(/^[6-9]\d{9}$/, "Enter valid mobile number");
+
+const partnerSchema = z.object({
+  brokerageFirm: z
+    .string()
+    .min(3, "Brokerage firm name is required"),
+
+  fullName: z
+    .string()
+    .min(3, "Full name is required"),
+
+  email: gmailValidation,
+
+  city: z
+    .string()
+    .min(2, "City is required"),
+
+  phone: phoneValidation,
+});
+
+const jobSchema = z.object({
+  name: z.string().min(3, "Name is required"),
+
+  email: gmailValidation,
+
+  phone: phoneValidation,
+
+  position: z
+    .string()
+    .min(1, "Please select a position"),
+
+  cvLink: z
+    .string()
+    .min(10, "Please enter your CV link and message"),
+});
+
+type PartnerFormData = z.infer<typeof partnerSchema>;
+type JobFormData = z.infer<typeof jobSchema>;
+
 export default function PartnerSection() {
   const [activeTab, setActiveTab] = useState<"partner" | "job">("partner");
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+
+  const {
+    register: partnerRegister,
+    handleSubmit: partnerHandleSubmit,
+    reset: resetPartner,
+    formState: {
+      errors: partnerErrors,
+    },
+  } = useForm<PartnerFormData>({
+    resolver: zodResolver(
+      partnerSchema
+    ),
+  });
+
+  const {
+    register: jobRegister,
+    handleSubmit: jobHandleSubmit,
+    reset: resetJob,
+    formState: {
+      errors: jobErrors,
+    },
+  } = useForm<JobFormData>({
+    resolver: zodResolver(
+      jobSchema
+    ),
+  });
+
+  const onPartnerSubmit = async (
+    data: PartnerFormData
+  ) => {
+    try {
+      setLoading(true);
+
+      console.log(
+        "Partner Form:",
+        data
+      );
+
+      resetPartner();
+
+      alert(
+        "Partner enquiry submitted successfully"
+      );
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onJobSubmit = async (
+    data: JobFormData
+  ) => {
+    try {
+      setLoading(true);
+
+      console.log(
+        "Job Form:",
+        data
+      );
+
+      resetJob();
+
+      alert(
+        "Application submitted successfully"
+      );
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -177,10 +308,9 @@ export default function PartnerSection() {
                       transition-all
                       duration-500
                       ease-[cubic-bezier(0.22,1,0.36,1)]
-                      ${
-                        activeTab === "partner"
-                          ? "translate-x-0 w-[145px]"
-                          : "translate-x-[145px] w-[120px]"
+                      ${activeTab === "partner"
+                        ? "translate-x-0 w-[145px]"
+                        : "translate-x-[145px] w-[120px]"
                       }
                     `}
                   />
@@ -202,10 +332,9 @@ export default function PartnerSection() {
                       transition-all
                       cursor-pointer
                       duration-300
-                      ${
-                        activeTab === "partner"
-                          ? "text-[#032B7A]"
-                          : "text-white/80 hover:text-white"
+                      ${activeTab === "partner"
+                        ? "text-[#032B7A]"
+                        : "text-white/80 hover:text-white"
                       }
                     `}
                   >
@@ -229,10 +358,9 @@ export default function PartnerSection() {
                       cursor-pointer
                       transition-all
                       duration-300
-                      ${
-                        activeTab === "job"
-                          ? "text-[#032B7A]"
-                          : "text-white/80 hover:text-white"
+                      ${activeTab === "job"
+                        ? "text-[#032B7A]"
+                        : "text-white/80 hover:text-white"
                       }
                     `}
                   >
@@ -249,147 +377,337 @@ export default function PartnerSection() {
       {showModal && (
         <div
           className="
-            fixed inset-0 z-[9999]
-            flex items-center justify-center
-            bg-black/40 backdrop-blur-sm p-4
-          "
+          fixed
+          inset-0
+          z-[9999]
+          bg-black/40
+          backdrop-blur-sm
+          overflow-y-auto
+        "
         >
           <div
             className="
-              relative bg-white rounded-[24px]
-              w-full max-w-[550px]
-              max-h-[90vh]
-              shadow-[0_20px_80px_rgba(0,0,0,0.15)]
-              p-8 md:p-12
-            "
+            min-h-screen
+            flex
+            justify-center
+            items-start
+            lg:items-center
+            px-4
+            py-8
+          "
           >
-            {/* Close */}
-            <button
-              onClick={() => setShowModal(false)}
+            <div
               className="
+              partner-modal
+              relative
+              bg-white
+              rounded-[10px]
+              w-full
+              max-w-[550px]
+              max-h-[85vh]
+              overflow-y-auto
+              [scrollbar-gutter:stable]
+              p-8
+              md:p-10
+              lg:p-16
+            "
+            >
+              {/* Close */}
+              <button
+                onClick={() => setShowModal(false)}
+                className="
                 absolute top-5 right-5
                 text-[#2F3147]
                 text-[28px]
                 leading-none
                 cursor-pointer
               "
-            >
-              ×
-            </button>
+              >
+                ×
+              </button>
 
-            {activeTab === "partner" ? (
-              <>
-                <h2 className="text-center font-heading text-[#2F3147] text-[36px] md:text-[45px]">
-                  REGISTER NOW
-                </h2>
+              {activeTab === "partner" ? (
+                <>
+                  <h2 className="text-center font-heading text-[#2F3147] text-[36px] md:text-[45px]">
+                    REGISTER NOW
+                  </h2>
 
-                <form className="mt-10 space-y-4">
-                  <input
-                    type="text"
-                    placeholder="Your Brokerage Firm name*"
-                    className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                  />
+                  <form
+                    onSubmit={partnerHandleSubmit(onPartnerSubmit)} className="mt-10 space-y-4">
+                    <div>
+                      <input
+                        {...partnerRegister("brokerageFirm")}
+                        type="text"
+                        placeholder="Your Brokerage Firm name*"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
+                      />
 
-                  <input
-                    type="text"
-                    placeholder="Full Name*"
-                    className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                  />
+                      {partnerErrors.brokerageFirm && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {partnerErrors.brokerageFirm.message}
+                        </p>
+                      )}
+                    </div>
 
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                  />
+                    <div>
+                      <input
+                        {...partnerRegister("fullName")}
+                        type="text"
+                        placeholder="Full Name*"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
+                      />
 
-                  <input
-                    type="text"
-                    placeholder="City*"
-                    className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                  />
+                      {partnerErrors.fullName && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {partnerErrors.fullName.message}
+                        </p>
+                      )}
+                    </div>
 
-                  <div className="flex gap-4">
-                    <input
-                      type="text"
-                      placeholder="+91"
-                      className="w-[90px] border-b border-[#E5E5E5] pb-3 outline-none"
-                    />
+                    <div>
+                      <input
+                        {...partnerRegister("email")}
+                        type="email"
+                        placeholder="Email*"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
+                      />
 
-                    <input
-                      type="tel"
-                      placeholder="xxx xxx xxx"
-                      className="flex-1 border-b border-[#E5E5E5] pb-3 outline-none"
-                    />
-                  </div>
+                      {partnerErrors.email && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {partnerErrors.email.message}
+                        </p>
+                      )}
+                    </div>
 
-                  <div className="flex justify-end pt-2">
-                    <button
-                      type="submit"
-                      className="
-                        bg-[#032B7A]
-                        text-white
-                        px-10 py-3
-                        rounded-full
-                        transition duration-300
-                        hover:scale-105
+                    <div>
+                      <input
+                        {...partnerRegister("city")}
+                        type="text"
+                        placeholder="City*"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
+                      />
+
+                      {partnerErrors.city && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {partnerErrors.city.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex gap-4">
+                      <input
+                        type="text"
+                        value="+91"
+                        readOnly
+                        className="w-[90px] border-b border-[#E5E5E5] pb-3 outline-none"
+                      />
+
+                      <div className="flex-1">
+                        <input
+                          {...partnerRegister("phone")}
+                          type="tel"
+                          inputMode="numeric"
+                          maxLength={10}
+                          placeholder="9876543210"
+                          onInput={(e) => {
+                            e.currentTarget.value =
+                              e.currentTarget.value.replace(/\D/g, "");
+                          }}
+                          className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
+                        />
+
+                        {partnerErrors.phone && (
+                          <p className="text-red-500 text-xs mt-1">
+                            {partnerErrors.phone.message}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex justify-end pt-2">
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="
+                      bg-[#032B7A]
+                      text-white
+                      px-10
+                      py-3
+                      rounded-full
+                      transition
+                      duration-300
+                      hover:scale-105
+                      disabled:opacity-50
+                      disabled:cursor-not-allowed
+                    "
+                      >
+                        {loading ? "Sending..." : "Send inquiry"}
+                      </button>
+                    </div>
+                  </form>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-center font-heading text-[#2F3147] text-[36px] md:text-[45px]">
+                    APPLY NOW
+                  </h2>
+
+                  <form
+                    onSubmit={jobHandleSubmit(onJobSubmit)}
+                    className="mt-10 space-y-3"
+                  >
+                    {/* Name */}
+                    <div>
+                      <input
+                        {...jobRegister("name")}
+                        type="text"
+                        placeholder="Your name*"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
+                      />
+
+                      {jobErrors.name && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {jobErrors.name.message}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <input
+                        {...jobRegister("email")}
+                        type="email"
+                        placeholder="Your email address*"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
+                      />
+
+                      {jobErrors.email && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {jobErrors.email.message}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Phone */}
+                    <div>
+                      <input
+                        {...jobRegister("phone")}
+                        type="tel"
+                        inputMode="numeric"
+                        maxLength={10}
+                        placeholder="Your phone"
+                        onInput={(e) => {
+                          e.currentTarget.value =
+                            e.currentTarget.value.replace(/\D/g, "");
+                        }}
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
+                      />
+
+                      {jobErrors.phone && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {jobErrors.phone.message}
+                        </p>
+                      )}
+                    </div>
+
+
+                    {/* Opening Position */}
+                    <div className="relative max-w-[500px]">
+                      <select
+                        {...jobRegister("position")}
+                        defaultValue=""
+                        className="
+                        w-full
+                        appearance-none
+                        border-b
+                        border-[#E5E5E5]
+                        pb-4
+                        pr-10
+                        outline-none
+                        bg-transparent
+                        text-[16px]
+                        text-[#7f7f7f]
                         cursor-pointer
                       "
-                    >
-                      Send inquiry
-                    </button>
-                  </div>
-                </form>
-              </>
-            ) : (
-              <>
-                <h2 className="text-center font-heading text-[#2F3147] text-[36px] md:text-[45px]">
-                  APPLY NOW
-                </h2>
+                      >
+                        <option value="" disabled>
+                          Opening Positions
+                        </option>
 
-                <form className="mt-10 space-y-4">
-                  <input
-                    type="text"
-                    placeholder="Your name*"
-                    className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                  />
+                        <option value="Other">
+                          Other
+                        </option>
+                      </select>
 
-                  <input
-                    type="email"
-                    placeholder="Your email address*"
-                    className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                  />
-
-                  <input
-                    type="tel"
-                    placeholder="Your phone"
-                    className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                  />
-
-                  <textarea
-                    rows={4}
-                    placeholder="Your CV Link and message"
-                    className="w-full border-b border-[#E5E5E5] pb-3 outline-none resize-none"
-                  />
-
-                  <div className="flex justify-end pt-2">
-                    <button
-                      type="submit"
-                      className="
-                        bg-[#032B7A]
-                        text-white
-                        px-10 py-3
-                        rounded-full
-                        transition duration-300
-                        hover:scale-105
-                        cursor-pointer
+                      {/* Custom Arrow */}
+                      <svg
+                        className="
+                        pointer-events-none
+                        absolute
+                        right-0
+                        top-1/2
+                        -translate-y-1/2
+                        h-4
+                        w-4
+                        text-[#8A8A8A]
                       "
-                    >
-                      Apply now
-                    </button>
-                  </div>
-                </form>
-              </>
-            )}
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+
+                      {jobErrors.position && (
+                        <p className="text-red-500 text-xs mt-2">
+                          {jobErrors.position.message}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* CV Link */}
+                    <div>
+                      <textarea
+                        {...jobRegister("cvLink")}
+                        rows={3}
+                        placeholder="Paste your CV & Message"
+                        className="w-full border-b border-[#E5E5E5] pb-2 outline-none resize-none"
+                      />
+
+                      {jobErrors.cvLink && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {jobErrors.cvLink.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex justify-end pt-2">
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="
+                      bg-[#032B7A]
+                      text-white
+                      px-10
+                      py-3
+                      rounded-full
+                      transition
+                      duration-300
+                      hover:scale-105
+                      disabled:opacity-50
+                      disabled:cursor-not-allowed
+                    "
+                      >
+                        {loading ? "Applying..." : "Apply now"}
+                      </button>
+                    </div>
+                  </form>
+                </>
+              )}
+            </div>
           </div>
         </div>
       )}

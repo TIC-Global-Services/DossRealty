@@ -157,8 +157,7 @@ export default function WhyWorkWithUs() {
             font-heading
             font-[300]
             text-[#39384C]
-            text-[36px]
-            leading-none
+            text-[24px] leading-[30px]
             md:text-[50px]
             md:leading-[52px]
           "
@@ -189,10 +188,10 @@ export default function WhyWorkWithUs() {
             max-w-[1100px]
             uppercase
             text-[#39384C]
-            text-[14px]
-            leading-[24px]
+            text-[24px] leading-[20px]
+            md:leading-[24px]
             mb-10
-            lg:pl-20
+            md:pl-20
             md:text-[30px]
           "
         >
@@ -241,11 +240,11 @@ export default function WhyWorkWithUs() {
                   className="
                     font-grand
                     text-[#31304A]
-                    text-[18px]
-                    tracking-wide
+                    text-[16px]
                     mb-3
                     md:text-[20px]
-                    md:leading-[24px]
+                    leading-[24px]
+                    tracking-normal
                   "
                 >
                   {
@@ -254,12 +253,11 @@ export default function WhyWorkWithUs() {
                 </h3>
 
                 <p
-                  className="
-                    text-[14px]
-                    leading-[180%]
+                  className="tracking-normal
+                    text-[16px]
                     text-[#39384c]
                     md:text-[16px]
-                    md:leading-[18px]
+                    leading-[18px]
                   "
                 >
                   {

@@ -269,4 +269,27 @@ html.lenis body {
   }
 }
 
+.partner-modal {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #2F3147 transparent;
 
+}
+
+/* Chrome, Edge, Safari */
+.partner-modal::-webkit-scrollbar {
+  width: 2px;
+}
+
+.partner-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.partner-modal::-webkit-scrollbar-thumb {
+  background: #2F3147;
+  border-radius: 999px;
+}
+
+.partner-modal::-webkit-scrollbar-thumb:hover {
+  background: #2F3147;
+}

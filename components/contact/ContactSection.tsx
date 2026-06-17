@@ -1,9 +1,107 @@
 "use client";
 
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+
+const phoneValidation = z
+  .string()
+  .min(1, "Phone number is required")
+  .length(10, "Phone number must be 10 digits")
+  .regex(/^[6-9]\d{9}$/, "Enter valid mobile number");
+
+const gmailValidation = z
+  .string()
+  .min(1, "Email is required")
+  .email("Invalid email address")
+  .refine(
+    (email) => email.toLowerCase().endsWith("@gmail.com"),
+    {
+      message: "Only Gmail addresses are allowed",
+    }
+  );
+
+const contactSchema = z.object({
+  name: z.string().min(3, "Name must be at least 3 characters"),
+  email: gmailValidation,
+  phone: phoneValidation,
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+const referSchema = z.object({
+  yourName: z.string().min(3, "Name is required"),
+  yourEmail: gmailValidation,
+  yourPhone: phoneValidation,
+
+  friendName: z.string().min(3, "Friend name is required"),
+  friendEmail: gmailValidation,
+  friendPhone: phoneValidation,
+
+  project: z.string().min(2, "Project name is required"),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
+type ReferFormData = z.infer<typeof referSchema>;
 
 export default function ContactSection() {
   const [activeTab, setActiveTab] = useState<"contact" | "refer">("contact");
+  const [loading, setLoading] = useState(false);
+
+  const {
+    register: contactRegister,
+    handleSubmit: contactHandleSubmit,
+    reset: resetContact,
+    formState: { errors: contactErrors },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const {
+    register: referRegister,
+    handleSubmit: referHandleSubmit,
+    reset: resetRefer,
+    formState: { errors: referErrors },
+  } = useForm<ReferFormData>({
+    resolver: zodResolver(referSchema),
+  });
+
+  const onContactSubmit = async (
+    data: ContactFormData
+  ) => {
+    try {
+      setLoading(true);
+
+      console.log(data);
+
+      resetContact();
+
+      alert("Inquiry submitted successfully");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onReferSubmit = async (
+    data: ReferFormData
+  ) => {
+    try {
+      setLoading(true);
+
+      console.log(data);
+
+      resetRefer();
+
+      alert("Referral submitted successfully");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="min-h-screen flex items-center overflow-hidden py-10 lg:py-14">
@@ -75,10 +173,9 @@ export default function ContactSection() {
                   transition-colors
                   duration-300
                   cursor-pointer
-                  ${
-                    activeTab === "contact"
-                      ? "text-black"
-                      : "text-[#9A9A9A]"
+                  ${activeTab === "contact"
+                    ? "text-black"
+                    : "text-[#9A9A9A]"
                   }
                 `}
               >
@@ -110,10 +207,9 @@ export default function ContactSection() {
                   transition-colors
                   duration-300
                   cursor-pointer
-                  ${
-                    activeTab === "refer"
-                      ? "text-[#2F3147]"
-                      : "text-[#9A9A9A]"
+                  ${activeTab === "refer"
+                    ? "text-[#2F3147]"
+                    : "text-[#9A9A9A]"
                   }
                 `}
               >
@@ -160,78 +256,95 @@ export default function ContactSection() {
                     WE’LL GET IN TOUCH WITH YOU SOON
                   </h3>
 
-                  <form className="mt-6 lg:mt-7 space-y-4 lg:space-y-5">
+                  <form
+                    onSubmit={contactHandleSubmit(onContactSubmit)}
+                    className="mt-6 lg:mt-7 space-y-4 lg:space-y-5"
+                  >
 
-                    <input
-                      type="text"
-                      placeholder="Your name*"
-                      className="
-                        w-full
-                        border-b
-                        border-[#E5E5E5]
-                        pb-3
-                        outline-none
-                        text-[14px]
-                      "
-                    />
+                    <div>
+                      <input
+                        {...contactRegister("name")}
+                        type="text"
+                        placeholder="Your name*"
+                        required
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
+                      />
 
-                    <input
-                      type="email"
-                      placeholder="Your email address"
-                      className="
-                        w-full
-                        border-b
-                        border-[#E5E5E5]
-                        pb-3
-                        outline-none
-                        text-[14px]
-                      "
-                    />
+                      {contactErrors.name && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {contactErrors.name.message}
+                        </p>
+                      )}
+                    </div>
 
-                    <input
-                      type="tel"
-                      placeholder="Your phone"
-                      className="
-                        w-full
-                        border-b
-                        border-[#E5E5E5]
-                        pb-3
-                        outline-none
-                        text-[14px]
-                      "
-                    />
+                    <div>
+                      <input
+                        {...contactRegister("email")}
+                        type="email"
+                        placeholder="Your email address*"
+                        required
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
+                      />
 
-                    <textarea
-                      rows={3}
-                      placeholder="Your message"
-                      className="
-                        w-full
-                        border-b
-                        border-[#E5E5E5]
-                        pb-3
-                        outline-none
-                        resize-none
-                        text-[14px]
-                      "
-                    />
+                      {contactErrors.email && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {contactErrors.email.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <input
+                        {...contactRegister("phone")}
+                        type="tel"
+                        inputMode="numeric"
+                        maxLength={10}
+                        placeholder="Your phone*"
+                        onInput={(e) => {
+                          e.currentTarget.value = e.currentTarget.value.replace(/\D/g, "");
+                        }}
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
+                      />
+
+                      {contactErrors.phone && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {contactErrors.phone.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <textarea
+                        {...contactRegister("message")}
+                        rows={3}
+                        placeholder="Your message*"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none resize-none text-[14px]"
+                      />
+
+                      {contactErrors.message && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {contactErrors.message.message}
+                        </p>
+                      )}
+                    </div>
 
                     <div className="flex justify-end pt-2">
                       <button
                         type="submit"
+                        disabled={loading}
                         className="font-small tracking-[-0.48px]
-                          bg-[#032B7A]
-                          text-white
-                          px-8
-                          py-3
-                          rounded-full
-                          text-[13px]
-                          transition
-                          duration-300
-                          hover:scale-105
-                          cursor-pointer
-                        "
+                        bg-[#032B7A]
+                        text-white
+                        px-8
+                        py-3
+                        rounded-full
+                        text-[13px]
+                        transition
+                        duration-300
+                        hover:scale-105
+                        disabled:opacity-50"
                       >
-                        Send inquiry
+                        {loading ? "Sending..." : "Send inquiry"}
                       </button>
                     </div>
 
@@ -252,116 +365,147 @@ export default function ContactSection() {
                     REFER A FRIEND
                   </h3>
 
-                  <form className="mt-6 lg:mt-7 space-y-4 lg:space-y-5">
+                  <form
+                    onSubmit={referHandleSubmit(onReferSubmit)}
+                    className="mt-6 lg:mt-7 space-y-4 lg:space-y-5"
+                  >
 
-                    <input
-                      type="text"
-                      placeholder="Your name*"
-                      className="
-                        w-full
-                        border-b
-                        border-[#E5E5E5]
-                        pb-3
-                        outline-none
-                        text-[14px]
-                      "
-                    />
+                    <div>
+                      <input
+                        {...referRegister("yourName")}
+                        type="text"
+                        placeholder="Your name*"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
+                      />
 
-                    <input
-                      type="email"
-                      placeholder="Your email address*"
-                      className="
-                        w-full
-                        border-b
-                        border-[#E5E5E5]
-                        pb-3
-                        outline-none
-                        text-[14px]
-                      "
-                    />
+                      {referErrors.yourName && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {referErrors.yourName.message}
+                        </p>
+                      )}
+                    </div>
 
-                    <input
-                      type="tel"
-                      placeholder="Your phone"
-                      className="
-                        w-full
-                        border-b
-                        border-[#E5E5E5]
-                        pb-3
-                        outline-none
-                        text-[14px]
-                      "
-                    />
+                    <div>
+                      <input
+                        {...referRegister("yourEmail")}
+                        type="email"
+                        placeholder="Your email address*"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
+                      />
 
-                    <input
-                      type="text"
-                      placeholder="Friend's name*"
-                      className="
-                        w-full
-                        border-b
-                        border-[#E5E5E5]
-                        pb-3
-                        outline-none
-                        text-[14px]
-                      "
-                    />
+                      {referErrors.yourEmail && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {referErrors.yourEmail.message}
+                        </p>
+                      )}
+                    </div>
 
-                    <input
-                      type="email"
-                      placeholder="Friend's email address*"
-                      className="
-                        w-full
-                        border-b
-                        border-[#E5E5E5]
-                        pb-3
-                        outline-none
-                        text-[14px]
-                      "
-                    />
+                    <div>
+                      <input
+                          {...referRegister("yourPhone")}
+                          type="tel"
+                          inputMode="numeric"
+                          maxLength={10}
+                          placeholder="Your phone"
+                          onInput={(e) => {
+                            e.currentTarget.value = e.currentTarget.value.replace(/\D/g, "");
+                          }}
+                          className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
+                        />
 
-                    <input
-                      type="tel"
-                      placeholder="Friend's phone"
-                      className="
-                        w-full
-                        border-b
-                        border-[#E5E5E5]
-                        pb-3
-                        outline-none
-                        text-[14px]
-                      "
-                    />
+                      {referErrors.yourPhone && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {referErrors.yourPhone.message}
+                        </p>
+                      )}
+                    </div>
 
-                    <input
-                      type="text"
-                      placeholder="Project for which you are referring"
-                      className="
-                        w-full
-                        border-b
-                        border-[#E5E5E5]
-                        pb-3
-                        outline-none
-                        text-[14px]
-                      "
-                    />
+                    <div>
+                      <input
+                        {...referRegister("friendName")}
+                        type="text"
+                        placeholder="Friend's name*"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
+                      />
+
+                      {referErrors.friendName && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {referErrors.friendName.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <input
+                        {...referRegister("friendEmail")}
+                        type="email"
+                        placeholder="Friend's email address*"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
+                      />
+
+                      {referErrors.friendEmail && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {referErrors.friendEmail.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <input
+                        {...referRegister("friendPhone")}
+                        type="tel"
+                        inputMode="numeric"
+                        maxLength={10}
+                        placeholder="Friend's phone"
+                        onInput={(e) => {
+                          e.currentTarget.value = e.currentTarget.value.replace(/\D/g, "");
+                        }}
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
+                      />
+
+                      {referErrors.friendPhone && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {referErrors.friendPhone.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <input
+                        {...referRegister("project")}
+                        type="text"
+                        placeholder="Project for which you are referring"
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
+                      />
+
+                      {referErrors.project && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {referErrors.project.message}
+                        </p>
+                      )}
+                    </div>
 
                     <div className="flex justify-end pt-2">
                       <button
-                        type="submit" 
-                        className="font-small tracking-[-0.48px]
-                          bg-[#032B7A]
-                          text-white
-                          px-8
-                          py-3
-                          rounded-full
-                          text-[16px]
-                          transition
-                          duration-300
-                          hover:scale-105
-                          cursor-pointer
-                        "
+                        type="submit"
+                        disabled={loading}
+                        className="
+                        font-small
+                        tracking-[-0.48px]
+                        bg-[#032B7A]
+                        text-white
+                        px-8
+                        py-3
+                        rounded-full
+                        text-[16px]
+                        transition
+                        duration-300
+                        hover:scale-105
+                        disabled:opacity-50
+                        disabled:cursor-not-allowed
+                      "
                       >
-                        Send inquiry
+                        {loading ? "Sending..." : "Send inquiry"}
                       </button>
                     </div>
 

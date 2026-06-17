@@ -81,16 +81,140 @@ export default function BuiltForLiving() {
   return (
     <section
       ref={sectionRef}
-      className="mx-auto
-        flex
-        h-screen
-        items-center
-        bg-white
-        px-8
-        md:px-16
-        lg:px-24
-      "
-    >
+      className=" mx-auto
+      bg-white
+      px-5
+      py-10
+      md:flex
+      md:h-screen
+      md:items-center
+      md:px-24
+        "
+      >
+
+      {/* MOBILE */}
+      <div className="md:hidden">
+        {/* CARDS */}
+        <div className="relative mx-auto h-[360px] w-full max-w-[320px]">
+          <div
+            className="
+              absolute
+              left-0
+              top-0
+              z-10
+              h-[280px]
+              w-full
+              rounded-[24px]
+              bg-[#BFA55A]
+              p-6
+            "
+          >
+            <div className="flex h-full flex-col justify-between">
+              <h2 className="font-heading text-[30px] leading-[30px] text-white">
+                WE CREATE
+                <br />
+                SPACES THAT
+                <br />
+                INSPIRE
+              </h2>
+
+              <p className="text-[15px] text-white/80">
+                Designed with timeless architecture and
+                thoughtful aesthetics.
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="
+            absolute
+            left-0
+            top-[70px]
+            z-20
+            h-[280px]
+            w-full
+            rounded-[24px]
+            bg-[#1A2857]
+            p-6
+          "
+          >
+            <div className="flex h-full flex-col justify-between">
+              <h2 className="font-heading text-[30px] leading-[30px] text-white">
+                WE CREATE
+                <br />
+                SPACES THAT
+                <br />
+                OFFER
+              </h2>
+
+              <p className="text-[15px] text-white/80">
+                Prime locations with excellent connectivity
+                and everyday convenience.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* CONTENT */}
+        <div className="mt-16">
+          <h2
+            className="
+            font-heading
+            text-[34px]
+            leading-[38px]
+            text-[#1E1E1E]
+          "
+          >
+            View opening
+            <br />
+            positions
+          </h2>
+
+          <ul className="mt-8 space-y-4">
+            {JOB_LIST.map((job, i) => (
+              <li
+                key={i}
+                className="
+                flex
+                items-start
+                gap-3
+                text-[15px]
+                text-[#00000080]
+              "
+              >
+                <span
+                  className="
+                  mt-[8px]
+                  h-[5px]
+                  w-[5px]
+                  rounded-full
+                  bg-gray-500
+                "
+                />
+                {job}
+              </li>
+            ))}
+          </ul>
+
+          <button
+            type="button"
+            className="
+              mt-8
+              rounded-full
+              bg-[#00256A]
+              px-10
+              py-3
+              text-[16px]
+              text-white
+            "
+          >
+            Apply now
+          </button>
+        </div>
+      </div>
+
+
+      <div className="hidden md:flex md:w-full md:items-center">
       {/* LEFT CONTENT */}
       <div
         className="
@@ -285,6 +409,7 @@ export default function BuiltForLiving() {
           </div>
         </div>
       </div>
+    </div>
     </section>
   );
 }

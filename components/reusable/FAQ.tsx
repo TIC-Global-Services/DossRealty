@@ -132,39 +132,38 @@ const FAQ = ({
                     {/* Answer */}
                     <div
                       className={`
-                        overflow-hidden
-                        transition-all
-                        duration-500
-                        ease-in-out
-                        ${
-                          isOpen
-                            ? "max-h-[300px] mt-3"
-                            : "max-h-0"
+                      mt-3
+                      overflow-hidden
+                      transition-[max-height,opacity]
+                      duration-500
+                      ease-in-out
+                      ${isOpen
+                          ? "max-h-[1000px] opacity-100"
+                          : "max-h-0 opacity-0"
                         }
                       `}
                     >
                       <div
                         className="
-                          rounded-[24px]
-                          px-8
-                          py-7
-                        "
+                        rounded-[24px]
+                        px-8
+                        py-7
+                      "
                         style={{
                           backgroundColor:
                             answerBgColor,
                         }}
                       >
                         <p
-                          className="text-[13px]
-                            md:text-[18px]
-                            font-medium
-                            leading-[150%]
-                            text-[#111]
-                          "
+                          className="
+                          text-[13px]
+                          md:text-[18px]
+                          font-medium
+                          leading-[150%]
+                          text-[#111]
+                        "
                         >
-                          {
-                            item.answer
-                          }
+                          {item.answer}
                         </p>
                       </div>
                     </div>
