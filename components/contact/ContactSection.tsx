@@ -450,7 +450,7 @@ export default function ContactSection() {
                       <input
                         {...referRegister("friendName")}
                         type="text"
-                        placeholder="Your name*"
+                        placeholder="Friend's name*"
                         onInput={(e) => {
                           e.currentTarget.value =
                             e.currentTarget.value.replace(
