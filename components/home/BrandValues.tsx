@@ -47,8 +47,8 @@ export default function LegacyVisionPurpose() {
     return (
         <>
             {/* Desktop */}
-            <section className="hidden min-h-screen items-center overflow-hidden md:flex md:py-20">
-                <div className="mx-auto w-full px-6 lg:px-8 xl:px-15">
+            <section className="hidden min-h-screen items-center overflow-hidden md:flex md:py-10">
+                <div className="mx-auto w-full px-6 lg:px-30">
                     <div className="grid grid-cols-3 gap-5 lg:gap-6 xl:gap-8">
                         {values.map((item, index) => {
                           const initialAnimation =

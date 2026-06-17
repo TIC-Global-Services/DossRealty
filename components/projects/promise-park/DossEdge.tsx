@@ -1,9 +1,24 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import {
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import {
+  Swiper,
+  SwiperSlide,
+} from "swiper/react";
+
+import {
+  Autoplay,
+} from "swiper/modules";
+
+import "swiper/css";
 
 import edge1 from "@/assets/projects/metropettai/edgeImg1.png";
 import edge2 from "@/assets/projects/metropettai/edgeImg2.png";
@@ -31,24 +46,34 @@ const edgeData = [
 ];
 
 const DossEdge = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] =
+    useState(0);
 
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+  const sectionRef =
+    useRef<HTMLDivElement>(null);
+
+  const titleRef =
+    useRef<HTMLDivElement>(null);
+
+  const cardsRef =
+    useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(
+      ScrollTrigger
+    );
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
-      });
+      const tl =
+        gsap.timeline({
+          scrollTrigger: {
+            trigger:
+              sectionRef.current,
+            start: "top 75%",
+          },
+        });
 
-      // TITLE REVEAL
+      // TITLE
       tl.from(titleRef.current, {
         y: 50,
         opacity: 0,
@@ -56,18 +81,19 @@ const DossEdge = () => {
         ease: "power3.out",
       });
 
-      // CARDS REVEAL
+      // DESKTOP CARDS
       tl.from(
-      cardsRef.current?.children || [],
-      {
-        y: 60,
-        scale: 0.96,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-      },
-      "-=0.3"
-    );
+        cardsRef.current
+          ?.children || [],
+        {
+          y: 60,
+          scale: 0.96,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+        },
+        "-=0.3"
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -79,7 +105,6 @@ const DossEdge = () => {
       className="py-6 md:py-12"
     >
       <div className="mx-auto">
-
         {/* TITLE */}
         <div
           ref={titleRef}
@@ -101,8 +126,8 @@ const DossEdge = () => {
             THE DOSS EDGE
           </h2>
 
-          {/* TOP BAR */}
-          <div className="relative mt-4 h-[2px] w-full bg-[#D7D7D7]">
+          {/* DESKTOP BAR */}
+          <div className="relative mt-4 hidden h-[2px] w-full bg-[#D7D7D7] lg:block">
             <div
               className="
                 absolute
@@ -115,124 +140,228 @@ const DossEdge = () => {
                 ease-in-out
               "
               style={{
-                left:
-                  activeIndex === 0
-                    ? "0%"
-                    : activeIndex === 1
-                    ? "33.33%"
-                    : "66.66%",
+                transform: `translateX(${
+                  activeIndex *
+                  100
+                }%)`,
               }}
             />
           </div>
         </div>
 
-        {/* GRID */}
+        {/* MOBILE SWIPER */}
+        <div className="mt-10 lg:hidden">
+          {/* MOBILE BAR */}
+          <div className="mb-6 px-5">
+            <div className="relative h-[2px] w-full bg-[#D7D7D7]">
+              <div
+                className="
+                  absolute
+                  top-0
+                  h-full
+                  w-1/3
+                  bg-[#C59D5F]
+                  transition-all
+                  duration-500
+                  ease-in-out
+                "
+                style={{
+                  transform: `translateX(${
+                    activeIndex *
+                    100
+                  }%)`,
+                }}
+              />
+            </div>
+          </div>
+
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={16}
+            slidesPerView={1}
+            centeredSlides={false}
+            loop={true}
+            speed={800}
+            allowTouchMove={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: false,
+            }}
+            onSlideChange={(
+              swiper
+            ) => {
+              setActiveIndex(
+                swiper.realIndex
+              );
+            }}
+            className="px-5"
+          >
+            {edgeData.map(
+              (item, index) => (
+                <SwiperSlide
+                  key={index}
+                >
+                  <div
+                    className="mx-5
+                      relative
+                      overflow-hidden
+                    "
+                  >
+                    {/* IMAGE */}
+                    <div className="relative h-[620px]">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        priority
+                        className="object-cover"
+                      />
+                    </div>
+
+                    {/* OVERLAY */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(102,102,102,0.2) 100%)",
+                      }}
+                    />
+
+                    {/* GLASS CONTENT */}
+                    <div
+                      className="
+                        absolute
+                        bottom-6
+                        left-1/2
+                        w-[88%] h-[30%]
+                        -translate-x-1/2
+                        rounded-[20px]
+                        border
+                        border-white/30
+                        bg-white/10
+                        p-10
+                        shadow-[inset_0px_1px_2px_rgba(255,255,255,0.8)]
+                        backdrop-blur-[2px]
+                      "
+                    >
+                      <h4
+                        className="
+                          font-small
+                          text-[20px] leading-[24px]
+                          font-[400]
+                          uppercase
+                          text-white
+                        "
+                      >
+                        {item.title}
+                      </h4>
+
+                      <p
+                        className="
+                          mt-4
+                          text-[16px]
+                          leading-[20px]
+                          text-white
+                        "
+                      >
+                        {
+                          item.description
+                        }
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              )
+            )}
+          </Swiper>
+        </div>
+
+        {/* DESKTOP GRID */}
         <div
           ref={cardsRef}
           className="
             mt-10
-            grid
+            hidden
             gap-4
-            px-5
-            md:px-8
+            lg:grid
             lg:grid-cols-3
-            lg:px-0
           "
         >
-          {edgeData.map((item, index) => (
-            <div
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              className={`
-                group
-                relative
-                cursor-pointer
-                overflow-hidden
-                transition-all
-                duration-500
-                md:h-[550px]
-                ${
-                  activeIndex === index
-                    ? "scale-[1.02]"
-                    : "scale-[0.96] opacity-80"
+          {edgeData.map(
+            (item, index) => (
+              <div
+                key={index}
+                onClick={() =>
+                  setActiveIndex(
+                    index
+                  )
                 }
-              `}
-            >
-              {/* IMAGE */}
-              <div className="relative h-[400px] md:h-[550px]">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  priority
-                  className="
-                    object-cover
-                    transition
-                    duration-700
-                    group-hover:scale-105
-                  "
-                />
-              </div>
-
-              {/* OVERLAY */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(102,102,102,0.2) 100%)",
-                }}
-              />
-
-              {/* GLASS CONTENT */}
-              <div
-                className="
-                  absolute
-                  bottom-8
-                  left-1/2
-                  w-[370px]
-                  h-[187px]
-                  -translate-x-1/2
-                  rounded-[20px]
-                  border
-                  border-white/30
-                  bg-white/10
-                  p-6
-                  shadow-[inset_0px_1px_2px_rgba(255,255,255,0.8)]
-                  backdrop-blur-[2px]
-                "
+                className={`
+                  group
+                  relative
+                  cursor-pointer
+                  overflow-hidden
+                  transition-all
+                  duration-500
+                  md:h-[550px]
+                  ${
+                    activeIndex ===
+                    index
+                      ? "scale-[1.02]"
+                      : "scale-[0.96] opacity-80"
+                  }
+                `}
               >
-                <h4
-                  className="
-                    font-small font-[300]
-                    text-start
-                    text-[24px]
-                    uppercase
-                    text-white
-                    md:text-[30px]
-                    md:leading-[32px]
-                  "
-                >
-                  {item.title}
-                </h4>
+                <div className="relative h-[550px]">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    priority
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                  />
+                </div>
 
-                <p
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(102,102,102,0.2) 100%)",
+                  }}
+                />
+
+                <div
                   className="
-                    font-small
-                    mt-4 font-[300]
-                    w-[26ch]
-                    text-sm
-                    leading-[22px]
-                    text-white
-                    md:text-[18px]
+                    absolute
+                    bottom-8
+                    left-1/2
+                    h-[187px]
+                    w-[370px]
+                    -translate-x-1/2
+                    rounded-[20px]
+                    border
+                    border-white/30
+                    bg-white/10
+                    p-6
+                    shadow-[inset_0px_1px_2px_rgba(255,255,255,0.8)]
+                    backdrop-blur-[2px]
                   "
                 >
-                  {item.description}
-                </p>
+                  <h4 className="font-small text-[30px] font-[300] uppercase text-white">
+                    {item.title}
+                  </h4>
+
+                  <p className="mt-4 w-[26ch] text-[18px] text-white">
+                    {
+                      item.description
+                    }
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
-
       </div>
     </section>
   );

@@ -270,8 +270,8 @@ const Navbar = () => {
                 rounded-full
                 border
                 bg-transparent
-                px-8
-                py-3
+                px-6
+                py-2.5
                 text-sm
                 transition-all
                 duration-300

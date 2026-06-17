@@ -240,6 +240,7 @@ const Builts = () => {
                   backdrop-blur-md
                   transition duration-300
                   hover:bg-white/20
+                  cursor-pointer
                 "
               >
                 ✕

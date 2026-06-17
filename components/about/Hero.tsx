@@ -130,7 +130,7 @@ const Hero = () => {
             <p
               className="
                 hero-para
-                mt-6 w-[40ch]
+                mt-6 w-[40ch] md:w-full
                 md:max-w-[650px]
                 text-[13px]
                 leading-[16px]

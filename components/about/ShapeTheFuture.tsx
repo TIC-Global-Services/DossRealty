@@ -89,7 +89,7 @@ const ShapeTheFuture = () => {
           >
             <p
               className="ml-1 md:ml-2 mb-4 text-[14px]
-              md:text-[16px] font-semibold
+              md:text-[16px] font-[600]
               uppercase leading-[26px]
               tracking-[1.6%] text-[#111111]"
             >

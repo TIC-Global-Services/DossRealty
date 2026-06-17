@@ -25,12 +25,11 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Metropettai",
+    title: "Promises Park",
     description:
-      "Metropettai is a modern community defined by connection. Located at the intersection of the upcoming Metro corridor, the Chennai–Bengaluru Highway, and the Outer Ring Road, it oﬀers direct access to the people, places, and opportunities that shape everyday life. Surrounded by leading employment hubs, educational institutions, and evolving infrastructure, Metropettai is designed for those who value access, opportunity, and long-term relevance.",
-
+      "Located on the Kanchi–Arakkonam Highway in the heart of Kanchipuram, this ready-to-build community offers approved plots, completed infrastructure, and easy access to schools, hospitals, temples, and everyday conveniences. With a familiar location and a strong foundation in place, it provides the perfect setting to build your future with confidence.",
     image: project1,
-    href: "/projects/luxury-villa",
+    href: "/projects/promise-park",
   },
 
   {
@@ -49,7 +48,7 @@ const projects: Project[] = [
     image: project2,
     mobileImage: project2Mobile,
 
-    href: "/projects/premium-urban",
+    href: "/projects/metropettai",
   },
 ];
 
@@ -120,7 +119,7 @@ export default function OurProjects() {
                 ease: "easeOut",
               }}
             >
-              <Link href={project.href}>
+              
                 <div
                   className="
                     relative
@@ -190,6 +189,7 @@ export default function OurProjects() {
                     </div>
 
                     {/* GLASS BUTTON */}
+                  <Link href={project.href}>
                     <button
                       className="
                       h-[44px]
@@ -208,6 +208,7 @@ export default function OurProjects() {
                     >
                       Plots
                     </button>
+                  </Link>
                   </div>
 
                   {/* CONTENT AREA */}
@@ -346,7 +347,6 @@ export default function OurProjects() {
                     </div>
                   </div>
                 </div>
-              </Link>
             </motion.div>
           ))}
         </div>

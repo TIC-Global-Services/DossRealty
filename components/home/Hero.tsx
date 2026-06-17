@@ -472,7 +472,7 @@ export default function Hero() {
               
             </div>
             <button
-                className="
+                className="font-small
                   relative
                   isolate
                   overflow-hidden

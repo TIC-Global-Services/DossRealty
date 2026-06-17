@@ -7,7 +7,7 @@ import whatsAppIcon from "@/assets/chatIcons/whatsAppImg.png";
 export default function EnquiryBtn() {
   return (
     <div
-      className="fixed right-4 bottom-8 z-[10000] flex flex-col gap-4"
+      className="fixed right-4 bottom-8 z-[10000] flex flex-col gap-2"
     >
       {/* WHATSAPP */}
       <a
@@ -16,8 +16,8 @@ export default function EnquiryBtn() {
         rel="noopener noreferrer"
         className="
           flex
-          h-[68px]
-          w-[68px]
+          h-[50px]
+          w-[50px]
           items-center
           justify-center
           rounded-full
@@ -33,8 +33,8 @@ export default function EnquiryBtn() {
         <Image
           src={whatsAppIcon}
           alt="Whatsapp"
-          width={30}
-          height={30}
+          width={20}
+          height={20}
           priority
           className="object-contain"
         />
@@ -45,8 +45,8 @@ export default function EnquiryBtn() {
         href="tel:+91123456789"
         className="
           flex
-          h-[68px]
-          w-[68px]
+          h-[50px]
+          w-[50px]
           items-center
           justify-center
           rounded-full
@@ -61,8 +61,8 @@ export default function EnquiryBtn() {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
+          width="20"
+          height="20"
           viewBox="0 0 24 24"
           fill="black"
         >
@@ -77,8 +77,8 @@ export default function EnquiryBtn() {
         rel="noopener noreferrer"
         className="
           flex
-          h-[68px]
-          w-[68px]
+          h-[50px]
+          w-[50px]
           items-center
           justify-center
           rounded-full
@@ -94,8 +94,8 @@ export default function EnquiryBtn() {
         <Image
           src={shareIcon}
           alt="Chat"
-          width={30}
-          height={30}
+          width={20}
+          height={20}
           priority
           className="object-contain"
         />

@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/reusable/Navbar";
 import Footer from "@/components/reusable/Footer";
 import SmoothScroll from "@/components/provider/SmoothScroll";
+import ScrollToTop from "@/components/ScrollToTop"
 
 import {
   agrandirRegular,
@@ -45,6 +46,7 @@ export default function RootLayout({
           ${interTight.variable}
         `}
       >
+        <ScrollToTop />
         <SmoothScroll>
           <Navbar />
           {children}

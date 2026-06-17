@@ -117,9 +117,9 @@ const Highlights = () => {
                   className="
                     mt-5
                     whitespace-pre-line
-                    text-[14px]
+                    text-[13px]
                     font-medium
-                    leading-[26px]
+                    leading-[16px]
                     text-[#2A2A2A]
                     md:text-[19px]
                     md:tracking-normal
