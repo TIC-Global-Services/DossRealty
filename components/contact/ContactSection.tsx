@@ -6,6 +6,14 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 
+const nameValidation = z
+  .string()
+  .min(3, "Name must be at least 3 characters")
+  .regex(
+    /^[A-Za-z\s]+$/,
+    "Only letters are allowed"
+  );
+
 const phoneValidation = z
   .string()
   .min(1, "Phone number is required")
@@ -24,22 +32,27 @@ const gmailValidation = z
   );
 
 const contactSchema = z.object({
-  name: z.string().min(3, "Name must be at least 3 characters"),
+  name: nameValidation,
   email: gmailValidation,
   phone: phoneValidation,
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  message: z.string().min(
+    10,
+    "Message must be at least 10 characters"
+  ),
 });
 
 const referSchema = z.object({
-  yourName: z.string().min(3, "Name is required"),
+  yourName: nameValidation,
   yourEmail: gmailValidation,
   yourPhone: phoneValidation,
 
-  friendName: z.string().min(3, "Friend name is required"),
+  friendName: nameValidation,
   friendEmail: gmailValidation,
   friendPhone: phoneValidation,
 
-  project: z.string().min(2, "Project name is required"),
+  project: z
+    .string()
+    .min(2, "Project name is required"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -266,7 +279,13 @@ export default function ContactSection() {
                         {...contactRegister("name")}
                         type="text"
                         placeholder="Your name*"
-                        required
+                        onInput={(e) => {
+                          e.currentTarget.value =
+                            e.currentTarget.value.replace(
+                              /[^A-Za-z\s]/g,
+                              ""
+                            );
+                        }}
                         className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
                       />
 
@@ -375,6 +394,13 @@ export default function ContactSection() {
                         {...referRegister("yourName")}
                         type="text"
                         placeholder="Your name*"
+                        onInput={(e) => {
+                          e.currentTarget.value =
+                            e.currentTarget.value.replace(
+                              /[^A-Za-z\s]/g,
+                              ""
+                            );
+                        }}
                         className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
                       />
 
@@ -402,16 +428,16 @@ export default function ContactSection() {
 
                     <div>
                       <input
-                          {...referRegister("yourPhone")}
-                          type="tel"
-                          inputMode="numeric"
-                          maxLength={10}
-                          placeholder="Your phone"
-                          onInput={(e) => {
-                            e.currentTarget.value = e.currentTarget.value.replace(/\D/g, "");
-                          }}
-                          className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
-                        />
+                        {...referRegister("yourPhone")}
+                        type="tel"
+                        inputMode="numeric"
+                        maxLength={10}
+                        placeholder="Your phone"
+                        onInput={(e) => {
+                          e.currentTarget.value = e.currentTarget.value.replace(/\D/g, "");
+                        }}
+                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
+                      />
 
                       {referErrors.yourPhone && (
                         <p className="text-red-500 text-xs mt-1">
@@ -424,7 +450,14 @@ export default function ContactSection() {
                       <input
                         {...referRegister("friendName")}
                         type="text"
-                        placeholder="Friend's name*"
+                        placeholder="Your name*"
+                        onInput={(e) => {
+                          e.currentTarget.value =
+                            e.currentTarget.value.replace(
+                              /[^A-Za-z\s]/g,
+                              ""
+                            );
+                        }}
                         className="w-full border-b border-[#E5E5E5] pb-3 outline-none text-[14px]"
                       />
 

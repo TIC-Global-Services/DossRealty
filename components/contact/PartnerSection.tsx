@@ -13,6 +13,23 @@ import bannerImg from "@/assets/contact/partnerBg.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
+
+const nameValidation = z
+  .string()
+  .min(3, "Name must be at least 3 characters")
+  .regex(
+    /^[A-Za-z\s]+$/,
+    "Only letters are allowed"
+  );
+
+const textValidation = z
+  .string()
+  .min(3, "Minimum 3 characters required")
+  .regex(
+    /^[A-Za-z\s]+$/,
+    "Only letters are allowed"
+  );
+
 const gmailValidation = z
   .string()
   .min(1, "Email is required")
@@ -31,25 +48,19 @@ const phoneValidation = z
   .regex(/^[6-9]\d{9}$/, "Enter valid mobile number");
 
 const partnerSchema = z.object({
-  brokerageFirm: z
-    .string()
-    .min(3, "Brokerage firm name is required"),
+  brokerageFirm: textValidation,
 
-  fullName: z
-    .string()
-    .min(3, "Full name is required"),
+  fullName: textValidation,
 
   email: gmailValidation,
 
-  city: z
-    .string()
-    .min(2, "City is required"),
+  city: textValidation,
 
   phone: phoneValidation,
 });
 
 const jobSchema = z.object({
-  name: z.string().min(3, "Name is required"),
+  name: nameValidation,
 
   email: gmailValidation,
 
@@ -439,6 +450,13 @@ export default function PartnerSection() {
                         {...partnerRegister("brokerageFirm")}
                         type="text"
                         placeholder="Your Brokerage Firm name*"
+                        onInput={(e) => {
+                          e.currentTarget.value =
+                            e.currentTarget.value.replace(
+                              /[^A-Za-z\s]/g,
+                              ""
+                            );
+                        }}
                         className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
                       />
 
@@ -454,6 +472,13 @@ export default function PartnerSection() {
                         {...partnerRegister("fullName")}
                         type="text"
                         placeholder="Full Name*"
+                        onInput={(e) => {
+                          e.currentTarget.value =
+                            e.currentTarget.value.replace(
+                              /[^A-Za-z\s]/g,
+                              ""
+                            );
+                        }}
                         className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
                       />
 
@@ -484,6 +509,13 @@ export default function PartnerSection() {
                         {...partnerRegister("city")}
                         type="text"
                         placeholder="City*"
+                        onInput={(e) => {
+                          e.currentTarget.value =
+                            e.currentTarget.value.replace(
+                              /[^A-Za-z\s]/g,
+                              ""
+                            );
+                        }}
                         className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
                       />
 
@@ -562,6 +594,13 @@ export default function PartnerSection() {
                         {...jobRegister("name")}
                         type="text"
                         placeholder="Your name*"
+                        onInput={(e) => {
+                          e.currentTarget.value =
+                            e.currentTarget.value.replace(
+                              /[^A-Za-z\s]/g,
+                              ""
+                            );
+                        }}
                         className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
                       />
 
