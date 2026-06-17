@@ -168,9 +168,9 @@ export default function WhyWorkWithUs() {
         {/* Progress Bar */}
         <div className="mt-6 mb-8 reveal-heading">
           <div
-            className="
+            className="w-[100%]
               h-[2px]
-              w-[60%]
+              md:w-[60%]
             "
             style={{
               background:
@@ -188,7 +188,7 @@ export default function WhyWorkWithUs() {
             max-w-[1100px]
             uppercase
             text-[#39384C]
-            text-[24px] leading-[20px]
+            text-[18px] leading-[20px]
             md:leading-[24px]
             mb-10
             md:pl-20

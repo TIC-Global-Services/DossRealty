@@ -28,7 +28,7 @@ export default function Subscription() {
             className="
               w-full
               px-5
-              pt-10
+              pt-20
               text-center
 
               md:px-8
@@ -40,12 +40,12 @@ export default function Subscription() {
             "
           >
             <h2
-              className="
+              className="text-start font-small
                 max-w-[520px]
-                text-[30px]
+                text-[20px] leading-[24px]
                 font-light
-                leading-[95%]
-                tracking-[-0.02em]
+                md:leading-[95%]
+                md:tracking-[-0.02em]
                 text-white
                 md:text-[40px]
                 lg:max-w-[520px]
@@ -57,12 +57,12 @@ export default function Subscription() {
             </h2>
 
             <p
-              className="
+              className="text-start
                 mx-auto
                 mt-6
                 max-w-[470px]
-                text-[14px]
-                leading-[150%]
+                text-[13px] leading-[16px]
+                md:leading-[150%]
                 text-white
                 opacity-90
 
