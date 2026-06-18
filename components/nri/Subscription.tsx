@@ -1,15 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import phoneImg from "@/assets/nri/phoneImg.png";
+import phoneImg from "@/assets/nri/handImg.png";
 
 export default function Subscription() {
   return (
-    <section className="py-10 md:py-[40px]">
+    <section className="py-10 md:py-[40px] md:mt-25">
       <div className="mx-5 max-w-[1440px] md:mx-10 md:px-5">
         <div
           className="h-[80vh]
-            overflow-hidden
+            overflow-visible
             rounded-[10px]
             bg-[#00256a]
 
@@ -139,23 +139,23 @@ export default function Subscription() {
               flex
               w-full
               items-end
-              justify-center
+              
 
               lg:mt-0
-              lg:pr-10
               lg:self-end
+              
             "
           >
             <Image
               src={phoneImg}
               alt="Doss Realty Mobile App"
               className="
-                w-[280px]
-                object-contain
+                w-[550px] h-[500px] -translate-y-20
+                object-cover
 
                 md:w-[360px]
 
-                lg:w-[420px]
+                lg:w-[800px] lg:h-[650px] 
                 lg:translate-y-0
               "
               priority

@@ -105,8 +105,8 @@ const PropertyJourney = () => {
           {/* RIGHT */}
           <div>
             <p
-              className="
-                md:w-[58ch]
+              className="md:ml-6
+                md:max-w-[600px]
                 text-[16px] tracking-[-0.48px]
                 leading-[20px]
                 text-[#6B6B6B]

@@ -16,106 +16,53 @@ import article3 from "@/assets/nri/articleImg3.jpg";
 
 import PrimaryBtn from "../reusable/PrimaryBtn";
 
-gsap.registerPlugin(
-  ScrollTrigger
-);
+gsap.registerPlugin(ScrollTrigger);
 
 const RelatedArticles = () => {
-  const sectionRef =
-    useRef<HTMLDivElement>(
-      null
-    );
-
-  const featuredImgRef =
-    useRef<HTMLDivElement>(
-      null
-    );
-
-  const textRevealRef =
-    useRef<
-      HTMLDivElement[]
-    >([]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const featuredImgRef = useRef<HTMLDivElement>(null);
+  const textRevealRef = useRef<HTMLDivElement[]>([]);
 
   useLayoutEffect(() => {
-    const ctx =
-      gsap.context(() => {
-        // LEFT IMAGE PARALLAX
-        gsap.to(
-          featuredImgRef.current,
-          {
-            yPercent: -25,
-            ease: "none",
-            scrollTrigger: {
-              trigger:
-                sectionRef.current,
-              start:
-                "top bottom",
-              end:
-                "bottom top",
-              scrub: 2.5,
-            },
-          }
-        );
+    const ctx = gsap.context(() => {
+      // LEFT IMAGE PARALLAX
+      gsap.to(featuredImgRef.current, {
+        yPercent: -25,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 2.5,
+        },
+      });
 
-        // TEXT REVEAL
-        gsap.from(
-          textRevealRef.current,
-          {
-            y: 60,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.15,
-            ease:
-              "power3.out",
-            scrollTrigger: {
-              trigger:
-                sectionRef.current,
-              start:
-                "top 80%",
-            },
-          }
-        );
-      },
-      sectionRef
-    );
+      // TEXT REVEAL
+      gsap.from(textRevealRef.current, {
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        },
+      });
+    }, sectionRef);
 
-    return () =>
-      ctx.revert();
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="
-        overflow-hidden
-        py-14
-        md:py-16
-      "
-    >
-      <div
-        className="
-          mx-auto
-          max-w-[1280px]
-          px-5
-          md:px-8
-          lg:px-10
-        "
-      >
+    <section ref={sectionRef} className="overflow-hidden py-14 md:py-16">
+      <div className="mx-auto px-5 md:px-8 lg:px-24">
         {/* Heading */}
         <h2
           ref={(el) => {
-            if (el)
-              textRevealRef.current[0] =
-                el;
+            if (el) textRevealRef.current[0] = el;
           }}
-          className="
-            font-heading
-            text-[30px]
-            leading-[50px]
-            tracking-[-0.05em]
-            text-[#111111]
-            md:text-[48px]
-          "
+          className="font-heading text-[30px] leading-[50px] tracking-[-0.05em] text-[#111111] md:text-[48px]"
         >
           Related articles
         </h2>
@@ -127,23 +74,18 @@ const RelatedArticles = () => {
             flex
             flex-col
             gap-8
-
             lg:grid
+            lg:grid-cols-[1fr_1fr]
             lg:gap-[20px]
-            lg:grid-cols-[minmax(0,580px)_minmax(0,580px)]
             lg:items-start
-            lg:justify-between
           "
         >
           {/* LEFT FEATURED ARTICLE */}
-          <Link
-            href="/blogs"
-            className="w-full"
-          >
+          <Link href="/blogs" >
             <div
               className="
                 relative h-[450px]
-                md:aspect-[4/4.1]
+                md:h-[500px]
                 w-full
                 overflow-hidden
                 rounded-[10px]
@@ -151,313 +93,170 @@ const RelatedArticles = () => {
             >
               {/* PARALLAX IMAGE */}
               <div
-                ref={
-                  featuredImgRef
-                }
-                className="
-                  absolute
-                  inset-0
-                  h-[140%]
-                  w-full
-                "
+                ref={featuredImgRef}
+                className="absolute inset-0 h-[150%] w-full"
               >
                 <Image
                   src={article1}
                   alt="Featured Article"
                   fill
-                  className="
-                    object-cover
-                  "
+                  className="object-cover"
                 />
               </div>
 
               {/* Overlay */}
-              <div
-                className="
-                  absolute
-                  inset-0
-                  z-10
-                  bg-gradient-to-t
-                  from-black/40
-                  via-transparent
-                  to-transparent
-                "
-              />
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
               {/* Title */}
               <div
                 ref={(el) => {
-                  if (el)
-                    textRevealRef.current[1] =
-                      el;
+                  if (el) textRevealRef.current[1] = el;
                 }}
-                className="
-                  absolute
-                  left-6
-                  top-6
-                  z-20
-                  max-w-[40ch]
-                  md:left-8
-                  md:top-8
-                "
+                className="absolute left-6 top-6 z-20 max-w-[40ch] md:left-8 md:top-8"
               >
-                <h3
-                  className="
-                    text-[18px]
-                    leading-[26px]
-                    tracking-[-0.72px]
-                    text-white
-                    md:text-[24px]
-                  "
-                >
-                  A Complete Guide
-                  to NRI Property
-                  Investment in
-                  India
+                <h3 className="text-[18px] leading-[26px] tracking-[-0.72px] text-white md:text-[24px]">
+                  A Complete Guide to NRI Property Investment in India
                 </h3>
               </div>
             </div>
           </Link>
 
           {/* RIGHT SIDE */}
-          {/* RIGHT SIDE */}
-<div className="flex flex-col">
-  {/* ARTICLES */}
-  <div
-    className="
-      flex
-      flex-col
-      gap-8
+          <div className="flex flex-col">
+            {/* ARTICLES */}
+            <div className="flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-[20px]">
+              {/* ARTICLE 1 */}
+              <Link
+                href="/blogs"
+                className="
+                  group
+                  mx-auto
+                  flex
+                  w-[290px]
+                  flex-col
+                  items-center
+                  md:w-auto
+                  md:items-start
+                "
+              >
+                <div
+                  className="
+                    relative
+                    h-[295px]
+                    w-[290px]
+                    overflow-hidden
+                    rounded-[12px]
+                    md:aspect-[4/4.2]
+                    md:h-auto
+                    md:w-full
+                    md:rounded-[10px]
+                  "
+                >
+                  <Image
+                    src={article2}
+                    alt=""
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                </div>
 
-      md:grid
-      md:gap-[20px]
-      md:grid-cols-2
-    "
-  >
-    {/* ARTICLE 1 */}
-    <Link
-      href="/blogs"
-      className="
-        group
-        mx-auto
-        flex
-        w-[290px]
-        flex-col
-        items-center
+                {/* Text container */}
+                <div
+                  className="w-[290px] text-center md:w-full md:max-w-[35ch] md:text-left"
+                  ref={(el) => {
+                    if (el) textRevealRef.current[2] = el;
+                  }}
+                >
+                  <h3 className="text-start mt-4 text-[14px] font-[500] leading-[115%] tracking-[-0.6px] text-[#111111] md:text-[20px]">
+                    Key Benefits of Investing in Chennai Real Estate for NRIs
+                  </h3>
 
-        md:w-auto
-        md:items-start
-      "
-    >
-      <div
-        className="
-          relative
-          h-[295px]
-          w-[290px]
-          overflow-hidden
-          rounded-[12px]
+                  <p className="text-start mt-3 text-[14px] leading-[20px] text-[#717171] md:text-[16px]">
+                    Explore why Chennai continues to attract NRI investors through strong
+                    infrastructure growth.
+                  </p>
+                </div>
+              </Link>
 
-          md:aspect-[4/4.2]
-          md:h-auto
-          md:w-full
-          md:rounded-[10px]
-        "
-      >
-        <Image
-          src={article2}
-          alt=""
-          fill
-          className="
-            object-cover
-            transition-transform
-            duration-700
-            ease-out
-            group-hover:scale-110
-          "
-        />
-      </div>
+              {/* ARTICLE 2 */}
+              <Link
+                href="/blogs"
+                className="
+                  group
+                  mx-auto
+                  flex
+                  w-[290px]
+                  flex-col
+                  items-center
+                  md:w-auto
+                  md:items-start
+                "
+              >
+                <div
+                  className="
+                    relative
+                    h-[295px]
+                    w-[290px]
+                    overflow-hidden
+                    rounded-[10px]
+                    md:aspect-[4/4.2]
+                    md:h-auto
+                    md:w-full
+                  "
+                >
+                  <Image
+                    src={article3}
+                    alt=""
+                    fill
+                    className="object-cover object-bottom transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                </div>
 
-      <div
-        className="
-          w-[290px]
-          text-center
+                <div
+                  className="w-[290px] text-center md:w-full md:max-w-[35ch] md:text-left"
+                  ref={(el) => {
+                    if (el) textRevealRef.current[3] = el;
+                  }}
+                >
+                  <h3 className="text-start mt-4 text-[14px] font-[500] leading-[115%] tracking-[-0.6px] text-[#111111] md:text-[20px]">
+                    Key Benefits of Investing in Chennai Real Estate for NRIs
+                  </h3>
 
-          md:max-w-[250px]
-          md:text-left
-        "
-        ref={(el) => {
-          if (el)
-            textRevealRef.current[2] =
-              el;
-        }}
-      >
-        <h3
-          className="text-start
-            mt-4
-            text-[14px]
-            font-[500]
-            leading-[115%]
-            tracking-[-0.6px]
-            text-[#111111]
-            md:text-[20px]
-          "
-        >
-          Key Benefits of
-          Investing in
-          Chennai Real
-          Estate for NRIs
-        </h3>
+                  <p className="text-start mt-3 text-[14px] leading-[20px] text-[#717171] md:text-[16px]">
+                    Explore why Chennai continues to attract NRI investors through strong
+                    infrastructure growth.
+                  </p>
+                </div>
+              </Link>
+            </div>
 
-        <p
-          className="text-start
-            mt-3
-            text-[14px]
-            leading-[20px]
-            text-[#717171]
-            md:text-[16px]
-          "
-        >
-          Explore why
-          Chennai continues
-          to attract NRI
-          investors through
-          strong
-          infrastructure
-          growth.
-        </p>
-      </div>
-    </Link>
-
-    {/* ARTICLE 2 */}
-    <Link
-      href="/blogs"
-      className="
-        group
-        mx-auto
-        flex
-        w-[290px]
-        flex-col
-        items-center
-
-        md:w-auto
-        md:items-start
-      "
-    >
-      <div
-        className="
-          relative
-          h-[295px]
-          w-[290px]
-          overflow-hidden
-          rounded-[10px]
-
-          md:aspect-[4/4.2]
-          md:h-auto
-          md:w-full
-        "
-      >
-        <Image
-          src={article3}
-          alt=""
-          fill
-          className="
-            object-cover
-            object-bottom
-            transition-transform
-            duration-700
-            ease-out
-            group-hover:scale-110
-          "
-        />
-      </div>
-
-      <div
-        className="
-          w-[290px]
-          text-center
-
-          md:max-w-[250px]
-          md:text-left
-        "
-        ref={(el) => {
-          if (el)
-            textRevealRef.current[3] =
-              el;
-        }}
-      >
-        <h3
-          className="w-[290px] text-start
-            mt-4
-            text-[14px] leading-[20px]
-            font-[500]
-            md:leading-[25px]
-            tracking-[-0.6px]
-            text-[#111111]
-            md:text-[20px]
-          "
-        >
-          Key Benefits of
-          Investing in
-          Chennai Real
-          Estate for NRIs
-        </h3>
-
-        <p
-          className="text-start
-            mt-3
-            text-[14px]
-            leading-[20px]
-            text-[#717171]
-            md:text-[16px]
-          "
-        >
-          Explore why
-          Chennai continues
-          to attract NRI
-          investors through
-          strong
-          infrastructure
-          growth.
-        </p>
-      </div>
-    </Link>
-  </div>
-
-  {/* BUTTON */}
-  <div
-    ref={(el) => {
-      if (el)
-        textRevealRef.current[4] =
-          el;
-    }}
-    className="
-      mt-10
-      flex
-      justify-center
-
-      lg:justify-end
-    "
-  >
-    <Link href="/blogs">
-      <PrimaryBtn
-        className="
-          font-small
-          rounded-full
-          bg-[#00256A]
-          text-[16px]
-          tracking-[-0.48px]
-          text-white
-          transition
-          duration-300
-          hover:scale-105
-          hover:text-black
-        "
-      >
-        Browse all articles
-      </PrimaryBtn>
-    </Link>
-  </div>
-</div>
+            {/* BUTTON – desktop right‑aligned with consistent top margin */}
+            <div
+              ref={(el) => {
+                if (el) textRevealRef.current[4] = el;
+              }}
+              className="mt-10 flex justify-center lg:justify-end"
+            >
+              <Link href="/blogs">
+                <PrimaryBtn
+                  className="
+                    font-small
+                    rounded-full
+                    bg-[#00256A]
+                    text-[16px]
+                    tracking-[-0.48px]
+                    text-white
+                    transition
+                    duration-300
+                    hover:scale-105
+                    hover:text-black
+                  "
+                >
+                  Browse all articles
+                </PrimaryBtn>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
