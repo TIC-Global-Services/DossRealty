@@ -293,3 +293,14 @@ html.lenis body {
 .partner-modal::-webkit-scrollbar-thumb:hover {
   background: #2F3147;
 }
+
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

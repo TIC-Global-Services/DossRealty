@@ -202,7 +202,7 @@ export default function PartnerSection() {
               relative
               overflow-hidden
               rounded-[10px]
-              min-h-[300px]
+              min-h-[800px]
               md:min-h-[320px]
               will-change-transform
             "
@@ -225,19 +225,18 @@ export default function PartnerSection() {
               className="
                 relative z-10
                 flex flex-col
-                justify-between
                 h-full
                 p-8 md:p-12 lg:p-16
               "
             >
               {/* Top Content */}
-              <div className="max-w-[520px]">
+              <div className="max-w-[520px] mt-10 md:mt-0">
                 <h2
                   className="
                     text-white
                     font-small
-                    leading-[50px] tracking-[-1.44px]
-                    text-[32px]
+                    md:leading-[50px] md:tracking-[-1.44px]
+                    text-[24px] leading-[30px]
                     md:text-[48px]
                   "
                 >
@@ -256,9 +255,9 @@ export default function PartnerSection() {
                   className="
                     mt-4
                     text-white/90
-                    text-[14px]
+                    text-[13px] leading-[16px]
                     md:text-[16px]
-                    leading-[20px] tracking-[-0.48px]
+                    md:leading-[20px] md:tracking-[-0.48px]
                     max-w-[550px]
                   "
                 >
@@ -269,14 +268,14 @@ export default function PartnerSection() {
 
                 <button
                   onClick={() => setShowModal(true)}
-                  className="
-                    mt-6 font-regular
+                  className="mt-4
+                    md:mt-6 font-small
                     bg-white
-                    text-[#032B7A]
-                    px-8
-                    py-3
-                    rounded-full
-                    text-[16px] md:leading-[20px] md:tracking-[-0.48px]
+                    text-[#032B7A] px-6 py-2.5
+                    md:px-8
+                    md:py-3
+                    rounded-full text-[13px] leading-[20px]
+                    md:text-[16px] md:leading-[20px] tracking-[-0.48px]
                     font-medium
                     transition-all
                     duration-300
@@ -291,7 +290,7 @@ export default function PartnerSection() {
               </div>
 
               {/* Premium Glass Tabs */}
-              <div className="flex justify-center mt-12">
+              <div className="flex justify-center mt-auto pt-100 lg:mt-12 lg:pt-0">
                 <div
                   className="
                     relative
@@ -321,7 +320,7 @@ export default function PartnerSection() {
                       ease-[cubic-bezier(0.22,1,0.36,1)]
                       ${activeTab === "partner"
                         ? "translate-x-0 w-[145px]"
-                        : "translate-x-[145px] w-[120px]"
+                        : "translate-x-[145px] w-[145px]"
                       }
                     `}
                   />
@@ -333,12 +332,12 @@ export default function PartnerSection() {
                       relative
                       z-10
                       flex
-                      h-[42px]
+                      h-[42px] 
                       w-[145px]
                       items-center
                       justify-center
-                      rounded-full
-                      md:text-[14px] md:leading-[16px] md:tracking-[-0.48px]
+                      rounded-full text-[13px] tracking-[-0.5px]
+                      md:text-[14px] leading-[16px] md:tracking-[-0.48px]
                       font-medium
                       transition-all
                       cursor-pointer
@@ -359,12 +358,12 @@ export default function PartnerSection() {
                       relative
                       z-10
                       flex
-                      h-[42px]
-                      w-[120px]
+                      h-[42px] 
+                      w-[145px]
                       items-center
                       justify-center
-                      rounded-full
-                      md:text-[14px] md:leading-[16px] md:tracking-[-0.48px]
+                      rounded-full text-[13px] tracking-[-0.5px]
+                      md:text-[14px] leading-[16px] md:tracking-[-0.48px]
                       font-medium
                       cursor-pointer
                       transition-all

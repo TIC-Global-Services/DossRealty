@@ -122,20 +122,19 @@ export default function ContactSection() {
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
 
           {/* LEFT */}
-          <div>
+          <div className="order-2 lg:order-1 mt-10 md:mt-0 text-left lg:text-left">
             <h2
               className="font-secondary font-[700]
-                text-black leading-[20px]
-                text-[24px]
-                lg:text-[28px]
-                tracking-tighter
-                uppercase
-              "
+              text-black leading-[20px] pl-16 md:pl-0
+              text-[24px]
+              lg:text-[28px]
+              tracking-tighter
+              uppercase"
             >
               Chennai
             </h2>
 
-            <div className="mt-6 grid md:grid-cols-2 gap-8 max-w-[500px]">
+            <div className="mt-6 grid md:grid-cols-2 gap-8  max-w-[250px] md:max-w-[500px] mx-auto lg:mx-0">
 
               <div>
                 <p className="text-[#262B35] text-sm md:text-[18px] md:leading-[26px] tracking-normal font-[300] mb-3">
@@ -143,7 +142,9 @@ export default function ContactSection() {
                 </p>
 
                 <p className="text-[#000000] md:text-[16px] leading-[24px] md:tracking-normal font-[300]">
-                  Number : +91 99629 96977 <br /> Address: 14, Prathap Palace, Porur-Kundrathur Main Road, Kovur, Chennai-128
+                  Number : +91 99629 96977 <br />
+                  Address: 14, Prathap Palace, Porur-Kundrathur Main Road,
+                  Kovur, Chennai-128
                 </p>
               </div>
 
@@ -166,11 +167,12 @@ export default function ContactSection() {
                   info@dossrealty.in
                 </a>
               </div>
+
             </div>
           </div>
 
           {/* RIGHT */}
-          <div className="w-full max-w-[560px] xl:max-w-[660px] lg:ml-auto">
+          <div className="order-1 lg:order-2 w-full max-w-[560px] xl:max-w-[660px] lg:ml-auto">
 
             {/* Tabs */}
             <div className="flex border-b border-[#D8D8D8] mb-4">
@@ -246,7 +248,7 @@ export default function ContactSection() {
 
             {/* Card */}
             <div
-              className="w-[570px]
+              className="w-full md:w-[570px]
                 bg-white
                 rounded-[10px]
                 shadow-[0_10px_40px_rgba(0,0,0,0.10)]
@@ -261,9 +263,9 @@ export default function ContactSection() {
                       text-center
                       text-[#2F3147]
                       font-heading
-                      text-[26px]
+                      text-[26px] leading-[30px]
                       md:text-[45px]
-                      leading-[48px] tracking-[0px]
+                      md:leading-[48px] tracking-[0px]
                     "
                   >
                     WE’LL GET IN TOUCH WITH YOU SOON
@@ -271,7 +273,7 @@ export default function ContactSection() {
 
                   <form
                     onSubmit={contactHandleSubmit(onContactSubmit)}
-                    className="mt-6 lg:mt-7 space-y-4 lg:space-y-5"
+                    className="mt-6 lg:mt-7 space-y-6 lg:space-y-5"
                   >
 
                     <div>
@@ -386,7 +388,7 @@ export default function ContactSection() {
 
                   <form
                     onSubmit={referHandleSubmit(onReferSubmit)}
-                    className="mt-6 lg:mt-7 space-y-4 lg:space-y-5"
+                    className="mt-6 lg:mt-7 space-y-6 lg:space-y-5"
                   >
 
                     <div>

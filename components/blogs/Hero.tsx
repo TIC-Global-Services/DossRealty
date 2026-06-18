@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 const Hero = () => {
   return (
     <section
-      className="
+      className="min-h-[40vh] mt-8 md:mt-10
         flex
-        min-h-[80vh]
+        md:min-h-[60vh]
         items-center
         justify-center
         px-6
@@ -33,10 +33,10 @@ const Hero = () => {
           className="
             font-small
             text-[#111111]
-            text-[34px]
+            text-[24px]
             md:text-[60px]
             leading-[66px]
-            tracking-[-1.8px]
+            md:tracking-[-1.8px]
           "
         >
           Learn Before You Invest
@@ -57,14 +57,14 @@ const Hero = () => {
             delay: 0.2,
             ease: "easeOut",
           }}
-          className="
+          className="max-w-[350px]
             mx-auto
-            mt-4
-            max-w-[600px]
+            md:mt-4
+            md:max-w-[600px]
             text-[#666666]
-            text-[14px]
-            md:text-[16px]
-            leading-[24px]
+            text-[13px] leading-[16px]
+            md:text-[16px] 
+            md:leading-[24px]
             tracking-[-0.48px]
           "
         >

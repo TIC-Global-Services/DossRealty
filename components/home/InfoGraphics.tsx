@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import image1 from "@/assets/home/infographics/img1.jpg";
+
 import image2 from "@/assets/home/infographics/img2.png";
 import image3 from "@/assets/home/infographics/img3.jpg";
 import image4 from "@/assets/home/infographics/img4.jpg";
@@ -22,11 +22,11 @@ type InfographicItem = {
 };
 
 const infographicData: InfographicItem[] = [
-  { id: "01", image: image1, stat: "Est. 2010",  description: "In Chennai, India"       },
-  { id: "02", image: image2, stat: "30+",        description: "Years Experience"         },
-  { id: "03", image: image3, stat: "5+",         description: "Million SQFT Delivered"   },
-  { id: "04", image: image4, stat: "15+",        description: "Projects"                 },
-  { id: "05", image: image5, stat: "4000+",      description: "Family's Served"          },
+
+  { id: "01", image: image2, stat: "30+",        description: "Years Experience"         },
+  { id: "02", image: image3, stat: "5+",         description: "Million SQFT Delivered"   },
+  { id: "03", image: image4, stat: "15+",        description: "Projects"                 },
+  { id: "04", image: image5, stat: "4000+",      description: "Family's Served"          },
 ];
 
 
@@ -231,7 +231,7 @@ export default function InfoGraphics() {
     if (!isDesktop) {
 
 
-      // ── Mobile init ──────────────────────────────────────────────────────────
+      // ── Mobile init
       gsap.set(mobileImageRefs.current,  { opacity: 0 });
       gsap.set(mobileImageRefs.current[0], { opacity: 1 });
 

@@ -22,7 +22,7 @@ const Hero = () => {
 
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-5 pt-[20vh] md:pt-[20vh] lg:pt-[20vh]">
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-5 pt-[20vh] md:pt-[20vh] lg:pt-[25vh]">
         <div className="max-w-[900px] text-center self-start">
 
           {/* Heading */}
@@ -36,10 +36,10 @@ const Hero = () => {
               tracking-[-1.44px]
             "
           >
-           Global Living, Indian Roots
+           INVESTING FROM ABROAD
           </h1>
 
-          {/* Paragraph */}
+          {/* Paragraph
           <p
             className="capitalize
               mx-auto
@@ -51,7 +51,7 @@ const Hero = () => {
             "
           >
             Helping NRIs invest, build, and stay connected to opportunities back home with ease and confidence.
-          </p>
+          </p> */}
 
         </div>
       </div>

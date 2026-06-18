@@ -459,7 +459,7 @@ export default function Hero() {
                 text-[clamp(36px,4vw,60px)]
               "
               >
-                Discover Your Next Move
+                DISCOVER THE COLLECTION
               </h2>
 
               <p
@@ -477,7 +477,7 @@ export default function Hero() {
                   isolate
                   overflow-hidden
                   mt-5
-                  px-6
+                  px-8
                   py-2.5
                   rounded-[60px]
                 
@@ -495,7 +495,7 @@ export default function Hero() {
                   before:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,white_12%,white_88%,transparent_100%)]
                 "
               >
-                Explore Properties
+                Explore
               </button>
           </div>
 

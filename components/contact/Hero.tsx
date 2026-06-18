@@ -34,7 +34,7 @@ export default function Hero() {
         alt="Background"
         fill
         priority
-        className="object-cover object-bottom"
+        className="object-cover object-[10%] md:object-bottom"
       />
 
       {/* Overlay */}
@@ -47,7 +47,7 @@ export default function Hero() {
           relative z-10
           flex h-full flex-col
           items-center justify-center
-          text-center
+          text-center -translate-y-[20%]
           px-6 md:px-10
           md:-translate-y-[25%]
         "
@@ -66,15 +66,15 @@ export default function Hero() {
         </h2>
 
         <p
-          className="
-            mt-6
-            max-w-[700px]
+          className="max-w-[215px]
+            md:mt-6
+            md:max-w-[700px]
             text-white/90
             tracking-normal
             capitalize
-            text-[16px]
+            text-[13px] leading-[16px]
             md:text-[18px]
-            leading-[20px]
+            md:leading-[20px]
           "
         >
           Have a question or project in mind?
