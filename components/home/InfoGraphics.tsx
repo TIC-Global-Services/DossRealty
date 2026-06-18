@@ -574,14 +574,14 @@ export default function InfoGraphics() {
 
             {/* Diagonal line */}
             <svg
-              className="pointer-events-none absolute inset-0 z-[5] h-full w-full overflow-visible"
+              className="pointer-events-none absolute  inset-0 z-[5] h-full w-full overflow-visible"
               viewBox="0 0 420 420"
             >
-              <line x1="210" y1="210" x2="-100" y2="520" stroke="#1A1814" strokeWidth="1" opacity="20" />
+              <line x1="210" y1="234" x2="-100" y2="520" stroke="#1A1814" strokeWidth="1" opacity="20" />
             </svg>
 
             {/* Center dot */}
-            <div className="absolute left-1/2 top-1/2 z-[10] h-[16px] w-[16px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1A1814]" />
+            <div className="absolute left-[51%] top-[54%] z-[10] h-[16px] w-[16px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1A1814]" />
           </div>
         </div>
 

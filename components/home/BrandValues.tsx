@@ -168,7 +168,7 @@ export default function LegacyVisionPurpose() {
 
             {/* MOBILE */}
             <section className="bg-white py-16 md:hidden">
-                <div className="relative mx-auto max-w-[500px] px-5">
+                <div className="relative mx-auto px-18">
                     {values.map(
                         (item, index) => (
                             <div
@@ -197,7 +197,7 @@ export default function LegacyVisionPurpose() {
                                     className="relative"
                                 >
                                     {/* IMAGE */}
-                                    <div className="relative h-[500px] overflow-hidden rounded-[20px]">
+                                    <div className="relative w-[280px] h-[290px] overflow-hidden rounded-[10px]">
                                         <Image
                                           src={item.mobileImage || item.image}
                                           alt={item.title}
@@ -267,10 +267,10 @@ export default function LegacyVisionPurpose() {
                                             <h2
                                                 className="
                                                   mb-4
-                                                  text-[42px]
+                                                  text-[24px]
                                                   font-heading
-                                                  leading-[90%]
-                                                  tracking-[-0.03em]
+                                                  leading-[30px]
+                                                  tracking-normal
                                                   text-[#111111]
                                                 "
                                             >
@@ -278,9 +278,9 @@ export default function LegacyVisionPurpose() {
                                             </h2>
 
                                             <p
-                                                className="
-                                                  text-[15px]
-                                                  leading-[170%]
+                                                className="max-w-[220px]
+                                                  text-[13px]
+                                                  leading-[18px]
                                                   text-[#666666]
                                                 "
                                             >

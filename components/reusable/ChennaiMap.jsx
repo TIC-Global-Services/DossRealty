@@ -11,15 +11,22 @@ function FlyToLocation({ activeMinute }) {
   const map = useMap();
 
   useEffect(() => {
-    const data = LOCATION_DATA[activeMinute];
+  const data = LOCATION_DATA[activeMinute];
 
-    if (data) {
-      map.flyTo(data.center, data.zoom, {
-        duration: 2,
-        easeLinearity: 0.5,
-      });
-    }
-  }, [activeMinute, map]);
+  if (
+    !data ||
+    !data.center ||
+    isNaN(data.center[0]) ||
+    isNaN(data.center[1])
+  ) {
+    return;
+  }
+
+  map.flyTo(data.center, data.zoom, {
+    duration: 2,
+    easeLinearity: 0.5,
+  });
+}, [activeMinute, map]);
 
   return null;
 }
@@ -118,7 +125,7 @@ export default function ChennaiMap({
     simpleMode && pinLocation ? pinLocation : PROJECT_LOCATION.position;
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-[#F4F4F4]">
+    <div className="relative w-[100vw] h-[50vh] md:h-full md:w-full overflow-hidden bg-[#F4F4F4]">
       <MapContainer
         center={center}
         zoom={simpleMode ? 16 : 12}
@@ -163,7 +170,7 @@ export default function ChennaiMap({
 
       {/* Bottom Card */}
       {!simpleMode && activeMinute !== 0 && (
-        <div className="absolute bottom-10 left-8 z-[1000] w-[300px] rounded-[22px] border border-[#E8E8E8] bg-white/95 p-5 shadow-xl backdrop-blur-md">
+        <div className="hidden md:block absolute bottom-10 left-8 z-[1000] w-[300px] rounded-[22px] border border-[#E8E8E8] bg-white/95 p-5 shadow-xl backdrop-blur-md">
           <div className="space-y-3">
             {currentPlaces.map((place, index) => (
               <div key={index} className="flex items-center justify-between">

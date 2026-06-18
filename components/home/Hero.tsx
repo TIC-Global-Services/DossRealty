@@ -192,7 +192,18 @@ export default function Hero() {
     ce.style.setProperty("mask-repeat", "no-repeat");
     ce.style.setProperty("-webkit-mask-repeat", "no-repeat");
     ce.style.setProperty("mask-position", "0px 0px");
-    ce.style.setProperty("-webkit-mask-position","0px 0px");
+    ce.style.setProperty("-webkit-mask-position", "0px 0px");
+
+
+    const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+    const isSafari =
+      /^((?!chrome|android).)*safari/i.test(
+        navigator.userAgent
+      );
+
+    ScrollTrigger.normalizeScroll(true);
 
     const ctx = gsap.context(() => {
       gsap.set(rootRef.current, {
@@ -245,16 +256,41 @@ export default function Hero() {
         });
       });
 
+      gsap.set(
+        [
+          houseRef.current,
+          cloudLRef.current,
+          cloudRRef.current,
+          smokeRef.current,
+          compositeRef.current,
+          compositeInnerRef.current,
+        ],
+        {
+          force3D: true,
+          willChange: "transform",
+        }
+      );
+
+      gsap.set(compositeRef.current, {
+        force3D: true,
+      });
+
+      if (compositeRef.current) {
+        compositeRef.current.style.contain = "paint";
+      }
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: rootRef.current,
           start: "top top",
           end: "+=1200",
           pin: true,
-          scrub: 2,
+          pinType: "transform",
+          scrub: isSafari ? 0.8 : 2,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           pinSpacing: true,
+          fastScrollEnd: true,
         },
       });
 
@@ -272,7 +308,7 @@ export default function Hero() {
       tl.to(
         houseRef.current,
         {
-          scale: 1.8,
+          scale: isIOS ? 1.45 : 1.8,
           ease: "power1.out",
           duration: 7,
           force3D: true,
@@ -294,8 +330,8 @@ export default function Hero() {
         [...paths, ...floorPaths],
         {
           strokeDashoffset: 0,
-          stagger: 0.04,
-          duration: 3.5,
+          stagger: isIOS ? 0 : 0.04,
+          duration: isIOS ? 2.2 : 3.5,
           ease: "power1.out",
         },
         1.1
@@ -432,7 +468,7 @@ export default function Hero() {
               alt=""
               fill
               priority
-              className="object-cover object-right md:object-center"
+              className="object-cover object-[50%] md:object-center"
             />
           </div>
 
@@ -469,10 +505,10 @@ export default function Hero() {
                 For What Comes Next.
               </p>
 
-              
+
             </div>
             <button
-                className="font-small
+              className="font-small
                   relative
                   isolate
                   overflow-hidden
@@ -494,15 +530,15 @@ export default function Hero() {
                   before:[mask-image:linear-gradient(to_right,transparent_0%,white_12%,white_88%,transparent_100%)]
                   before:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,white_12%,white_88%,transparent_100%)]
                 "
-              >
-                Explore
-              </button>
+            >
+              Explore
+            </button>
           </div>
 
           {/* Left Cloud */}
           <div
             ref={cloudLRef}
-            className="
+            className="hero-gpu
             pointer-events-none
             absolute
             top-[40%]
@@ -517,9 +553,9 @@ export default function Hero() {
               alt=""
               width={520}
               height={220}
-              className="
+              className="hero-gpu
               h-auto
-              w-[288px]
+              w-[300px]
               md:w-[896px]
             "
             />
@@ -528,7 +564,7 @@ export default function Hero() {
           {/* Right Cloud */}
           <div
             ref={cloudRRef}
-            className="
+            className="hero-gpu
             pointer-events-none
             absolute
             top-[40%]
@@ -544,7 +580,7 @@ export default function Hero() {
               height={220}
               className="
               h-auto
-              w-[224px]
+              w-[244px]
               scale-x-[-1]
               md:w-[736px]
             "
@@ -554,12 +590,12 @@ export default function Hero() {
           {/* House */}
           <div
             ref={houseRef}
-            className="
+            className="hero-gpu
             absolute left-0 right-0
             z-[10]
             will-change-transform
             top-[56vh]
-            h-[46vh]
+            h-[50vh]
             md:top-[35vh]
             md:h-[150vh]
           "
@@ -600,14 +636,14 @@ export default function Hero() {
               {/* House inside text */}
               <div
                 ref={compositeRef}
-                className="
+                className="hero-gpu
                 absolute inset-0
                 opacity-0
               "
               >
                 <div
                   ref={compositeInnerRef}
-                  className="
+                  className="hero-gpu
                   absolute inset-0
                   will-change-transform
                 "
@@ -628,7 +664,7 @@ export default function Hero() {
               {/* FLOORS */}
               <div
                 ref={floorRef}
-                className="
+                className="hero-gpu
                 absolute
                 inset-0
                 opacity-0
@@ -663,7 +699,7 @@ export default function Hero() {
               {/* SVG Outline */}
               <div
                 ref={logoRef}
-                className="
+                className="hero-gpu
                 absolute inset-0
                 opacity-0
               "
@@ -705,7 +741,7 @@ export default function Hero() {
           {/* ── BOTTOM FOG ── */}
           <div
             ref={smokeRef}
-            className="
+            className="hero-gpu
               absolute
               -bottom-50
               left-0

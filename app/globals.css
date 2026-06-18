@@ -304,3 +304,11 @@ html.lenis body {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+
+.hero-gpu {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
