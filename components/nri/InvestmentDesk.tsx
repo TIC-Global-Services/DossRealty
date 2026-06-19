@@ -96,12 +96,8 @@ const InvestmentDesk = () => {
                 md:text-[48px]
               "
             >
-             <span className="md:block hidden">Invest with
-              <br />
-              Confidence.
-              <br />
-              From Anywhere.</span>
-              <span className="md:hidden block">Invest with Confidence. <br/>From Anywhere.</span>
+            <span className="md:block hidden">India, Within Reach.</span>
+            <span className="md:hidden block">India, Within Reach.</span>
             </h2>
 
             <p
@@ -113,9 +109,8 @@ const InvestmentDesk = () => {
                 md:text-[16px]
               "
             >
-              Secure, well-planned properties with complete support from selection to registration, handled seamlessly. Thoughtfully developed properties designed
-              for comfort, value, and long-term growth. Strategically located developments that offer excellent connectivity and
-              future investment potential. Designed to create balanced communities with modern amenities and peaceful surroundings.
+              Distance should never create uncertainty. Our NRI Investment Desk offers considered, end-to-end guidance across project selection, documentation, financing coordination, registration, and post-purchase support.
+              <br/> <br/>Every interaction is handled with clarity and discretion, allowing you to invest in India with the confidence of having a trusted team on the ground.
             </p>
           </div>
 

@@ -97,7 +97,7 @@ const Navbar = () => {
         ${
           isBlogsPage
             ? "bg-transparent border-transparent"
-            : "lg:border-b lg:border-white/10 lg:bg-black/15 lg:backdrop-blur-[10px]"
+            : "lg:border-b lg:border-white/10 lg:bg-black/5 lg:backdrop-blur-[5px]"
         }
       `}
     >

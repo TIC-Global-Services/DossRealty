@@ -20,11 +20,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const contentSlides = [
   {
-    heading: "Building Trust Through Design",
+    heading: "Trust, Built Into Every Step.",
     description:
-      "Invest with confidence through a seamless and transparent real estate experience designed for NRIs. From property selection and virtual assistance to verified documentation and final registration, every step is managed with trusted guidance, ensuring secure investments and long-term value from anywhere in the world.",
-  },
-
+      "For an overseas buyer, confidence begins long before ownership. It is established through clear information, verified documentation, accountable processes, and a team that remains accessible beyond the transaction.",
+  }
 ];
 
 const mobileImages = [
@@ -102,16 +101,13 @@ const BuildTrust = () => {
                 className="font-heading text-[24px] leading-[36px] md:tracking-[-1.44px] text-[#111111] md:text-[48px] md:leading-[50px]"
               >
                 <span className="md:hidden">
-                  Building Trust Through
+                  Trust, Built Into
                   <br className="md:hidden" />
-                  Design
+                  Every Step
                 </span>
 
                 <span className="hidden md:inline">
-                  Building Trust <br />
-                  Through
-                  <br />
-                  Design
+                 Trust, Built <br/>Into Every <br/>Step.
                 </span>
               </h2>
 
@@ -139,19 +135,13 @@ const BuildTrust = () => {
                   <p className="text-[16px] leading-[20px] tracking-[-0.48px] text-white">
                     {mobileImageIndex === 0 ? (
                       <>
-                        • Verified properties with transparent processes
-                        <br />
-                        <span className="pl-3">
-                          and trusted end-to-end assistance.
-                        </span>
+                        Verified at Every Stage 
+                        <br/><span>Project approvals, title records, agreements, payment schedules, and registration requirements are presented with care and transparency.</span>
                       </>
                     ) : (
                       <>
-                        • Seamless remote investment support designed
-                        <br />
-                        <span className="pl-3">
-                          for secure and hassle-free ownership.
-                        </span>
+                        Present When You Cannot Be 
+                        <br/><span>From virtual consultations to on-ground coordination, we manage each stage with continuity, keeping you informed wherever you are.</span>
                       </>
                     )}
                   </p>
@@ -209,12 +199,9 @@ const BuildTrust = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10" />
 
               <div className="absolute left-2 top-4 p-5 z-10">
-                <p className="text-[16px] leading-[20px] tracking-[-0.48px] text-white">
-                  • Verified properties with transparent processes
-                  <br />
-                  <span className="pl-3">
-                    and trusted end-to-end assistance.
-                  </span>
+                <p className="text-[16px] font-bold leading-[20px] tracking-[-0.48px] text-white">
+                  Verified at Every Stage 
+                  <br/><span className="font-[400]">Project approvals, title records, agreements, payment schedules, and registration requirements are presented with care and transparency.</span>
                 </p>
               </div>
             </div>
@@ -232,13 +219,10 @@ const BuildTrust = () => {
 
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10" />
 
-              <div className="absolute left-2 top-4 p-5 z-10">
-                <p className="text-[16px] leading-[20px] tracking-[-0.48px] text-white">
-                  • Seamless remote investment support designed
-                  <br />
-                  <span className="pl-3">
-                    for secure and hassle-free ownership.
-                  </span>
+              <div className="absolute left-2 top-4 p-6 z-10">
+                <p className="text-[16px] leading-[20px] font-bold tracking-[-0.48px] max-w-[25ch] text-white">
+                  Present When You Cannot Be 
+                  <br/><span className="font-[400]">From virtual consultations to on-ground coordination, we manage each stage with continuity, keeping you informed wherever you are.</span>
                 </p>
               </div>
             </div>

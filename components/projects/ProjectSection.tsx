@@ -15,26 +15,26 @@ import project2 from "@/assets/projects/projectImg2.jpg";
 
 type Project = {
   title: string;
-  paragraph1: string;
-  paragraph2?: string;
+  text1: string;
+  text2?: string;
   image: StaticImageData;
 };
 
 const activeProjects: Project[] = [
   {
   title: "Promise Park",
-  paragraph1:
-    "From ₹15L Onwards in Kanchipuram Indulge in the Divine Aura of Kanchipuram, Alluring Plots from 443 to 2348 SQFT",
-  paragraph2:
-    "With excellent connectivity to schools, hospitals, temples, and daily conveniences, it provides the perfect setting to build your future with confidence.",
+  text1:
+    "From ₹15L Onwards in Kanchipuram",
+  text2:
+    "Indulge in the Divine Aura of Kanchipuram, Alluring Plots from 443 to 2348 SQFT",
   image: project1,
 },
   {
   title: "Metropettai",
-  paragraph1:
-    "Strategically located near the upcoming Metro corridor, Chennai–Bengaluru Highway, and Outer Ring Road.",
-  paragraph2:
-    "Surrounded by employment hubs and educational institutions, it offers seamless access, convenience, and long-term value.",
+  text1:
+    "From ₹45L Onwards in  Poonamallee, chennai",
+  text2:
+    "Connected West Chennai address with  luxury plots from 711 to 2,400 SQFT",
   image: project2,
 }
 ];
@@ -42,49 +42,49 @@ const activeProjects: Project[] = [
 const deliveredProjects: Project[] = [
   {
     title: "VV Nagar",
-    paragraph1:
+    text1:
       "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
     image: project1,
   },
   {
     title: "Anjanayar Avenue",
-    paragraph1:
+    text1:
       "The Palms Residences is a premium residential community inspired by tropical living and contemporary design.",
     image: project2,
   },
   {
     title: "Poonamallee Farms",
-    paragraph1:
+    text1:
       "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
     image: project1,
   },
   {
     title: "Samayapuram",
-    paragraph1:
+    text1:
       "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
     image: project2,
   },
   {
     title: "Everest Garden",
-    paragraph1:
+    text1:
       "A premium neighborhood developed with quality infrastructure and long-term investment value.",
     image: project1,
   },
   {
     title: "Sri Vari Nagar",
-    paragraph1:
+    text1:
       "The Palms Residences is a premium residential community inspired by tropical living and contemporary design.",
     image: project2,
   },
   {
     title: "Golden Avenue",
-    paragraph1:
+    text1:
       "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
     image: project1,
   },
   {
     title: "Hari Avenue",
-    paragraph1:
+    text1:
       "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
     image: project1,
   },
@@ -355,9 +355,9 @@ const ProjectSection = () => {
                             className="absolute inset-0"
                             style={{
                               backdropFilter:
-                                "blur(5px)",
+                                "blur(20px)",
                               WebkitBackdropFilter:
-                                "blur(5px)",
+                                "blur(20px)",
                               WebkitMaskImage:
                                 "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.25) 30%, rgba(0,0,0,1) 100%)",
                               maskImage:
@@ -382,13 +382,13 @@ const ProjectSection = () => {
                               }
                             </h3>
 
-                            <div className="mt-2 space-y-2 md:space-y-3 max-w-[500px]">
-                              <p className="text-[11px] md:text-[13px] leading-[15px] md:leading-[20px] text-[#FFFFFF80] font-[300]">
-                                {project.paragraph1}
+                            <div className="max-w-[500px]">
+                              <p className="text-[11px] md:text-[13px] leading-[15px] text-[#FFFFFF] font-semibold">
+                                {project.text1}
                               </p>
                                                         
-                              <p className="text-[11px] md:text-[13px] leading-[15px] md:leading-[20px] text-[#FFFFFF80] font-[300]">
-                                {project.paragraph2}
+                              <p className="text-[11px] md:text-[13px] leading-[15px] text-[#FFFFFF80] font-[300]">
+                                {project.text2}
                               </p>
                             </div>
                           </div>

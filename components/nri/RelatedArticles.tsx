@@ -85,7 +85,7 @@ const RelatedArticles = () => {
             <div
               className="
                 relative h-[450px]
-                md:h-[500px]
+                md:h-[550px]
                 w-full
                 overflow-hidden
                 rounded-[10px]
@@ -114,7 +114,7 @@ const RelatedArticles = () => {
                 }}
                 className="absolute left-6 top-6 z-20 max-w-[40ch] md:left-8 md:top-8"
               >
-                <h3 className="text-[18px] leading-[26px] tracking-[-0.72px] text-white md:text-[24px]">
+                <h3 className="font-small text-[18px] leading-[26px] tracking-[-0.72px] text-white md:text-[24px]">
                   A Complete Guide to NRI Property Investment in India
                 </h3>
               </div>
@@ -172,8 +172,7 @@ const RelatedArticles = () => {
                   </h3>
 
                   <p className="text-start mt-3 text-[14px] leading-[20px] text-[#717171] md:text-[16px]">
-                    Explore why Chennai continues to attract NRI investors through strong
-                    infrastructure growth.
+                    Explore why Chennai continues to attract NRI investors through strong infrastructure growth, high rental demand, trusted developments, and long-term investment potential.
                   </p>
                 </div>
               </Link>
@@ -223,14 +222,13 @@ const RelatedArticles = () => {
                   </h3>
 
                   <p className="text-start mt-3 text-[14px] leading-[20px] text-[#717171] md:text-[16px]">
-                    Explore why Chennai continues to attract NRI investors through strong
-                    infrastructure growth.
+                    Explore why Chennai continues to attract NRI investors through strong infrastructure growth, high rental demand, trusted developments, and long-term investment potential.
                   </p>
                 </div>
               </Link>
             </div>
 
-            {/* BUTTON – desktop right‑aligned with consistent top margin */}
+            {/* BUTTON */}
             <div
               ref={(el) => {
                 if (el) textRevealRef.current[4] = el;

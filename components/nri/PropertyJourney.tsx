@@ -94,11 +94,8 @@ const PropertyJourney = () => {
                 md:text-[46px]
               "
             >
-             <span className="hidden md:block">Your Property
-              <br />
-              Journey,
-              Simplified</span>
-            <span className="md:hidden">Your Property Journey, <br/> Simplified</span>
+             <span className="hidden md:block">One Relationship. <br/> Every Step.</span>
+            <span className="md:hidden">One Relationship. <br/> Every Step.</span>
             </h2>
           </div>
 
@@ -113,9 +110,8 @@ const PropertyJourney = () => {
                 md:text-[16px]
               "
             >
-              Secure your ideal property from anywhere in the world with complete transparency and trusted support. Seamless virtual
-              assistance, verified documentation, and end-to-end guidance for effortless remote investments. Invest confidently in premium
-              real estate while we manage every step onyour behalf.
+              From the first conversation to final registration, a dedicated relationship manager remains your single point of contact. We coordinate virtual project presentations, document reviews, payment milestones, banking requirements, and Power of Attorney-led processes where applicable.
+              <br/> <br/>The result is a measured, transparent experience designed around your time zone, priorities, and long-term interests.
             </p>
           </div>
         </div>
