@@ -283,7 +283,7 @@ export default function Hero() {
         scrollTrigger: {
           trigger: rootRef.current,
           start: "top top",
-          end: "+=1200",
+          end: "+=1800",
           pin: true,
           pinType: "transform",
           scrub: isSafari ? 0.8 : 2,
@@ -310,7 +310,7 @@ export default function Hero() {
         {
           scale: isIOS ? 1.45 : 1.8,
           ease: "power1.out",
-          duration: 7,
+          duration: 8,
           force3D: true,
         },
         0
@@ -372,7 +372,7 @@ export default function Hero() {
         {
           yPercent: -20,
           ease: "none",
-          duration: 4,
+          duration: 6,
         },
         3.1
       );
@@ -480,7 +480,7 @@ export default function Hero() {
             ref={heroTextRef}
             id="hero-text"
             className="
-            absolute inset-0 z-0 pointer-events-auto
+            absolute inset-0 z-[5] pointer-events-auto
             flex flex-col items-center text-center
             px-[20px]
             pt-[22vh]
@@ -549,6 +549,7 @@ export default function Hero() {
             md:top-[10%]
             md:right-[-30%]
             z-[0]
+            opacity-50
           "
           >
             <Image
@@ -574,6 +575,7 @@ export default function Hero() {
             left-[-30%]
             md:top-[10%]
             md:left-[-30%] z-[0]
+            opacity-50
           "
           >
             <Image
@@ -753,6 +755,7 @@ export default function Hero() {
               z-[60]
               pointer-events-none
               overflow-hidden
+              opacity-50
             "
           >
             <Image
