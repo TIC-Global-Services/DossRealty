@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import PrimaryBtn from "./PrimaryBtn";
+import { useRouter } from "next/navigation";
 
 type FAQItem = {
   question: string;
@@ -43,6 +44,8 @@ const FAQ = ({
         : index
     );
   };
+
+  const router = useRouter();
 
   return (
     <section className="py-16 md:px-10 md:py-12">
@@ -212,27 +215,28 @@ const FAQ = ({
             </p>
 
             <PrimaryBtn
-              onClick={
-                buttonAction
-              }
-              className="w-[140px] h-[40px] md:w-[180px] md:h-[44px]
-                mt-8
-                rounded-full
-                border
-                border-[rgba(199,168,94,1)]
-                bg-[#00256A]
-                md:text-[16px] text-[13px]
-                font-[700]
-                text-white
-                shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)]
-                transition-all
-                duration-300
-                hover:scale-105
-                hover:text-black
-              "
-            >
-              {buttonText}
-            </PrimaryBtn>
+                onClick={
+                  buttonAction ??
+                  (() => router.push("/contact"))
+                }
+                className="w-[140px] h-[40px] md:w-[180px] md:h-[44px]
+                  mt-8
+                  rounded-full
+                  border
+                  border-[rgba(199,168,94,1)]
+                  bg-[#00256A]
+                  md:text-[16px] text-[13px]
+                  font-[700]
+                  text-white
+                  shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)]
+                  transition-all
+                  duration-300
+                  hover:scale-105
+                  hover:text-black
+                "
+              >
+                {buttonText}
+              </PrimaryBtn>
           </div>
         </div>
       </div>
