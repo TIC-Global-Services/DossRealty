@@ -122,6 +122,7 @@ const Highlights = () => {
                     leading-[16px]
                     text-[#2A2A2A]
                     md:text-[19px]
+                    md:leading-[26px]
                     md:tracking-normal
                   "
                 >

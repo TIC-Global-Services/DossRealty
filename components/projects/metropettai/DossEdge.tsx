@@ -343,16 +343,16 @@ const DossEdge = () => {
                     border
                     border-white/30
                     bg-white/10
-                    p-6
+                    p-6.5
                     shadow-[inset_0px_1px_2px_rgba(255,255,255,0.8)]
                     backdrop-blur-[2px]
                   "
                 >
-                  <h4 className="font-small text-[30px] font-[300] uppercase text-white">
+                  <h4 className="font-small text-[30px] leading-[32px] font-[300] uppercase text-white">
                     {item.title}
                   </h4>
 
-                  <p className="mt-4 w-[26ch] text-[18px] text-white">
+                  <p className="mt-4 w-[30ch] text-[18px] leading-[22px] text-white">
                     {
                       item.description
                     }

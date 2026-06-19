@@ -12,81 +12,118 @@ import { motion } from "framer-motion";
 
 import project1 from "@/assets/projects/projectImg1.jpg";
 import project2 from "@/assets/projects/projectImg2.jpg";
+import plotsIcon from "@/assets/projects/plotImg.png";
+import acreIcon from "@/assets/projects/mapImg.png";
+import villaIcon from "@/assets/projects/villaIcon.png";
+
 
 type Project = {
   title: string;
-  text1: string;
-  text2?: string;
   image: StaticImageData;
+
+  // Active Projects
+  text1?: string;
+  text2?: string;
+
+  // Delivered Projects
+  location?: string;
+  size?: string;
+  category?: string;
+  plotsIcon?: StaticImageData;
+  acreIcon?: StaticImageData;
 };
 
 const activeProjects: Project[] = [
   {
-  title: "Promise Park",
-  text1:
-    "From ₹15L Onwards in Kanchipuram",
-  text2:
-    "Indulge in the Divine Aura of Kanchipuram, Alluring Plots from 443 to 2348 SQFT",
-  image: project1,
-},
+    title: "Promise Park",
+    text1:
+      "From ₹15L Onwards in Kanchipuram",
+    text2:
+      "Indulge in the Divine Aura of Kanchipuram, Alluring Plots from 443 to 2348 SQFT",
+    image: project1,
+  },
   {
-  title: "Metropettai",
-  text1:
-    "From ₹45L Onwards in  Poonamallee, chennai",
-  text2:
-    "Connected West Chennai address with  luxury plots from 711 to 2,400 SQFT",
-  image: project2,
-}
+    title: "Metropettai",
+    text1:
+      "From ₹45L Onwards in  Poonamallee, chennai",
+    text2:
+      "Connected West Chennai address with  luxury plots from 711 to 2,400 SQFT",
+    image: project2,
+  }
 ];
 
 const deliveredProjects: Project[] = [
   {
     title: "VV Nagar",
-    text1:
-      "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
+    location: "Kovur",
+    size: "2.5 Acres",
+    category: "Plots",
     image: project1,
+    plotsIcon: plotsIcon,
+    acreIcon: acreIcon,
   },
   {
     title: "Anjanayar Avenue",
-    text1:
-      "The Palms Residences is a premium residential community inspired by tropical living and contemporary design.",
+    location: "Mangadu",
+    size: "1 Acre",
+    category: "Plots",
     image: project2,
+    plotsIcon: plotsIcon,
+    acreIcon: acreIcon,
   },
   {
     title: "Poonamallee Farms",
-    text1:
-      "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
+    location: "Avadi",
+    size: "20 Acres",
+    category: "Villas",
     image: project1,
+    plotsIcon: villaIcon,
+    acreIcon: acreIcon,
   },
   {
     title: "Samayapuram",
-    text1:
-      "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
+    location: "Kundrathur",
+    size: "17 Acres",
+    category: "Plots",
     image: project2,
+    plotsIcon: plotsIcon,
+    acreIcon: acreIcon,
   },
   {
     title: "Everest Garden",
-    text1:
-      "A premium neighborhood developed with quality infrastructure and long-term investment value.",
+    location: "Porur",
+    size: "18 Acres",
+    category: "Plots",
     image: project1,
+    plotsIcon: plotsIcon,
+    acreIcon: acreIcon,
   },
   {
     title: "Sri Vari Nagar",
-    text1:
-      "The Palms Residences is a premium residential community inspired by tropical living and contemporary design.",
+    location: "Poonamalle",
+    size: "9 Acres",
+    category: "Plots",
     image: project2,
+    plotsIcon: plotsIcon,
+    acreIcon: acreIcon,
   },
   {
     title: "Golden Avenue",
-    text1:
-      "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
+    location: "Kundrathur",
+    size: "4 Acres",
+    category: "Plots",
     image: project1,
+    plotsIcon: plotsIcon,
+    acreIcon: acreIcon,
   },
   {
     title: "Hari Avenue",
-    text1:
-      "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
-    image: project1,
+    location: "Mangadu",
+    size: "4 Acres",
+    category: "Plots",
+    image: project2,
+    plotsIcon: plotsIcon,
+    acreIcon: acreIcon,
   },
 ];
 
@@ -135,8 +172,8 @@ const ProjectSection = () => {
       ? activeProjects
       : isMobile &&
         !showAllDelivered
-      ? deliveredProjects.slice(0, 4)
-      : deliveredProjects;
+        ? deliveredProjects.slice(0, 4)
+        : deliveredProjects;
 
   return (
     <section className="py-10 md:py-12">
@@ -166,11 +203,10 @@ const ProjectSection = () => {
                 transition-all
                 duration-300
                 cursor-pointer
-                ${
-                  activeTab ===
+                ${activeTab ===
                   "active"
-                    ? "bg-[#00256A] text-white"
-                    : "text-[#999]"
+                  ? "bg-[#00256A] text-white"
+                  : "text-[#999]"
                 }
               `}
             >
@@ -194,11 +230,10 @@ const ProjectSection = () => {
                 transition-all
                 duration-300
                 cursor-pointer
-                ${
-                  activeTab ===
+                ${activeTab ===
                   "delivered"
-                    ? "bg-[#00256A] text-white"
-                    : "text-[#999]"
+                  ? "bg-[#00256A] text-white"
+                  : "text-[#999]"
                 }
               `}
             >
@@ -213,21 +248,21 @@ const ProjectSection = () => {
             (project, index) => {
               const isClickable =
                 project.title ===
-                  "Metropettai" ||
+                "Metropettai" ||
                 project.title ===
-                  "Promise Park";
+                "Promise Park";
 
               return (
                 <Link
                   key={index}
                   href={
                     project.title ===
-                    "Metropettai"
+                      "Metropettai"
                       ? "/projects/metropettai"
                       : project.title ===
                         "Promise Park"
-                      ? "/projects/promise-park"
-                      : "#"
+                        ? "/projects/promise-park"
+                        : "#"
                   }
                   className={
                     !isClickable
@@ -262,10 +297,9 @@ const ProjectSection = () => {
                       overflow-hidden
                       rounded-[10px]
                       md:aspect-[16/9]
-                      ${
-                        isClickable
-                          ? "cursor-pointer"
-                          : "cursor-default"
+                      ${isClickable
+                        ? "cursor-pointer"
+                        : "cursor-default"
                       }
                     `}
                   >
@@ -304,18 +338,17 @@ const ProjectSection = () => {
                             h-2
                             w-2
                             rounded-full
-                            ${
-                              activeTab ===
+                            ${activeTab ===
                               "active"
-                                ? "bg-yellow-400"
-                                : "bg-green-500"
+                              ? "bg-yellow-400"
+                              : "bg-green-500"
                             }
                           `}
                         />
 
                         <span className="text-[13px] leading-[18px] md:text-[14px] text-white">
                           {activeTab ===
-                          "active"
+                            "active"
                             ? "Active"
                             : "Delivered"}
                         </span>
@@ -338,26 +371,24 @@ const ProjectSection = () => {
                           duration-300
                           hover:bg-white/20
                           md:text-[16px]
+                          cursor-pointer
                         "
                       >
-                        {activeTab ===
-                        "active"
+                        {activeTab === "active"
                           ? "Villas"
-                          : "Plots"}
+                          : project.category}
                       </button>
                     </div>
 
                     {/* CONTENT */}
                     <div className="absolute bottom-0 left-0 z-[2] w-full">
-                      <div className="relative flex md:min-h-[145px] w-full items-end overflow-hidden">
+                      <div className="relative flex w-full items-end overflow-hidden">
                         <div className="absolute inset-0 z-0 overflow-hidden">
                           <div
                             className="absolute inset-0"
                             style={{
-                              backdropFilter:
-                                "blur(20px)",
-                              WebkitBackdropFilter:
-                                "blur(20px)",
+                              backdropFilter: "blur(20px)",
+                              WebkitBackdropFilter: "blur(20px)",
                               WebkitMaskImage:
                                 "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.25) 30%, rgba(0,0,0,1) 100%)",
                               maskImage:
@@ -376,21 +407,100 @@ const ProjectSection = () => {
 
                         <div className="relative z-[2] w-full py-6 md:py-8">
                           <div className="px-5 md:px-8">
-                            <h3 className="text-[13px] text-white md:text-[26px]">
-                              {
-                                project.title
-                              }
-                            </h3>
+                            {activeTab === "active" ? (
+                              <>
+                                <h3 className="text-[13px] text-white md:text-[26px]">
+                                  {project.title}
+                                </h3>
 
-                            <div className="max-w-[500px]">
-                              <p className="text-[11px] md:text-[13px] leading-[15px] text-[#FFFFFF] font-semibold">
-                                {project.text1}
-                              </p>
-                                                        
-                              <p className="text-[11px] md:text-[13px] leading-[15px] text-[#FFFFFF80] font-[300]">
-                                {project.text2}
-                              </p>
-                            </div>
+                                <div className="max-w-[500px]">
+                                  <p className="text-[11px] md:text-[13px] leading-[15px] text-white font-semibold">
+                                    {project.text1}
+                                  </p>
+
+                                  <p className="text-[11px] md:text-[13px] leading-[15px] text-white/80 font-[300]">
+                                    {project.text2}
+                                  </p>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <div>
+                                  {/* Title + Location */}
+                                  <div className="flex flex-wrap items-center gap-4">
+                                    <h3
+                                      className="
+                                      text-[24px]
+                                      md:text-[34px]
+                                      font-[400]
+                                      leading-none
+                                      text-white
+                                    "
+                                    >
+                                      {project.title}
+                                    </h3>
+
+                                    <span
+                                      className="
+                                      inline-flex
+                                      items-center
+                                      rounded-full
+                                      border
+                                      border-white
+                                      px-6
+                                      py-1.5
+                                      text-[12px]
+                                      md:text-[14px] leading-[16px]
+                                      text-white
+                                    "
+                                    >
+                                      {project.location}
+                                    </span>
+                                  </div>
+
+                                  {/* Icons */}
+                                  <div className="mt-3 flex items-center gap-6">
+                                    <div className="flex items-center gap-1">
+                                      <Image
+                                        src={project.plotsIcon!}
+                                        alt="Plots"
+                                        width={20}
+                                        height={20}
+                                      />
+
+                                      <span
+                                        className="
+                                        text-[13px]
+                                        md:text-[13px] leading-[15px]
+                                        text-white
+                                      "
+                                      >
+                                        plots
+                                      </span>
+                                    </div>
+
+                                    <div className="flex items-center gap-1">
+                                      <Image
+                                        src={project.acreIcon!}
+                                        alt="Acre"
+                                        width={20}
+                                        height={20}
+                                      />
+
+                                      <span
+                                        className="
+                                        text-[13px]
+                                        md:text-[13px] leading-[15px]
+                                        text-white
+                                      "
+                                      >
+                                        {project.size}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -408,7 +518,7 @@ const ProjectSection = () => {
           isMobile &&
           !showAllDelivered &&
           deliveredProjects.length >
-            4 && (
+          4 && (
             <div className="mt-8 flex justify-center">
               <button
                 onClick={() =>

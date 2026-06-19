@@ -8,6 +8,8 @@ import testimonial2 from "@/assets/home/testimonials/testimonial2.jpg";
 import testimonial3 from "@/assets/home/testimonials/testimonial3.jpg";
 import testimonial4 from "@/assets/home/testimonials/testimonial4.jpg";
 import testimonial5 from "@/assets/home/testimonials/testimonial2.jpg";
+import Link from "next/link";
+
 
 const testimonials = [
   {
@@ -110,10 +112,12 @@ export default function TestimonialSection() {
               refined, practical, and
               future-ready.
             </p>
-
+            
+            <Link href="./contact">
             <button className="rounded-full bg-[#00256a] px-7 py-2 text-white">
               Get in touch
             </button>
+            </Link>
           </div>
         </div>
 
@@ -181,9 +185,11 @@ export default function TestimonialSection() {
               future-ready.
             </p>
 
+            <Link href="./contact">
             <PrimaryBtn mode="dark"  className="ghost bg-[#00256a] hover:text-black text-white duration-300 hover:scale-105">
               Get in touch
             </PrimaryBtn>
+            </Link>
           </div>
         </div>
       </div>

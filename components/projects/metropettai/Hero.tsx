@@ -1,20 +1,101 @@
 "use client";
 
-import {
-  useLayoutEffect,
-  useRef,
-} from "react";
+import { useLayoutEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import gsap from "gsap";
 
 import heroImg from "@/assets/projects/metropettai/heroBg.png";
 
+
+const nameValidation = z
+  .string()
+  .min(3, "Name must be at least 3 characters")
+  .regex(
+    /^[A-Za-z\s]+$/,
+    "Only letters are allowed"
+  );
+
+const gmailValidation = z
+  .string()
+  .min(1, "Email is required")
+  .email("Invalid email address")
+  .refine(
+    (email) => email.toLowerCase().endsWith("@gmail.com"),
+    {
+      message: "Only Gmail addresses are allowed",
+    }
+  );
+
+const phoneValidation = z
+  .string()
+  .min(1, "Phone number is required")
+  .length(10, "Phone number must be 10 digits")
+  .regex(/^[6-9]\d{9}$/, "Enter valid mobile number");
+
+
+const brochureSchema = z.object({
+  name: nameValidation,
+  email: gmailValidation,
+  phone: phoneValidation,
+  project: z.string(),
+});
+
+type BrochureFormData = z.infer<typeof brochureSchema>;
+
 const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const leftContentRef =
     useRef<HTMLDivElement>(null);
 
   const rightContentRef =
     useRef<HTMLDivElement>(null);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<BrochureFormData>({
+    resolver: zodResolver(brochureSchema),
+  });
+
+  const onSubmit = async (
+    data: BrochureFormData
+  ) => {
+    try {
+      setLoading(true);
+
+      console.log(
+        "Brochure Form:",
+        data
+      );
+
+      await new Promise((resolve) =>
+        setTimeout(resolve, 1000)
+      );
+
+      window.open(
+        "/brochure/metropettai.pdf",
+        "_blank"
+      );
+
+      reset();
+
+      setIsModalOpen(false);
+
+      alert(
+        "Brochure downloaded successfully!"
+      );
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -119,6 +200,7 @@ const Hero = () => {
             </h2>
 
             <button
+              onClick={() => setIsModalOpen(true)}
               className="mt-4
                 md:mt-6
                 rounded-full
@@ -133,6 +215,7 @@ const Hero = () => {
                 transition
                 duration-300
                 hover:bg-[rgba(0,37,106,0.3)]
+                cursor-pointer
               "
             >
               Download Brochure
@@ -209,6 +292,189 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div
+          className="
+          fixed
+          inset-0
+          z-[999]
+          flex
+          items-center
+          justify-center
+          bg-black/50
+          backdrop-blur-sm
+          px-4
+        "
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="
+            relative
+            w-full
+            max-w-[420px]
+            rounded-[20px]
+            bg-[#F5F5F5]
+            p-8
+          "
+          >
+            {/* Close */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="
+              absolute
+              right-5
+              top-5
+              text-xl
+              text-black/50
+              hover:text-black
+              cursor-pointer
+            "
+            >
+              ✕
+            </button>
+
+            <h3
+              className="mb-6
+              text-center
+              text-[#2F3147]
+              font-heading
+              text-[26px]
+              md:text-[45px]
+              leading-[48px] tracking-[0px]
+            "
+            >
+              Enquiry Form
+            </h3>
+
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="space-y-5"
+            >
+              <div>
+                <input
+                  {...register("name")}
+                  type="text"
+                  placeholder="Your name*"
+                  onInput={(e) => {
+                    e.currentTarget.value =
+                      e.currentTarget.value.replace(
+                        /[^A-Za-z\s]/g,
+                        ""
+                      );
+                  }}
+                  className="
+                  w-full
+                  border-b
+                  border-[#D9D9D9]
+                  bg-transparent
+                  pb-2
+                  outline-none
+                "
+                />
+
+                {errors.name && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.name.message}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <input
+                  {...register("email")}
+                  type="email"
+                  placeholder="Your email address*"
+                  className="
+                  w-full
+                  border-b
+                  border-[#D9D9D9]
+                  bg-transparent
+                  pb-2
+                  outline-none
+                "
+                />
+
+                {errors.email && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <input
+                  {...register("phone")}
+                  type="tel"
+                  inputMode="numeric"
+                  maxLength={10}
+                  placeholder="Your phone"
+                  onInput={(e) => {
+                    e.currentTarget.value =
+                      e.currentTarget.value.replace(
+                        /\D/g,
+                        ""
+                      );
+                  }}
+                  className="
+                  w-full
+                  border-b
+                  border-[#D9D9D9]
+                  bg-transparent
+                  pb-2
+                  outline-none
+                "
+                />
+
+                {errors.phone && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.phone.message}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <input
+                  {...register("project")}
+                  value="metropettai"
+                  readOnly
+                  className="
+                  w-full
+                  border-b
+                  border-[#D9D9D9]
+                  bg-transparent
+                  pb-2
+                  outline-none
+                "
+                />
+              </div>
+
+              <div className="flex justify-end pt-4">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="
+                  rounded-full
+                  bg-[#00256A]
+                  px-6
+                  py-2
+                  text-white
+                  text-sm
+                  cursor-pointer
+                  disabled:opacity-50
+                  disabled:cursor-not-allowed
+                "
+                >
+                  {loading
+                    ? "Downloading..."
+                    : "Download Brochure"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

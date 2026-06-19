@@ -45,14 +45,6 @@ const navLinks = [
           title: "Lorem",
           location: "xxxxx",
         },
-        {
-          title: "Lorem",
-          location: "xxxxx",
-        },
-        {
-          title: "Lorem",
-          location: "xxxxx",
-        },
       ],
       status: [
         "Active",

@@ -11,6 +11,7 @@ import houseImg from "@/assets/home/hero/house_img.png";
 import fogImg from "@/assets/home/hero/cloudImgmain.png";
 
 import PrimaryBtn from "../reusable/PrimaryBtn";
+import Link from "next/link";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -510,6 +511,8 @@ export default function Hero() {
 
 
             </div>
+
+            <Link href={"./about"}>
             <button
               className="font-small
                   relative
@@ -536,6 +539,7 @@ export default function Hero() {
             >
               Explore
             </button>
+            </Link>
           </div>
 
           {/* Left Cloud */}
