@@ -15,71 +15,76 @@ import project2 from "@/assets/projects/projectImg2.jpg";
 
 type Project = {
   title: string;
-  description: string;
+  paragraph1: string;
+  paragraph2?: string;
   image: StaticImageData;
 };
 
 const activeProjects: Project[] = [
   {
-    title: "Promise Park",
-    description:
-      "Located on the Kanchi–Arakkonam Highway in the heart of Kanchipuram, this ready-to-build community offers approved plots, completed infrastructure, and easy access to schools, hospitals, temples, and everyday conveniences. With a familiar location and a strong foundation in place, it provides the perfect setting to build your future with confidence.",
-    image: project1,
-  },
+  title: "Promise Park",
+  paragraph1:
+    "From ₹15L Onwards in Kanchipuram Indulge in the Divine Aura of Kanchipuram, Alluring Plots from 443 to 2348 SQFT",
+  paragraph2:
+    "With excellent connectivity to schools, hospitals, temples, and daily conveniences, it provides the perfect setting to build your future with confidence.",
+  image: project1,
+},
   {
-    title: "Metropettai",
-    description:
-      "Metropettai is a well-connected modern community strategically located near the upcoming Metro corridor, Chennai–Bengaluru Highway, and Outer Ring Road. Surrounded by key employment hubs, educational institutions, and growing infrastructure, it offers seamless access, everyday convenience, and strong long-term value.",
-    image: project2,
-  },
+  title: "Metropettai",
+  paragraph1:
+    "Strategically located near the upcoming Metro corridor, Chennai–Bengaluru Highway, and Outer Ring Road.",
+  paragraph2:
+    "Surrounded by employment hubs and educational institutions, it offers seamless access, convenience, and long-term value.",
+  image: project2,
+}
 ];
 
 const deliveredProjects: Project[] = [
   {
     title: "VV Nagar",
-    description:
+    paragraph1:
       "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
     image: project1,
   },
   {
     title: "Anjanayar Avenue",
-    description:
+    paragraph1:
       "The Palms Residences is a premium residential community inspired by tropical living and contemporary design.",
     image: project2,
   },
   {
     title: "Poonamallee Farms",
-    description:
+    paragraph1:
       "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
     image: project1,
   },
   {
     title: "Samayapuram",
-    description:
+    paragraph1:
       "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
     image: project2,
   },
   {
     title: "Everest Garden",
-    description:
+    paragraph1:
       "A premium neighborhood developed with quality infrastructure and long-term investment value.",
     image: project1,
   },
   {
     title: "Sri Vari Nagar",
-    description:
+    paragraph1:
       "The Palms Residences is a premium residential community inspired by tropical living and contemporary design.",
     image: project2,
   },
   {
     title: "Golden Avenue",
-    description:
+    paragraph1:
       "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
     image: project1,
   },
   {
     title: "Hari Avenue",
-    description:
+    paragraph1:
       "Serene Grove Villas is an exclusive residential enclave designed around peaceful living, modern architecture, and lush natural surroundings.",
     image: project1,
   },
@@ -377,11 +382,15 @@ const ProjectSection = () => {
                               }
                             </h3>
 
-                            <p className="mt-2 w-[54ch] md:max-w-[500px] md:w-[60ch] text-[11px] md:text-[13px] leading-[15px] text-[#FFFFFF80] font-[300]">
-                              {
-                                project.description
-                              }
-                            </p>
+                            <div className="mt-2 space-y-2 md:space-y-3 max-w-[500px]">
+                              <p className="text-[11px] md:text-[13px] leading-[15px] md:leading-[20px] text-[#FFFFFF80] font-[300]">
+                                {project.paragraph1}
+                              </p>
+                                                        
+                              <p className="text-[11px] md:text-[13px] leading-[15px] md:leading-[20px] text-[#FFFFFF80] font-[300]">
+                                {project.paragraph2}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>

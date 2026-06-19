@@ -108,21 +108,14 @@ const Hero = () => {
               "
             >
               <div className="hidden md:block overflow-hidden">
-                <span className="hero-title-line block">
-                  Elevating Modern
+                <span className="hero-title-line block uppercase">
+                  About Doss
                 </span>
               </div>
 
-              <div className="hidden md:block overflow-hidden">
-                <span className="hero-title-line block">
-                  Living with Purpose
-                </span>
-              </div>
 
-              <div className="md:hidden block">
-                <span>Elevating</span> <br/>
-                <span>Modern Living</span> <br/>
-                <span>with Purpose</span>
+              <div className="md:hidden block uppercase">
+                <span>About Doss</span>
               </div>
             </h1>
 

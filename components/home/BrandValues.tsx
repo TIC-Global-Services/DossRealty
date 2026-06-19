@@ -5,9 +5,9 @@ import Image, {
 } from "next/image";
 import { motion } from "framer-motion";
 
-import legacyImg from "@/assets/home/legacyImg.png";
-import visionImg from "@/assets/home/visionImg.png";
-import purposeImg from "@/assets/home/purposeImg.png";
+import designImg from "@/assets/home/designImg.png";
+import craftImg from "@/assets/home/craftmanshipImg.jpeg";
+import qualityImg from "@/assets/home/qualityImg.webp";
 import purposeMobileImg from "@/assets/home/puposeMobileImg.jpg";
 
 type ValueCard = {
@@ -22,13 +22,13 @@ const values: ValueCard[] = [
         title: "Distinctive Design",
         description:
             "Measured proportions, composed planning, and a visual language shaped to feel timeless rather than temporary.",
-        image: legacyImg,
+        image: designImg,
     },
     {
         title: "Craftmanship",
         description:
             "A quiet mastery to how spaces are felt, from the rhythm of a façade to the quiet meeting of light, texture, and form.",
-        image: visionImg,
+        image: craftImg,
     },
     {
     title: "Uncompromising Quality",
@@ -36,7 +36,7 @@ const values: ValueCard[] = [
       "Materials, methods, and finishes selected with discipline, so every development carries a sense of permanence.",
 
     // desktop image
-    image: purposeImg,
+    image: qualityImg,
 
     // mobile image
     mobileImage: purposeMobileImg,

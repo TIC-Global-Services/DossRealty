@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import bgImg from "@/assets/home/hero/hero-bg.png";
+import bgImg from "@/assets/home/hero/heroBg.jpg";
 import cloudImg from "@/assets/home/hero/cloudImg.png";
 import houseImg from "@/assets/home/hero/house_img.png";
 import fogImg from "@/assets/home/hero/cloudImgmain.png";
@@ -457,6 +457,7 @@ export default function Hero() {
       "
         style={{ zIndex: 0 }}
       >
+
         <div
           ref={heroTopRef}
           className="sticky top-0 h-screen overflow-hidden"
@@ -470,6 +471,8 @@ export default function Hero() {
               priority
               className="object-cover object-[50%] md:object-center"
             />
+
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/60" />
           </div>
 
           {/* Hero Text */}
@@ -490,7 +493,7 @@ export default function Hero() {
             <div className="max-w-[min(90vw,900px)]">
               <h2
                 className="
-                font-heading uppercase text-black tracking-tight
+                font-heading uppercase text-white tracking-tight
                 leading-[120%] md:leading-[100%]
                 text-[clamp(36px,4vw,60px)]
               "
@@ -499,7 +502,7 @@ export default function Hero() {
               </h2>
 
               <p
-                className="text-[clamp(13px,3.5vw,18px)] mt-4 md:mt-0 leading-[18px] md:leading-[20px] text-black font-body"
+                className="text-[clamp(13px,3.5vw,18px)] mt-4 md:mt-0 leading-[18px] md:leading-[20px] text-white font-body"
               >
                 Expert Support. Real Insights. Clear Direction
                 For What Comes Next.
