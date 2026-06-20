@@ -4,6 +4,11 @@ const PROJECT_LOCATION = {
 };
 
 const LOCATION_DATA = {
+  0: {
+    zoom: 14,
+    center: [13.0343816, 80.0786331],
+    places: [],
+      },
   5: {
     zoom: 14,
     center: [13.0343816, 80.0786331],

@@ -11,22 +11,75 @@ function FlyToLocation({ activeMinute }) {
   const map = useMap();
 
   useEffect(() => {
-  const data = LOCATION_DATA[activeMinute];
+    const data = LOCATION_DATA[activeMinute];
 
-  if (
-    !data ||
-    !data.center ||
-    isNaN(data.center[0]) ||
-    isNaN(data.center[1])
-  ) {
-    return;
-  }
+    if (!data) return;
 
-  map.flyTo(data.center, data.zoom, {
-    duration: 2,
-    easeLinearity: 0.5,
-  });
-}, [activeMinute, map]);
+    const center = data.center;
+
+    if (
+      !Array.isArray(center) ||
+      center.length !== 2
+    ) {
+      return;
+    }
+
+    const lat = Number(center[0]);
+    const lng = Number(center[1]);
+
+    if (
+      !Number.isFinite(lat) ||
+      !Number.isFinite(lng)
+    ) {
+      return;
+    }
+
+    const container = map.getContainer();
+
+    // Skip hidden desktop/mobile map
+    if (
+      !container ||
+      container.offsetWidth === 0 ||
+      container.offsetHeight === 0
+    ) {
+      return;
+    }
+
+    const target = [lat, lng];
+
+    requestAnimationFrame(() => {
+      map.invalidateSize();
+
+      // Initial load
+      if (activeMinute === 0) {
+        map.setView(target, data.zoom, {
+          animate: false,
+        });
+
+        return;
+      }
+
+      // Smooth movement without flyTo crash
+      map.setView(target, data.zoom, {
+        animate: true,
+        duration: 1.5,
+      });
+    });
+  }, [activeMinute, map]);
+
+  return null;
+}
+
+function MapResizeFix() {
+  const map = useMap();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [map]);
 
   return null;
 }
@@ -127,46 +180,55 @@ export default function ChennaiMap({
   return (
     <div className="relative w-[100vw] h-[50vh] md:h-full md:w-full overflow-hidden bg-[#F4F4F4]">
       <MapContainer
-        center={center}
-        zoom={simpleMode ? 16 : 12}
-        zoomControl={false}
-        attributionControl={false}
-        dragging={true}
-        touchZoom={false}
-        doubleClickZoom={false}
-        scrollWheelZoom={false}
-        boxZoom={false}
-        keyboard={false}
-        className={`h-full w-full ${simpleMode ? "" : "grayscale"}`}
-      >
-        <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-          attribution="&copy; OpenStreetMap contributors &copy; CARTO"
-        />
+  center={center}
+  zoom={simpleMode ? 16 : 12}
+  zoomControl={false}
+  attributionControl={false}
+  dragging={true}
+  touchZoom={false}
+  doubleClickZoom={false}
+  scrollWheelZoom={false}
+  boxZoom={false}
+  keyboard={false}
+  className={`h-full w-full ${simpleMode ? "" : "grayscale"}`}
+>
+  <TileLayer
+    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+    attribution="&copy; OpenStreetMap contributors &copy; CARTO"
+  />
 
-        {!simpleMode && <FlyToLocation activeMinute={activeMinute} />}
+  <MapResizeFix />
 
-        {/* Main Marker */}
-        <Marker
-          position={
-            simpleMode && pinLocation ? pinLocation : PROJECT_LOCATION.position
-          }
-          icon={createPin(
-            simpleMode ? pinTitle : "Metropettai",
-            "/location.png",
-          )}
-        />
+  {!simpleMode && (
+    <FlyToLocation activeMinute={activeMinute} />
+  )}
 
-        {/* Dynamic Markers */}
-        {!simpleMode &&
-          currentPlaces.map((place, index) => (
-            <Marker
-              key={index}
-              position={place.position}
-              icon={createPin(place.name, getIcon(place.name))}
-            />
-          ))}
-      </MapContainer>
+  {/* Main Project Marker */}
+  <Marker
+    position={
+      simpleMode && pinLocation
+        ? pinLocation
+        : PROJECT_LOCATION.position
+    }
+    icon={createPin(
+      simpleMode ? pinTitle : "Metropettai",
+      "/location.png"
+    )}
+  />
+
+  {/* Dynamic Location Markers */}
+  {!simpleMode &&
+    currentPlaces.map((place, index) => (
+      <Marker
+        key={`${place.name}-${index}`}
+        position={place.position}
+        icon={createPin(
+          place.name,
+          getIcon(place.name)
+        )}
+      />
+    ))}
+</MapContainer>
 
       {/* Bottom Card */}
       {!simpleMode && activeMinute !== 0 && (

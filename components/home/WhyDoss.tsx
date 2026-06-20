@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import bgImage from "@/assets/home/bgImg.jpg";
+import bgImage from "@/assets/home/whyDossImg.jpeg";
 import GlassCard from "@/components/reusable/GlassCard";
 
 export default function WhyDoss() {
@@ -35,7 +35,7 @@ export default function WhyDoss() {
         {/* MOBILE */}
         <div className="block md:hidden px-5 pt-6 pb-12">
           <GlassCard
-            className="backdrop-blur-none
+            className="backdrop-blur-[30px]
               !max-w-full
               !w-full
             "
@@ -60,7 +60,7 @@ export default function WhyDoss() {
         <div className="hidden md:block">
           <GlassCard
             absolute
-            className="backdrop-blur-none
+            className="backdrop-blur-[35px]
               top-8 left-8
               md:top-15 md:left-10
               !max-w-[550px] !px-10

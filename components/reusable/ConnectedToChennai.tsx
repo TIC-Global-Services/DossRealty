@@ -18,11 +18,14 @@ const ChennaiMap = dynamic(() => import("./ChennaiMap"), {
 gsap.registerPlugin(ScrollTrigger);
 
 const PIN_DISTANCE = 2000;
+const MOBILE_PIN_DISTANCE = 50;
 
 export default function ConnectedToChennai() {
   const pinWrapperRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const mobileSectionRef = useRef(null);
   const carRef = useRef<HTMLDivElement>(null);
+  const mobilePlaneRef = useRef<HTMLDivElement>(null);
 
   const [activeMinute, setActiveMinute] = useState(0);
   const isMountedRef = useRef(true);
@@ -32,59 +35,106 @@ export default function ConnectedToChennai() {
 
     isMountedRef.current = true;
 
-    const ctx = gsap.context(() => {
-      const wrapper = pinWrapperRef.current;
-      const section = sectionRef.current;
+    const isMobile = () => window.innerWidth < 768;
 
-      if (wrapper && section) {
-        wrapper.style.minHeight = `${section.offsetHeight + PIN_DISTANCE}px`;
+    const setWrapperHeight = () => {
+      const wrapper = pinWrapperRef.current;
+      const activeSection = isMobile() ? mobileSectionRef.current : sectionRef.current;
+      const pinDistance = isMobile() ? MOBILE_PIN_DISTANCE : PIN_DISTANCE;
+
+      if (wrapper && activeSection) {
+        wrapper.style.minHeight = `${activeSection.offsetHeight + pinDistance}px`;
+      }
+    };
+
+    const ctx = gsap.context(() => {
+      setWrapperHeight();
+
+      if (!isMobile()) {
+        gsap.to(carRef.current, {
+          x: "83vw",
+          ease: "none",
+          scrollTrigger: {
+            id: "connected-to-chennai",
+            trigger: sectionRef.current,
+            start: "top top",
+            end: `+=${PIN_DISTANCE}`,
+            scrub: true,
+            pin: true,
+            pinType: "transform",
+            pinSpacing: false,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              if (!isMountedRef.current) return;
+              const progress = self.progress;
+              if (progress < 0.34) setActiveMinute(0);
+              else if (progress < 0.64) setActiveMinute(5);
+              else if (progress < 0.92) setActiveMinute(10);
+              else setActiveMinute(20);
+            },
+          },
+        });
+      } else {
+        gsap.to(mobilePlaneRef.current, {
+          x: "72vw",
+          ease: "none",
+          scrollTrigger: {
+            id: "connected-to-chennai-mobile",
+            trigger: mobileSectionRef.current,
+            start: "top top",
+            end: `+=${MOBILE_PIN_DISTANCE}`,
+            scrub: true,
+            pin: true,
+            pinType: "fixed",
+            pinSpacing: false,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              if (!isMountedRef.current) return;
+              const progress = self.progress;
+              if (progress < 0.34) setActiveMinute(0);
+              else if (progress < 0.64) setActiveMinute(5);
+              else if (progress < 0.92) setActiveMinute(10);
+              else setActiveMinute(20);
+            },
+          },
+        });
       }
 
-      gsap.to(carRef.current, {
-        x: "83vw",
-        ease: "none",
-        scrollTrigger: {
-          id: "connected-to-chennai",
-          trigger: sectionRef.current,
-          start: "top top",
-          end: `+=${PIN_DISTANCE}`,
-          scrub: true,
-          pin: true,
-          pinType: "transform",
-          pinSpacing: false,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            if (!isMountedRef.current) return;
-
-            const progress = self.progress;
-
-            if (progress < 0.34) {
-              setActiveMinute(0);
-            } else if (progress >= 0.34 && progress < 0.64) {
-              setActiveMinute(5);
-            } else if (progress >= 0.64 && progress < 0.92) {
-              setActiveMinute(10);
-            } else {
-              setActiveMinute(20);
-            }
-          },
-        },
-      });
-
       requestAnimationFrame(() => ScrollTrigger.refresh());
-    }, sectionRef);
+    }, pinWrapperRef);
+
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+    let lastWidth = window.innerWidth;
+
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (window.innerWidth !== lastWidth) {
+          lastWidth = window.innerWidth;
+          setWrapperHeight();
+          ScrollTrigger.refresh();
+        }
+      }, 200);
+    };
+
+    window.addEventListener("resize", handleResize);
 
     let resizeObserver: ResizeObserver | null = null;
-    if (sectionRef.current && typeof ResizeObserver !== "undefined") {
+    const observedSection = isMobile() ? mobileSectionRef.current : sectionRef.current;
+
+    if (observedSection && typeof ResizeObserver !== "undefined") {
       resizeObserver = new ResizeObserver(() => {
-        ScrollTrigger.refresh();
+        setWrapperHeight();
       });
-      resizeObserver.observe(sectionRef.current);
+      resizeObserver.observe(observedSection);
     }
 
     return () => {
       isMountedRef.current = false;
+      clearTimeout(resizeTimeout);
+      window.removeEventListener("resize", handleResize);
       resizeObserver?.disconnect();
       ctx.revert();
       if (pinWrapperRef.current) {
@@ -97,9 +147,9 @@ export default function ConnectedToChennai() {
     <div ref={pinWrapperRef} className="relative">
       <section
         ref={sectionRef}
-        className="
+        className="hidden
           relative
-          flex
+          md:flex
           h-screen
           flex-col
           overflow-hidden
@@ -212,6 +262,163 @@ export default function ConnectedToChennai() {
               </p>
 
               <div className="mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
+            </div>
+          </div>
+        </div>
+
+        {/* Map */}
+        <div className="mt-2 min-h-0 flex-1">
+          <ChennaiMap activeMinute={activeMinute} />
+        </div>
+      </section>
+
+
+      {/* MOBILE */}
+      <section
+        ref={mobileSectionRef}
+        className="relative h-[50vh] flex flex-col
+        md:hidden
+        overflow-hidden
+      "
+      >
+        {/* Timeline */}
+        <div className="px-4 pt-6 flex-shrink-0">
+          <div className="relative h-[80px]">
+
+            {/* Main Line */}
+            <div className="absolute left-[12%] right-[4%] top-[20px] h-[1px] bg-black" />
+
+            {/* Plane */}
+            <div
+              ref={mobilePlaneRef}
+              className="
+              absolute
+              left-0
+              top-[4px]
+              z-20
+            "
+            >
+              <Image
+                src="/flight.png"
+                alt="plane"
+                width={34}
+                height={34}
+              />
+            </div>
+
+            {/* Start Label */}
+            <div className="absolute left-0 top-[40px] w-[70px]">
+              <p
+                className="
+                text-[9px]
+                leading-[11px]
+                uppercase
+                text-black
+              "
+              >
+                Sophisticated
+                <br />
+                Living Spaces
+              </p>
+            </div>
+
+            {/* 5 Min */}
+            <div
+              className="
+              absolute
+              left-[28%]
+              top-[20px]
+              flex
+              flex-col
+              items-center
+            "
+            >
+              <div className="h-[7px] w-[7px] rounded-full bg-black" />
+
+              <p
+                className={`
+                mt-2
+                text-center
+                text-[10px]
+                leading-[11px]
+                transition-all
+                duration-300
+                ${activeMinute === 5
+                        ? "opacity-100 font-medium"
+                        : "opacity-50"
+                      }
+              `}
+              >
+                5
+                <br />
+                MINUTES
+              </p>
+            </div>
+
+            {/* 10 Min */}
+            <div
+              className="
+              absolute
+              left-[53%]
+              top-[20px]
+              flex
+              flex-col
+              items-center
+            "
+            >
+              <div className="h-[7px] w-[7px] rounded-full bg-black" />
+
+              <p
+                className={`
+                mt-2
+                text-center
+                text-[10px]
+                leading-[11px]
+                transition-all
+                duration-300
+                ${activeMinute === 10
+                        ? "opacity-100 font-medium"
+                        : "opacity-50"
+                      }
+              `}
+              >
+                10
+                <br />
+                MINUTES
+              </p>
+            </div>
+
+            {/* 20 Min */}
+            <div
+              className="
+              absolute
+              right-[10%]
+              top-[20px]
+              flex
+              flex-col
+              items-center
+            "
+            >
+              <div className="h-[7px] w-[7px] rounded-full bg-black" />
+
+              <p
+                className={`
+                mt-2
+                text-center
+                text-[10px]
+                leading-[11px]
+                transition-all
+                duration-300
+                ${activeMinute === 20
+                        ? "opacity-100 font-medium"
+                        : "opacity-50"
+                      }
+              `}
+              >
+                20
+                <br />
+                MINUTES
+              </p>
             </div>
           </div>
         </div>
