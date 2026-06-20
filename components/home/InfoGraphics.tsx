@@ -500,7 +500,7 @@ export default function InfoGraphics() {
       <div className="flex h-full flex-col items-center px-6 pt-20 pb-8 md:hidden">
 
         {/* TOP — slide numbers */}
-        <div className="flex items-center justify-center gap-8 mb-16">
+        <div className="flex items-center justify-center gap-8 mb-6">
           {infographicData.map((item, index) => (
             <button
               key={item.id}
@@ -607,7 +607,7 @@ export default function InfoGraphics() {
         </div>
 
         {/* Arrow nav buttons */}
-        <div className="mt-4 flex items-center gap-4 ">
+        <div className="mt-6 flex items-center gap-4 ">
               <button
                 onClick={() =>
                   animateToIndex(

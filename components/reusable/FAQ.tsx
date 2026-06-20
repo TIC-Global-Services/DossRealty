@@ -192,7 +192,7 @@ const FAQ = ({
                 md:w-[14ch]
                 font-heading
                 text-[24px]
-                leading-[50px]
+                leading-[30px]
                 md:tracking-[-0.05em]
                 text-[#00256A]
                 md:text-[48px]

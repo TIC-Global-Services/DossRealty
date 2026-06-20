@@ -37,7 +37,7 @@ const KnowMore = () => {
         heading={
           <>
             Everything
-            <br className="hidden md:block" />
+            <br/>
             {" "}You Need to Know
           </>
         }

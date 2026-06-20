@@ -75,8 +75,8 @@ const Hero = () => {
               rounded-[10px]
               bg-white
               shadow-[0_20px_60px_rgba(0,0,0,0.08)]
-              px-8
-              py-8
+              px-6
+              py-15
               md:px-10
               md:py-10
               lg:px-16
@@ -88,7 +88,7 @@ const Hero = () => {
               className="
                 flex
                 flex-col
-                gap-6
+                gap-8
                 md:flex-row
                 md:items-center
               "
@@ -163,7 +163,7 @@ const Hero = () => {
       </div>
 
       {/* Spacer for overlap */}
-      <div className="h-[140px] md:h-[160px]" />
+      <div className="h-[120px] md:h-[160px]" />
     </section>
   );
 };

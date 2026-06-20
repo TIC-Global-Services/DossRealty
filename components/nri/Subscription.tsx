@@ -8,15 +8,14 @@ export default function Subscription() {
     <section className="py-10 md:py-[40px] md:mt-25">
       <div className="mx-5 max-w-[1440px] md:mx-10 md:px-5">
         <div
-          className="h-[80vh]
-            overflow-visible
+          className="
+            min-h-[60vh]
+            overflow-hidden
             rounded-[10px]
             bg-[#00256a]
-
             flex
             flex-col
             items-center
-
             md:h-[400px]
             md:flex-row
             md:items-center
@@ -135,29 +134,30 @@ export default function Subscription() {
           {/* IMAGE */}
           <div
             className="
-              mt-8
-              flex
-              w-full
-              items-end
-              
-
-              lg:mt-0
-              lg:self-end
-              
-            "
+            mt-4
+            flex
+            w-full
+            justify-center
+            items-end
+            overflow-visible
+            lg:mt-0
+            lg:self-end
+          "
           >
             <Image
               src={phoneImg}
               alt="Doss Realty Mobile App"
               className="
-                w-[550px] h-[500px] -translate-y-20
-                object-cover
-
-                md:w-[360px]
-
-                lg:w-[800px] lg:h-[650px] 
-                lg:translate-y-0
-              "
+              w-full
+              max-w-[520px]
+              h-auto
+              mx-auto
+              object-cover
+              md:w-[360px]
+              lg:w-[800px]
+              lg:h-[650px]
+              lg:translate-y-0
+            "
               priority
             />
           </div>

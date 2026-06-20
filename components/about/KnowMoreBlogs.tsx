@@ -33,18 +33,24 @@ const KnowMoreBlogs = () => {
     return (
         <>
             <FAQ
-                  faqData={faqData}
-                  heading={
+                faqData={faqData}
+                heading={
                     <>
-                      Know more
-                      <br />
-                      about Blogs
+                        <span className="hidden md:block">
+                            Know more
+                            <br />
+                            about Blogs
+                        </span>
+
+                        <span className="block md:hidden">
+                            Know more about Blogs
+                        </span>
                     </>
-                  }
-                  description="Insights, ideas, and stories crafted to inspire, inform, and spark new perspectives."
-                  buttonText="Contact Us"
-                  defaultOpenIndex={1}
-                />
+                }
+                description="Insights, ideas, and stories crafted to inspire, inform, and spark new perspectives."
+                buttonText="Contact Us"
+                defaultOpenIndex={1}
+            />
         </>
     );
 };

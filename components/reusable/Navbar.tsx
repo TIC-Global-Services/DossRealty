@@ -409,7 +409,7 @@ const Navbar = () => {
               setIsOpen(false)
             }
           >
-            <PrimaryBtn mode="light" className="w-full">
+            <PrimaryBtn mode="light" className="mx-auto flex mb-40 bg-black text-white font-small text-[16px] px-6 py-2.5">
               Get in Touch
             </PrimaryBtn>
           </Link>

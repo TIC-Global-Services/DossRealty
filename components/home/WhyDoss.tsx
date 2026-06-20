@@ -21,7 +21,7 @@ export default function WhyDoss() {
         alt="Why Doss"
         fill
         priority
-        className="object-cover object-left"
+        className="object-cover object-right"
       />
 
       <div className="absolute inset-0 bg-black/30" />

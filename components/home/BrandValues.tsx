@@ -39,7 +39,7 @@ const values: ValueCard[] = [
     image: qualityImg,
 
     // mobile image
-    mobileImage: purposeMobileImg,
+    mobileImage: qualityImg,
   },
 ];
 
