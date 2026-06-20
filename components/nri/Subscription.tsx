@@ -10,7 +10,7 @@ export default function Subscription() {
         <div
           className="
             min-h-[60vh]
-            overflow-hidden
+            overflow-visible
             rounded-[10px]
             bg-[#00256a]
             flex
@@ -149,14 +149,12 @@ export default function Subscription() {
               alt="Doss Realty Mobile App"
               className="
               w-full
-              max-w-[520px]
               h-auto
               mx-auto
               object-cover
               md:w-[360px]
               lg:w-[800px]
               lg:h-[650px]
-              lg:translate-y-0
             "
               priority
             />
