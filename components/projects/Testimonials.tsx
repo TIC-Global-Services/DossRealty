@@ -94,24 +94,6 @@ const Testimonials = () => {
           >
             Spaces Designed with Trust & Satisfaction
           </h2>
-
-          <p
-            className="mt-5 max-w-[350px]
-              mx-auto
-              md:mt-2
-              md:max-w-[700px] 
-              text-[13px] leading-[16px]
-              md:text-[16px]
-              md:leading-[20px] tracking-[-0.48px]
-              text-[#717171]
-            "
-          >
-            Hear from homeowners and
-            clients who experienced Doss
-            Realty’s approach to thoughtful
-            architecture, refined design,
-            and seamless project execution.
-          </p>
         </div>
 
         {/* SLIDER */}

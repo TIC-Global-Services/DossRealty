@@ -6,8 +6,8 @@ import { MapPin } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import leftLocation from "@/assets/home/luxury_img.jpg";
-import rightLocation from "@/assets/home/stay_img.jpg";
+import leftLocation from "@/assets/home/leftImg.png";
+import rightLocation from "@/assets/home/rightImg.png";
 import fogImg from "@/assets/home/hero/cloudImgmain.png";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -111,7 +111,7 @@ const LivingLocation = () => {
       </div>
 
       {/* TOP CONTENT */}
-      <div className="relative z-10 mx-auto max-w-[1440px] px-5 pb-8 pt-10 md:px-8 md:pb-12 md:pt-14 lg:px-10">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-5 pb-8 pt-10 md:px-8 md:pb-6 md:pt-14 lg:px-10">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
 
           {/* LEFT SIDE */}
@@ -127,7 +127,7 @@ const LivingLocation = () => {
               ref={titleRef}
               className="font-heading text-[30px] leading-[120%] tracking-[-0.04em] text-[#111111] md:text-[48px]"
             >
-              Crafting a Harmonious Blend of Luxury & Design
+              The World Shaped In <br/> Every Detail
             </h2>
           </div>
 
@@ -137,12 +137,9 @@ const LivingLocation = () => {
               ref={descRef}
               className="font-body text-[15px] leading-[165%] text-[#666666] md:w-[50ch] md:text-[16px]"
             >
-              Doss Realty is a Chennai-based real estate brand focused on
-              creating thoughtfully designed residential and commercial
-              spaces that combine modern architecture, functionality, and
-              timeless elegance. With a commitment to quality craftsmanship
-              and customer trust, Doss Realty develops premium properties
-              tailored to contemporary lifestyles and evolving urban needs.
+              Artistic Engineering is the discipline at the heart of DOSS. Guided by distinctive design, meticulous 
+              craftsmanship, and uncompromising quality, every development is considered in full and created to hold its 
+              character, relevance, and value over time.
             </p>
           </div>
         </div>
@@ -174,7 +171,7 @@ const LivingLocation = () => {
               <div className="absolute inset-0 z-[1] bg-black/10" />
 
               {/* CENTER TITLE */}
-              <div className="absolute inset-0 z-10 flex items-start justify-center pt-20">
+              <div className="absolute inset-0 z-10 flex items-start justify-center pt-10">
                 <h2 className="font-heading text-center text-4xl text-white md:text-5xl">
                   {item.title}
                 </h2>

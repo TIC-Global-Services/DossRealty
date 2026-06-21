@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
-import heroBg from "@/assets/about/aboutHeroImg.jpg";
+import heroBg from "@/assets/about/heroBgImg.png";
 
 const Hero = () => {
   const sectionRef =

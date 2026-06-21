@@ -89,26 +89,8 @@ const Hero = () => {
               md:tracking-[-1.44px]
             "
           >
-            Build With Us
+            Careers
           </h1>
-
-          {/* Paragraph */}
-          <p
-            className="
-              hero-reveal
-              mx-auto
-              mt-4
-              max-w-[780px]
-              text-[13px]
-              leading-[20px]
-              text-white/90
-              md:text-[18px]
-            "
-          >
-            Join a team driven by
-            creativity, innovation,
-            and meaningful impact.
-          </p>
         </div>
       </div>
     </section>

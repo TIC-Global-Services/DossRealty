@@ -76,7 +76,7 @@ const Hero = () => {
               bg-white
               shadow-[0_20px_60px_rgba(0,0,0,0.08)]
               px-6
-              py-15
+              py-20
               md:px-10
               md:py-10
               lg:px-16
@@ -94,7 +94,7 @@ const Hero = () => {
               "
             >
               {/* TOP / LEFT */}
-              <div className="lg:w-[50%]">
+              <div className="lg:w-full">
                 <h2
                   className="
                     font-heading
@@ -105,7 +105,7 @@ const Hero = () => {
                     md:text-[70px]
                     md:leading-[65px]
                     md:px-5
-                    text-left
+                    text-center
                   "
                 >
                 <span className="hidden md:block">Spaces Built
@@ -115,47 +115,6 @@ const Hero = () => {
                   Living</span> 
                   <span className="md:hidden block">Spaces Built for Modern Living</span> 
                 </h2>
-              </div>
-
-              {/* DESKTOP CENTER LINE ONLY */}
-              <div
-                className="w-[350px] h-[1px]
-                  md:h-[180px]
-                  md:w-[1px]
-                  bg-[#E2E2E2]
-                "
-              />
-
-              {/* BOTTOM / RIGHT */}
-              <div className="lg:w-[50%]">
-                <p
-                  className="max-w-[330px]
-                    text-[16px] tracking-normal
-                    leading-[20px]
-                    text-[#6c7072]
-                    md:text-[18px]
-                    md:ml-8
-                    md:max-w-[420px]
-                    md:px-2
-                    text-left
-                    md:leading-[20px]
-                  "
-                >
-                  Each Doss Realty project
-                  reflects our commitment
-                  to quality, thoughtful
-                  planning, and creating
-                  homes that offer comfort,
-                  value, and lasting
-                  distinction. From elegant
-                  residences to inspiring
-                  developments, our
-                  projects are created to
-                  deliver exceptional
-                  living experiences for
-                  today and generations
-                  ahead.
-                </p>
               </div>
             </div>
           </div>

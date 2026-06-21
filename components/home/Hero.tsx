@@ -5,12 +5,10 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import bgImg from "@/assets/home/hero/hero-bg.png";
+import bgImg from "@/assets/home/hero/heroBg.jpg";
 import cloudImg from "@/assets/home/hero/cloudImg.png";
-import houseImg from "@/assets/home/hero/house_img.png";
 import fogImg from "@/assets/home/hero/cloudImgmain.png";
 
-import PrimaryBtn from "../reusable/PrimaryBtn";
 import Link from "next/link";
 
 
@@ -148,13 +146,11 @@ export default function Hero() {
   const rootRef = useRef<HTMLElement>(null);
   const heroTopRef = useRef<HTMLDivElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
-  const houseRef = useRef<HTMLDivElement>(null);
+  const bgBlurRef = useRef<HTMLDivElement>(null);
   const compositeRef = useRef<HTMLDivElement>(null);
   const compositeInnerRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const floorRef = useRef<HTMLDivElement>(null);
-  const cloudLRef = useRef<HTMLDivElement>(null);
-  const cloudRRef = useRef<HTMLDivElement>(null);
   const smokeRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -211,13 +207,6 @@ export default function Hero() {
         opacity: 1,
       });
 
-      gsap.set(cloudLRef.current, {
-        x: -100,
-      });
-
-      gsap.set(cloudRRef.current, {
-        x: 100,
-      });
 
       gsap.set(smokeRef.current, {
         yPercent: 40,
@@ -233,6 +222,16 @@ export default function Hero() {
 
       gsap.set(compositeRef.current, {
         opacity: 0,
+      });
+
+      gsap.set(bgBlurRef.current, {
+        opacity: 0,
+      });
+
+      gsap.set(compositeInnerRef.current, {
+        scale: 1.15,
+        rotationX: 8,
+        transformPerspective: 1200,
       });
 
       const paths =
@@ -257,20 +256,6 @@ export default function Hero() {
         });
       });
 
-      gsap.set(
-        [
-          houseRef.current,
-          cloudLRef.current,
-          cloudRRef.current,
-          smokeRef.current,
-          compositeRef.current,
-          compositeInnerRef.current,
-        ],
-        {
-          force3D: true,
-          willChange: "transform",
-        }
-      );
 
       gsap.set(compositeRef.current, {
         force3D: true,
@@ -306,17 +291,7 @@ export default function Hero() {
         0
       );
 
-      tl.to(
-        houseRef.current,
-        {
-          scale: isIOS ? 1.45 : 1.8,
-          ease: "power1.out",
-          duration: 8,
-          force3D: true,
-        },
-        0
-      );
-
+      // Show SVG outlines
       tl.to(
         [logoRef.current, floorRef.current],
         {
@@ -324,9 +299,10 @@ export default function Hero() {
           ease: "none",
           duration: 0.1,
         },
-        1
+        0
       );
 
+      // Draw DOSS + Floors
       tl.to(
         [...paths, ...floorPaths],
         {
@@ -335,49 +311,57 @@ export default function Hero() {
           duration: isIOS ? 2.2 : 3.5,
           ease: "power1.out",
         },
-        1.1
+        0.5
       );
 
+      // Blur hero background
       tl.to(
-        houseRef.current,
+      bgBlurRef.current,
+      {
+        opacity: 0.7,
+        duration: 1.6,
+        ease: "power1.inOut",
+      },
+      2.6
+    );
+
+      // Hide outline after draw completes
+      tl.to(
+        [logoRef.current, floorRef.current],
         {
           opacity: 0,
-          duration: 0.35,
-          ease: "power1.out",
+          duration: 0.5,
+          ease: "power2.out",
         },
-        2.95
+        3
       );
 
-      tl.to(
-        [logoRef.current, floorPaths],
-        {
-          opacity: 0,
-          duration: 0.35,
-          ease: "power1.out",
-        },
-        2.95
-      );
-
+      // Reveal masked background inside DOSS
       tl.to(
         compositeRef.current,
         {
           opacity: 1,
-          duration: 0.6,
+          duration: 0.8,
           ease: "power2.out",
         },
-        3.0
+        3
       );
 
+      // 3D movement inside letters
       tl.to(
         compositeInnerRef.current,
         {
-          yPercent: -20,
+          scale: 1.18,
+          yPercent: -5,
+          xPercent: 1,
+          rotationX: 0,
           ease: "none",
           duration: 6,
         },
         3.1
       );
 
+      // Smoke movement
       tl.to(
         smokeRef.current,
         {
@@ -388,54 +372,19 @@ export default function Hero() {
         0
       );
 
+      // Hold scene longer
+      tl.to(
+        {},
+        {
+          duration: 2,
+        },
+        9
+      );
+
       const isMobile =
         window.matchMedia(
           "(max-width: 767px)"
         ).matches;
-
-      if (isMobile) {
-        tl.to(
-          cloudLRef.current,
-          {
-            x: 140,
-            y: -20,
-            ease: "power2.out",
-            duration: 5,
-          },
-          0
-        );
-
-        tl.to(
-          cloudRRef.current,
-          {
-            x: -140,
-            y: -20,
-            ease: "power2.out",
-            duration: 5,
-          },
-          0
-        );
-      } else {
-        tl.to(
-          cloudLRef.current,
-          {
-            x: 240,
-            ease: "power2.out",
-            duration: 6.5,
-          },
-          0
-        );
-
-        tl.to(
-          cloudRRef.current,
-          {
-            x: -240,
-            ease: "power2.out",
-            duration: 6.5,
-          },
-          0
-        );
-      }
 
       tl.to({}, { duration: 2 }, 9);
     }, rootRef);
@@ -470,10 +419,19 @@ export default function Hero() {
               alt=""
               fill
               priority
-              className="object-cover object-[50%] md:object-center"
+              className="object-cover object-[50%]"
             />
 
-            {/* <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/60" /> */}
+            <div
+              ref={bgBlurRef}
+              className="
+              absolute inset-0
+              opacity-0
+              backdrop-blur-[10px]
+              bg-black/10
+              pointer-events-none
+            "
+            />
           </div>
 
           {/* Hero Text */}
@@ -513,8 +471,8 @@ export default function Hero() {
             </div>
 
             <Link href={"./about"}>
-            <button
-              className="font-small
+              <button
+                className="font-small
                   relative
                   isolate
                   overflow-hidden
@@ -536,89 +494,12 @@ export default function Hero() {
                   before:[mask-image:linear-gradient(to_right,transparent_0%,white_12%,white_88%,transparent_100%)]
                   before:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,white_12%,white_88%,transparent_100%)]
                 "
-            >
-              Explore
-            </button>
+              >
+                Explore
+              </button>
             </Link>
           </div>
 
-          {/* Left Cloud */}
-          <div
-            ref={cloudLRef}
-            className="hero-gpu
-            pointer-events-none
-            absolute
-            top-[40%]
-            right-[-30%]
-            md:top-[10%]
-            md:right-[-30%]
-            z-[0]
-          "
-          >
-            <Image
-              src={cloudImg}
-              alt=""
-              width={520}
-              height={220}
-              className="hero-gpu
-              h-auto
-              w-[300px]
-              md:w-[896px]
-            "
-            />
-          </div>
-
-          {/* Right Cloud */}
-          <div
-            ref={cloudRRef}
-            className="hero-gpu
-            pointer-events-none
-            absolute
-            top-[40%]
-            left-[-30%]
-            md:top-[10%]
-            md:left-[-30%] z-[0]
-          "
-          >
-            <Image
-              src={cloudImg}
-              alt=""
-              width={520}
-              height={220}
-              className="
-              h-auto
-              w-[244px]
-              scale-x-[-1]
-              md:w-[736px]
-            "
-            />
-          </div>
-
-          {/* House */}
-          <div
-            ref={houseRef}
-            className="hero-gpu
-            absolute left-0 right-0
-            z-[10]
-            will-change-transform
-            top-[56vh]
-            h-[50vh]
-            md:top-[35vh]
-            md:h-[150vh]
-          "
-            style={{
-              transformOrigin:
-                "bottom center",
-            }}
-          >
-            <Image
-              src={houseImg}
-              alt="Luxury building"
-              fill
-              priority
-              className="object-contain object-bottom"
-            />
-          </div>
 
           {/* Logo + Composite */}
           <div className="pointer-events-none absolute inset-0 z-[15]">
@@ -643,9 +524,13 @@ export default function Hero() {
               {/* House inside text */}
               <div
                 ref={compositeRef}
-                className="hero-gpu
-                absolute inset-0
+                className="
+                hero-gpu
+                absolute
+                inset-0
                 opacity-0
+                pointer-events-none
+                drop-shadow-[0_0_40px_rgba(255,255,255,0.15)]
               "
               >
                 <div
@@ -656,14 +541,13 @@ export default function Hero() {
                 "
                 >
                   <Image
-                    src={houseImg}
-                    alt="Building visible through letterforms"
+                    src={bgImg}
+                    alt=""
                     fill
-                    className="object-cover"
-                    style={{
-                      objectPosition:
-                        "center  55%",
-                    }}
+                    priority
+                    className="
+                    object-contain
+                  "
                   />
                 </div>
               </div>
@@ -750,14 +634,14 @@ export default function Hero() {
             ref={smokeRef}
             className="hero-gpu
               absolute
-              -bottom-50
+              -bottom-20
               left-0
               w-full
               h-screen
-              z-[60]
+              z-[0]
               pointer-events-none
               overflow-hidden
-              opacity-75
+              opacity-100
             "
           >
             <Image
@@ -773,7 +657,6 @@ export default function Hero() {
             />
           </div>
         </div>
-
 
         <div
           aria-hidden="true"

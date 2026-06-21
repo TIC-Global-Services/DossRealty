@@ -96,22 +96,8 @@ export default function TestimonialSection() {
           {/* Content Below */}
           <div className="mt-10">
             <h2 className="mb-5 text-[24px] font-heading font-normal leading-[120%] text-[#111]">
-              Experiences Shared <br />
-              by Our Clients
+              A Measure Of Trust
             </h2>
-
-            <p className="mb-8 text-[13px] leading-[140%] text-[#6B6B6B]">
-              Doss Realty believes great
-              architecture goes beyond
-              structures, it creates
-              experiences. Our approach
-              combines modern aesthetics,
-              smart planning, and
-              sustainable thinking to
-              design spaces that feel
-              refined, practical, and
-              future-ready.
-            </p>
             
             <Link href="./contact">
             <button className="rounded-full bg-[#00256a] px-7 py-2 text-white">
@@ -168,25 +154,11 @@ export default function TestimonialSection() {
           {/* RIGHT SIDE */}
           <div className="absolute right-0 top-1/2 max-w-[550px] -translate-y-1/2">
             <h2 className="mb-5 text-[30px] font-small font-normal leading-[50px] tracking-tight text-[#121212] md:text-[48px]">
-              Experiences Shared <br />
-              by Our Clients
+              A Measure Of Trust
             </h2>
 
-            <p className="mb-8 w-[46ch] text-[16px] leading-[20px] text-[#717171]">
-              Doss Realty believes great
-              architecture goes beyond
-              structures, it creates
-              experiences. Our approach
-              combines modern aesthetics,
-              smart planning, and
-              sustainable thinking to
-              design spaces that feel
-              refined, practical, and
-              future-ready.
-            </p>
-
             <Link href="./contact">
-            <PrimaryBtn mode="dark"  className="ghost bg-[#00256a] hover:text-black text-white duration-300 hover:scale-105">
+            <PrimaryBtn mode="dark"  className="primary font-small bg-[#00256A] hover:text-black text-white duration-300 hover:scale-105">
               Get in touch
             </PrimaryBtn>
             </Link>
