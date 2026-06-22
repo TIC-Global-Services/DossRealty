@@ -17,22 +17,25 @@ function FlyToLocation({ activeMinute }) {
 
     const center = data.center;
 
-    if (
-      !Array.isArray(center) ||
-      center.length !== 2
-    ) {
+    if (!Array.isArray(center) || center.length !== 2) {
       return;
     }
 
     const lat = Number(center[0]);
     const lng = Number(center[1]);
 
-    if (
-      !Number.isFinite(lat) ||
-      !Number.isFinite(lng)
-    ) {
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
       return;
     }
+
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+    const zoom =
+      typeof data.zoom === "object"
+        ? isMobile
+          ? data.zoom.mobile
+          : data.zoom.desktop
+        : data.zoom;
 
     const container = map.getContainer();
 
@@ -52,15 +55,15 @@ function FlyToLocation({ activeMinute }) {
 
       // Initial load
       if (activeMinute === 0) {
-        map.setView(target, data.zoom, {
+        map.setView(target, zoom, {
           animate: false,
         });
 
         return;
       }
 
-      // Smooth movement without flyTo crash
-      map.setView(target, data.zoom, {
+      // Smooth movement
+      map.setView(target, zoom, {
         animate: true,
         duration: 1.5,
       });
@@ -112,7 +115,7 @@ const getIcon = (name) => {
   return key ? ICON_MAP[key] : "/location.png";
 };
 
-const createPin = (title, icon) =>
+const createPin = (title, icon, isMobile = false) =>
   L.divIcon({
     className: "custom-pin",
 
@@ -120,19 +123,21 @@ const createPin = (title, icon) =>
       <div style="
         background:#fff;
         border-radius:999px;
-        padding:10px 10px;
+        padding:${isMobile ? "6px 8px" : "10px 10px"};
         display:flex;
         align-items:center;
-        gap:8px;
+        gap:${isMobile ? "6px" : "8px"};
         box-shadow:0 4px 20px rgba(0,0,0,.12);
         border:1px solid #E7E7E7;
-        font-size:12px;
+        font-size:${isMobile ? "10px" : "12px"};
         font-weight:500;
         color:#444;
+        max-width:${isMobile ? "120px" : "180px"};
+        white-space:nowrap;
       ">
         <div style="
-          width:30px;
-          height:30px;
+          width:${isMobile ? "22px" : "30px"};
+          height:${isMobile ? "22px" : "30px"};
           border-radius:50%;
           border:1px solid #ddd;
           display:flex;
@@ -146,20 +151,25 @@ const createPin = (title, icon) =>
             src="${icon}"
             alt="${title}"
             style="
-              width:16px;
-              height:16px;
+              width:${isMobile ? "12px" : "16px"};
+              height:${isMobile ? "12px" : "16px"};
               object-fit:contain;
             "
           />
         </div>
 
-        ${title}
+        <span style="
+          overflow:hidden;
+          text-overflow:ellipsis;
+        ">
+          ${title}
+        </span>
       </div>
     `,
 
-    iconSize: [180, 50],
+    iconSize: isMobile ? [120, 36] : [180, 50],
 
-    iconAnchor: [90, 25],
+    iconAnchor: isMobile ? [60, 18] : [90, 25],
   });
 
 export default function ChennaiMap({
@@ -177,80 +187,132 @@ export default function ChennaiMap({
   const center =
     simpleMode && pinLocation ? pinLocation : PROJECT_LOCATION.position;
 
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
-    <div className="relative w-[100vw] h-[50vh] md:h-full md:w-full overflow-hidden bg-[#F4F4F4]">
+    <div className="relative w-[100vw] h-full md:h-full md:w-full overflow-hidden bg-[#F4F4F4]">
       <MapContainer
-  center={center}
-  zoom={simpleMode ? 16 : 12}
-  zoomControl={false}
-  attributionControl={false}
-  dragging={true}
-  touchZoom={false}
-  doubleClickZoom={false}
-  scrollWheelZoom={false}
-  boxZoom={false}
-  keyboard={false}
-  className={`h-full w-full ${simpleMode ? "" : "grayscale"}`}
->
-  <TileLayer
-    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-    attribution="&copy; OpenStreetMap contributors &copy; CARTO"
-  />
+        center={center}
+        zoom={simpleMode ? 16 : 12}
+        zoomControl={false}
+        attributionControl={false}
+        dragging={true}
+        touchZoom={false}
+        doubleClickZoom={false}
+        scrollWheelZoom={false}
+        boxZoom={false}
+        keyboard={false}
+        className={`h-full w-full ${simpleMode ? "" : "grayscale"}`}
+      >
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution="&copy; OpenStreetMap contributors &copy; CARTO"
+        />
 
-  <MapResizeFix />
+        <MapResizeFix />
 
-  {!simpleMode && (
-    <FlyToLocation activeMinute={activeMinute} />
-  )}
+        {!simpleMode && <FlyToLocation activeMinute={activeMinute} />}
 
-  {/* Main Project Marker */}
-  <Marker
-    position={
-      simpleMode && pinLocation
-        ? pinLocation
-        : PROJECT_LOCATION.position
-    }
-    icon={createPin(
-      simpleMode ? pinTitle : "Metropettai",
-      "/location.png"
-    )}
-  />
+        {/* Main Project Marker */}
+        <Marker
+          position={
+            simpleMode && pinLocation ? pinLocation : PROJECT_LOCATION.position
+          }
+          icon={createPin(
+            simpleMode ? pinTitle : "Metropettai",
+            "/location.png",
+            isMobile,
+          )}
+        />
 
-  {/* Dynamic Location Markers */}
-  {!simpleMode &&
-    currentPlaces.map((place, index) => (
-      <Marker
-        key={`${place.name}-${index}`}
-        position={place.position}
-        icon={createPin(
-          place.name,
-          getIcon(place.name)
-        )}
-      />
-    ))}
-</MapContainer>
+        {/* Dynamic Location Markers */}
+        {!simpleMode &&
+          currentPlaces.map((place, index) => (
+            <Marker
+              key={`${place.name}-${index}`}
+              position={place.position}
+              icon={createPin(place.name, getIcon(place.name), isMobile)}
+            />
+          ))}
+      </MapContainer>
 
       {/* Bottom Card */}
       {!simpleMode && activeMinute !== 0 && (
-        <div className="hidden md:block absolute bottom-10 left-8 z-[1000] w-[300px] rounded-[22px] border border-[#E8E8E8] bg-white/95 p-5 shadow-xl backdrop-blur-md">
-          <div className="space-y-3">
+        <div
+          className="
+          absolute
+          z-[1000]
+          md:bottom-10
+          md:left-8
+          md:w-[300px] md:h-[300px]
+          md:p-5
+          md:rounded-[22px]
+          top-3
+          right-3
+          w-[200px]
+          p-3
+          rounded-[16px]
+          border
+          border-[#E8E8E8]
+          bg-white/95
+          shadow-xl
+          backdrop-blur-md
+        "
+        >
+          <div className="space-y-2 md:space-y-2">
             {currentPlaces.map((place, index) => (
               <div key={index} className="flex items-center justify-between">
-                <div className="flex min-w-0 items-center gap-3">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#ECECEC] bg-[#F7F7F7]">
+                <div className="flex min-w-0 items-center gap-2 md:gap-3">
+                  <div
+                    className="
+                    flex
+                    h-7
+                    w-7
+                    md:h-9
+                    md:w-9
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-[#ECECEC]
+                    bg-[#F7F7F7]
+                  "
+                  >
                     <img
                       src={getIcon(place.name)}
                       alt={place.name}
-                      className="h-4 w-10 object-contain"
+                      className="
+                      h-3
+                      w-3
+                      md:h-4
+                      md:w-10
+                      object-contain
+                    "
                     />
                   </div>
 
-                  <span className="truncate text-[12px] font-medium text-[#4D4D4D]">
+                  <span
+                    className="
+                    truncate
+                    text-[10px]
+                    md:text-[12px]
+                    font-medium
+                    text-[#4D4D4D]
+                  "
+                  >
                     {place.name}
                   </span>
                 </div>
 
-                <span className="text-[12px] text-[#8A8A8A]">
+                <span
+                  className="
+                  ml-2
+                  text-[9px]
+                  md:text-[12px]
+                  text-[#8A8A8A]
+                "
+                >
                   {place.distance}
                 </span>
               </div>

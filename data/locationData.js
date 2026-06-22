@@ -5,12 +5,22 @@ const PROJECT_LOCATION = {
 
 const LOCATION_DATA = {
   0: {
-    zoom: 14,
+    zoom: {
+      desktop: 14,
+      mobile: 12,
+    },
+
     center: [13.0343816, 80.0786331],
+
     places: [],
-      },
+  },
+
   5: {
-    zoom: 14,
+    zoom: {
+      desktop: 14,
+      mobile: 13,
+    },
+
     center: [13.0343816, 80.0786331],
 
     places: [
@@ -40,8 +50,7 @@ const LOCATION_DATA = {
         position: [13.022, 80.058],
       },
       {
-        name:
-          "Panimalar Medical College",
+        name: "Panimalar Medical College",
         distance: "2.5 Km",
         position: [13.021, 80.055],
       },
@@ -49,7 +58,11 @@ const LOCATION_DATA = {
   },
 
   10: {
-    zoom: 14,
+    zoom: {
+      desktop: 14,
+      mobile: 13,
+    },
+
     center: [13.05, 80.10],
 
     places: [
@@ -64,8 +77,7 @@ const LOCATION_DATA = {
         position: [13.062, 80.106],
       },
       {
-        name:
-          "Sundar Matriculation School",
+        name: "Sundar Matriculation School",
         distance: "3.8 Km",
         position: [13.044, 80.102],
       },
@@ -80,8 +92,7 @@ const LOCATION_DATA = {
         position: [13.06, 80.115],
       },
       {
-        name:
-          "Saveetha Dental College",
+        name: "Saveetha Dental College",
         distance: "7.5 Km",
         position: [13.069, 80.09],
       },
@@ -89,13 +100,16 @@ const LOCATION_DATA = {
   },
 
   20: {
-    zoom: 12,
+    zoom: {
+      desktop: 12,
+      mobile: 11,
+    },
+
     center: [13.08, 80.18],
 
     places: [
       {
-        name:
-          "Chennai Airport",
+        name: "Chennai Airport",
         distance: "20 Km",
         position: [12.9941, 80.1709],
       },
@@ -105,26 +119,22 @@ const LOCATION_DATA = {
         position: [13.022, 80.191],
       },
       {
-        name:
-          "Olympia Tech Park",
+        name: "Olympia Tech Park",
         distance: "16 Km",
         position: [13.013, 80.201],
       },
       {
-        name:
-          "Tamarai Tech Park",
+        name: "Tamarai Tech Park",
         distance: "15.5 Km",
         position: [13.02, 80.198],
       },
       {
-        name:
-          "Apollo Hospital",
+        name: "Apollo Hospital",
         distance: "11 Km",
         position: [13.073, 80.163],
       },
       {
-        name:
-          "Ramachandra Hospital",
+        name: "Ramachandra Hospital",
         distance: "9 Km",
         position: [13.043, 80.123],
       },
