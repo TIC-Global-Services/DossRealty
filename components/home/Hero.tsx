@@ -6,8 +6,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import bgImg from "@/assets/home/hero/heroBg.jpg";
-import cloudImg from "@/assets/home/hero/cloudImg.png";
-import fogImg from "@/assets/home/hero/cloudImgmain.png";
 
 import Link from "next/link";
 
@@ -318,7 +316,7 @@ export default function Hero() {
       tl.to(
       bgBlurRef.current,
       {
-        opacity: 0.7,
+        opacity: 0.9,
         duration: 1.6,
         ease: "power1.inOut",
       },
@@ -351,9 +349,8 @@ export default function Hero() {
       tl.to(
         compositeInnerRef.current,
         {
-          scale: 1.18,
-          yPercent: -5,
-          xPercent: 1,
+          scale: 1,
+          yPercent: -10,
           rotationX: 0,
           ease: "none",
           duration: 6,
@@ -427,8 +424,8 @@ export default function Hero() {
               className="
               absolute inset-0
               opacity-0
-              backdrop-blur-[10px]
-              bg-black/10
+              backdrop-blur-[20px]
+              bg-black/40
               pointer-events-none
             "
             />
@@ -629,7 +626,7 @@ export default function Hero() {
 
 
 
-          {/* ── BOTTOM FOG ── */}
+          {/* ── BOTTOM FOG ──
           <div
             ref={smokeRef}
             className="hero-gpu
@@ -655,7 +652,7 @@ export default function Hero() {
                 md:opacity-100
               "
             />
-          </div>
+          </div> */}
         </div>
 
         <div

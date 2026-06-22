@@ -18,7 +18,7 @@ const ChennaiMap = dynamic(() => import("./ChennaiMap"), {
 gsap.registerPlugin(ScrollTrigger);
 
 const PIN_DISTANCE = 2000;
-const MOBILE_PIN_DISTANCE = 50;
+const MOBILE_PIN_DISTANCE = 500;
 
 export default function ConnectedToChennai() {
   const pinWrapperRef = useRef<HTMLDivElement>(null);
@@ -86,8 +86,7 @@ export default function ConnectedToChennai() {
             end: `+=${MOBILE_PIN_DISTANCE}`,
             scrub: true,
             pin: true,
-            pinType: "fixed",
-            pinSpacing: false,
+            pinSpacing: true,
             anticipatePin: 1,
             invalidateOnRefresh: true,
             onUpdate: (self) => {

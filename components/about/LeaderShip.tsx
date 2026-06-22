@@ -130,7 +130,7 @@ const Leadership = () => {
               w-full
               md:w-screen
               h-[60vh]
-              md:h-[500px]
+              md:h-screen
               overflow-y-auto
               md:overflow-hidden
               md:rounded-none
