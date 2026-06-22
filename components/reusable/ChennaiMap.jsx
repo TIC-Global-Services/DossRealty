@@ -196,12 +196,12 @@ export default function ChennaiMap({
         zoom={simpleMode ? 16 : 12}
         zoomControl={false}
         attributionControl={false}
-        dragging={true}
-        touchZoom={false}
-        doubleClickZoom={false}
+        dragging={!isMobile}
+        touchZoom={!isMobile}
+        doubleClickZoom={!isMobile}
         scrollWheelZoom={false}
-        boxZoom={false}
-        keyboard={false}
+        boxZoom={!isMobile}
+        keyboard={!isMobile}
         className={`h-full w-full ${simpleMode ? "" : "grayscale"}`}
       >
         <TileLayer

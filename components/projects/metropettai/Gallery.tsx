@@ -205,7 +205,7 @@ export default function Gallery() {
   }, [advance]);
 
   return (
-    <section className="overflow-hidden py-8 md:py-14">
+    <section className="overflow-hidden py-12 md:py-14">
       {/* TITLE */}
       <div className="mb-8 text-center md:mb-10">
         <h2

@@ -155,7 +155,7 @@ export default function ConnectedToChennai() {
         "
       >
         {/* Timeline */}
-        <div className="relative flex-shrink-0 px-10 pt-8">
+        <div className="relative flex-shrink-0 px-10 md:pt-8">
           <div className="relative h-[90px]">
             {/* Line Segments */}
             <div className="absolute left-[7.5%] top-[58px] h-[1px] w-[28%] bg-black" />
@@ -280,7 +280,7 @@ export default function ConnectedToChennai() {
       "
       >
         {/* Timeline */}
-        <div className="px-4 pt-6 flex-shrink-0">
+        <div className="px-4 pt-2 flex-shrink-0">
           <div className="relative h-[80px]">
 
             {/* Main Line */}
