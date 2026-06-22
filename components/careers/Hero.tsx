@@ -42,8 +42,8 @@ const Hero = () => {
         fill
         priority
         className="
-          object-cover
-          object-[20%_20%]
+          object-cover object-[65%]
+          md:object-[20%_20%]
         "
       />
 
