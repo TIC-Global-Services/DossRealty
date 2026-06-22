@@ -76,7 +76,7 @@ export default function ConnectedToChennai() {
         });
       } else {
         gsap.to(mobilePlaneRef.current, {
-          x: "72vw",
+          x: "78vw",
           ease: "none",
           scrollTrigger: {
             id: "connected-to-chennai-mobile",
@@ -93,7 +93,7 @@ export default function ConnectedToChennai() {
               const progress = self.progress;
               if (progress < 0.34) setActiveMinute(0);
               else if (progress < 0.64) setActiveMinute(5);
-              else if (progress < 0.92) setActiveMinute(10);
+              else if (progress < 0.94) setActiveMinute(10);
               else setActiveMinute(20);
             },
           },
@@ -283,8 +283,10 @@ export default function ConnectedToChennai() {
         <div className="px-4 pt-2 flex-shrink-0">
           <div className="relative h-[80px]">
 
-            {/* Main Line */}
-            <div className="absolute left-[12%] right-[4%] top-[20px] h-[1px] bg-black" />
+            {/* Line Segments */}
+            <div className="absolute left-[15%] top-[20px] h-[2px] w-[18%] bg-black" />
+            <div className="absolute left-[40%] top-[20px] h-[2px] w-[23%] bg-black" />
+            <div className="absolute left-[70%] top-[20px] h-[2px] w-[18%] bg-black" />
 
             {/* Plane */}
             <div
@@ -324,8 +326,8 @@ export default function ConnectedToChennai() {
             <div
               className="
               absolute
-              left-[28%]
-              top-[20px]
+              left-[31%]
+              top-[19px]
               flex
               flex-col
               items-center
@@ -357,8 +359,8 @@ export default function ConnectedToChennai() {
             <div
               className="
               absolute
-              left-[53%]
-              top-[20px]
+              left-[61%]
+              top-[19px]
               flex
               flex-col
               items-center
@@ -390,8 +392,8 @@ export default function ConnectedToChennai() {
             <div
               className="
               absolute
-              right-[10%]
-              top-[20px]
+              right-[4%]
+              top-[19px]
               flex
               flex-col
               items-center
