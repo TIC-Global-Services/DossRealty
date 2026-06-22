@@ -317,10 +317,10 @@ export default function Hero() {
       bgBlurRef.current,
       {
         opacity: 0.9,
-        duration: 1.6,
+        duration: 2,
         ease: "power1.inOut",
       },
-      2.6
+      0.5
     );
 
       // Hide outline after draw completes
