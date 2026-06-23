@@ -3,8 +3,39 @@
 import Image from "next/image";
 import shareIcon from "@/assets/chatIcons/chatImg.png";
 import whatsAppIcon from "@/assets/chatIcons/whatsAppImg.png";
+import { useEffect, useState } from "react";
 
 export default function EnquiryBtn() {
+  const [isDarkSection, setIsDarkSection] = useState(false);
+
+  useEffect(() => {
+  const sections = document.querySelectorAll("[data-floating-theme]");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const theme = entry.target.getAttribute(
+            "data-floating-theme"
+          );
+
+          setIsDarkSection(theme === "dark");
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+
+  return () => observer.disconnect();
+}, []);
+
+const buttonClass = isDarkSection
+  ? "bg-white border-white"
+  : "bg-[rgba(0,37,106,0.3)] border-[#4b5563] backdrop-blur-md";
   return (
     <div
       className="fixed right-4 bottom-8 z-[10000] flex flex-col gap-2"
@@ -14,7 +45,7 @@ export default function EnquiryBtn() {
         href="https://wa.me/91123456789"
         target="_blank"
         rel="noopener noreferrer"
-        className="
+        className={`
           flex
           h-[50px]
           w-[50px]
@@ -28,7 +59,8 @@ export default function EnquiryBtn() {
           transition-all
           duration-300
           hover:scale-110
-        "
+          ${buttonClass}
+        `}
       >
         <Image
           src={whatsAppIcon}
@@ -43,7 +75,7 @@ export default function EnquiryBtn() {
       {/* CALL */}
       <a
         href="tel:+91123456789"
-        className="
+        className={`
           flex
           h-[50px]
           w-[50px]
@@ -57,7 +89,8 @@ export default function EnquiryBtn() {
           transition-all
           duration-300
           hover:scale-110
-        "
+          ${buttonClass}
+        `}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +108,7 @@ export default function EnquiryBtn() {
         href="https://t.me/"
         target="_blank"
         rel="noopener noreferrer"
-        className="
+        className={`
           flex
           h-[50px]
           w-[50px]
@@ -89,7 +122,8 @@ export default function EnquiryBtn() {
           transition-all
           duration-300
           hover:scale-110
-        "
+          ${buttonClass}
+        `}
       >
         <Image
           src={shareIcon}

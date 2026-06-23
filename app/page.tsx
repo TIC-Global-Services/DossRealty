@@ -10,8 +10,8 @@ import EnquiryBtn from "@/components/reusable/EnquiryBtn";
 export default function Home() {
   return (
     <main className="overflow-x-hidden">
-  <EnquiryBtn />
-  <Hero />
+    <EnquiryBtn />
+    <Hero />
 
   <div className="relative z-[100] -mt-[100vh]">
     <LivingLocation />

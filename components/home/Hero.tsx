@@ -297,7 +297,7 @@ export default function Hero() {
           ease: "none",
           duration: 0.1,
         },
-        0
+        0.1
       );
 
       // Draw DOSS + Floors
@@ -306,7 +306,7 @@ export default function Hero() {
         {
           strokeDashoffset: 0,
           stagger: isIOS ? 0 : 0.04,
-          duration: isIOS ? 2.2 : 3.5,
+          duration: isIOS ? 2.2 : 4,
           ease: "power1.out",
         },
         0.5
@@ -314,14 +314,14 @@ export default function Hero() {
 
       // Blur hero background
       tl.to(
-      bgBlurRef.current,
-      {
-        opacity: 0.9,
-        duration: 2,
-        ease: "power1.inOut",
-      },
-      0.5
-    );
+        bgBlurRef.current,
+        {
+          opacity: 0.9,
+          duration: 2,
+          ease: "power1.inOut",
+        },
+        0.5
+      );
 
       // Hide outline after draw completes
       tl.to(
@@ -331,7 +331,7 @@ export default function Hero() {
           duration: 0.5,
           ease: "power2.out",
         },
-        3
+        4.6
       );
 
       // Reveal masked background inside DOSS
@@ -342,7 +342,7 @@ export default function Hero() {
           duration: 0.8,
           ease: "power2.out",
         },
-        3
+        4.7
       );
 
       // 3D movement inside letters
@@ -355,7 +355,7 @@ export default function Hero() {
           ease: "none",
           duration: 6,
         },
-        3.1
+        4.7
       );
 
       // Smoke movement
@@ -468,18 +468,20 @@ export default function Hero() {
             </div>
 
             <Link href={"./about"}>
-              <button
+              <button style={{
+                    transform: "translateZ(0)",
+                    willChange: "transform, opacity",
+                  }}
                 className="font-small
                   relative
-                  isolate
                   overflow-hidden
                   mt-5
                   px-8
                   py-2.5
-                  rounded-[60px]
-                
-                  bg-[rgba(255,255,255,0.1)]
-                  backdrop-blur-[20px]
+                  rounded-full
+                  transform-gpu
+                  bg-white/20
+                  backdrop-blur-[5px]
                   text-white
                   cursor-pointer
                   before:content-['']
