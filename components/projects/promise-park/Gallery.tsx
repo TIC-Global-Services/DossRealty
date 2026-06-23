@@ -7,10 +7,10 @@ import {
 } from "react";
 import Image from "next/image";
 
-import img1 from "@/assets/projects/metropettai/galleryImg1.png";
-import img2 from "@/assets/projects/metropettai/galleryImg2.jpg";
-import img3 from "@/assets/projects/metropettai/galleryImg3.jpg";
-import img4 from "@/assets/projects/metropettai/galleryImg1.png";
+import img1 from "@/assets/projects/promisePark/galleryImg1.png";
+import img2 from "@/assets/projects/promisePark/galleryImg2.png";
+import img3 from "@/assets/projects/promisePark/galleryImg3.png";
+import img4 from "@/assets/projects/promisePark/galleryImg4.png";
 
 const images = [
   img1,

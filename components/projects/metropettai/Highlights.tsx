@@ -15,11 +15,11 @@ const amenities = [
     image: solarImg,
   },
   {
-    title: "Indoor\nActivity Zone",
+    title: "Compound Wall",
     image: indoorImg,
   },
   {
-    title: "Kids\nPlay Area",
+    title: "Children's \n Park",
     image: kidsImg,
   },
   {

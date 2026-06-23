@@ -20,7 +20,13 @@ gsap.registerPlugin(ScrollTrigger);
 const PIN_DISTANCE = 2000;
 const MOBILE_PIN_DISTANCE = 500;
 
-export default function ConnectedToChennai() {
+export default function ConnectedToChennai({
+  projectLocation,
+  locationData,
+}: {
+  projectLocation: any;
+  locationData: any;
+}) {
   const pinWrapperRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const mobileSectionRef = useRef(null);
@@ -155,7 +161,7 @@ export default function ConnectedToChennai() {
         "
       >
         {/* Timeline */}
-        <div className="relative flex-shrink-0 px-10 md:pt-8">
+        <div className="relative flex-shrink-0 px-2 md:pt-8">
           <div className="relative h-[90px]">
             {/* Line Segments */}
             <div className="absolute left-[7.5%] top-[58px] h-[1px] w-[28%] bg-black" />
@@ -266,7 +272,11 @@ export default function ConnectedToChennai() {
 
         {/* Map */}
         <div className="mt-2 min-h-0 flex-1">
-          <ChennaiMap activeMinute={activeMinute} />
+          <ChennaiMap
+  activeMinute={activeMinute}
+  projectLocation={projectLocation}
+  locationData={locationData}
+/>
         </div>
       </section>
 
@@ -425,7 +435,11 @@ export default function ConnectedToChennai() {
 
         {/* Map */}
         <div className="mt-2 min-h-0 flex-1">
-          <ChennaiMap activeMinute={activeMinute} />
+          <ChennaiMap
+  activeMinute={activeMinute}
+  projectLocation={projectLocation}
+  locationData={locationData}
+/>
         </div>
       </section>
     </div>

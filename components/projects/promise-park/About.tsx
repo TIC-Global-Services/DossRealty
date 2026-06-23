@@ -115,7 +115,7 @@ const About = () => {
             </span>
 
             <span className="font-small text-sm text-[#C7A85E] md:text-[18px] md:leading-[20px]">
-              10 Acres
+              3 Acres
             </span>
           </div>
 
@@ -154,7 +154,7 @@ const About = () => {
             </span>
 
             <span className="font-small text-sm text-[#C59D5F] md:text-[18px] md:leading-[20px]">
-              270 Units
+              99 Units
             </span>
           </div>
         </div>
@@ -188,31 +188,18 @@ const About = () => {
               leading-[20px]
               text-[#717171]
 
-              md:max-w-[700px]
-              md:w-[102ch]
+              md:max-w-[850px]
               md:text-[18px]
               md:leading-[20px]
               md:tracking-[0.48px]
             "
           >
-            Metropettai is a modern
-            community defined by
-            connection. Located at the
-            intersection of the upcoming
-            Metro corridor, the
-            Chennai–Bengaluru Highway,
-            and the Outer Ring Road, it
-            oﬀers direct access to the
-            people, places, and
-            opportunities that shape
-            everyday life. Surrounded by
-            leading employment hubs,
-            educational institutions,
-            and evolving infrastructure,
-            Metropettai is designed for
-            those who value access,
-            opportunity, and long-term
-            relevance.
+            At the heart of Kanchipuram on the Kanchi–Arakkonam Highway, this is a ready-to-build 
+            community shaped around the comfort of certainty. With clear approvals, completed 
+            infrastructure, and the everyday life of Kanchipuram close at hand, it places families near schools, 
+            hospitals, temples, and town conveniences without feeling removed from where life already 
+            happens. A place where the location is familiar, the foundation is prepared, and the future feels 
+            ready to begin.
           </p>
         </div>
 

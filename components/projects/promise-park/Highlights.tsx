@@ -6,8 +6,8 @@ import solarImg from "@/assets/projects/metropettai/homeImg.png";
 import indoorImg from "@/assets/projects/metropettai/tennisImg.png";
 import kidsImg from "@/assets/projects/metropettai/wheelImg.png";
 import walkingImg from "@/assets/projects/metropettai/walkImg.png";
-import securityImg from "@/assets/projects/metropettai/shieldImg.png";
-import waterImg from "@/assets/projects/metropettai/swimImg.png";
+import paverImg from "@/assets/projects/metropettai/paverImg.png";
+import tnebImg from "@/assets/projects/metropettai/tnebImg.png";
 
 const amenities = [
   {
@@ -15,24 +15,24 @@ const amenities = [
     image: solarImg,
   },
   {
-    title: "Indoor\nActivity Zone",
+    title: "Compound\nWall",
     image: indoorImg,
   },
   {
-    title: "Kids\nPlay Area",
+    title: "Children's\nPark",
     image: kidsImg,
   },
   {
-    title: "Walking &\nJogging Track",
+    title: "Yoga & Walking\nArea",
     image: walkingImg,
   },
   {
-    title: "24/7 Security",
-    image: securityImg,
+    title: "Paver Road",
+    image: paverImg,
   },
   {
-    title: "Domestic Water\nProvision",
-    image: waterImg,
+    title: "TNEB Connections",
+    image: tnebImg,
   },
 ];
 
@@ -121,7 +121,7 @@ const Highlights = () => {
                     font-medium
                     leading-[16px]
                     text-[#2A2A2A]
-                    md:text-[19px]
+                    md:text-[19px] md:leading-[21px]
                     md:tracking-normal
                   "
                 >

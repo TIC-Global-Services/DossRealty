@@ -12,26 +12,26 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import img1 from "@/assets/projects/metropettai/location1.jpg";
 
 const highlights = [
-  {
-    title: "Prime Locations",
-    description:
-      "Enjoy seamless access to key destinations, modern infrastructure, and thriving communities designed for future growth.",
-  },
+  // {
+  //   title: "Prime Locations",
+  //   description:
+  //     "Enjoy seamless access to key destinations, modern infrastructure, and thriving communities designed for future growth.",
+  // },
   {
     title: "Connectivity",
     description:
-      "Well-connected roads and transport routes make commuting effortless and everyday travel smoother.",
+      "Seamless access to the Metro Station, Outer Ring Road, and Chennai–Bengaluru Highway.",
   },
   {
     title:
       "Flood-Resilient Location",
     description:
-      "Thoughtfully planned in a location designed to support long-term sustainability and safety.",
+      "Positioned in a naturally safer zone, offering confidence through changing seasons.",
   },
   {
     title: "Growth Value",
     description:
-      "Located in a fast-developing corridor offering strong appreciation and investment potential.",
+      "Located in one of Chennai’s most promising growth corridors for long-term appreciation, a home that doubles in value.",
   },
 ];
 

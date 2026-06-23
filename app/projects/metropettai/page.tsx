@@ -1,3 +1,8 @@
+import {
+  PROJECT_LOCATION,
+  LOCATION_DATA,
+} from "@/data/locationData";
+
 import KnowMore from '@/components/projects/KnowMore'
 import About from '@/components/projects/metropettai/About'
 import DossEdge from '@/components/projects/metropettai/DossEdge'
@@ -12,16 +17,19 @@ import ConnectedToChennaiTitle from '@/components/projects/metropettai/Connected
 const page = () => {
   return (
     <>
-    <EnquiryBtn />
-    <Hero />
-    <About />
-    <DossEdge />
-    <Highlights />
-    <ConnectedToChennaiTitle />
-    <ConnectedToChennai />
-    <Gallery />
-    <LocationHighlights />
-    <KnowMore />
+      <EnquiryBtn />
+      <Hero />
+      <About />
+      <DossEdge />
+      <Highlights />
+      <ConnectedToChennaiTitle />
+      <ConnectedToChennai
+        projectLocation={PROJECT_LOCATION}
+        locationData={LOCATION_DATA}
+      />
+      <Gallery />
+      <LocationHighlights />
+      <KnowMore />
     </>
   )
 }

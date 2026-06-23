@@ -177,7 +177,7 @@ const Hero = () => {
               className="
                 font-[600]
                 text-[13px]
-                text-white/40
+                text-white/80
                 md:text-[22px]
                 leading-[24px]
               "
@@ -252,18 +252,11 @@ const Hero = () => {
                   leading-[16px]
                   text-white/90
                   md:text-[18px]
-                  lg:w-[42ch]
-                  lg:leading-[28px]
+                  lg:w-[44ch]
+                  lg:leading-[20px]
                 "
               >
-                A modern architectural
-                residence crafted with
-                clean geometry, open
-                living spaces, and
-                timeless material
-                aesthetics designed for
-                elevated contemporary
-                living.
+               Metropettai is a strategically located community near the upcoming Metro corridor, Chennai–Bengaluru Highway, and Outer Ring Road, offering excellent connectivity, everyday convenience, and long-term value.
               </p>
 
               <div

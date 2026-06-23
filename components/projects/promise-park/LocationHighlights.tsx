@@ -12,26 +12,26 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import img1 from "@/assets/projects/metropettai/location1.jpg";
 
 const highlights = [
+  // {
+  //   title: "Prime Locations",
+  //   description:
+  //     "Enjoy seamless access to key destinations, modern infrastructure, and thriving communities designed for future growth.",
+  // },
   {
-    title: "Prime Locations",
+    title: "TOWNSIDE LIVING",
     description:
-      "Enjoy seamless access to key destinations, modern infrastructure, and thriving communities designed for future growth.",
-  },
-  {
-    title: "Connectivity",
-    description:
-      "Well-connected roads and transport routes make commuting effortless and everyday travel smoother.",
+      "Close to Kanchipuram’s schools, colleges, hospitals, temples, and everyday conveniences.",
   },
   {
     title:
-      "Flood-Resilient Location",
+      "READY TO DESIGN",
     description:
-      "Thoughtfully planned in a location designed to support long-term sustainability and safety.",
+      "Clear approvals, clean documentation, completed infrastructure, and bank loan support make ownership feel simple from day one.",
   },
   {
-    title: "Growth Value",
+    title: "GROWTH CORRIDOR",
     description:
-      "Located in a fast-developing corridor offering strong appreciation and investment potential.",
+      "Connected to Kanchipuram’s next growth story, led by Parandur Airport and regional access.",
   },
 ];
 

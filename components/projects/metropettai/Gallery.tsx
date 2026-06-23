@@ -10,7 +10,7 @@ import Image from "next/image";
 import img1 from "@/assets/projects/metropettai/galleryImg1.png";
 import img2 from "@/assets/projects/metropettai/galleryImg2.jpg";
 import img3 from "@/assets/projects/metropettai/galleryImg3.jpg";
-import img4 from "@/assets/projects/metropettai/galleryImg1.png";
+import img4 from "@/assets/projects/metropettai/galleryimg4.jpg";
 
 const images = [
   img1,

@@ -4,31 +4,68 @@ import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 
 import L from "leaflet";
 import { useEffect } from "react";
+import type { LatLngTuple } from "leaflet";
 
-import { LOCATION_DATA, PROJECT_LOCATION } from "../../data/locationData";
+type Place = {
+  name: string;
+  distance: string;
+  position: [number, number];
+};
 
-function FlyToLocation({ activeMinute }) {
+type LocationData = Record<
+  number,
+  {
+    zoom:
+    | number
+    | {
+      desktop: number;
+      mobile: number;
+    };
+    center: [number, number];
+    places: Place[];
+  }
+>;
+
+type ProjectLocation = {
+  name: string;
+  position: [number, number];
+};
+
+type ChennaiMapProps = {
+  activeMinute?: number;
+  simpleMode?: boolean;
+  pinLocation?: [number, number] | null;
+  pinTitle?: string;
+  projectLocation: ProjectLocation;
+  locationData: LocationData;
+};
+
+
+function FlyToLocation({
+  activeMinute,
+  locationData,
+}: {
+  activeMinute: number;
+  locationData: LocationData;
+}) {
   const map = useMap();
 
   useEffect(() => {
-    const data = LOCATION_DATA[activeMinute];
+    const data = locationData?.[activeMinute];
 
     if (!data) return;
 
     const center = data.center;
 
-    if (!Array.isArray(center) || center.length !== 2) {
-      return;
-    }
+    if (!Array.isArray(center) || center.length !== 2) return;
 
     const lat = Number(center[0]);
     const lng = Number(center[1]);
 
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
-      return;
-    }
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
 
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const isMobile =
+      typeof window !== "undefined" && window.innerWidth < 768;
 
     const zoom =
       typeof data.zoom === "object"
@@ -39,7 +76,6 @@ function FlyToLocation({ activeMinute }) {
 
     const container = map.getContainer();
 
-    // Skip hidden desktop/mobile map
     if (
       !container ||
       container.offsetWidth === 0 ||
@@ -48,12 +84,11 @@ function FlyToLocation({ activeMinute }) {
       return;
     }
 
-    const target = [lat, lng];
+    const target: LatLngTuple = [lat, lng];
 
     requestAnimationFrame(() => {
       map.invalidateSize();
 
-      // Initial load
       if (activeMinute === 0) {
         map.setView(target, zoom, {
           animate: false,
@@ -62,13 +97,12 @@ function FlyToLocation({ activeMinute }) {
         return;
       }
 
-      // Smooth movement
       map.setView(target, zoom, {
         animate: true,
         duration: 1.5,
       });
     });
-  }, [activeMinute, map]);
+  }, [activeMinute, locationData, map]);
 
   return null;
 }
@@ -109,13 +143,19 @@ const ICON_MAP = {
   Metro: "/metro.png",
 };
 
-const getIcon = (name) => {
-  const key = Object.keys(ICON_MAP).find((k) => name.includes(k));
+const getIcon = (name: string) => {
+  const key = (Object.keys(ICON_MAP) as Array<keyof typeof ICON_MAP>).find(
+    (k) => name.includes(k)
+  );
 
   return key ? ICON_MAP[key] : "/location.png";
 };
 
-const createPin = (title, icon, isMobile = false) =>
+const createPin = (
+  title: string,
+  icon: string,
+  isMobile = false
+) =>
   L.divIcon({
     className: "custom-pin",
 
@@ -177,17 +217,23 @@ export default function ChennaiMap({
   simpleMode = false,
   pinLocation = null,
   pinTitle = "Location",
-}) {
+  projectLocation,
+  locationData,
+}: ChennaiMapProps) {
   const currentPlaces = simpleMode
     ? []
     : activeMinute === 0
       ? []
-      : LOCATION_DATA[activeMinute]?.places || [];
+      : locationData?.[activeMinute]?.places || [];
 
   const center =
-    simpleMode && pinLocation ? pinLocation : PROJECT_LOCATION.position;
+    simpleMode && pinLocation
+      ? pinLocation
+      : projectLocation.position;
 
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const isCompactCard = currentPlaces.length <= 6;
+  const isMetropettai = projectLocation.name === "Metropettai";
 
   return (
     <div className="relative w-[100vw] h-full md:h-full md:w-full overflow-hidden bg-[#F4F4F4]">
@@ -211,15 +257,22 @@ export default function ChennaiMap({
 
         <MapResizeFix />
 
-        {!simpleMode && <FlyToLocation activeMinute={activeMinute} />}
+        {!simpleMode && (
+          <FlyToLocation
+            activeMinute={activeMinute}
+            locationData={locationData}
+          />
+        )}
 
         {/* Main Project Marker */}
         <Marker
           position={
-            simpleMode && pinLocation ? pinLocation : PROJECT_LOCATION.position
+            simpleMode && pinLocation
+              ? pinLocation
+              : projectLocation.position
           }
           icon={createPin(
-            simpleMode ? pinTitle : "Metropettai",
+            simpleMode ? pinTitle : projectLocation.name,
             "/location.png",
             isMobile,
           )}
@@ -227,7 +280,7 @@ export default function ChennaiMap({
 
         {/* Dynamic Location Markers */}
         {!simpleMode &&
-          currentPlaces.map((place, index) => (
+          currentPlaces.map((place: Place, index: number) => (
             <Marker
               key={`${place.name}-${index}`}
               position={place.position}
@@ -239,25 +292,26 @@ export default function ChennaiMap({
       {/* Bottom Card */}
       {!simpleMode && activeMinute !== 0 && (
         <div
-          className="
-          absolute
-          z-[1000]
-          md:bottom-10
-          md:left-8
-          md:w-[300px] md:h-[300px]
-          md:p-5
-          md:rounded-[22px]
-          top-3
-          right-3
-          w-[200px]
-          p-3
-          rounded-[16px]
-          border
-          border-[#E8E8E8]
-          bg-white/95
-          shadow-xl
-          backdrop-blur-md
-        "
+          className={`
+            absolute
+            z-[1000]
+            md:bottom-10
+            md:left-8
+            ${isCompactCard ? "md:w-[300px]" : "md:w-[320px]"}
+            ${isMetropettai ? "md:max-h-[300px]" : "md:max-h-[380px]"}
+            md:p-5
+            md:rounded-[22px]
+            top-3
+            right-3
+            w-[200px]
+            p-3
+            rounded-[16px]
+            border
+            border-[#E8E8E8]
+            bg-white/95
+            shadow-xl
+            backdrop-blur-md
+          `}
         >
           <div className="space-y-2 md:space-y-2">
             {currentPlaces.map((place, index) => (

@@ -146,3 +146,134 @@ export {
   PROJECT_LOCATION,
   LOCATION_DATA,
 };
+
+export const PROMISE_PARK_PROJECT_LOCATION = {
+  name: "Promise Park",
+  position: [12.8582104, 79.6940586],
+};
+
+export const PROMISE_PARK_LOCATION_DATA = {
+  0: {
+    zoom: {
+      desktop: 14,
+      mobile: 12,
+    },
+    center: [12.8582104, 79.6940586],
+    places: [],
+  },
+
+  5: {
+    zoom: {
+      desktop: 14,
+      mobile: 13,
+    },
+    center: [12.8582104, 79.6940586],
+    places: [
+      {
+        name: "Kaasi Viswanathan Temple",
+        distance: "1.2 Km",
+        position: [12.8660, 79.6950],
+      },
+      {
+        name: "Ekambaranathar Temple",
+        distance: "1.4 Km",
+        position: [12.8655, 79.7040],
+      },
+      {
+        name: "Narbhavi Hospital",
+        distance: "2.3 Km",
+        position: [12.8515, 79.7120],
+      },
+      {
+        name: "Pallavan College of Engineering",
+        distance: "2.5 Km",
+        position: [12.8475, 79.7010],
+      },
+      {
+        name: "Sri Kanchi Kamakshi Temple",
+        distance: "2.7 Km",
+        position: [12.8480, 79.6870],
+      },
+      {
+        name: "Annamal Institute of HM",
+        distance: "2.8 Km",
+        position: [12.8610, 79.6810],
+      },
+      {
+        name: "Kanchi Global School",
+        distance: "2.8 Km",
+        position: [12.8705, 79.6850],
+      },
+      {
+        name: "Billabong International School",
+        distance: "3 Km",
+        position: [12.8720, 79.6980],
+      },
+    ],
+  },
+
+  10: {
+    zoom: {
+      desktop: 13,
+      mobile: 12,
+    },
+    center: [12.8582104, 79.6940586],
+    places: [
+      {
+        name: "Beta Matriculation School",
+        distance: "3.1 Km",
+        position: [12.8710, 79.7130],
+      },
+      {
+        name: "Cholan Institute of Technology",
+        distance: "3.4 Km",
+        position: [12.8440, 79.7150],
+      },
+      {
+        name: "Sri Mamallan Hospital",
+        distance: "3.6 Km",
+        position: [12.8360, 79.7030],
+      },
+      {
+        name: "Kanchi College of Education",
+        distance: "3.7 Km",
+        position: [12.8390, 79.6840],
+      },
+      {
+        name: "Life Care Hospital",
+        distance: "4 Km",
+        position: [12.8520, 79.6740],
+      },
+      {
+        name: "Meenakshi Medical College",
+        distance: "5 Km",
+        position: [12.8780, 79.6750],
+      },
+      {
+        name: "Sankara Multispeciality Hospital",
+        distance: "5.2 Km",
+        position: [12.8840, 79.6940],
+      },
+      {
+        name: "Meenakshi Hospital",
+        distance: "5.5 Km",
+        position: [12.8780, 79.7160],
+      },
+    ],
+  },
+
+  20: {
+    zoom: {
+      desktop: 12,
+      mobile: 11,
+    },
+    center: [12.8582104, 79.6940586],
+    places: [
+      {
+        name: "Upcoming Parandur Airport",
+        distance: "10 Km",
+        position: [12.9300, 79.7600],
+      },
+    ],
+  },
+};

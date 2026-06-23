@@ -96,7 +96,7 @@ const Hero = () => {
               className="
                 font-[600]
                 text-[13px]
-                text-white/40
+                text-white/80
                 md:text-[22px]
                 leading-[24px]
               "
@@ -115,7 +115,7 @@ const Hero = () => {
                 md:leading-[56px]
               "
             >
-              Metropettai
+              Promise Park
             </h2>
 
             <button
@@ -170,7 +170,7 @@ const Hero = () => {
                   text-white/90
                   md:text-[18px]
                   lg:w-[42ch]
-                  lg:leading-[28px]
+                  lg:leading-[24px]
                 "
               >
                 A modern architectural

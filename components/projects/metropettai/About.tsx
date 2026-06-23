@@ -188,8 +188,7 @@ const About = () => {
               leading-[20px]
               text-[#717171]
 
-              md:max-w-[700px]
-              md:w-[102ch]
+              md:max-w-[800px]
               md:text-[18px]
               md:leading-[20px]
               md:tracking-[0.48px]
