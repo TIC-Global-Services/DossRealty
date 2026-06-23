@@ -39,14 +39,14 @@ const projects: Project[] = [
       "Metropettai is a modern community defined by connection. Located at the intersection of the upcoming Metro corridor, the Chennai–Bengaluru Highway, and the Outer Ring Road, it oﬀers direct access to the people, places, and opportunities that shape everyday life. Surrounded by leading employment hubs, educational institutions, and evolving infrastructure, Metropettai is designed for those who value access, opportunity, and long-term relevance.",
 
     // Mobile content
-    mobileTitle: "The Art of Villa Living",
+    mobileTitle: "Metropettai",
 
     mobileDescription:
-      "Experience refined living through thoughtfully crafted villas that blend contemporary design, luxurious comfort, and serene surroundings.",
+      "Metropettai is a modern community defined by connection. Located at the intersection of the upcoming Metro corridor, the Chennai–Bengaluru Highway, and the Outer Ring Road, it oﬀers direct access to the people, places, and opportunities that shape everyday life. Surrounded by leading employment hubs, educational institutions, and evolving infrastructure, Metropettai is designed for those who value access, opportunity, and long-term relevance.",
 
     // Images
     image: project2,
-    mobileImage: project2Mobile,
+    mobileImage: project2,
 
     href: "/projects/metropettai",
   },
@@ -325,7 +325,7 @@ export default function OurProjects() {
                                 font-light
                                 w-full
                                 text-[#FFFFFF80]
-                                text-[15px]
+                                text-[14px] 
                                 md:text-[16px]
                                 leading-[20px]
                               "
