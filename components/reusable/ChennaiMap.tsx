@@ -33,11 +33,8 @@ type ProjectLocation = {
 
 type ChennaiMapProps = {
   activeMinute?: number;
-  simpleMode?: boolean;
-  pinLocation?: [number, number] | null;
-  pinTitle?: string;
-  projectLocation: ProjectLocation;
-  locationData: LocationData;
+  projectLocation?: ProjectLocation;
+  locationData?: LocationData;
 };
 
 
@@ -214,32 +211,26 @@ const createPin = (
 
 export default function ChennaiMap({
   activeMinute = 0,
-  simpleMode = false,
-  pinLocation = null,
-  pinTitle = "Location",
   projectLocation,
   locationData,
 }: ChennaiMapProps) {
-  const currentPlaces = simpleMode
-    ? []
-    : activeMinute === 0
+  const currentPlaces =
+    activeMinute === 0
       ? []
       : locationData?.[activeMinute]?.places || [];
 
   const center =
-    simpleMode && pinLocation
-      ? pinLocation
-      : projectLocation.position;
+    projectLocation?.position ?? [13.0343816, 80.0786331];
 
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const isCompactCard = currentPlaces.length <= 6;
-  const isMetropettai = projectLocation.name === "Metropettai";
+  const isMetropettai = projectLocation?.name === "Metropettai";
 
   return (
     <div className="relative w-[100vw] h-full md:h-full md:w-full overflow-hidden bg-[#F4F4F4]">
       <MapContainer
         center={center}
-        zoom={simpleMode ? 16 : 12}
+        zoom={12}
         zoomControl={false}
         attributionControl={false}
         dragging={!isMobile}
@@ -248,7 +239,7 @@ export default function ChennaiMap({
         scrollWheelZoom={false}
         boxZoom={!isMobile}
         keyboard={!isMobile}
-        className={`h-full w-full ${simpleMode ? "" : "grayscale"}`}
+        className="h-full w-full grayscale"
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
@@ -257,7 +248,7 @@ export default function ChennaiMap({
 
         <MapResizeFix />
 
-        {!simpleMode && (
+        {locationData && (
           <FlyToLocation
             activeMinute={activeMinute}
             locationData={locationData}
@@ -267,30 +258,27 @@ export default function ChennaiMap({
         {/* Main Project Marker */}
         <Marker
           position={
-            simpleMode && pinLocation
-              ? pinLocation
-              : projectLocation.position
+            projectLocation?.position || [13.0343816, 80.0786331]
           }
           icon={createPin(
-            simpleMode ? pinTitle : projectLocation.name,
+            projectLocation?.name || "Location",
             "/location.png",
-            isMobile,
+            isMobile
           )}
         />
 
         {/* Dynamic Location Markers */}
-        {!simpleMode &&
-          currentPlaces.map((place: Place, index: number) => (
-            <Marker
-              key={`${place.name}-${index}`}
-              position={place.position}
-              icon={createPin(place.name, getIcon(place.name), isMobile)}
-            />
-          ))}
+        {currentPlaces.map((place: Place, index: number) => (
+          <Marker
+            key={`${place.name}-${index}`}
+            position={place.position}
+            icon={createPin(place.name, getIcon(place.name), isMobile)}
+          />
+        ))}
       </MapContainer>
 
       {/* Bottom Card */}
-      {!simpleMode && activeMinute !== 0 && (
+      {activeMinute !== 0 && (
         <div
           className={`
             absolute

@@ -67,7 +67,7 @@ export default function ConnectedToChennai({
             end: `+=${PIN_DISTANCE}`,
             scrub: true,
             pin: true,
-            pinType: "transform",
+            pinType: "fixed",
             anticipatePin: 1,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
