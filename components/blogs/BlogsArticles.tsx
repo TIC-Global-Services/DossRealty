@@ -23,6 +23,8 @@ export default function BlogsArticles() {
 
     setActiveSlide(Math.round(scrollLeft / slideWidth));
   };
+
+  
   return (
     <section data-theme="light" className="pb-20">
       <div className="px-6 lg:px-30">
@@ -161,6 +163,7 @@ export default function BlogsArticles() {
         <div className="lg:hidden">
           <div
             ref={sliderRef}
+            data-lenis-prevent
             onScroll={handleScroll}
             className="
             flex
@@ -168,6 +171,7 @@ export default function BlogsArticles() {
             snap-x
             snap-mandatory
             scrollbar-hide
+            touch-pan-x
             pb-6
           "
           >
@@ -182,6 +186,9 @@ export default function BlogsArticles() {
                 pt-8
                 px-3
               "
+              style={{
+                  WebkitOverflowScrolling: "touch",
+                }}
               >
                 {/* Number */}
                 <p
@@ -202,9 +209,9 @@ export default function BlogsArticles() {
                 <h3
                   className="
                   mt-2
-                  max-w-[320px]
+                  min-w-[300px]
                   text-[16px]
-                  leading-[32px]
+                  leading-[24px]
                   font-[300]
                   text-[#000]
                 "
