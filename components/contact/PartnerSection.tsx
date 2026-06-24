@@ -2,7 +2,6 @@
 
 import { useState, useLayoutEffect, useRef, useEffect } from "react";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -90,16 +89,15 @@ export default function PartnerSection() {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const searchParams = useSearchParams();
 
 useEffect(() => {
-  const form = searchParams.get("form");
+  const params = new URLSearchParams(window.location.search);
 
-  if (form === "job") {
+  if (params.get("form") === "job") {
     setActiveTab("job");
     setShowModal(true);
   }
-}, [searchParams]);
+}, []);
 
   const {
     register: partnerRegister,

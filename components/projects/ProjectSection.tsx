@@ -9,7 +9,6 @@ import Image, {
   StaticImageData,
 } from "next/image";
 import { motion } from "framer-motion";
-import { useSearchParams } from "next/navigation";
 
 import project1 from "@/assets/projects/projectImg1.jpg";
 import project2 from "@/assets/projects/projectImg2.jpg";
@@ -129,16 +128,16 @@ const deliveredProjects: Project[] = [
 ];
 
 const ProjectSection = () => {
-  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState("active");
 
 useEffect(() => {
-  const tab = searchParams.get("tab");
+  const params = new URLSearchParams(window.location.search);
+  const tab = params.get("tab");
 
   if (tab === "active" || tab === "delivered") {
     setActiveTab(tab);
   }
-}, [searchParams]);
+}, []);
 
   const [
     showAllDelivered,
