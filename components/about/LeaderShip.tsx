@@ -74,6 +74,7 @@ const Leadership = () => {
                       bg-[#D9D9D9]
                       text-left
                       md:rounded-none
+                      cursor-pointer
                     "
                   >
                     {/* Image */}
@@ -132,16 +133,12 @@ const Leadership = () => {
               relative
               w-full
               md:w-screen
-              h-[60vh]
+              h-[70vh]
               md:h-screen
-              overflow-y-auto
               md:overflow-hidden
-              md:rounded-none
               bg-white
             "
-            onClick={(e) =>
-              e.stopPropagation()
-            }
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Close */}
             <button
@@ -155,14 +152,15 @@ const Leadership = () => {
                 z-20
                 text-[32px]
                 md:text-[40px]
+                cursor-pointer
               "
             >
               ×
             </button>
 
-            <div className="grid md:grid-cols-2 h-full">
+           <div className="flex h-full gap-10 flex-col md:gap-0 md:grid md:grid-cols-2">
               {/* LEFT IMAGE */}
-              <div className="relative h-[280px] sm:h-[400px] md:h-screen">
+               <div className="relative h-[250px] shrink-0 md:h-screen">
                 <Image
                   src={
                     selectedLeader.image
@@ -176,12 +174,12 @@ const Leadership = () => {
               </div>
 
               {/* RIGHT CONTENT */}
-              <div
+               <div
                 className="
-                  h-full
+                  flex-1
                   overflow-y-auto
-                  p-6
-                  md:p-10
+                  p-10
+                  md:p-12
                   lg:p-16
                   scrollbar-thin
                 "

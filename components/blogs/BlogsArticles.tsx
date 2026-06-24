@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useLenis } from "@/lib/lenis-context";
 
 import { blogs } from "@/data/blogs";
 
@@ -11,11 +12,12 @@ import rightArrow from "@/assets/blogs/rightArrow.png";
 
 
 export default function BlogsArticles() {
+  const lenisRef = useLenis();
 
   const [activeSlide, setActiveSlide] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  const handleScroll = () => {
+   const handleScroll = () => {
     if (!sliderRef.current) return;
 
     const scrollLeft = sliderRef.current.scrollLeft;
@@ -24,6 +26,23 @@ export default function BlogsArticles() {
     setActiveSlide(Math.round(scrollLeft / slideWidth));
   };
 
+  useEffect(() => {
+    const el = sliderRef.current;
+    if (!el) return;
+
+    const stop = () => lenisRef.current?.stop();
+    const start = () => lenisRef.current?.start();
+
+    el.addEventListener("touchstart", stop, { passive: true });
+    el.addEventListener("touchend", start, { passive: true });
+    el.addEventListener("touchcancel", start, { passive: true });
+
+    return () => {
+      el.removeEventListener("touchstart", stop);
+      el.removeEventListener("touchend", start);
+      el.removeEventListener("touchcancel", start);
+    };
+  }, [lenisRef]);
   
   return (
     <section data-theme="light" className="pb-20">

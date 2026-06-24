@@ -91,7 +91,6 @@ export default function InfoGraphics() {
 
   const mobileImageRefs   = useRef<(HTMLDivElement    | null)[]>([]);
   const mobileTextRefs    = useRef<(HTMLDivElement    | null)[]>([]);
-  const mobileNumberRefs  = useRef<(HTMLSpanElement   | null)[]>([]);
   const mobileClipRefs    = useRef<(SVGPathElement    | null)[]>([]);
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -118,8 +117,7 @@ export default function InfoGraphics() {
     });
   };
 
-  // Mobile animation
- const animateToIndex = (
+  const animateToIndex = (
   nextIndex: number,
   direction: "next" | "prev" = "next"
 ) => {
@@ -131,13 +129,10 @@ export default function InfoGraphics() {
 
   const currentIndex = currentIndexRef.current;
 
-  const currentImage  = mobileImageRefs.current[currentIndex];
-  const nextImage     = mobileImageRefs.current[nextIndex];
-  const currentText   = mobileTextRefs.current[currentIndex];
-  const nextText      = mobileTextRefs.current[nextIndex];
-  const currentNumber = mobileNumberRefs.current[currentIndex];
-  const nextNumber    = mobileNumberRefs.current[nextIndex];
-
+  const currentImage = mobileImageRefs.current[currentIndex];
+  const nextImage = mobileImageRefs.current[nextIndex];
+  const currentText = mobileTextRefs.current[currentIndex];
+  const nextText = mobileTextRefs.current[nextIndex];
 
   const clipPath =
     direction === "prev"
@@ -146,30 +141,32 @@ export default function InfoGraphics() {
 
   currentIndexRef.current = nextIndex;
 
-  // Reset clip to correct start position
   if (clipPath) {
-    clipPath.setAttribute("d", arcClipPath(direction === "prev" ? 360 : 0));
+    clipPath.setAttribute(
+      "d",
+      arcClipPath(direction === "prev" ? 360 : 0)
+    );
   }
 
-  // Ensure the image being revealed has its clip fully open
   if (direction === "prev" && nextIndex > 0) {
     const nc = mobileClipRefs.current[nextIndex];
     if (nc) nc.setAttribute("d", arcClipPath(360));
   }
 
-  const proxy = { sweep: direction === "prev" ? 360 : 0 };
+  const proxy = {
+    sweep: direction === "prev" ? 360 : 0,
+  };
 
   const tl = gsap.timeline({
     onComplete: () => setActiveIndex(nextIndex),
   });
 
-
   if (direction === "prev") {
-    tl.set(nextImage,    { opacity: 1, zIndex: 10 }); // revealed underneath
-    tl.set(currentImage, { zIndex: 20 });              // swept away on top
+    tl.set(nextImage, { opacity: 1, zIndex: 10 });
+    tl.set(currentImage, { zIndex: 20 });
   } else {
-    tl.set(nextImage,    { opacity: 1, zIndex: 20 }); // revealed on top
-    tl.set(currentImage, { zIndex: 10 });              // fades out below
+    tl.set(nextImage, { opacity: 1, zIndex: 20 });
+    tl.set(currentImage, { zIndex: 10 });
   }
 
   // Circular wipe
@@ -180,14 +177,24 @@ export default function InfoGraphics() {
       duration: 0.9,
       ease: "power2.inOut",
       onUpdate() {
-        if (clipPath) clipPath.setAttribute("d", arcClipPath(proxy.sweep));
+        if (clipPath) {
+          clipPath.setAttribute("d", arcClipPath(proxy.sweep));
+        }
       },
     },
     0
   );
 
-  // Fade out exiting image (current for both directions)
-  tl.to(currentImage, { opacity: 0, duration: 0.25, ease: "power2.out" }, 0.78);
+  // Fade old image
+  tl.to(
+    currentImage,
+    {
+      opacity: 0,
+      duration: 0.25,
+      ease: "power2.out",
+    },
+    0.78
+  );
 
   // Text out
   tl.to(
@@ -205,157 +212,227 @@ export default function InfoGraphics() {
   // Text in
   tl.fromTo(
     nextText,
-    { opacity: 0, y: direction === "next" ? 20 : -20, filter: "blur(8px)" },
-    { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "power3.out" },
-    0.2
-  );
-
-  // Number out
-  tl.to(currentNumber, { scale: 0.9, opacity: 0.5, duration: 0.2 }, 0);
-
-  // Number in
-  tl.fromTo(
-    nextNumber,
-    { scale: 0.9, opacity: 0.5 },
-    { scale: 1,   opacity: 1,   duration: 0.3 },
+    {
+      opacity: 0,
+      y: direction === "next" ? 20 : -20,
+      filter: "blur(8px)",
+    },
+    {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      duration: 0.5,
+      ease: "power3.out",
+    },
     0.2
   );
 };
 
   useEffect(() => {
-    if (!sectionRef.current) return;
+  if (!sectionRef.current) return;
 
+  const isDesktop = window.matchMedia("(min-width: 768px)").matches;
 
-    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+  if (!isDesktop) {
+    // ── Mobile init
+    gsap.set(mobileImageRefs.current, { opacity: 0 });
+    gsap.set(mobileImageRefs.current[0], { opacity: 1 });
 
-    if (!isDesktop) {
+    mobileClipRefs.current.forEach((p) => {
+      if (p) p.setAttribute("d", arcClipPath(0));
+    });
 
+    gsap.set(mobileTextRefs.current, {
+      opacity: 0,
+      y: 50,
+      filter: "blur(8px)",
+    });
 
-      // ── Mobile init
-      gsap.set(mobileImageRefs.current,  { opacity: 0 });
-      gsap.set(mobileImageRefs.current[0], { opacity: 1 });
+    gsap.set(mobileTextRefs.current[0], {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+    });
 
-      mobileClipRefs.current.forEach((p) => {
-        if (p) p.setAttribute("d", arcClipPath(0));
-      });
-
-      gsap.set(mobileTextRefs.current,     { opacity: 0, y: 50, filter: "blur(8px)" });
-      gsap.set(mobileTextRefs.current[0],  { opacity: 1, y: 0,  filter: "blur(0px)" });
-      gsap.set(mobileNumberRefs.current,   { y: 0, scale: 1 });
-
-      setActiveIndex(0);
-      currentIndexRef.current = 0;
-
-      return () => {
-        mobileTlRef.current?.kill();
-      };
-    }
-
-    // Desktop init + ScrollTrigger
-    const ctx = gsap.context(() => {
-      gsap.set(desktopImageRefs.current,   { opacity: 0 });
-      gsap.set(desktopImageRefs.current[0], { opacity: 1 });
-
-      desktopClipRefs.current.forEach((p) => {
-        if (p) p.setAttribute("d", arcClipPath(0));
-      });
-
-      gsap.set(desktopTextRefs.current,    { opacity: 0, y: 50, filter: "blur(8px)" });
-      gsap.set(desktopTextRefs.current[0], { opacity: 1, y: 0,  filter: "blur(0px)" });
-      gsap.set(desktopNumberRefs.current,  { y: 0, scale: 1 });
-
-      setActiveIndex(0);
-      currentIndexRef.current = 0;
-
-      const totalItems = infographicData.length - 1;
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger:sectionRef.current,
-          start:"top top",
-          end:() => `+=${window.innerHeight * 4.2}`,
-          pin:true,
-          pinSpacing:true,
-          scrub:1.2,
-          anticipatePin:1,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const index = Math.round(self.progress * totalItems);
-            currentIndexRef.current = index;
-            setActiveIndex(index);
-          },
-        },
-      });
-
-      infographicData.forEach((_, index) => {
-        if (index === 0) return;
-
-        const prevImage  = desktopImageRefs.current[index - 1];
-        const curImage   = desktopImageRefs.current[index];
-        const clipPath   = desktopClipRefs.current[index];
-        const prevText   = desktopTextRefs.current[index - 1];
-        const curText    = desktopTextRefs.current[index];
-        const prevNumber = desktopNumberRefs.current[index - 1];
-        const curNumber  = desktopNumberRefs.current[index];
-
-        tl.to({}, { duration: 0.45 });
-        tl.addLabel(`transition-${index}`);
-
-        const proxy = { sweep: 0 };
-
-        tl.set(curImage, { opacity: 1 }, "<");
-
-        tl.fromTo(
-          proxy,
-          { sweep: 0 },
-          {
-            sweep:    360,
-            duration: 1.4,
-            ease:     "power2.inOut",
-            onUpdate() {
-              if (clipPath) clipPath.setAttribute("d", arcClipPath(proxy.sweep));
-            },
-            onComplete() {
-              if (clipPath) clipPath.setAttribute("d", arcClipPath(360));
-            },
-          },
-          "<"
-        );
-
-        tl.to(prevImage,  { opacity: 0, duration: 0.4,  ease: "power2.in"    }, "<+0.9");
-        tl.to(prevText,   { opacity: 0, y: -25, filter: "blur(8px)", duration: 0.55, ease: "power3.inOut" }, "<");
-        tl.fromTo(
-          curText,
-          { opacity: 0, y: 25, filter: "blur(8px)" },
-          { opacity: 1, y: 0,  filter: "blur(0px)", duration: 0.65, ease: "power4.out" },
-          "<+0.08"
-        );
-        tl.to(prevNumber, { y: -8, scale: 0.96, duration: 0.35, ease: "power2.out" }, "<");
-        tl.fromTo(
-          curNumber,
-          { y: 8,  scale: 0.96 },
-          { y: 0,  scale: 1,   duration: 0.35, ease: "power2.out" },
-          "<"
-        );
-      });
-
-      ScrollTrigger.create({
-        trigger:  sectionRef.current,
-        start:    "top top",
-        end:      () => `+=${window.innerHeight * 4.2}`,
-        snap: {
-          snapTo:   snapPoints,
-          duration: 0.6,
-          ease:     "power2.inOut",
-        },
-      });
-    }, sectionRef);
+    setActiveIndex(0);
+    currentIndexRef.current = 0;
 
     return () => {
-      ctx.revert();
       mobileTlRef.current?.kill();
     };
-  }, [snapPoints]);
+  }
+
+  // Desktop init + ScrollTrigger
+  const ctx = gsap.context(() => {
+    gsap.set(desktopImageRefs.current, { opacity: 0 });
+    gsap.set(desktopImageRefs.current[0], { opacity: 1 });
+
+    desktopClipRefs.current.forEach((p) => {
+      if (p) p.setAttribute("d", arcClipPath(0));
+    });
+
+    gsap.set(desktopTextRefs.current, {
+      opacity: 0,
+      y: 50,
+      filter: "blur(8px)",
+    });
+
+    gsap.set(desktopTextRefs.current[0], {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+    });
+
+    gsap.set(desktopNumberRefs.current, {
+      y: 0,
+      scale: 1,
+    });
+
+    setActiveIndex(0);
+    currentIndexRef.current = 0;
+
+    const totalItems = infographicData.length - 1;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: () => `+=${window.innerHeight * 4.2}`,
+        pin: true,
+        pinSpacing: true,
+        scrub: 1.2,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const index = Math.round(self.progress * totalItems);
+          currentIndexRef.current = index;
+          setActiveIndex(index);
+        },
+      },
+    });
+
+    infographicData.forEach((_, index) => {
+      if (index === 0) return;
+
+      const prevImage = desktopImageRefs.current[index - 1];
+      const curImage = desktopImageRefs.current[index];
+      const clipPath = desktopClipRefs.current[index];
+      const prevText = desktopTextRefs.current[index - 1];
+      const curText = desktopTextRefs.current[index];
+      const prevNumber = desktopNumberRefs.current[index - 1];
+      const curNumber = desktopNumberRefs.current[index];
+
+      tl.to({}, { duration: 0.45 });
+      tl.addLabel(`transition-${index}`);
+
+      const proxy = { sweep: 0 };
+
+      tl.set(curImage, { opacity: 1 }, "<");
+
+      tl.fromTo(
+        proxy,
+        { sweep: 0 },
+        {
+          sweep: 360,
+          duration: 1.4,
+          ease: "power2.inOut",
+          onUpdate() {
+            if (clipPath) {
+              clipPath.setAttribute("d", arcClipPath(proxy.sweep));
+            }
+          },
+          onComplete() {
+            if (clipPath) {
+              clipPath.setAttribute("d", arcClipPath(360));
+            }
+          },
+        },
+        "<"
+      );
+
+      tl.to(
+        prevImage,
+        {
+          opacity: 0,
+          duration: 0.4,
+          ease: "power2.in",
+        },
+        "<+0.9"
+      );
+
+      tl.to(
+        prevText,
+        {
+          opacity: 0,
+          y: -25,
+          filter: "blur(8px)",
+          duration: 0.55,
+          ease: "power3.inOut",
+        },
+        "<"
+      );
+
+      tl.fromTo(
+        curText,
+        {
+          opacity: 0,
+          y: 25,
+          filter: "blur(8px)",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 0.65,
+          ease: "power4.out",
+        },
+        "<+0.08"
+      );
+
+      tl.to(
+        prevNumber,
+        {
+          y: -8,
+          scale: 0.96,
+          duration: 0.35,
+          ease: "power2.out",
+        },
+        "<"
+      );
+
+      tl.fromTo(
+        curNumber,
+        {
+          y: 8,
+          scale: 0.96,
+        },
+        {
+          y: 0,
+          scale: 1,
+          duration: 0.35,
+          ease: "power2.out",
+        },
+        "<"
+      );
+    });
+
+    ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "top top",
+      end: () => `+=${window.innerHeight * 4.2}`,
+      snap: {
+        snapTo: snapPoints,
+        duration: 0.6,
+        ease: "power2.inOut",
+      },
+    });
+  }, sectionRef);
+
+  return () => {
+    ctx.revert();
+    mobileTlRef.current?.kill();
+  };
+}, [snapPoints]);
 
   return (
     <section data-theme="light" ref={sectionRef} className="relative min-h-screen bg-white">
@@ -498,29 +575,6 @@ export default function InfoGraphics() {
 
       {/* MOBILE layout  */}
       <div className="flex h-full flex-col items-center px-6 pt-20 pb-8 md:hidden">
-
-        {/* TOP — slide numbers */}
-        <div className="flex items-center justify-center gap-8 mb-6">
-          {infographicData.map((item, index) => (
-            <button
-              key={item.id}
-              onClick={() =>
-                animateToIndex(index, index > currentIndexRef.current ? "next" : "prev")
-              }
-            >
-              <span
-                ref={(el) => { mobileNumberRefs.current[index] = el; }} 
-                className={`
-                  font-['Inter_Tight'] text-[18px] font-medium
-                  transition-all duration-300
-                  ${activeIndex === index ? "text-[#1A1814]" : "text-[#BFBFBF]"}
-                `}
-              >
-                {item.id}
-              </span>
-            </button>
-          ))}
-        </div>
 
         {/* CENTER — circular image */}
         <div className="flex items-center justify-center mt-20 mb-10">

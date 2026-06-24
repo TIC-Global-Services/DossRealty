@@ -433,41 +433,67 @@ export default function Hero() {
 
           {/* Hero Text */}
           <div
+            className="
+              absolute inset-0 z-[4]
+              bg-gradient-to-b
+              from-black/70
+              via-black/40
+              to-black/10
+              md:hidden
+            "
+          />
+
+          <div
             ref={heroTextRef}
             id="hero-text"
             className="
-            absolute inset-0 z-[5] pointer-events-auto
-            flex flex-col items-center text-center
-            px-[20px]
-            pt-[22vh]
-            md:px-6
-            md:pt-[16vh]
-            lg:pt-[18vh]
-            xl:pt-[16vh]
+              absolute inset-0 z-[5]
+              pointer-events-auto
+              flex flex-col items-center text-center
+              px-[20px]
+              pt-[22vh]
+              md:px-6
+              md:pt-[16vh]
+              lg:pt-[18vh]
+              xl:pt-[16vh]
             "
           >
             <div className="max-w-[min(90vw,900px)]">
               <h2
                 className="
-                font-heading uppercase text-black tracking-tight
-                leading-[120%] md:leading-[100%]
-                text-[clamp(36px,4vw,60px)]
-              "
+                  font-heading tracking-normal
+                  uppercase
+                  md:tracking-tight
+                  leading-[120%]
+                  md:leading-[100%]
+                  text-[clamp(36px,4vw,60px)]
+                  text-white
+                  md:text-black
+                  drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]
+                "
               >
                 DISCOVER THE COLLECTION
               </h2>
 
               <p
-                className="text-[clamp(13px,3.5vw,18px)] mt-4 md:mt-0 leading-[18px] md:leading-[20px] text-black font-body"
+                className="
+                  text-[clamp(13px,3.5vw,18px)]
+                  mt-4
+                  md:mt-0
+                  leading-[18px]
+                  md:leading-[20px]
+                  font-body
+                  text-white
+                  md:text-black
+                  drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]
+                "
               >
                 Expert Support. Real Insights. Clear Direction
                 For What Comes Next.
               </p>
-
-
             </div>
 
-            <Link href={"./about"}>
+            <Link href="/about">
               <button
                 style={{
                   transform: "translateZ(0)",
