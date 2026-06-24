@@ -273,10 +273,10 @@ export default function ConnectedToChennai({
         {/* Map */}
         <div className="mt-2 min-h-0 flex-1">
           <ChennaiMap
-  activeMinute={activeMinute}
-  projectLocation={projectLocation}
-  locationData={locationData}
-/>
+            activeMinute={activeMinute}
+            projectLocation={projectLocation}
+            locationData={locationData}
+          />
         </div>
       </section>
 
@@ -304,24 +304,24 @@ export default function ConnectedToChennai({
               className="
               absolute
               left-0
-              top-[4px]
+              top-0
               z-20
             "
             >
               <Image
-                src="/flight.png"
+                src="/car.png"
                 alt="plane"
-                width={34}
-                height={34}
+                width={60}
+                height={60}
               />
             </div>
 
             {/* Start Label */}
-            <div className="absolute left-0 top-[40px] w-[70px]">
+            <div className="absolute left-0 top-[30px] w-[70px]">
               <p
                 className="
                 text-[9px]
-                leading-[11px]
+                leading-[10px]
                 uppercase
                 text-black
               "

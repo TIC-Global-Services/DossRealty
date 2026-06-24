@@ -9,7 +9,9 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import img1 from "@/assets/projects/metropettai/location1.jpg";
+import connectivityImg from "@/assets/projects/metropettai/location1.jpg";
+import floodImg from "@/assets/projects/metropettai/location4.png";
+import growthValueImg from "@/assets/projects/metropettai/location5.png";
 
 const highlights = [
   // {
@@ -21,17 +23,20 @@ const highlights = [
     title: "Connectivity",
     description:
       "Seamless access to the Metro Station, Outer Ring Road, and Chennai–Bengaluru Highway.",
+    image: connectivityImg,
   },
   {
     title:
       "Flood-Resilient Location",
     description:
       "Positioned in a naturally safer zone, offering confidence through changing seasons.",
+    image: floodImg,
   },
   {
     title: "Growth Value",
     description:
       "Located in one of Chennai’s most promising growth corridors for long-term appreciation, a home that doubles in value.",
+    image: growthValueImg,
   },
 ];
 
@@ -309,10 +314,8 @@ const LocationHighlights =
                           "
                         >
                           <Image
-                            src={img1}
-                            alt={
-                              item.title
-                            }
+                            src={item.image}
+                            alt={item.title}
                             fill
                             priority
                             className="object-cover object-top"
@@ -466,11 +469,11 @@ const LocationHighlights =
               "
             >
               <Image
-                src={img1}
-                alt="Location Highlights"
+                src={highlights[activeIndex ?? 0].image}
+                alt={highlights[activeIndex ?? 0].title}
                 fill
                 priority
-                className="object-cover"
+                className="object-cover transition-all duration-500"
               />
             </div>
           </div>

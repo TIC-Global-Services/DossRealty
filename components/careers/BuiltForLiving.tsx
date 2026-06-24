@@ -82,7 +82,7 @@ export default function BuiltForLiving() {
         className=" mx-auto
         bg-white
         px-5
-        py-10
+        py-14
         md:flex
         md:h-screen
         md:items-center
@@ -164,12 +164,11 @@ export default function BuiltForLiving() {
             </h2>
 
             <ul
-              className="
-                mx-auto
-                mt-8
+              className="flex flex-col items-center justify-center ml-20
+                mt-4
                 max-w-[270px]
                 space-y-2
-                text-left
+                text-start
               "
             >
               {JOB_LIST.map((job, i) => (
@@ -201,15 +200,16 @@ export default function BuiltForLiving() {
 
             <Link
               href="/contact?form=job"
-              className="
+            >
+              <button
+              className="mt-6
                 font-small
                 w-fit
                 rounded-full
                 bg-[#00256A]
                 px-10
                 py-2.5
-                text-sm
-                md:text-[16px]
+                text-[13px]
                 font-medium
                 text-white
                 transition
@@ -217,11 +217,12 @@ export default function BuiltForLiving() {
                 hover:scale-105
                 cursor-pointer
               "
-            >
-              Apply now
+              >
+                Apply now
+              </button>
             </Link>
 
-            <div className="mt-6 max-w-[520px]">
+            <div className="mt-10 max-w-[520px]">
               <p
                 className="font-bold
                 mt-4

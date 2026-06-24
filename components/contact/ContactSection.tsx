@@ -122,10 +122,10 @@ export default function ContactSection() {
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
 
           {/* LEFT */}
-          <div className="order-2 lg:order-1 mt-10 md:mt-0 text-left lg:text-left">
+          <div className="order-2 lg:order-1 mt-10 md:mt-0 text-center lg:text-left">
             <h2
               className="font-secondary font-[700]
-              text-black leading-[20px] pl-16 md:pl-0
+              text-black leading-[20px] md:pl-0
               text-[24px]
               lg:text-[28px]
               tracking-tighter
@@ -134,10 +134,10 @@ export default function ContactSection() {
               Chennai
             </h2>
 
-            <div className="mt-6 grid md:grid-cols-2 gap-8  max-w-[250px] md:max-w-[500px] mx-auto lg:mx-0">
+            <div className="mt-2 grid md:grid-cols-2 gap-8  max-w-[250px] md:max-w-[500px] mx-auto lg:mx-0">
 
               <div>
-                <p className="text-[#262B35] text-sm md:text-[18px] md:leading-[26px] tracking-normal font-[300] mb-3">
+                <p className="text-[#262B35] text-sm md:text-[18px] md:leading-[26px] tracking-normal font-[300] mb-2">
                   Doss Realty - INDIA
                 </p>
 

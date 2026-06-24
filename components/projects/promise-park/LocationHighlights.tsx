@@ -9,29 +9,28 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import img1 from "@/assets/projects/metropettai/location1.jpg";
+import townsideImg from "@/assets/projects/metropettai/location1.jpg";
+import readyDesignImg from "@/assets/projects/metropettai/location2.png";
+import growthCorridorImg from "@/assets/projects/metropettai/location3.png";
 
 const highlights = [
-  // {
-  //   title: "Prime Locations",
-  //   description:
-  //     "Enjoy seamless access to key destinations, modern infrastructure, and thriving communities designed for future growth.",
-  // },
   {
     title: "TOWNSIDE LIVING",
     description:
       "Close to Kanchipuram’s schools, colleges, hospitals, temples, and everyday conveniences.",
+    image: townsideImg,
   },
   {
-    title:
-      "READY TO DESIGN",
+    title: "READY TO DESIGN",
     description:
       "Clear approvals, clean documentation, completed infrastructure, and bank loan support make ownership feel simple from day one.",
+    image: readyDesignImg,
   },
   {
     title: "GROWTH CORRIDOR",
     description:
       "Connected to Kanchipuram’s next growth story, led by Parandur Airport and regional access.",
+    image: growthCorridorImg,
   },
 ];
 
@@ -308,11 +307,9 @@ const LocationHighlights =
                             rounded-[10px]
                           "
                         >
-                          <Image
-                            src={img1}
-                            alt={
-                              item.title
-                            }
+                         <Image
+                            src={item.image}
+                            alt={item.title}
                             fill
                             priority
                             className="object-cover object-top"
@@ -466,11 +463,11 @@ const LocationHighlights =
               "
             >
               <Image
-                src={img1}
-                alt="Location Highlights"
+                src={highlights[activeIndex ?? 0].image}
+                alt={highlights[activeIndex ?? 0].title}
                 fill
                 priority
-                className="object-cover"
+                className="object-cover transition-all duration-500"
               />
             </div>
           </div>

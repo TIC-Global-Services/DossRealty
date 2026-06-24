@@ -94,11 +94,11 @@ const FAQ = ({
                         flex
                         w-full
                         items-center
-                        justify-between rounded-full
-                        md:rounded-[24px]
+                        justify-between
+                        rounded-[24px]
                         border
                         border-[#E2E2E2]
-                        bg-white px-2 py-2
+                        bg-white px-6 py-2
                         md:px-4
                         md:py-4 
                         md:text-left

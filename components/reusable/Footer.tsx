@@ -252,18 +252,18 @@ const Footer = () => {
           {/* Bottom */}
           <div className="mt-10 flex justify-between gap-4">
 
-            <p className="max-w-[140px] text-[13px] leading-[24px] text-[#AFAFAF]">
-              Copyright © 2026{" "}
+            <p className="max-w-[140px] text-[13px] leading-[24px] tracking-[-0.48px] text-[#AFAFAF]">
+              Copyright © 2026{" "} <br/>
               <span className="text-[#B59A52]">
-                Doss Realty
-              </span>{" "}
-              All Rights Reserved.
+                Doss Realty 
+              </span>{" "} 
+              All <br/>Rights Reserved.
             </p>
 
-            <p className="max-w-[150px] text-right text-[13px] leading-[24px] text-[#AFAFAF]">
-              Designed & Developed by{" "}
+            <p className="max-w-[150px] capitalize text-left text-[13px] leading-[24px] tracking-[-0.48px] text-[#AFAFAF]">
+              Designed & <br/> Developed by {" "}
               <span className="text-[#B59A52]">
-                the internet company
+                the <br/> internet company
               </span>
             </p>
           </div>

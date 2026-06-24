@@ -112,9 +112,9 @@ const RelatedArticles = () => {
                 ref={(el) => {
                   if (el) textRevealRef.current[1] = el;
                 }}
-                className="absolute left-6 top-6 z-20 max-w-[40ch] md:left-8 md:top-8"
+                className="absolute left-6 top-10 p-8 md:p-6 z-20 md:max-w-[46ch] md:left-8 md:top-8"
               >
-                <h3 className="font-small text-[18px] leading-[26px] tracking-[-0.72px] text-white md:text-[24px]">
+                <h3 className="font-small text-[16px] leading-[20px] md:leading-[26px] md:tracking-[-0.72px] tracking-normal text-white md:text-[24px]">
                   A Complete Guide to NRI Property Investment in India
                 </h3>
               </div>
@@ -167,11 +167,11 @@ const RelatedArticles = () => {
                     if (el) textRevealRef.current[2] = el;
                   }}
                 >
-                  <h3 className="text-start mt-4 text-[14px] font-[500] leading-[115%] tracking-[-0.6px] text-[#111111] md:text-[20px]">
+                  <h3 className="text-start mt-4 text-[16px] font-[500] leading-[20px] md:leading-[25px] text-[#111111] md:text-[20px]">
                     Key Benefits of Investing in Chennai Real Estate for NRIs
                   </h3>
 
-                  <p className="text-start mt-3 text-[14px] leading-[20px] text-[#717171] md:text-[16px]">
+                  <p className="text-start mt-3 text-[13px] leading-[16px] md:leading-[20px] text-[#717171] md:text-[16px]">
                     Explore why Chennai continues to attract NRI investors through strong infrastructure growth, high rental demand, trusted developments, and long-term investment potential.
                   </p>
                 </div>
@@ -217,11 +217,11 @@ const RelatedArticles = () => {
                     if (el) textRevealRef.current[3] = el;
                   }}
                 >
-                  <h3 className="text-start mt-4 text-[14px] font-[500] leading-[115%] tracking-[-0.6px] text-[#111111] md:text-[20px]">
+                  <h3 className="text-start mt-4 text-[16px] font-[500] leading-[20px] md:leading-[25px] text-[#111111] md:text-[20px]">
                     Key Benefits of Investing in Chennai Real Estate for NRIs
                   </h3>
 
-                  <p className="text-start mt-3 text-[14px] leading-[20px] text-[#717171] md:text-[16px]">
+                  <p className="text-start mt-3 text-[13px] leading-[16px] md:leading-[20px] text-[#717171] md:text-[16px]">
                     Explore why Chennai continues to attract NRI investors through strong infrastructure growth, high rental demand, trusted developments, and long-term investment potential.
                   </p>
                 </div>

@@ -181,56 +181,60 @@ export default function WhyWorkWithUs() {
 
         {/* Auto Change Title */}
         <div
-          className="
-            reveal-heading
-            flex
-            items-center
-            justify-center
-            min-h-[60vh]
-          "
-        >
-          <h2
             className="
-            flex
-            items-center
-            gap-4
-            font-heavy
-            font-[800]
-            uppercase
-            text-[#39384C]
-            leading-none
-          "
+              reveal-heading
+              flex
+              items-center
+              justify-center
+              min-h-[60vh]
+              px-5
+            "
           >
-            <span
+            <h2
               className="
-              text-[40px]
-              md:text-[70px]
-              lg:text-[60px]
-              shrink-0
-            "
+                flex
+                flex-col
+                md:flex-row
+                items-center
+                justify-center
+                gap-2
+                md:gap-4
+                text-center
+                font-heavy
+                font-[800]
+                uppercase
+                text-[#39384C]
+                leading-none
+              "
             >
-              WE ARE:
-            </span>
-
-            <span
-              key={currentWord}
-              className="
-              inline-block
-              min-w-[300px]
-              text-left
-              animate-pulse
-              transition-all
-              duration-500
-              text-[60px]
-              md:text-[40px]
-              lg:text-[50px]
-              xl:text-[60px]
-            "
-            >
-              {words[currentWord]}
-            </span>
-          </h2>
-        </div>
+              <span
+                className="
+                  text-[26px]
+                  md:text-[40px]
+                  lg:text-[60px]
+                "
+              >
+                WE ARE :
+              </span>
+                    
+              <span
+                key={currentWord}
+                className="
+                  block
+                  text-center
+                  md:text-left
+                  animate-pulse
+                  transition-all
+                  duration-500
+                  text-[26px]
+                  md:text-[40px]
+                  lg:text-[60px]
+                "
+              >
+                {words[currentWord]}
+              </span>
+            </h2>
+          </div>
 
         {/* Items
         <div
