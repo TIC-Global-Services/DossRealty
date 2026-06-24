@@ -69,7 +69,7 @@ const PropertyJourney = () => {
   }, []);
 
   return (
-    <section className="py-4 md:py-14">
+    <section data-theme="light" className="py-4 md:py-14">
       <div className="mx-auto px-5 md:px-24">
 
         {/* TOP CONTENT */}

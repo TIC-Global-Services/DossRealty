@@ -45,7 +45,7 @@ const Leadership = () => {
 
   return (
     <>
-      <section className="py-2 md:py-14">
+      <section data-theme="light" className="py-2 md:py-14">
         <div className="mx-auto max-w-[1440px] px-5 md:px-20">
           <div className="grid gap-12 lg:grid-cols-[35%_65%] lg:items-center">
             {/* LEFT SIDE */}

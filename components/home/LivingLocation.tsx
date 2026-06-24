@@ -88,7 +88,7 @@ const LivingLocation = () => {
   }, []);
 
   return (
-    <section
+    <section data-theme="dark"
       ref={sectionRef}
       className="relative overflow-visible bg-white py-0"
     >

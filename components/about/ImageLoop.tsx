@@ -106,7 +106,7 @@ const ImageLoop = () => {
   }, []);
 
   return (
-    <section className="overflow-hidden py-14 md:py-20">
+    <section data-theme="light" className="overflow-hidden py-14 md:py-20">
       <div className="relative overflow-hidden">
         {/* LOOP TRACK */}
         <motion.div

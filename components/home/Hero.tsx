@@ -396,7 +396,7 @@ export default function Hero() {
 
   return (
     <>
-      <section
+      <section data-theme="dark"
         ref={rootRef}
         className="
         relative opacity-0

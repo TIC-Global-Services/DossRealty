@@ -42,7 +42,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative">
+    <section data-theme="dark" className="relative">
       {/* HERO */}
       <div className="relative h-[90vh] min-h-[700px] overflow-visible">
         {/* Background Image */}

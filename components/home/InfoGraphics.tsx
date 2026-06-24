@@ -358,7 +358,7 @@ export default function InfoGraphics() {
   }, [snapPoints]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen bg-white">
+    <section data-theme="light" ref={sectionRef} className="relative min-h-screen bg-white">
 
       {/* DESKTOP layout */}
       <div className="hidden md:grid h-full grid-cols-[120px_1fr_320px] items-center px-10">

@@ -45,7 +45,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section
+    <section data-theme="dark"
       ref={sectionRef}
       className="
         relative

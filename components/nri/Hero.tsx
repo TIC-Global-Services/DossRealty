@@ -6,7 +6,7 @@ import heroBg from "@/assets/nri/heroBgImg.webp";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section data-theme="dark" className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
       <Image
         src={heroBg}

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section
+    <section data-theme ="light"
       className="min-h-[40vh] mt-8 md:mt-10
         flex
         md:min-h-[50vh]

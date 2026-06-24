@@ -54,7 +54,7 @@ const projects: Project[] = [
 
 export default function OurProjects() {
   return (
-    <section
+    <section data-theme="dark"
       className="
         mt-20
         md:pt-10

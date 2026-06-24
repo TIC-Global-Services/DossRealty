@@ -75,7 +75,7 @@ const ShapeTheFuture = () => {
   }, []);
 
   return (
-    <section
+    <section data-theme="light"
       ref={sectionRef}
       className="py-16 md:py-24 overflow-hidden"
     >

@@ -134,7 +134,7 @@ export default function WhyWorkWithUs() {
   }, []);
 
   return (
-    <section
+    <section data-theme="light"
       ref={sectionRef}
       className="
         bg-[#F4EFE3]

@@ -70,7 +70,7 @@ export default function TestimonialSection() {
   ];
 
   return (
-    <section className="overflow-hidden py-20">
+    <section data-theme="light" className="overflow-hidden py-20">
       <div className="mx-auto px-5 lg:px-20">
 
         {/* MOBILE */}

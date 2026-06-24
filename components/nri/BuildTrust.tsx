@@ -87,7 +87,7 @@ const BuildTrust = () => {
   const prevImage = () => setMobileImageIndex((prev) => (prev === 0 ? mobileImages.length - 1 : prev - 1));
 
   return (
-    <section className="py-14 md:py-16">
+    <section data-theme="light" className="py-14 md:py-16">
       <div
         ref={sectionRef}
         className="mx-auto px-5 md:px-8 lg:px-26"

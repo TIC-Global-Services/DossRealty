@@ -55,7 +55,7 @@ const RelatedArticles = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="overflow-hidden py-14 md:py-16">
+    <section data-theme="light" ref={sectionRef} className="overflow-hidden py-14 md:py-16">
       <div className="mx-auto px-5 md:px-8 lg:px-24">
         {/* Heading */}
         <h2

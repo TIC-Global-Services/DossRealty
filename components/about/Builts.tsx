@@ -34,7 +34,7 @@ const Builts = () => {
 
   return (
     <>
-      <section className="py-16 md:py-20">
+      <section data-theme="dark" className="py-16 md:py-20">
         <div className="mx-auto px-0 md:px-8 lg:px-10">
           {/* IMAGE SECTION */}
           <div className="relative group h-screen overflow-hidden md:rounded-[10px] md:h-[400px]">

@@ -77,7 +77,7 @@ const Testimonials = () => {
     useState(0);
 
   return (
-    <section className="py-16 md:py-20 overflow-hidden">
+    <section data-theme="light" className="py-16 md:py-20 overflow-hidden">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
 
         {/* HEADING */}

@@ -1,41 +1,18 @@
 "use client";
 
+import { useSectionTheme } from "@/hooks/useSectionTheme";
 import Image from "next/image";
 import shareIcon from "@/assets/chatIcons/chatImg.png";
 import whatsAppIcon from "@/assets/chatIcons/whatsAppImg.png";
-import { useEffect, useState } from "react";
+
 
 export default function EnquiryBtn() {
-  const [isDarkSection, setIsDarkSection] = useState(false);
+  const theme = useSectionTheme("bottom");
+  const buttonClass =
+    theme === "dark"
+      ? "bg-white border-white"
+      : "bg-[rgba(0,37,106,0.3)] border-[#4b5563] backdrop-blur-md";
 
-  useEffect(() => {
-  const sections = document.querySelectorAll("[data-floating-theme]");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const theme = entry.target.getAttribute(
-            "data-floating-theme"
-          );
-
-          setIsDarkSection(theme === "dark");
-        }
-      });
-    },
-    {
-      threshold: 0.5,
-    }
-  );
-
-  sections.forEach((section) => observer.observe(section));
-
-  return () => observer.disconnect();
-}, []);
-
-const buttonClass = isDarkSection
-  ? "bg-white border-white"
-  : "bg-[rgba(0,37,106,0.3)] border-[#4b5563] backdrop-blur-md";
   return (
     <div
       className="fixed right-4 bottom-8 z-[10000] flex flex-col gap-2"

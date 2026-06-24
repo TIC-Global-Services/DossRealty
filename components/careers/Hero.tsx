@@ -28,7 +28,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section
+    <section data-theme="dark"
       className="
         relative
         min-h-screen

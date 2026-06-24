@@ -22,6 +22,7 @@ const Footer = () => {
   const pathname = usePathname();
 
   return (
+    <section data-theme="dark">
     <footer className="w-full bg-white px-4 py-6 md:px-8 md:py-8">
       <div className="overflow-hidden rounded-[32px] bg-[#121212] text-white">
 
@@ -318,6 +319,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    </section>
   );
 };
 

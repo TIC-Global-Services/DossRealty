@@ -48,7 +48,7 @@ const FAQ = ({
   const router = useRouter();
 
   return (
-    <section className="py-16 md:px-10 md:py-12">
+    <section data-theme="light" className="py-16 md:px-10 md:py-12">
       <div
         className="
           mx-auto

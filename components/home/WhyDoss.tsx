@@ -7,7 +7,7 @@ import GlassCard from "@/components/reusable/GlassCard";
 
 export default function WhyDoss() {
   return (
-    <section
+    <section data-theme="dark"
       className="
         relative
         min-h-[100dvh]

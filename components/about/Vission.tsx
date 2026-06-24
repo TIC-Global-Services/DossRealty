@@ -124,7 +124,7 @@ const Vission = () => {
   }, []);
 
   return (
-    <section
+    <section data-theme="light"
       ref={sectionRef}
       className="relative overflow-hidden"
     >

@@ -38,7 +38,7 @@ const StatsCounter = () => {
   });
 
   return (
-    <section
+    <section data-theme="light"
       ref={ref}
       className="py-10 md:py-24"
     >

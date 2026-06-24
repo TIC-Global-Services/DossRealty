@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useLayoutEffect, useRef } from "react";
+import { useState, useLayoutEffect, useRef, useEffect } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -78,11 +79,27 @@ const jobSchema = z.object({
 type PartnerFormData = z.infer<typeof partnerSchema>;
 type JobFormData = z.infer<typeof jobSchema>;
 
+const positions = [
+  "Sales Executive",
+  "Pre-sales Executive",
+  "Project Manager",
+];
+
 export default function PartnerSection() {
   const [activeTab, setActiveTab] = useState<"partner" | "job">("partner");
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const searchParams = useSearchParams();
+
+useEffect(() => {
+  const form = searchParams.get("form");
+
+  if (form === "job") {
+    setActiveTab("job");
+    setShowModal(true);
+  }
+}, [searchParams]);
 
   const {
     register: partnerRegister,
@@ -651,9 +668,7 @@ export default function PartnerSection() {
 
                     {/* Opening Position */}
                     <div className="relative max-w-[500px]">
-                      <select
-                        {...jobRegister("position")}
-                        defaultValue=""
+                      <select {...jobRegister("position")} defaultValue=""
                         className="
                         w-full
                         appearance-none
@@ -666,15 +681,16 @@ export default function PartnerSection() {
                         text-[16px]
                         text-[#7f7f7f]
                         cursor-pointer
-                      "
-                      >
+                      ">
                         <option value="" disabled>
                           Opening Positions
                         </option>
 
-                        <option value="Other">
-                          Other
-                        </option>
+                        {positions.map((position) => (
+                          <option key={position} value={position}>
+                            {position}
+                          </option>
+                        ))}
                       </select>
 
                       {/* Custom Arrow */}

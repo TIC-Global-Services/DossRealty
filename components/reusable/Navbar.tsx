@@ -37,14 +37,6 @@ const navLinks = [
           title: "Lorem",
           location: "xxxxx",
         },
-        {
-          title: "Lorem",
-          location: "xxxxx",
-        },
-        {
-          title: "Lorem",
-          location: "xxxxx",
-        },
       ],
       status: [
         "Active",
@@ -74,8 +66,8 @@ const Navbar = () => {
     usePathname();
 
   const isBlogsPage =
-  pathname === "/blogs" ||
-  pathname.startsWith("/blogs/");
+    pathname === "/blogs" ||
+    pathname.startsWith("/blogs/");
 
   return (
     <header
@@ -87,10 +79,9 @@ const Navbar = () => {
         w-full
         transition-all
         duration-300
-        ${
-          isBlogsPage
-            ? "bg-transparent border-transparent"
-            : "lg:border-b lg:border-white/10 lg:bg-black/15 lg:backdrop-blur-[10px]"
+        ${isBlogsPage
+          ? "bg-transparent border-transparent"
+          : "lg:border-b lg:border-white/10 lg:bg-black/15 lg:backdrop-blur-[10px]"
         }
       `}
     >
@@ -147,10 +138,9 @@ const Navbar = () => {
                         transition
                         duration-300
                         hover:opacity-70
-                        ${
-                          isBlogsPage
-                            ? "text-black font-semibold"
-                            : "text-white"
+                        ${isBlogsPage
+                          ? "text-black font-semibold"
+                          : "text-white"
                         }
                       `}
                     >
@@ -177,7 +167,7 @@ const Navbar = () => {
                             z-[100]
                             w-[480px]
                             -translate-x-1/2
-                            rounded-[20px]
+                            rounded-[10px]
                             border
                             border-[#EAEAEA]
                             bg-white
@@ -190,9 +180,9 @@ const Navbar = () => {
                             group-hover:opacity-100
                           "
                         >
-                          <div className="grid grid-cols-[68%_32%] gap-8 p-8">
+                          <div className="grid grid-cols-[50%_50%] gap-12 p-8">
                             <div>
-                              <h3 className="text-[16px] uppercase tracking-[1px] underline text-black">
+                              <h3 className="text-[14px] font-small md:text-[16px] leading-[21px] uppercase tracking-[1px] underline text-black">
                                 All Projects
                               </h3>
 
@@ -207,13 +197,13 @@ const Navbar = () => {
                                       href="/projects"
                                       className="transition duration-300 hover:opacity-70"
                                     >
-                                      <p className="text-[18px] font-medium text-black">
+                                      <p className="font-small text-[13px] md:text-[18px] leading-[20px] font-medium text-black">
                                         {
                                           project.title
                                         }
                                       </p>
 
-                                      <p className="mt-1 text-[14px] text-black/40">
+                                      <p className="mt-1 text-[14px] leading-[20px] text-black/40">
                                         {
                                           project.location
                                         }
@@ -225,22 +215,20 @@ const Navbar = () => {
                             </div>
 
                             <div>
-                              <h3 className="text-[16px] uppercase tracking-[1px] underline text-black">
+                              <h3 className="text-[14px] font-small md:text-[16px] leading-[21px] uppercase tracking-[1px] underline text-black">
                                 Project Status
                               </h3>
 
-                              <div className="mt-8 space-y-5">
+                              <div className="mt-8 space-y-2">
                                 {link.dropdown.status.map(
-                                  (
-                                    item,
-                                    index
-                                  ) => (
-                                    <button
+                                  (item, index) => (
+                                    <Link
                                       key={index}
-                                      className="block text-left text-[18px] text-black transition duration-300 hover:opacity-70"
+                                      href={`/projects?tab=${item.toLowerCase()}`}
+                                      className="block text-left font-small text-[13px] md:text-[18px] leading-[20px] font-medium text-black transition duration-300 hover:opacity-70"
                                     >
                                       {item}
-                                    </button>
+                                    </Link>
                                   )
                                 )}
                               </div>
@@ -270,10 +258,9 @@ const Navbar = () => {
                 duration-300
                 hover:scale-105
                 cursor-pointer
-                ${
-                  isBlogsPage
-                    ? "border-black text-black hover:bg-black/10 font-[500]"
-                    : "border-white text-white hover:bg-white/20"
+                ${isBlogsPage
+                  ? "border-black text-black hover:bg-black/10 font-[500]"
+                  : "border-white text-white hover:bg-white/20"
                 }
               `}
             >
@@ -290,10 +277,9 @@ const Navbar = () => {
           className={`
             z-[60]
             lg:hidden
-            ${
-              isBlogsPage
-                ? "text-black"
-                : "text-white"
+            ${isBlogsPage
+              ? "text-black"
+              : "text-white"
             }
           `}
         >
@@ -315,10 +301,9 @@ const Navbar = () => {
           duration-500
           ease-in-out
           lg:hidden
-          ${
-            isOpen
-              ? "translate-x-0"
-              : "translate-x-full"
+          ${isOpen
+            ? "translate-x-0"
+            : "translate-x-full"
           }
         `}
       >

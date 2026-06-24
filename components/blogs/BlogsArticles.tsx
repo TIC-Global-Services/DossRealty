@@ -24,7 +24,7 @@ export default function BlogsArticles() {
     setActiveSlide(Math.round(scrollLeft / slideWidth));
   };
   return (
-    <section className="pb-20">
+    <section data-theme="light" className="pb-20">
       <div className="px-6 lg:px-30">
 
         {/* DESKTOP */}

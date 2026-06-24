@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -76,7 +77,7 @@ export default function BuiltForLiving() {
 
   return (
     <div ref={pinWrapperRef} className="md:relative">
-      <section
+      <section data-theme="light"
         ref={sectionRef}
         className=" mx-auto
         bg-white
@@ -198,21 +199,27 @@ export default function BuiltForLiving() {
               ))}
             </ul>
 
-            <button
-              type="button"
-              className="font-small
-              mt-8
-              rounded-full
-              bg-[#00256A]
-              px-8
-              py-2.5
-              text-[13px] leading-[20px] tracking-[-0.48px]
-              font-medium
-              text-white
-            "
+            <Link
+              href="/contact?form=job"
+              className="
+                font-small
+                w-fit
+                rounded-full
+                bg-[#00256A]
+                px-10
+                py-2.5
+                text-sm
+                md:text-[16px]
+                font-medium
+                text-white
+                transition
+                duration-300
+                hover:scale-105
+                cursor-pointer
+              "
             >
               Apply now
-            </button>
+            </Link>
 
             <div className="mt-6 max-w-[520px]">
               <p
@@ -301,25 +308,27 @@ export default function BuiltForLiving() {
               ))}
             </ul>
 
-            <button
-              type="button"
-              className="font-small w-fit
-              rounded-full
-              bg-[#00256A]
-              px-10
-              py-2.5
-              text-sm
-              md:text-[16px]
-              font-medium
-              text-white
-              transition
-              duration-300
-              hover:scale-105
-              cursor-pointer
-            "
-            >
-              Apply now
-            </button>
+            <Link
+                href="/contact?form=job"
+                className="
+                  font-small
+                  w-fit
+                  rounded-full
+                  bg-[#00256A]
+                  px-10
+                  py-2.5
+                  text-sm
+                  md:text-[16px]
+                  font-medium
+                  text-white
+                  transition
+                  duration-300
+                  hover:scale-105
+                  cursor-pointer
+                "
+              >
+                Apply now
+              </Link>
 
             <div className="mt-6 max-w-[520px]">
               <p
