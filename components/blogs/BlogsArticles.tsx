@@ -166,29 +166,28 @@ export default function BlogsArticles() {
             data-lenis-prevent
             onScroll={handleScroll}
             className="
-            flex
-            overflow-x-auto
-            snap-x
-            snap-mandatory
-            scrollbar-hide
-            touch-pan-x
-            pb-6
-          "
+              flex
+              overflow-x-auto
+              overflow-y-hidden
+              snap-x
+              snap-mandatory
+              touch-pan-x
+              scrollbar-hide
+              pb-6
+            "
           >
             {blogs.map((blog) => (
               <div
                 key={blog.id}
                 className="
-                min-w-full
-                snap-center
-                border-t
-                border-[#D9D9D9]
-                pt-8
-                px-3
-              "
-              style={{
-                  WebkitOverflowScrolling: "touch",
-                }}
+                  min-w-full
+                  flex-shrink-0
+                  snap-center
+                  border-t
+                  border-[#D9D9D9]
+                  pt-8
+                  px-3
+                "
               >
                 {/* Number */}
                 <p
@@ -276,7 +275,7 @@ export default function BlogsArticles() {
                 </div>
 
                 {/* Border-B */}
-                <div className="mt-12 border-b border-[#D9D9D9]" />
+                <div className="mt-12 w-full border-b border-[#D9D9D9] px-3" />
               </div>
             ))}
           </div>

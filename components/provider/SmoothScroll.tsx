@@ -20,6 +20,8 @@ export default function SmoothScroll({ children }: Props) {
       duration: 1.8,
       lerp: 0.06,
       smoothWheel: true,
+      syncTouch: true,
+      touchMultiplier: 1,
     });
 
     lenisRef.current = lenis;
