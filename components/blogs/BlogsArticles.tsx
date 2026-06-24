@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { blogs } from "@/data/blogs";
 
@@ -181,7 +181,6 @@ export default function BlogsArticles() {
                 key={blog.id}
                 className="
                   min-w-full
-                  flex-shrink-0
                   snap-center
                   border-t
                   border-[#D9D9D9]
