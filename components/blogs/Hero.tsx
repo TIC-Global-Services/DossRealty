@@ -8,7 +8,7 @@ const Hero = () => {
     <section
       className="min-h-[40vh] mt-8 md:mt-10
         flex
-        md:min-h-[60vh]
+        md:min-h-[50vh]
         items-center
         justify-center
         px-6

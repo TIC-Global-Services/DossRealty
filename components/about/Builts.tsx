@@ -43,7 +43,7 @@ const Builts = () => {
               alt="Built Spaces"
               fill
               className="
-                object-cover
+                object-cover md:object-[10%_53%]
                 scale-105
                 md:scale-100
                 transition-transform
@@ -127,25 +127,43 @@ const Builts = () => {
                   className="p-px rounded-full w-[150px] h-[40px] flex-shrink-0"
                   
                 >
-                  <PrimaryBtn
-                    mode="dark"
+                  <button
                     onClick={() => setOpen(true)}
                     className="
-                      !w-full !h-full
-                      !rounded-full
-                      !border-0
-                      !bg-transparent
-                      !backdrop-blur-[6px]
-                      text-[13px] md:text-[16px]
-                      text-white tracking-[0.05em]
-                      shadow-[inset_0_1.5px_0_rgba(255,255,255,0.1),inset_0_-1px_0_rgba(255,255,255,0.1),0_2px_16px_rgba(0,0,0,0.1),0_1px_3px_rgba(0,0,0,0.1)]
-                      hover:!bg-white/[0.22]
-                      hover:scale-105
-                      transition-all duration-300
+                      relative
+                      overflow-hidden
+                      flex
+                      h-[43px]
+                      w-[140px]
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      border-white/40
+                      bg-white/10
+                      backdrop-blur-[5px]
+                      text-[16px]
+                      font-light
+                      text-white
+                      cursor-pointer
+                      shadow-[0_4px_20px_rgba(0,0,0,0.12)]
+                      before:content-['']
+                      before:absolute
+                      before:inset-0
+                      before:rounded-full
+                      before:[box-shadow:inset_0_1px_0_rgba(255,255,255,0.8),inset_0_-1px_0_rgba(255,255,255,0.8)]
+                      before:[mask-image:linear-gradient(to_right,transparent_0%,white_12%,white_88%,transparent_100%)]
+                      before:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,white_12%,white_88%,transparent_100%)]
+                      before:pointer-events-none
+                      transition-all
+                      duration-300
+                      hover:bg-white/15
                     "
                   >
-                    Read more
-                  </PrimaryBtn>
+                    <span className="relative z-10">
+                      Read more
+                    </span>
+                  </button>
                 </div>
                 </div>
               </div>

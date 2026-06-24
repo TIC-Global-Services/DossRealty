@@ -124,6 +124,7 @@ const FAQ = ({
                           text-[#222]
                           transition-transform
                           duration-300
+                          cursor-pointer
                         "
                       >
                         {isOpen

@@ -74,7 +74,8 @@ const Navbar = () => {
     usePathname();
 
   const isBlogsPage =
-    pathname === "/blogs";
+  pathname === "/blogs" ||
+  pathname.startsWith("/blogs/");
 
   return (
     <header

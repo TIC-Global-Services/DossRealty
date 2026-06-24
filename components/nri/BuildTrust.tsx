@@ -94,7 +94,7 @@ const BuildTrust = () => {
       >
         <div className="grid gap-4 lg:grid-cols-[30%_70%] items-start">
           {/* LEFT CONTENT */}
-          <div className="lg:flex-col lg:mt-20 h-fit">
+          <div className="lg:flex-col lg:mt-25 h-fit">
             <div key={activeSlide}>
               <h2
                 ref={headingRef}
@@ -165,7 +165,7 @@ const BuildTrust = () => {
               </div>
             </div>
 
-            {/* DESKTOP NAV */}
+            {/* DESKTOP NAV
             <div className="mt-6 hidden gap-4 lg:flex">
               <button
                 onClick={prevSlide}
@@ -180,7 +180,7 @@ const BuildTrust = () => {
               >
                 <ChevronRight size={18} />
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* RIGHT – DESKTOP IMAGES */}
@@ -199,9 +199,9 @@ const BuildTrust = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10" />
 
               <div className="absolute left-2 top-4 p-5 z-10">
-                <p className="text-[16px] font-bold leading-[20px] tracking-[-0.48px] text-white">
+                <p className="text-[16px] leading-[20px] font-[700] tracking-[-0.48px] text-white">
                   Verified at Every Stage 
-                  <br/><span className="font-[400]">Project approvals, title records, agreements, payment schedules, and registration requirements are presented with care and transparency.</span>
+                  <br/><span className="font-[300]">Project approvals, title records, agreements, payment schedules, and registration requirements are presented with care and transparency.</span>
                 </p>
               </div>
             </div>
@@ -220,9 +220,9 @@ const BuildTrust = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10" />
 
               <div className="absolute left-2 top-4 p-6 z-10">
-                <p className="text-[16px] leading-[20px] font-bold tracking-[-0.48px] max-w-[25ch] text-white">
+                <p className="text-[16px] leading-[20px] font-[700] tracking-[-0.48px] text-white">
                   Present When You Cannot Be 
-                  <br/><span className="font-[400]">From virtual consultations to on-ground coordination, we manage each stage with continuity, keeping you informed wherever you are.</span>
+                  <br/><span className="font-[300]">From virtual consultations to on-ground coordination, we manage each stage with continuity, keeping you informed wherever you are.</span>
                 </p>
               </div>
             </div>

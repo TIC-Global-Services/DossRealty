@@ -468,33 +468,44 @@ export default function Hero() {
             </div>
 
             <Link href={"./about"}>
-              <button style={{
-                    transform: "translateZ(0)",
-                    willChange: "transform, opacity",
-                  }}
-                className="font-small
+              <button
+                style={{
+                  transform: "translateZ(0)",
+                  willChange: "transform, opacity",
+                }}
+                className="
+                  font-small
                   relative
                   overflow-hidden
-                  mt-5
-                  px-8
-                  py-2.5
-                  rounded-full
-                  transform-gpu
-                  bg-white/20
-                  backdrop-blur-[5px]
-                  text-white
                   cursor-pointer
+                  mt-5
+                  h-[44px]
+                  w-[116px]
+                  rounded-full
+                  border
+                  border-white/40
+                  bg-white/10
+                  backdrop-blur-[5px]
+                  text-[16px]
+                  font-light
+                  text-white
+                  shadow-[0_4px_20px_rgba(0,0,0,0.12)]
+                  transition-all
+                  duration-300
+                  hover:bg-white/15
                   before:content-['']
                   before:absolute
-                  before:inset-[1px]
-                  before:rounded-[inherit]
+                  before:inset-0
+                  before:rounded-full
                   before:pointer-events-none
-                  before:[box-shadow:inset_0_1px_0_rgba(255,255,255,0.65),inset_0_-1px_0_rgba(255,255,255,0.65)]
+                  before:[box-shadow:inset_0_1px_0_rgba(255,255,255,0.8),inset_0_-1px_0_rgba(255,255,255,0.8)]
                   before:[mask-image:linear-gradient(to_right,transparent_0%,white_12%,white_88%,transparent_100%)]
                   before:[-webkit-mask-image:linear-gradient(to_right,transparent_0%,white_12%,white_88%,transparent_100%)]
                 "
               >
-                Explore
+                <span className="relative z-10">
+                  Explore
+                </span>
               </button>
             </Link>
           </div>

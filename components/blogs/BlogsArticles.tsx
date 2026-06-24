@@ -4,47 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 
-import blogImg from "@/assets/blogs/articleImg1.jpg";
+import { blogs } from "@/data/blogs";
+
+
 import rightArrow from "@/assets/blogs/rightArrow.png";
 
-const blogs = [
-  {
-    id: "01",
-    title: "A Simple Guide to Buying Your First Plot",
-    image: blogImg,
-    slug: "buying-your-first-plot",
-  },
-  {
-    id: "02",
-    title: "What To Check Before Buying a Property",
-    image: blogImg,
-    slug: "check-before-buying-property",
-  },
-  {
-    id: "03",
-    title: "Understanding Property Documents Made Easy",
-    image: blogImg,
-    slug: "property-documents-guide",
-  },
-  {
-    id: "04",
-    title: "Key Factors That Influence Property Appreciation",
-    image: blogImg,
-    slug: "property-appreciation-factors",
-  },
-  {
-    id: "05",
-    title: "Why Plotted Developments Are a Smart Investment",
-    image: blogImg,
-    slug: "plotted-developments-investment",
-  },
-  {
-    id: "06",
-    title: "How To Choose a Property with Long-Term Value",
-    image: blogImg,
-    slug: "choose-property-long-term-value",
-  },
-];
 
 export default function BlogsArticles() {
 
@@ -110,7 +74,7 @@ export default function BlogsArticles() {
 
                   <h3
                     className="
-                    max-w-[450px]
+                    max-w-[300px]
                     text-[22px]
                     leading-[32px]
                     text-[#000000]

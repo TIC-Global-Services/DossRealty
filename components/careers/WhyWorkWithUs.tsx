@@ -15,38 +15,38 @@ gsap.registerPlugin(
   ScrollTrigger
 );
 
-const items = [
-  {
-    title:
-      "THOUGHTFUL DESIGN APPROACH",
-    description:
-      "We create spaces that blend functionality with refined aesthetics, ensuring every detail contributes to a seamless living experience.",
-  },
-  {
-    title:
-      "PRIME LOCATIONS",
-    description:
-      "Our projects are strategically positioned to offer excellent connectivity, convenience, and long-term investment potential.",
-  },
-  {
-    title:
-      "QUALITY THAT ENDURES",
-    description:
-      "From planning to execution, we focus on superior construction standards and attention to detail that stand the test of time.",
-  },
-  {
-    title:
-      "TRUST & TRANSPARENCY",
-    description:
-      "We build lasting relationships through integrity, clear communication, and a customer-first approach at every stage.",
-  },
-  {
-    title:
-      "MODERN LIVING EXPERIENCES",
-    description:
-      "Our developments are designed to complement contemporary lifestyles with comfort, elegance, and purposeful spaces.",
-  },
-];
+// const items = [
+//   {
+//     title:
+//       "THOUGHTFUL DESIGN APPROACH",
+//     description:
+//       "We create spaces that blend functionality with refined aesthetics, ensuring every detail contributes to a seamless living experience.",
+//   },
+//   {
+//     title:
+//       "PRIME LOCATIONS",
+//     description:
+//       "Our projects are strategically positioned to offer excellent connectivity, convenience, and long-term investment potential.",
+//   },
+//   {
+//     title:
+//       "QUALITY THAT ENDURES",
+//     description:
+//       "From planning to execution, we focus on superior construction standards and attention to detail that stand the test of time.",
+//   },
+//   {
+//     title:
+//       "TRUST & TRANSPARENCY",
+//     description:
+//       "We build lasting relationships through integrity, clear communication, and a customer-first approach at every stage.",
+//   },
+//   {
+//     title:
+//       "MODERN LIVING EXPERIENCES",
+//     description:
+//       "Our developments are designed to complement contemporary lifestyles with comfort, elegance, and purposeful spaces.",
+//   },
+// ];
 
 const words = [
   "Builders",
@@ -180,43 +180,59 @@ export default function WhyWorkWithUs() {
         </div>
 
         {/* Auto Change Title */}
-        <h2
+        <div
           className="
             reveal-heading
-            font-heavy
-            font-[800]
-            max-w-[1100px]
-            uppercase
-            text-[#39384C]
-            text-[18px] leading-[20px]
-            md:leading-[24px]
-            mb-10
-            md:pl-20
-            md:text-[30px]
+            flex
+            items-center
+            justify-center
+            min-h-[60vh]
           "
         >
-          We Are:{" "}
-          <span
-            key={
-              currentWord
-            }
+          <h2
             className="
+            flex
+            items-center
+            gap-4
+            font-heavy
+            font-[800]
+            uppercase
+            text-[#39384C]
+            leading-none
+          "
+          >
+            <span
+              className="
+              text-[40px]
+              md:text-[70px]
+              lg:text-[60px]
+              shrink-0
+            "
+            >
+              WE ARE:
+            </span>
+
+            <span
+              key={currentWord}
+              className="
               inline-block
-              text-[#39384C]
+              min-w-[300px]
+              text-left
               animate-pulse
               transition-all
               duration-500
+              text-[60px]
+              md:text-[40px]
+              lg:text-[50px]
+              xl:text-[60px]
             "
-          >
-            {
-              words[
-                currentWord
-              ]
-            }
-          </span>
-        </h2>
+            >
+              {words[currentWord]}
+            </span>
+          </h2>
+        </div>
 
-        {/* Items */}
+        {/* Items
         <div
           className="
             items-wrapper
@@ -267,7 +283,7 @@ export default function WhyWorkWithUs() {
               </div>
             )
           )}
-        </div>
+        </div> */}
       </div>
     </section>
   );

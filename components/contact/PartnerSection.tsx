@@ -230,7 +230,7 @@ export default function PartnerSection() {
               "
             >
               {/* Top Content */}
-              <div className="max-w-[520px] mt-10 md:mt-0">
+              <div className="max-w-[520px] mt-10 md:mt-0 ml-auto text-right ">
                 <h2
                   className="
                     text-white
