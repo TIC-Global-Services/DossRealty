@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import { useLenis } from "@/lib/lenis-context";
 
 import founder1 from "@/assets/about/FounderSample.jpg";
 import founder2 from "@/assets/about/FounderSample.jpg";
@@ -39,50 +38,43 @@ His approach emphasizes disciplined growth, value preservation, and the creation
 const DESCRIPTION_PREVIEW_LENGTH = 450;
 
 const Leadership = () => {
-  const lenisRef = useLenis();
-
   const [selectedLeader, setSelectedLeader] = useState<Leader | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const scrollYRef = useRef(0);
 
-
   useEffect(() => {
-  if (!selectedLeader) return;
+    if (!selectedLeader) return;
 
-  const isMobile = window.innerWidth < 768;
-  const scrollY = window.scrollY;
+    const isMobile = window.innerWidth < 768;
+    const scrollY = window.scrollY;
 
-  lenisRef.current?.stop();
-
-  if (isMobile) {
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = "0";
-    document.body.style.right = "0";
-    document.body.style.width = "100%";
-  }
-
-  return () => {
     if (isMobile) {
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
-
-      window.scrollTo(0, scrollY);
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
     }
 
-    lenisRef.current?.start();
-  };
-}, [selectedLeader, lenisRef]);
+    return () => {
+      if (isMobile) {
+        document.documentElement.style.overflow = "";
+        document.body.style.overflow = "";
+      } else {
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.left = "";
+        document.body.style.right = "";
+        document.body.style.width = "";
+
+        window.scrollTo(0, scrollY);
+      }
+    };
+  }, [selectedLeader]);
 
   const openLeader = (leader: Leader) => {
     setIsExpanded(false);
