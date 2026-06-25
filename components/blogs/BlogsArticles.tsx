@@ -3,15 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useLenis } from "@/lib/lenis-context";
 
 import { blogs } from "@/data/blogs";
 
 import rightArrow from "@/assets/blogs/rightArrow.png";
 
 export default function BlogsArticles() {
-  const lenisRef = useLenis();
-
   const [activeSlide, setActiveSlide] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
   const rafIdRef = useRef<number | null>(null);
@@ -38,24 +35,6 @@ export default function BlogsArticles() {
     };
   }, []);
 
-  useEffect(() => {
-    const el = sliderRef.current;
-    if (!el) return;
-
-    const stop = () => lenisRef.current?.stop();
-    const start = () => lenisRef.current?.start();
-
-    el.addEventListener("touchstart", stop, { passive: true });
-    el.addEventListener("touchend", start, { passive: true });
-    el.addEventListener("touchcancel", start, { passive: true });
-
-    return () => {
-      el.removeEventListener("touchstart", stop);
-      el.removeEventListener("touchend", start);
-      el.removeEventListener("touchcancel", start);
-      start();
-    };
-  }, [lenisRef]);
 
   return (
     <section data-theme="light" className="pb-20">
@@ -198,6 +177,7 @@ export default function BlogsArticles() {
             onScroll={handleScroll}
             style={{
               WebkitOverflowScrolling: "touch",
+              touchAction: "pan-x",
               transform: "translateZ(0)",
             }}
             className="
@@ -207,7 +187,6 @@ export default function BlogsArticles() {
               overscroll-x-contain
               snap-x
               snap-mandatory
-              touch-pan-x
               scrollbar-hide
               pb-6
             "

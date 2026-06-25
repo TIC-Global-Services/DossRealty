@@ -44,21 +44,33 @@ const Leadership = () => {
   const [selectedLeader, setSelectedLeader] = useState<Leader | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+  const scrollYRef = useRef(0);
+
 
   useEffect(() => {
     if (!selectedLeader) return;
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    scrollYRef.current = window.scrollY;
     lenisRef.current?.stop();
 
-  
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollYRef.current}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+
     if (contentRef.current) {
       contentRef.current.scrollTop = 0;
     }
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+
+      window.scrollTo(0, scrollYRef.current);
       lenisRef.current?.start();
     };
   }, [selectedLeader, lenisRef]);
@@ -153,7 +165,7 @@ const Leadership = () => {
               relative
               w-full
               md:w-screen
-              h-[60vh]
+              h-[80vh]
               md:h-screen
               bg-white
               overflow-hidden
@@ -176,7 +188,7 @@ const Leadership = () => {
               ×
             </button>
 
-            <div className="flex h-full gap-10 md:gap-0 flex-col md:grid md:grid-cols-2 md:h-full">
+            <div className="flex h-full gap-4 md:gap-0 flex-col md:grid md:grid-cols-2 md:h-full">
               {/* LEFT IMAGE */}
               <div className="relative h-[250px] md:h-screen flex-shrink-0">
                 <Image
@@ -191,6 +203,10 @@ const Leadership = () => {
               <div
                 ref={contentRef}
                 data-lenis-prevent
+                style={{
+                  WebkitOverflowScrolling: "touch",
+                  touchAction: "pan-y",
+                }}
                 className="
                   p-10
                   md:p-12
@@ -200,7 +216,6 @@ const Leadership = () => {
                   overflow-y-auto
                   overscroll-contain
                   scrollbar-thin
-                  [-webkit-overflow-scrolling:touch]
                 "
               >
                 <div className="relative w-full">
