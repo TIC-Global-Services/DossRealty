@@ -1,11 +1,8 @@
 "use client";
 
-import {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-
+import {useEffect,useRef,useState} from "react";
+import Image from "next/image";
+import logo from "@/assets/careers/logoImg.png";
 import gsap from "gsap";
 import {
   ScrollTrigger,
@@ -14,39 +11,6 @@ import {
 gsap.registerPlugin(
   ScrollTrigger
 );
-
-// const items = [
-//   {
-//     title:
-//       "THOUGHTFUL DESIGN APPROACH",
-//     description:
-//       "We create spaces that blend functionality with refined aesthetics, ensuring every detail contributes to a seamless living experience.",
-//   },
-//   {
-//     title:
-//       "PRIME LOCATIONS",
-//     description:
-//       "Our projects are strategically positioned to offer excellent connectivity, convenience, and long-term investment potential.",
-//   },
-//   {
-//     title:
-//       "QUALITY THAT ENDURES",
-//     description:
-//       "From planning to execution, we focus on superior construction standards and attention to detail that stand the test of time.",
-//   },
-//   {
-//     title:
-//       "TRUST & TRANSPARENCY",
-//     description:
-//       "We build lasting relationships through integrity, clear communication, and a customer-first approach at every stage.",
-//   },
-//   {
-//     title:
-//       "MODERN LIVING EXPERIENCES",
-//     description:
-//       "Our developments are designed to complement contemporary lifestyles with comfort, elegance, and purposeful spaces.",
-//   },
-// ];
 
 const words = [
   "Builders",
@@ -109,24 +73,16 @@ export default function WhyWorkWithUs() {
           }
         );
 
-        // Stagger items reveal
-        gsap.from(
-          ".reveal-item",
-          {
-            y: 50,
-            opacity: 0,
-            duration: 0.9,
-            stagger: 0.15,
-            ease:
-              "power3.out",
-            scrollTrigger: {
-              trigger:
-                ".items-wrapper",
-              start:
-                "top 85%",
-            },
-          }
-        );
+        gsap.from(".career-logo", {
+              y: 30,
+              opacity: 0,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 80%",
+              },
+            });
       }, sectionRef);
 
     return () =>
@@ -179,115 +135,86 @@ export default function WhyWorkWithUs() {
           />
         </div>
 
-        {/* Auto Change Title */}
+        {/* Center Content */}
         <div
-            className="
-              reveal-heading
-              flex
-              items-center
-              justify-center
-              min-h-[60vh]
-              px-5
-            "
-          >
-            <h2
-              className="
-                flex
-                flex-col
-                md:flex-row
-                items-center
-                justify-center
-                gap-2
-                md:gap-4
-                text-center
-                font-heavy
-                font-[800]
-                uppercase
-                text-[#39384C]
-                leading-none
-              "
-            >
-              <span
-                className="
-                  text-[26px]
-                  md:text-[40px]
-                  lg:text-[60px]
-                "
-              >
-                WE ARE :
-              </span>
-                    
-              <span
-                key={currentWord}
-                className="
-                  block
-                  text-center
-                  md:text-left
-                  animate-pulse
-                  transition-all
-                  duration-500
-                  text-[26px]
-                  md:text-[40px]
-                  lg:text-[60px]
-                "
-              >
-                {words[currentWord]}
-              </span>
-            </h2>
-          </div>
-
-        {/* Items
-        <div
-          className="
-            items-wrapper
-            space-y-8
-            lg:pl-20
+          className="min-h-[40vh]
+            reveal-heading
+            flex
+            flex-col
+            items-center
+            justify-center
+            md:min-h-[65vh]
+            text-center
+            md:px-5
           "
         >
-          {items.map(
-            (
-              item,
-              index
-            ) => (
-              <div
-                key={index}
-                className="
-                  reveal-item
-                  pb-2
-                "
-              >
-                <h3
-                  className="
-                    font-grand
-                    text-[#31304A]
-                    text-[16px]
-                    mb-3
-                    md:text-[20px]
-                    leading-[24px]
-                    tracking-normal
-                  "
-                >
-                  {
-                    item.title
-                  }
-                </h3>
+          {/* Logo */}
+          <div
+            key={currentWord}
+            className="mb-10 animate-pulse"
+          >
+            <Image
+              src={logo}
+              alt="Doss Realty Logo"
+              className="
+                w-[180px]
+                md:w-[240px]
+                lg:w-[300px]
+                h-auto
+                object-contain
+              "
+              priority
+            />
+        </div>
 
-                <p
-                  className="tracking-normal
-                    text-[16px]
-                    text-[#39384c]
-                    md:text-[16px]
-                    leading-[18px]
-                  "
-                >
-                  {
-                    item.description
-                  }
-                </p>
-              </div>
-            )
-          )}
-        </div> */}
+          {/* Auto Change Title */}
+          <h2
+            className="mt-8
+              flex
+              flex-row
+              md:flex-row
+              items-center
+              justify-center
+              gap-2
+              md:gap-4
+              font-heavy
+              font-[800]
+              uppercase
+              text-[#39384C]
+              leading-none
+              text-center
+            "
+          >
+            <span
+              className="
+                text-[20px]
+                md:text-[30px]
+                lg:text-[40px]
+                lg:leading-[54px]
+              "
+            >
+              WE ARE :
+            </span>
+
+            <span
+              key={currentWord}
+              className="
+                block
+                text-center
+                md:text-left
+                animate-pulse
+                transition-all
+                duration-500
+                text-[20px]
+                md:text-[30px]
+                lg:text-[40px]
+                lg:leading-[54px]
+              "
+            >
+              {words[currentWord]}
+            </span>
+          </h2>
+        </div>
       </div>
     </section>
   );

@@ -29,9 +29,9 @@ const Hero = () => {
               text-white
               text-[24px]
               md:text-[48px]
-              leading-[32px]
+              leading-[32px] tracking-wide
               md:leading-[50px]
-              tracking-[-1.44px]
+              md:tracking-[-1.44px]
               capitalize
             "
           >

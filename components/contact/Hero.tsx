@@ -56,8 +56,8 @@ export default function Hero() {
           className="
             text-white
             font-heading
-            leading-[50px]
-            tracking-[-1.44px]
+            leading-[50px] tracking-wide
+            md:tracking-[-1.44px]
             text-[24px]
             md:text-[48px]
           "

@@ -59,6 +59,7 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isOpen, setIsOpen] =
     useState(false);
 
@@ -288,119 +289,229 @@ const Navbar = () => {
       </div>
 
       {/* MOBILE MENU OVERLAY */}
-      <div
-        className={`
-          fixed
-          top-0
-          right-0
-          z-[100]
-          h-screen
-          w-full
-          bg-white
-          transition-transform
-          duration-500
-          ease-in-out
-          lg:hidden
-          ${isOpen
-            ? "translate-x-0"
-            : "translate-x-full"
-          }
-        `}
-      >
-        {/* TOP BAR */}
-        <div
-          className="
-            flex
-            h-[80px]
-            items-center
-            justify-between
-            border-b
-            border-black/10
-            px-5
-          "
-        >
-          <Link
-            href="/"
-            onClick={() =>
-              setIsOpen(false)
-            }
-          >
-            <Image
-              src="/blackLogo.png"
-              alt="Doss Realty Logo"
-              width={160}
-              height={50}
-              priority
-            />
-          </Link>
-
-          <button
-            onClick={() =>
-              setIsOpen(false)
-            }
-            className="text-black"
-          >
-            <X size={30} />
-          </button>
-        </div>
-
-        {/* MENU CONTENT */}
-        <div
-          className="
-            flex
-            h-[calc(100vh-80px)]
-            flex-col
-            justify-between
-            px-6
-            py-8
-          "
-        >
-          <ul className="flex flex-col gap-7">
-            {navLinks.map(
-              (link) => (
-                <li key={link.name}>
+            <div
+              className={`
+                fixed
+                inset-0
+                z-[100]
+                bg-white
+                transition-transform
+                duration-500
+                ease-in-out
+                lg:hidden
+                ${isOpen ? "translate-x-0" : "translate-x-full"}
+              `}
+            >
+              {/* TOP BAR */}
+              <div
+                className="
+                  sticky
+                  top-0
+                  z-10
+                  flex
+                  h-[72px]
+                  items-center
+                  justify-between
+                  border-b
+                  border-black/10
+                  bg-white
+                  px-5
+                "
+              >
+                <Link
+                  href="/"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Image
+                    src="/blackLogo.png"
+                    alt="Doss Realty Logo"
+                    width={160}
+                    height={50}
+                    priority
+                  />
+                </Link>
+              
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-black"
+                >
+                  <X size={30} />
+                </button>
+              </div>
+              
+              {/* SCROLLABLE CONTENT */}
+              <div
+                className="
+                  flex
+                  h-[calc(100dvh-72px)]
+                  flex-col
+                  overflow-y-auto
+                  px-6
+                  pt-4
+                  pb-[max(20px,env(safe-area-inset-bottom))]
+                "
+              >
+                {/* MENU */}
+                <ul className="flex flex-1 flex-col">
+                  {navLinks.map((link) => (
+                    <li
+                      key={link.name}
+                      className="border-b border-black/10"
+                    >
+                      {link.hasDropdown ? (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setOpenDropdown(
+                                openDropdown === link.name
+                                  ? null
+                                  : link.name
+                              )
+                            }
+                            className="
+                              flex
+                              w-full
+                              items-center
+                              justify-between
+                              py-5
+                              text-left
+                              text-[20px]
+                              font-medium
+                              text-black
+                            "
+                          >
+                            <span>{link.name}</span>
+                          
+                            <ChevronDown
+                              size={20}
+                              className={`
+                                transition-transform
+                                duration-300
+                                ${
+                                  openDropdown === link.name
+                                    ? "rotate-180"
+                                    : ""
+                                }
+                              `}
+                            />
+                          </button>
+                              
+                          <div
+                            className={`
+                              overflow-hidden
+                              transition-all
+                              duration-300
+                              ${
+                                openDropdown === link.name
+                                  ? "max-h-40 pb-4"
+                                  : "max-h-0"
+                              }
+                            `}
+                          >
+                            <div className="ml-5 flex flex-col gap-3">
+                              <Link
+                                href="/projects?tab=active"
+                                onClick={() => {
+                                  setIsOpen(false);
+                                  setOpenDropdown(null);
+                                }}
+                                className="
+                                  text-[16px]
+                                  text-black/70
+                                  transition
+                                  hover:text-black
+                                "
+                              >
+                                Active
+                              </Link>
+                              
+                              <Link
+                                href="/projects?tab=delivered"
+                                onClick={() => {
+                                  setIsOpen(false);
+                                  setOpenDropdown(null);
+                                }}
+                                className="
+                                  text-[16px]
+                                  text-black/70
+                                  transition
+                                  hover:text-black
+                                "
+                              >
+                                Delivered
+                              </Link>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className="
+                            flex
+                            items-center
+                            justify-between
+                            py-5
+                            text-[20px]
+                            font-medium
+                            text-black
+                          "
+                        >
+                          {link.name}
+                        </Link>
+                      )}
+                    </li>
+                  ))}
+            
+                  {/* MOBILE ONLY BLOGS */}
+                  <li className="border-b border-black/10">
+                    <Link
+                      href="/blogs"
+                      onClick={() => setIsOpen(false)}
+                      className="
+                        flex
+                        items-center
+                        justify-between
+                        py-5
+                        text-[20px]
+                        font-medium
+                        text-black
+                      "
+                    >
+                      Blogs
+                    </Link>
+                  </li>
+                </ul>
+                
+                {/* BUTTON */}
+                <div className="mt-auto pt-8">
                   <Link
-                    href={link.href}
-                    onClick={() =>
-                      setIsOpen(false)
-                    }
-                    className="
-                      flex
-                      items-center
-                      justify-between
-                      border-b
-                      border-black/10
-                      pb-5
-                      text-[22px]
-                      font-medium
-                      text-black
-                    "
+                    href="/contact"
+                    onClick={() => setIsOpen(false)}
                   >
-                    {link.name}
-
-                    {link.hasDropdown && (
-                      <ChevronDown
-                        size={20}
-                      />
-                    )}
+                    <PrimaryBtn
+                      mode="light"
+                      className="
+                        mx-auto
+                        flex
+                        w-full
+                        max-w-[320px]
+                        justify-center
+                        bg-black
+                        px-6
+                        py-3
+                        font-small
+                        text-[16px]
+                        text-white
+                      "
+                    >
+                      Get in Touch
+                    </PrimaryBtn>
                   </Link>
-                </li>
-              )
-            )}
-          </ul>
-
-          <Link
-            href="/contact"
-            onClick={() =>
-              setIsOpen(false)
-            }
-          >
-            <PrimaryBtn mode="light" className="mx-auto flex mb-40 bg-black text-white font-small text-[16px] px-6 py-2.5">
-              Get in Touch
-            </PrimaryBtn>
-          </Link>
-        </div>
-      </div>
+                </div>
+              </div>
+            </div>
     </header>
   );
 };

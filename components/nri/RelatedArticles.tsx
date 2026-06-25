@@ -105,7 +105,7 @@ const RelatedArticles = () => {
               </div>
 
               {/* Overlay */}
-              <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 z-10 bg-black/20" />
 
               {/* Title */}
               <div
@@ -114,7 +114,7 @@ const RelatedArticles = () => {
                 }}
                 className="absolute left-6 top-10 p-8 md:p-6 z-20 md:max-w-[46ch] md:left-8 md:top-8"
               >
-                <h3 className="font-small text-[16px] leading-[20px] md:leading-[26px] md:tracking-[-0.72px] tracking-normal text-white md:text-[24px]">
+                <h3 className="font-small text-[16px] leading-[20px] md:leading-[26px] md:tracking-[-0.72px] tracking-wide text-white md:text-[24px]">
                   A Complete Guide to NRI Property Investment in India
                 </h3>
               </div>

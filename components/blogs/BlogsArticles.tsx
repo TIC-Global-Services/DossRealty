@@ -8,10 +8,16 @@ import { blogs } from "@/data/blogs";
 
 import rightArrow from "@/assets/blogs/rightArrow.png";
 
+const AUTO_SLIDE_INTERVAL = 4000;
+const RESUME_AFTER_INTERACTION = 6000;
+
 export default function BlogsArticles() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
   const sliderRef = useRef<HTMLDivElement>(null);
   const rafIdRef = useRef<number | null>(null);
+  const pauseTimeoutRef = useRef<number | null>(null);
 
   const handleScroll = useCallback(() => {
     if (rafIdRef.current !== null) return;
@@ -29,15 +35,62 @@ export default function BlogsArticles() {
     });
   }, []);
 
+  const scrollToIndex = useCallback((index: number) => {
+    const el = sliderRef.current;
+    if (!el) return;
+
+    const slideWidth = el.clientWidth;
+    if (!slideWidth) return;
+
+    el.scrollTo({ left: index * slideWidth, behavior: "smooth" });
+  }, []);
+
+  const pauseAutoSlide = useCallback(() => {
+    setIsPaused(true);
+
+    if (pauseTimeoutRef.current !== null) {
+      window.clearTimeout(pauseTimeoutRef.current);
+    }
+
+    pauseTimeoutRef.current = window.setTimeout(() => {
+      setIsPaused(false);
+    }, RESUME_AFTER_INTERACTION);
+  }, []);
+
+  const goToSlide = useCallback(
+    (index: number) => {
+      pauseAutoSlide();
+      scrollToIndex(index);
+      setActiveSlide(index);
+    },
+    [pauseAutoSlide, scrollToIndex]
+  );
+
+  // Autoplay
+  useEffect(() => {
+    if (isPaused) return;
+
+    const id = window.setInterval(() => {
+      setActiveSlide((prev) => {
+        const next = (prev + 1) % blogs.length;
+        scrollToIndex(next);
+        return next;
+      });
+    }, AUTO_SLIDE_INTERVAL);
+
+    return () => window.clearInterval(id);
+  }, [isPaused, scrollToIndex]);
+
   useEffect(() => {
     return () => {
       if (rafIdRef.current !== null) cancelAnimationFrame(rafIdRef.current);
+      if (pauseTimeoutRef.current !== null)
+        window.clearTimeout(pauseTimeoutRef.current);
     };
   }, []);
 
-
   return (
-    <section data-theme="light" className="pb-20">
+    <section data-theme="light" className="pb-10">
       <div className="px-6 lg:px-30">
         {/* DESKTOP */}
         <div className="hidden lg:block">
@@ -175,6 +228,7 @@ export default function BlogsArticles() {
             ref={sliderRef}
             data-lenis-prevent
             onScroll={handleScroll}
+            onTouchStart={pauseAutoSlide}
             style={{
               WebkitOverflowScrolling: "touch",
               touchAction: "pan-x",
@@ -294,26 +348,27 @@ export default function BlogsArticles() {
             ))}
           </div>
 
-          {/* Progress Bar */}
-          <div className="mt-0 flex justify-center">
-            <div className="relative h-[4px] w-[200px] overflow-hidden rounded-full bg-[#D9D9D9]">
-              <div
-                className="
-                absolute
-                top-0
-                left-0
-                h-full
-                rounded-full
-                bg-[#00256A]
-                transition-all
-                duration-300
-              "
-                style={{
-                  width: `${100 / blogs.length}%`,
-                  transform: `translateX(${activeSlide * 100}%)`,
-                }}
+          {/* Dots */}
+          <div className="mt-2 flex justify-center gap-2">
+            {blogs.map((blog, index) => (
+              <button
+                key={blog.id}
+                type="button"
+                aria-label={`Go to slide ${index + 1}`}
+                onClick={() => goToSlide(index)}
+                className={`
+                  h-2
+                  rounded-full
+                  transition-all
+                  duration-300
+                  ${
+                    activeSlide === index
+                      ? "w-6 bg-[#00256A]"
+                      : "w-2 bg-[#D9D9D9]"
+                  }
+                `}
               />
-            </div>
+            ))}
           </div>
         </div>
       </div>
