@@ -48,32 +48,41 @@ const Leadership = () => {
 
 
   useEffect(() => {
-    if (!selectedLeader) return;
+  if (!selectedLeader) return;
 
-    scrollYRef.current = window.scrollY;
-    lenisRef.current?.stop();
+  const isMobile = window.innerWidth < 768;
+  const scrollY = window.scrollY;
 
+  lenisRef.current?.stop();
+
+  if (isMobile) {
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  } else {
     document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollYRef.current}px`;
+    document.body.style.top = `-${scrollY}px`;
     document.body.style.left = "0";
     document.body.style.right = "0";
     document.body.style.width = "100%";
+  }
 
-    if (contentRef.current) {
-      contentRef.current.scrollTop = 0;
-    }
-
-    return () => {
+  return () => {
+    if (isMobile) {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    } else {
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.left = "";
       document.body.style.right = "";
       document.body.style.width = "";
 
-      window.scrollTo(0, scrollYRef.current);
-      lenisRef.current?.start();
-    };
-  }, [selectedLeader, lenisRef]);
+      window.scrollTo(0, scrollY);
+    }
+
+    lenisRef.current?.start();
+  };
+}, [selectedLeader, lenisRef]);
 
   const openLeader = (leader: Leader) => {
     setIsExpanded(false);
@@ -151,24 +160,29 @@ const Leadership = () => {
       {/* POPUP MODAL */}
       {selectedLeader && (
         <div
-          className="
-            fixed inset-0
-            z-[999]
-            flex items-center justify-center
-            bg-black/60
-            p-5
-          "
+         className="
+          fixed
+          inset-0
+          z-[999]
+          bg-black/60
+          overflow-y-auto
+          md:flex
+          md:items-center
+          md:justify-center
+          md:p-5
+        "
           onClick={closeLeader}
         >
-          <div
+          <div data-modal
             className="
               relative
               w-full
-              md:w-screen
-              h-[80vh]
-              md:h-screen
+              min-h-screen
               bg-white
-              overflow-hidden
+              md:min-h-0
+              md:h-screen
+              md:w-[90vw]
+              md:overflow-hidden
             "
             onClick={(e) => e.stopPropagation()}
           >
@@ -188,9 +202,19 @@ const Leadership = () => {
               ×
             </button>
 
-            <div className="flex h-full gap-4 md:gap-0 flex-col md:grid md:grid-cols-2 md:h-full">
+            <div className="
+                flex
+                flex-col gap-6 md:gap-0
+                md:grid
+                md:grid-cols-2
+                md:h-full
+              ">
               {/* LEFT IMAGE */}
-              <div className="relative h-[250px] md:h-screen flex-shrink-0">
+              <div className="
+                relative
+                h-[300px]
+                md:h-screen
+              ">
                 <Image
                   src={selectedLeader.image}
                   alt={selectedLeader.name}
@@ -202,20 +226,17 @@ const Leadership = () => {
               {/* RIGHT CONTENT */}
               <div
                 ref={contentRef}
-                data-lenis-prevent
                 style={{
                   WebkitOverflowScrolling: "touch",
-                  touchAction: "pan-y",
                 }}
                 className="
                   p-10
                   md:p-12
                   lg:p-16
-                  flex-1
-                  min-h-0
-                  overflow-y-auto
-                  overscroll-contain
-                  scrollbar-thin
+              
+                  md:h-full md:mt-2
+                  md:overflow-y-auto
+                  md:scrollbar-thin
                 "
               >
                 <div className="relative w-full">

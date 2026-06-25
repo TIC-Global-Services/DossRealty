@@ -17,12 +17,16 @@ export default function SmoothScroll({ children }: Props) {
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.8,
-      lerp: 0.06,
-      smoothWheel: true,
-      syncTouch: true,
-      touchMultiplier: 1,
-    });
+  duration: 1.8,
+  lerp: 0.06,
+  smoothWheel: true,
+  syncTouch: true,
+  touchMultiplier: 1,
+
+  prevent: (node) => {
+    return node.closest("[data-modal]") !== null;
+  },
+});
 
     lenisRef.current = lenis;
 
