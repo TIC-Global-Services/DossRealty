@@ -127,7 +127,7 @@ const LivingLocation = () => {
               ref={titleRef}
               className="font-heading text-[30px] leading-[120%] tracking-[-0.02em] text-[#111111] md:text-[48px]"
             >
-              The World Shaped In <br/> Every Detail
+              A World Shaped In <br/> Every Detail
             </h2>
           </div>
 

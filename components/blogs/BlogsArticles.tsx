@@ -2,29 +2,41 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useLenis } from "@/lib/lenis-context";
 
 import { blogs } from "@/data/blogs";
 
-
 import rightArrow from "@/assets/blogs/rightArrow.png";
-
 
 export default function BlogsArticles() {
   const lenisRef = useLenis();
 
   const [activeSlide, setActiveSlide] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const rafIdRef = useRef<number | null>(null);
 
-   const handleScroll = () => {
-    if (!sliderRef.current) return;
+  const handleScroll = useCallback(() => {
+    if (rafIdRef.current !== null) return;
 
-    const scrollLeft = sliderRef.current.scrollLeft;
-    const slideWidth = sliderRef.current.clientWidth;
+    rafIdRef.current = requestAnimationFrame(() => {
+      rafIdRef.current = null;
 
-    setActiveSlide(Math.round(scrollLeft / slideWidth));
-  };
+      const el = sliderRef.current;
+      if (!el) return;
+
+      const slideWidth = el.clientWidth;
+      if (!slideWidth) return;
+
+      setActiveSlide(Math.round(el.scrollLeft / slideWidth));
+    });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (rafIdRef.current !== null) cancelAnimationFrame(rafIdRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     const el = sliderRef.current;
@@ -41,13 +53,13 @@ export default function BlogsArticles() {
       el.removeEventListener("touchstart", stop);
       el.removeEventListener("touchend", start);
       el.removeEventListener("touchcancel", start);
+      start();
     };
   }, [lenisRef]);
-  
+
   return (
     <section data-theme="light" className="pb-20">
       <div className="px-6 lg:px-30">
-
         {/* DESKTOP */}
         <div className="hidden lg:block">
           {blogs.map((blog) => (
@@ -184,10 +196,15 @@ export default function BlogsArticles() {
             ref={sliderRef}
             data-lenis-prevent
             onScroll={handleScroll}
+            style={{
+              WebkitOverflowScrolling: "touch",
+              transform: "translateZ(0)",
+            }}
             className="
               flex
               overflow-x-auto
               overflow-y-hidden
+              overscroll-x-contain
               snap-x
               snap-mandatory
               touch-pan-x

@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import Image, {
-  StaticImageData,
-} from "next/image";
+import { useEffect, useRef, useState } from "react";
+import Image, { StaticImageData } from "next/image";
+import { useLenis } from "@/lib/lenis-context";
 
 import founder1 from "@/assets/about/FounderSample.jpg";
 import founder2 from "@/assets/about/FounderSample.jpg";
@@ -37,11 +36,39 @@ His approach emphasizes disciplined growth, value preservation, and the creation
   },
 ];
 
+const DESCRIPTION_PREVIEW_LENGTH = 450;
+
 const Leadership = () => {
-  const [selectedLeader, setSelectedLeader] =
-    useState<Leader | null>(null);
-  const [isExpanded, setIsExpanded] =
-    useState<boolean>(false);
+  const lenisRef = useLenis();
+
+  const [selectedLeader, setSelectedLeader] = useState<Leader | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!selectedLeader) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    lenisRef.current?.stop();
+
+  
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      lenisRef.current?.start();
+    };
+  }, [selectedLeader, lenisRef]);
+
+  const openLeader = (leader: Leader) => {
+    setIsExpanded(false);
+    setSelectedLeader(leader);
+  };
+
+  const closeLeader = () => setSelectedLeader(null);
 
   return (
     <>
@@ -59,56 +86,51 @@ const Leadership = () => {
 
             {/* RIGHT SIDE */}
             <div className="grid gap-5 sm:grid-cols-2">
-              {leaders.map(
-                (leader, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setSelectedLeader(leader);
-                      setIsExpanded(false);
-                    }}
+              {leaders.map((leader, index) => (
+                <button
+                  key={index}
+                  onClick={() => openLeader(leader)}
+                  className="
+                    group
+                    relative
+                    overflow-hidden
+                    bg-[#D9D9D9]
+                    text-left
+                    md:rounded-none
+                    cursor-pointer
+                  "
+                >
+                  {/* Image */}
+                  <div className="relative h-[388px] sm:h-[420px] md:h-[450px]">
+                    <Image
+                      src={leader.image}
+                      alt={leader.name}
+                      fill
+                      className="object-cover transition duration-700 group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Bottom Blur Content */}
+                  <div
                     className="
-                      group
-                      relative
-                      overflow-hidden
-                      bg-[#D9D9D9]
-                      text-left
-                      md:rounded-none
-                      cursor-pointer
+                      absolute bottom-0 left-0
+                      w-full
+                      bg-white/10
+                      px-5 py-4
+                      md:px-6 md:py-5 backdrop-blur-md
+                      md:backdrop-blur-xl
                     "
                   >
-                    {/* Image */}
-                    <div className="relative h-[388px] sm:h-[420px] md:h-[450px]">
-                      <Image
-                        src={leader.image}
-                        alt={leader.name}
-                        fill
-                        className="object-cover transition duration-700 group-hover:scale-105"
-                      />
-                    </div>
+                    <h3 className="text-center leading-[23px] md:leading-none text-[16px] md:text-[28px] font-semibold text-white">
+                      {leader.name}
+                    </h3>
 
-                    {/* Bottom Blur Content */}
-                    <div
-                      className="
-                        absolute bottom-0 left-0
-                        w-full
-                        bg-white/10
-                        px-5 py-4
-                        md:px-6 md:py-5 backdrop-blur-md
-                        md:backdrop-blur-xl
-                      "
-                    >
-                      <h3 className="text-center leading-[23px] md:leading-none text-[16px] md:text-[28px] font-semibold text-white">
-                        {leader.name}
-                      </h3>
-
-                      <p className="text-center leading-[16px] md:leading-[30px] text-[13px] md:text-[20px] text-white/90">
-                        {leader.role}
-                      </p>
-                    </div>
-                  </button>
-                )
-              )}
+                    <p className="text-center leading-[16px] md:leading-[30px] text-[13px] md:text-[20px] text-white/90">
+                      {leader.role}
+                    </p>
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -124,27 +146,23 @@ const Leadership = () => {
             bg-black/60
             p-5
           "
-          onClick={() =>
-            setSelectedLeader(null)
-          }
+          onClick={closeLeader}
         >
           <div
             className="
               relative
               w-full
               md:w-screen
-              h-[70vh]
+              h-[60vh]
               md:h-screen
-              md:overflow-hidden
               bg-white
+              overflow-hidden
             "
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close */}
             <button
-              onClick={() =>
-                setSelectedLeader(null)
-              }
+              onClick={closeLeader}
               className="
                 absolute
                 right-4 top-4
@@ -158,30 +176,31 @@ const Leadership = () => {
               ×
             </button>
 
-           <div className="flex h-full gap-10 flex-col md:gap-0 md:grid md:grid-cols-2">
+            <div className="flex h-full gap-10 md:gap-0 flex-col md:grid md:grid-cols-2 md:h-full">
               {/* LEFT IMAGE */}
-               <div className="relative h-[250px] shrink-0 md:h-screen">
+              <div className="relative h-[250px] md:h-screen flex-shrink-0">
                 <Image
-                  src={
-                    selectedLeader.image
-                  }
-                  alt={
-                    selectedLeader.name
-                  }
+                  src={selectedLeader.image}
+                  alt={selectedLeader.name}
                   fill
                   className="object-cover"
                 />
               </div>
 
               {/* RIGHT CONTENT */}
-               <div
+              <div
+                ref={contentRef}
+                data-lenis-prevent
                 className="
-                  flex-1
-                  overflow-y-auto
                   p-10
                   md:p-12
                   lg:p-16
+                  flex-1
+                  min-h-0
+                  overflow-y-auto
+                  overscroll-contain
                   scrollbar-thin
+                  [-webkit-overflow-scrolling:touch]
                 "
               >
                 <div className="relative w-full">
@@ -244,49 +263,31 @@ const Leadership = () => {
 
                   {/* Description */}
                   <div className="mt-4 md:mt-8">
-                    <p
-                      className="
-                      text-[13px]
-                      leading-[20px]
-                      md:text-[18px]
-                      font-small
-                      tracking-normal
-                      md:leading-[1.8]
-                      text-[#00000080]
-                      whitespace-pre-line
-                    "
-                    >
+                    <p className="text-[13px] leading-[20px] md:text-[18px] font-small md:leading-[1.8] text-[#00000080] whitespace-pre-line">
                       {isExpanded
                         ? selectedLeader.description
                         : `${selectedLeader.description.slice(
-                          0,
-                          450
-                        )}...`}
+                            0,
+                            DESCRIPTION_PREVIEW_LENGTH
+                          )}...`}
                     </p>
 
                     {selectedLeader.description.length >
-                      450 && (
-                        <button
-                          onClick={() =>
-                            setIsExpanded(
-                              !isExpanded
-                            )
-                          }
-                          className="
+                      DESCRIPTION_PREVIEW_LENGTH && (
+                      <button
+                        onClick={() => setIsExpanded((prev) => !prev)}
+                        className="
                           mt-5
                           text-[#00256A]
                           font-semibold
-                          text-[14px]
-                          md:text-[16px]
+                          text-[16px]
                           hover:underline
                           cursor-pointer
                         "
-                        >
-                          {isExpanded
-                            ? "Read Less"
-                            : "Read More"}
-                        </button>
-                      )}
+                      >
+                        {isExpanded ? "Read Less" : "Read More"}
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

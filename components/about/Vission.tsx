@@ -153,7 +153,7 @@ const Vission = () => {
           className="
             font-heading
             text-[30px]
-            leading-[36px]
+            leading-[28px]
             tracking-normal
             md:text-[60px]
             md:leading-[1.1]
