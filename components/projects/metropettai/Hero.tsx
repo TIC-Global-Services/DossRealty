@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import gsap from "gsap";
 
-import heroImg from "@/assets/projects/metropettai/heroBg.png";
+import heroImg from "@/assets/projects/metropettai/galleryImg3.jpg";
 
 
 const nameValidation = z
@@ -138,7 +138,7 @@ const Hero = () => {
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/10" />
+      <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
       <div
@@ -275,7 +275,7 @@ const Hero = () => {
                   Luxury Living
                 </span>
 
-                <span className="h-[4px] w-[4px] rounded-full bg-[#D2B48C]" />
+                <span className="h-[4px] w-[4px] rounded-full bg-[#C7A85E]" />
 
                 <span>
                   Chennai, TN

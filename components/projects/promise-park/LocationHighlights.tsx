@@ -428,6 +428,7 @@ const LocationHighlights =
                               rounded-full
                               bg-black
                               text-white
+                              cursor-pointer
                             "
                           >
                             <span

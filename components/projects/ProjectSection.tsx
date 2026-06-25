@@ -10,8 +10,11 @@ import Image, {
 } from "next/image";
 import { motion } from "framer-motion";
 
+
 import project1 from "@/assets/projects/projectImg1.jpg";
 import project2 from "@/assets/projects/projectImg2.jpg";
+import promiseParkImg from "@/assets/projects/promisePark/galleryImg1.png";
+import metropettaiImg from "@/assets/projects/metropettai/galleryImg2.jpg";
 import plotsIcon from "@/assets/projects/plotImg.png";
 import acreIcon from "@/assets/projects/mapImg.png";
 import villaIcon from "@/assets/projects/villaIcon.png";
@@ -40,7 +43,7 @@ const activeProjects: Project[] = [
       "From ₹15L Onwards in Kanchipuram",
     text2:
       "Indulge in the Divine Aura of Kanchipuram, Alluring Plots from 443 to 2348 SQFT",
-    image: project1,
+    image: promiseParkImg,
   },
   {
     title: "Metropettai",
@@ -48,7 +51,7 @@ const activeProjects: Project[] = [
       "From ₹45L Onwards in  Poonamallee, chennai",
     text2:
       "Connected West Chennai address with  luxury plots from 711 to 2,400 SQFT",
-    image: project2,
+    image: metropettaiImg,
   }
 ];
 
@@ -251,7 +254,7 @@ useEffect(() => {
         </div>
 
         {/* PROJECTS */}
-        <div className="grid gap-5 lg:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2">
           {projects.map(
             (project, index) => {
               const isClickable =
