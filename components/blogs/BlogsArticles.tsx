@@ -8,7 +8,7 @@ import { blogs } from "@/data/blogs";
 
 import rightArrow from "@/assets/blogs/rightArrow.png";
 
-const AUTO_SLIDE_INTERVAL = 4000;
+const AUTO_SLIDE_INTERVAL = 2000;
 const RESUME_AFTER_INTERACTION = 6000;
 
 export default function BlogsArticles() {
