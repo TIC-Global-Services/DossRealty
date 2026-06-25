@@ -149,15 +149,15 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <h3 className="text-[#262B35] text-sm md:text-[18px] md:leading-[20px] font-[300] mb-1">
-                  Get in touch
+                <h3 className="text-[#262B35] text-sm md:text-[18px] md:leading-[20px] font-[300] mb-1.5">
+                  Get in touch / WhatsApp
                 </h3>
 
                 <a
-                  href="tel:+12345678910"
+                  href="tel:+919962996977"
                   className="block text-[#717580] text-sm md:text-[18px] md:leading-[20px] font-heading font-[300] mb-3"
                 >
-                  +1 234 567 8910
+                  +91 9962996977
                 </a>
 
                 <a

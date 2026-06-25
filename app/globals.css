@@ -117,7 +117,7 @@
 
 html,
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   scroll-behavior: smooth;
 }
 
@@ -160,7 +160,7 @@ body {
   }
 }
 
-/* ===== LENIS ===== */
+/* ===== LENIS =====
 
 html.lenis,
 html.lenis body {
@@ -186,7 +186,7 @@ html.lenis body {
 
 .testimonial-swiper .swiper-wrapper {
   align-items: stretch;
-}
+} */
 
 /* ===== BuildTrust Animation ===== */
 
