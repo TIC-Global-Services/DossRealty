@@ -49,11 +49,11 @@ export default function RootLayout({
       >
         {/* <LenisProvider> */}
           <ScrollToTop />
-          {/* <SmoothScroll> */}
+          <SmoothScroll>
             <Navbar />
             {children}
             <Footer />
-          {/* </SmoothScroll> */}
+          </SmoothScroll>
         {/* </LenisProvider> */}
       </body>
     </html>

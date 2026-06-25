@@ -20,6 +20,9 @@ gsap.registerPlugin(ScrollTrigger);
 const PIN_DISTANCE = 2000;
 const MOBILE_PIN_DISTANCE = 500;
 
+const HOLD_DISTANCE = 600;
+const MOBILE_HOLD_DISTANCE = 150;
+
 export default function ConnectedToChennai({
   projectLocation,
   locationData,
@@ -46,7 +49,9 @@ export default function ConnectedToChennai({
     const setWrapperHeight = () => {
       const wrapper = pinWrapperRef.current;
       const activeSection = isMobile() ? mobileSectionRef.current : sectionRef.current;
-      const pinDistance = isMobile() ? MOBILE_PIN_DISTANCE : PIN_DISTANCE;
+      const pinDistance = isMobile()
+        ? MOBILE_PIN_DISTANCE + MOBILE_HOLD_DISTANCE
+        : PIN_DISTANCE + HOLD_DISTANCE;
 
       if (wrapper && activeSection) {
         wrapper.style.minHeight = `${activeSection.offsetHeight + pinDistance}px`;
@@ -57,14 +62,15 @@ export default function ConnectedToChennai({
       setWrapperHeight();
 
       if (!isMobile()) {
-        gsap.to(carRef.current, {
-          x: "83vw",
-          ease: "none",
+        const totalDistance = PIN_DISTANCE + HOLD_DISTANCE;
+        const movementFraction = PIN_DISTANCE / totalDistance;
+
+        const tl = gsap.timeline({
           scrollTrigger: {
             id: "connected-to-chennai",
             trigger: sectionRef.current,
             start: "top top",
-            end: `+=${PIN_DISTANCE}`,
+            end: `+=${totalDistance}`,
             scrub: true,
             pin: true,
             pinType: "fixed",
@@ -72,23 +78,32 @@ export default function ConnectedToChennai({
             invalidateOnRefresh: true,
             onUpdate: (self) => {
               if (!isMountedRef.current) return;
-              const progress = self.progress;
-              if (progress < 0.34) setActiveMinute(0);
-              else if (progress < 0.64) setActiveMinute(5);
-              else if (progress < 0.92) setActiveMinute(10);
+              const carProgress = Math.min(self.progress / movementFraction, 1);
+              if (carProgress < 0.34) setActiveMinute(0);
+              else if (carProgress < 0.64) setActiveMinute(5);
+              else if (carProgress < 0.92) setActiveMinute(10);
               else setActiveMinute(20);
             },
           },
         });
-      } else {
-        gsap.to(mobilePlaneRef.current, {
-          x: "78vw",
+
+        tl.to(carRef.current, {
+          x: "85vw",
           ease: "none",
+          duration: PIN_DISTANCE,
+        });
+
+        tl.to({}, { duration: HOLD_DISTANCE });
+      } else {
+        const totalDistance = MOBILE_PIN_DISTANCE + MOBILE_HOLD_DISTANCE;
+        const movementFraction = MOBILE_PIN_DISTANCE / totalDistance;
+
+        const tl = gsap.timeline({
           scrollTrigger: {
             id: "connected-to-chennai-mobile",
             trigger: mobileSectionRef.current,
             start: "top top",
-            end: `+=${MOBILE_PIN_DISTANCE}`,
+            end: `+=${totalDistance}`,
             scrub: true,
             pin: true,
             pinSpacing: true,
@@ -96,14 +111,22 @@ export default function ConnectedToChennai({
             invalidateOnRefresh: true,
             onUpdate: (self) => {
               if (!isMountedRef.current) return;
-              const progress = self.progress;
-              if (progress < 0.34) setActiveMinute(0);
-              else if (progress < 0.64) setActiveMinute(5);
-              else if (progress < 0.94) setActiveMinute(10);
+              const planeProgress = Math.min(self.progress / movementFraction, 1);
+              if (planeProgress < 0.35) setActiveMinute(0);
+              else if (planeProgress < 0.68) setActiveMinute(5);
+              else if (planeProgress < 0.98) setActiveMinute(10);
               else setActiveMinute(20);
             },
           },
         });
+
+        tl.to(mobilePlaneRef.current, {
+          x: "78vw",
+          ease: "none",
+          duration: MOBILE_PIN_DISTANCE,
+        });
+
+        tl.to({}, { duration: MOBILE_HOLD_DISTANCE });
       }
 
       requestAnimationFrame(() => ScrollTrigger.refresh());
