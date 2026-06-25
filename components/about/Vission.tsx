@@ -16,6 +16,9 @@ const Vission = () => {
   // Desktop pin
   const pinWrapRef = useRef<HTMLDivElement>(null);
 
+  // Mobile pin
+  const mobilePinWrapRef = useRef<HTMLDivElement>(null);
+
   // Separate refs for animation
   const mobileColorImageRef =
     useRef<HTMLDivElement>(null);
@@ -66,26 +69,6 @@ const Vission = () => {
         });
       }
 
-      // MOBILE IMAGE REVEAL
-      gsap.fromTo(
-        mobileColorImageRef.current,
-        {
-          clipPath:
-            "inset(100% 0% 0% 0%)",
-        },
-        {
-          clipPath:
-            "inset(0% 0% 0% 0%)",
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "+=50%",
-            scrub: 1,
-          },
-        }
-      );
-
       // DESKTOP IMAGE REVEAL
       gsap.fromTo(
         desktopColorImageRef.current,
@@ -117,6 +100,35 @@ const Vission = () => {
             scrub: true,
           });
         },
+
+        "(max-width: 767px)": () => {
+          ScrollTrigger.create({
+            trigger: mobilePinWrapRef.current,
+            start: "top top",
+            end: "bottom bottom",
+            pin: true,
+            scrub: true,
+          });
+
+          gsap.fromTo(
+            mobileColorImageRef.current,
+            {
+              clipPath:
+                "inset(100% 0% 0% 0%)",
+            },
+            {
+              clipPath:
+                "inset(0% 0% 0% 0%)",
+              ease: "none",
+              scrollTrigger: {
+                trigger: mobilePinWrapRef.current,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1,
+              },
+            }
+          );
+        },
       });
     }, sectionRef);
 
@@ -131,7 +143,12 @@ const Vission = () => {
       {/* TOP CONTENT */}
       <div
         ref={textRef}
-        className="mx-auto max-w-[900px] px-5 py-10 md:py-16 text-center"
+        className="
+          mx-auto max-w-[900px] px-5
+          h-auto flex flex-col items-center justify-center overflow-hidden
+          md:h-auto md:py-16
+          text-center
+        "
       >
         <p
           className="
@@ -201,43 +218,33 @@ const Vission = () => {
         </h2>
       </div>
 
-      {/* MOBILE */}
-      <div className="block md:hidden relative h-[40vh] overflow-hidden">
+      {/* MOBILE  */}
+      <div className="block md:hidden h-[50vh] overflow-hidden">
         <div
-          className="
-            sticky
-            top-0
-            h-[40vh]
-            flex
-            items-center
-            justify-center
-            bg-white
-            overflow-hidden
-          "
+          ref={mobilePinWrapRef}
+          className="relative h-[50vh] overflow-hidden"
         >
-          <div className="relative h-[34vh] min-h-[180px] w-full">
-            {/* Outline */}
+          {/* Outline */}
+          <Image
+            src={missionOutlineImg}
+            alt="Mission Sketch"
+            fill
+            priority
+            className="object-contain"
+          />
+
+          {/* Color Reveal */}
+          <div
+            ref={mobileColorImageRef}
+            className="absolute inset-0"
+          >
             <Image
-              src={missionOutlineImg}
-              alt="Mission Sketch"
+              src={missionColorImg}
+              alt="Mission Color"
               fill
               priority
               className="object-contain"
             />
-
-            {/* Color Reveal */}
-            <div
-              ref={mobileColorImageRef}
-              className="absolute inset-0"
-            >
-              <Image
-                src={missionColorImg}
-                alt="Mission Color"
-                fill
-                priority
-                className="object-contain"
-              />
-            </div>
           </div>
         </div>
       </div>

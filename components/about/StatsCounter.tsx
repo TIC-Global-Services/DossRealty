@@ -40,7 +40,7 @@ const StatsCounter = () => {
   return (
     <section data-theme="light"
       ref={ref}
-      className="py-10 md:py-24"
+      className="py-2 md:py-24"
     >
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
         <div className="grid grid-cols-1 gap-14 text-center sm:grid-cols-3 md:gap-10">
