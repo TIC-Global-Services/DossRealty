@@ -1,12 +1,16 @@
 "use client";
 
 import { createContext, useContext, useRef, RefObject } from "react";
-import type Lenis from "lenis";
 
-const LenisContext = createContext<RefObject<Lenis | null> | null>(null);
+type ScrollController = {
+  stop: () => void;
+  start: () => void;
+} | null;
+
+const LenisContext = createContext<RefObject<ScrollController> | null>(null);
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
-  const lenisRef = useRef<Lenis | null>(null);
+  const lenisRef = useRef<ScrollController>(null);
 
   return (
     <LenisContext.Provider value={lenisRef}>
