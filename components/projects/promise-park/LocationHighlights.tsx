@@ -9,9 +9,9 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import townsideImg from "@/assets/projects/metropettai/location1.jpg";
-import readyDesignImg from "@/assets/projects/metropettai/location2.png";
-import growthCorridorImg from "@/assets/projects/metropettai/location3.png";
+import townsideImg from "@/assets/projects/promisePark/galleryImg4.png";
+import readyDesignImg from "@/assets/projects/promisePark/galleryImg1.png";
+import growthCorridorImg from "@/assets/projects/promisePark/galleryImg2.png";
 
 const highlights = [
   {
@@ -36,12 +36,8 @@ const highlights = [
 
 const LocationHighlights =
   () => {
-    const [
-      activeIndex,
-      setActiveIndex,
-    ] = useState<
-      number | null
-    >(0);
+     const [activeIndex, setActiveIndex] = useState<number | null>(0);
+      const [imageIndex, setImageIndex] = useState(0);
 
     const sectionRef =
       useRef<HTMLDivElement>(
@@ -63,17 +59,13 @@ const LocationHighlights =
         null
       );
 
-    const toggleAccordion =
-      (
-        index: number
-      ) => {
-        setActiveIndex(
-          (prev) =>
-            prev === index
-              ? null
-              : index
-        );
-      };
+    const toggleAccordion = (index: number) => {
+      setImageIndex(index);
+
+      setActiveIndex((prev) =>
+        prev === index ? null : index
+      );
+    };
 
     useLayoutEffect(() => {
       gsap.registerPlugin(
@@ -464,8 +456,8 @@ const LocationHighlights =
               "
             >
               <Image
-                src={highlights[activeIndex ?? 0].image}
-                alt={highlights[activeIndex ?? 0].title}
+                src={highlights[imageIndex].image}
+                alt={highlights[imageIndex].title}
                 fill
                 priority
                 className="object-cover transition-all duration-500"

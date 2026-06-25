@@ -9,9 +9,9 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import connectivityImg from "@/assets/projects/metropettai/location1.jpg";
-import floodImg from "@/assets/projects/metropettai/location4.png";
-import growthValueImg from "@/assets/projects/metropettai/location5.png";
+import connectivityImg from "@/assets/projects/metropettai/galleryimg4.jpg";
+import floodImg from "@/assets/projects/metropettai/galleryImg2.jpg";
+import growthValueImg from "@/assets/projects/metropettai/galleryImg3.jpg";
 
 const highlights = [
   // {
@@ -42,12 +42,8 @@ const highlights = [
 
 const LocationHighlights =
   () => {
-    const [
-      activeIndex,
-      setActiveIndex,
-    ] = useState<
-      number | null
-    >(0);
+    const [activeIndex, setActiveIndex] = useState<number | null>(0);
+    const [imageIndex, setImageIndex] = useState(0);
 
     const sectionRef =
       useRef<HTMLDivElement>(
@@ -69,17 +65,13 @@ const LocationHighlights =
         null
       );
 
-    const toggleAccordion =
-      (
-        index: number
-      ) => {
-        setActiveIndex(
-          (prev) =>
-            prev === index
-              ? null
-              : index
-        );
-      };
+    const toggleAccordion = (index: number) => {
+      setImageIndex(index);
+
+      setActiveIndex((prev) =>
+        prev === index ? null : index
+      );
+    };
 
     useLayoutEffect(() => {
       gsap.registerPlugin(
@@ -93,12 +85,12 @@ const LocationHighlights =
               gsap.timeline(
                 {
                   scrollTrigger:
-                    {
-                      trigger:
-                        sectionRef.current,
-                      start:
-                        "top 75%",
-                    },
+                  {
+                    trigger:
+                      sectionRef.current,
+                    start:
+                      "top 75%",
+                  },
                 }
               );
 
@@ -107,7 +99,7 @@ const LocationHighlights =
               headerRef
                 .current
                 ?.children ||
-                [],
+              [],
               {
                 y: 40,
                 opacity: 0,
@@ -123,7 +115,7 @@ const LocationHighlights =
               accordionRef
                 .current
                 ?.children ||
-                [],
+              [],
               {
                 y: 60,
                 opacity: 0,
@@ -183,7 +175,7 @@ const LocationHighlights =
                 md:tracking-[-1.44px]
               "
             >
-              <span className="block md:hidden">Building Spaces, <br/> Creating Trust</span>
+              <span className="block md:hidden">Building Spaces, <br /> Creating Trust</span>
               <span className="hidden md:block">Building Spaces, Creating Trust</span>
             </h2>
 
@@ -241,10 +233,9 @@ const LocationHighlights =
                             leading-[35px]
                             transition-all
                             duration-300
-                            ${
-                              isOpen
-                                ? "font-medium text-[#111]"
-                                : "text-[#8A8A8A]"
+                            ${isOpen
+                              ? "font-medium text-[#111]"
+                              : "text-[#8A8A8A]"
                             }
                           `}
                         >
@@ -282,10 +273,9 @@ const LocationHighlights =
                         overflow-hidden
                         transition-all
                         duration-500
-                        ${
-                          isOpen
-                            ? "max-h-[600px]"
-                            : "max-h-0"
+                        ${isOpen
+                          ? "max-h-[600px]"
+                          : "max-h-0"
                         }
                       `}
                     >
@@ -390,10 +380,9 @@ const LocationHighlights =
                                 duration-300
                                 md:text-[30px]
                                 md:leading-[35px]
-                                ${
-                                  isOpen
-                                    ? "font-medium text-[#111]"
-                                    : "text-[#C9C9C9]"
+                                ${isOpen
+                                  ? "font-medium text-[#111]"
+                                  : "text-[#C9C9C9]"
                                 }
                               `}
                             >
@@ -434,6 +423,7 @@ const LocationHighlights =
                               rounded-full
                               bg-black
                               text-white
+                              cursor-pointer
                             "
                           >
                             <span
@@ -469,8 +459,8 @@ const LocationHighlights =
               "
             >
               <Image
-                src={highlights[activeIndex ?? 0].image}
-                alt={highlights[activeIndex ?? 0].title}
+                src={highlights[imageIndex].image}
+                alt={highlights[imageIndex].title}
                 fill
                 priority
                 className="object-cover transition-all duration-500"
