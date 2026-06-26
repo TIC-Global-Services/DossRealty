@@ -33,10 +33,10 @@ const Hero = () => {
           className="
             font-small
             text-[#111111]
-            text-[24px]
-            md:text-[60px]
+            text-[24px] md:text-[42px]
+            lg:text-[60px]
             leading-[66px]
-            md:tracking-[-1.8px]
+            tracking-[-1.8px]
           "
         >
           Learn Before You Invest
@@ -58,13 +58,13 @@ const Hero = () => {
             ease: "easeOut",
           }}
           className="max-w-[350px]
-            mx-auto
-            md:mt-4
+            mx-auto mt-2
+            lg:mt-4
             md:max-w-[600px]
             text-[#666666]
-            text-[13px] leading-[16px]
-            md:text-[16px] 
-            md:leading-[24px]
+            text-[13px] leading-[16px] md:text-[14px] md:leading-[24px]
+            lg:text-[16px] 
+            lg:leading-[24px]
             tracking-[-0.48px]
           "
         >

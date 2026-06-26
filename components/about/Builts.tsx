@@ -34,10 +34,10 @@ const Builts = () => {
 
   return (
     <>
-      <section data-theme="dark" className="py-16 md:py-20">
+      <section data-theme="dark" className="py-14 lg:py-20">
         <div className="mx-auto px-0 md:px-8 lg:px-10">
           {/* IMAGE SECTION */}
-          <div className="relative group h-screen overflow-hidden md:rounded-[10px] md:h-[400px]">
+          <div className="relative group h-screen overflow-hidden md:rounded-[10px] md:h-[300px] lg:h-[400px]">
             <Image
               src={builtImg}
               alt="Built Spaces"
@@ -78,7 +78,7 @@ const Builts = () => {
                 className="
                 w-full
                 max-w-[260px]
-                md:max-w-[500px]
+                lg:max-w-[500px]
                 text-center
                 md:text-left
                 text-white
@@ -90,8 +90,8 @@ const Builts = () => {
                   font-[300] tracking-normal
                   text-[20px]
                   leading-[24px]
-                  md:text-[30px]
-                  md:leading-[35px]
+                  lg:text-[30px]
+                  lg:leading-[35px]
                   text-white
                 "
                 >
@@ -104,12 +104,12 @@ const Builts = () => {
                 </h2>
 
                 <p
-                  className="font-[300]
-                  mt-5
+                  className="font-[300] mt-2
+                  lg:mt-5
                   text-[16px] tracking-normal
                   leading-[21px]
-                  md:text-[18px]
-                  md:leading-[21px]
+                  lg:text-[18px]
+                  lg:leading-[21px]
                   text-[#F5F4F2]
                 "
                 >
@@ -131,10 +131,10 @@ const Builts = () => {
                     onClick={() => setOpen(true)}
                     className="
                       relative
-                      overflow-hidden
+                      overflow-hidden h-[40px] w-[120px]
                       flex
-                      h-[43px]
-                      w-[140px]
+                      lg:h-[43px]
+                      lg:w-[140px]
                       items-center
                       justify-center
                       rounded-full

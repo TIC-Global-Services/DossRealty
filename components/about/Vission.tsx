@@ -146,7 +146,7 @@ const Vission = () => {
         className="
           mx-auto max-w-[900px] px-5
           h-auto flex flex-col items-center justify-center overflow-hidden
-          md:h-auto md:py-16
+          md:h-auto py-8 lg:py-16
           text-center
         "
       >
@@ -156,7 +156,7 @@ const Vission = () => {
             mb-4
             text-[13px]
             font-semibold
-            md:text-[16px]
+            lg:text-[16px]
             uppercase
             tracking-[1.6px]
             text-[#111111]
@@ -172,9 +172,9 @@ const Vission = () => {
             text-[30px]
             leading-[28px]
             tracking-normal
-            md:text-[60px]
-            md:leading-[1.1]
-            md:tracking-[-2.3px]
+            lg:text-[60px]
+            lg:leading-[1.1]
+            lg:tracking-[-2.3px]
             text-[#111111]
           "
         >

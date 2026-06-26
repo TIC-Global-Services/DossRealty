@@ -88,7 +88,8 @@ const LivingLocation = () => {
   }, []);
 
   return (
-    <section data-theme="dark"
+    <section
+      data-theme="dark"
       ref={sectionRef}
       className="relative overflow-visible bg-white py-0"
     >
@@ -101,18 +102,20 @@ const LivingLocation = () => {
           height={500}
           priority
           className="
-            h-auto
-            w-full -translate-y-[40%]
-            md:-translate-y-[80%]
-            object-cover
-            opacity-100
-          "
+          h-auto
+          w-full
+          -translate-y-[40%]
+          md:-translate-y-[60%]
+          lg:-translate-y-[80%]
+          object-cover
+          opacity-100
+        "
         />
       </div>
 
       {/* TOP CONTENT */}
-      <div className="relative z-10 mx-auto max-w-[1440px] px-5 pb-8 pt-10 md:px-8 md:pb-6 md:pt-14 lg:px-10">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-5 pb-8 pt-10 md:px-8 md:pb-8 md:pt-12 lg:px-10">
+        <div className="flex flex-col gap-8 md:flex-row md:justify-between lg:flex-row lg:items-start lg:justify-between">
 
           {/* LEFT SIDE */}
           <div className="max-w-[650px]">
@@ -125,9 +128,9 @@ const LivingLocation = () => {
 
             <h2
               ref={titleRef}
-              className="font-heading text-[30px] leading-[120%] tracking-[-0.02em] text-[#111111] md:text-[48px]"
+              className="font-heading text-[30px] leading-[120%] tracking-[-0.02em] text-[#111111] md:text-[32px] lg:text-[48px]"
             >
-              A World Shaped In <br/> Every Detail
+              A World Shaped In <br /> Every Detail
             </h2>
           </div>
 
@@ -135,24 +138,25 @@ const LivingLocation = () => {
           <div className="max-w-[450px] lg:pt-4">
             <p
               ref={descRef}
-              className="font-body text-[15px] leading-[165%] text-[#666666] md:w-[50ch] md:text-[16px]"
+              className="font-body text-[15px] leading-[165%] text-[#666666] md:w-[38ch] md:text-[14px] lg:text-[16px] lg:w-[50ch]"
             >
-              Artistic Engineering is the discipline at the heart of DOSS. Guided by distinctive design, meticulous 
-              craftsmanship, and uncompromising quality, every development is considered in full and created to hold its 
-              character, relevance, and value over time.
+              Artistic Engineering is the discipline at the heart of DOSS.
+              Guided by distinctive design, meticulous craftsmanship, and
+              uncompromising quality, every development is considered in full and
+              created to hold its character, relevance, and value over time.
             </p>
           </div>
         </div>
       </div>
 
       {/* IMAGE GRID */}
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
         {locations.map((item, index) => (
           <div
             key={index}
             className="group relative overflow-hidden"
           >
-            <div className="relative h-[50vh] overflow-hidden md:h-screen">
+            <div className="relative h-[50vh] overflow-hidden md:h-[100vh] lg:h-screen">
 
               {/* IMAGE */}
               <Image
@@ -160,11 +164,11 @@ const LivingLocation = () => {
                 alt={item.title}
                 fill
                 className="
-                  object-cover
-                  transition-transform
-                  duration-700
-                  group-hover:scale-105
-                "
+                object-cover
+                transition-transform
+                duration-700
+                group-hover:scale-105
+              "
               />
 
               {/* DARK OVERLAY */}
@@ -172,7 +176,7 @@ const LivingLocation = () => {
 
               {/* CENTER TITLE */}
               <div className="absolute inset-0 z-10 flex items-start justify-center pt-10">
-                <h2 className="font-heading text-center text-4xl text-white md:text-5xl">
+                <h2 className="font-heading text-center text-4xl text-white md:text-[44px] lg:text-5xl">
                   {item.title}
                 </h2>
               </div>
@@ -180,25 +184,26 @@ const LivingLocation = () => {
               {/* LOCATION */}
               <div
                 className="
-                  absolute
-                  bottom-6
-                  right-5
-                  z-10
-                  flex
-                  items-center
-                  gap-2
-                  lg:bottom-10
-                  lg:left-1/2
-                  lg:right-auto
-                  lg:-translate-x-1/2
-                "
+                absolute
+                bottom-6
+                right-5
+                z-10
+                flex
+                items-center
+                gap-2
+                lg:bottom-10
+                lg:left-1/2
+                lg:right-auto
+                lg:-translate-x-1/2
+              "
               >
                 <MapPin className="h-5 w-5 text-white" />
 
-                <p className="font-body whitespace-nowrap text-sm text-white md:text-base">
+                <p className="font-body whitespace-nowrap text-sm text-white md:text-[15px] lg:text-base">
                   {item.location}
                 </p>
               </div>
+
             </div>
           </div>
         ))}

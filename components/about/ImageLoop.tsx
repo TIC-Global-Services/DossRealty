@@ -224,7 +224,7 @@ const ImageLoop = () => {
                       className="
                         uppercase
                         text-[14px]
-                        md:text-[18px]
+                        lg:text-[18px]
                         text-[#666]
                       "
                     >
@@ -233,10 +233,10 @@ const ImageLoop = () => {
 
                     <p
                       className="
-                        mt-2
+                        mt-1
                         text-[15px]
-                        md:text-[18px]
-                        leading-[140%]
+                        lg:text-[18px]
+                        leading-[21px]
                         text-[#777]
                       "
                     >

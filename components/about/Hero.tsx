@@ -100,8 +100,10 @@ const Hero = () => {
                 text-white
                 text-[36px]
                 leading-[40px]
-                md:leading-[1.1]
-                md:text-[60px]
+                md:text-[48px]
+                md:leading-[48px]
+                lg:leading-[1.1]
+                lg:text-[60px]
                 uppercase
                 font-heading
                 font-[300]
@@ -127,8 +129,10 @@ const Hero = () => {
                 md:max-w-[650px]
                 text-[13px]
                 leading-[16px]
-                md:text-[18px]
-                md:leading-[21px]
+                md:text-[16px]
+                md:leading-[20px]
+                lg:text-[18px]
+                lg:leading-[21px]
                 text-white/90
               "
             >

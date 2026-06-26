@@ -77,19 +77,19 @@ const ShapeTheFuture = () => {
   return (
     <section data-theme="light"
       ref={sectionRef}
-      className="py-16 md:py-24 overflow-hidden"
+      className="py-16 lg:py-24 overflow-hidden"
     >
-      <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
-        <div className="flex flex-col gap-4 md:gap-12 lg:flex-row">
+      <div className="mx-auto px-5 md:px-8 lg:px-10">
+        <div className="flex flex-col gap-4 md:gap-12 md:flex-row">
           
           {/* LEFT SIDE */}
           <div
             ref={titleRef}
-            className="lg:w-[30%] lg:translate-y-30"
+            className="md:w-[30%] lg:translate-y-30"
           >
             <p
               className="ml-1 md:ml-2 mb-4 text-[14px]
-              md:text-[16px] font-[600]
+              lg:text-[16px] font-[600]
               uppercase leading-[26px]
               tracking-[1.6%] text-[#111111]"
             >
@@ -99,8 +99,8 @@ const ShapeTheFuture = () => {
             <h2
               className="font-heading
               text-[30px] leading-[38px]
-              md:text-[52px]
-              md:leading-[95%]
+              lg:text-[52px]
+              lg:leading-[95%]
               tracking-[-0.04em]
               text-[#111111]"
             >
@@ -114,18 +114,18 @@ const ShapeTheFuture = () => {
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="lg:w-[70%]">
+          <div className="md:w-[70%]">
             {/* TEXT */}
             <div
               ref={textRef}
-              className="md:max-w-[90ch]"
+              className="md:max-w-[50ch] lg:max-w-[90ch]"
             >
               <p
                 className="font-small
                 text-[13px] leading-[16px] tracking-normal
-                md:text-[18px] 
-                md:leading-[21px]
-                md:tracking-[1px]
+                lg:text-[18px] 
+                lg:leading-[21px]
+                lg:tracking-[1px]
                 text-[#222A2C]"
               >
                 At Doss Realty, our vision is to shape the future of real estate
@@ -145,9 +145,9 @@ const ShapeTheFuture = () => {
               <p
                 className="font-small
                 text-[13px] leading-[16px] tracking-normal
-                md:text-[18px]
-                md:leading-[21px]
-                md:tracking-[1px]
+                lg:text-[18px]
+                lg:leading-[21px]
+                lg:tracking-[1px]
                 text-[#222A2C]"
               >
                 Driven by integrity and a customer-first approach, Doss Realty
@@ -160,7 +160,7 @@ const ShapeTheFuture = () => {
             {/* IMAGE */}
             <div
               ref={imageWrapperRef}
-              className="mt-10 relative h-[230px] md:h-[400px]
+              className="mt-10 relative h-[230px] lg:h-[400px]
               overflow-hidden rounded-[10px]"
             >
               <div

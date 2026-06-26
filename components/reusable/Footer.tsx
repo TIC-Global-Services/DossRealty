@@ -27,23 +27,23 @@ const Footer = () => {
       <div className="overflow-hidden rounded-[32px] bg-[#121212] text-white">
 
         {/* DESKTOP */}
-        <div className="hidden lg:block">
-          <div className="flex flex-col justify-between px-[20px] py-14">
-            <div className="flex flex-col justify-between px-10">
+        <div className="hidden md:block">
+          <div className="flex flex-col justify-between px-[18px] lg:px-[20px] py-10 lg:py-14">
+            <div className="flex flex-col justify-between lg:px-10">
 
               {/* Top Section */}
               <div className="flex justify-between gap-10">
 
                 {/* Left */}
-                <div className="max-w-[500px]">
-                  <h3 className="font-heading text-[30px] leading-none">
+                <div className="max-w-[300px] lg:max-w-[500px]">
+                  <h3 className="font-heading text-[18px] lg:text-[30px] leading-none">
                     About{" "}
                     <span className="text-[#B59A52]">
                       Doss Realty
                     </span>
                   </h3>
 
-                  <p className="mt-4 text-[14px] leading-[1.6] text-[#B8B8B8]">
+                  <p className="mt-4 text-[12px] lg:text-[14px] leading-[1.6] text-[#B8B8B8]">
                     We Craft Functional Luxury,
                     Focusing On Intentional Design &
                     Bringing It To Life With Ethical
@@ -88,14 +88,14 @@ const Footer = () => {
               {/* Center */}
               <div className="flex flex-1 items-center justify-center pt-6 text-center">
                 <div>
-                  <p className="font-heading text-[42px] text-white">
+                  <p className="font-heading text-[30px] lg:text-[42px] text-white">
                     Build Beyond
                   </p>
 
                   <h2
                     className="
-                      font-heading
-                      text-[200px]
+                      font-heading text-[100px]
+                      lg:text-[200px]
                       leading-[0.9]
                       tracking-[-0.05em]
                       text-white
@@ -109,7 +109,7 @@ const Footer = () => {
               {/* Bottom */}
               <div className="flex items-center justify-between pt-10">
 
-                <p className="text-[16px] text-[#AFAFAF]">
+                <p className="text-[14px] lg:text-[16px] text-[#AFAFAF]">
                   Copyright © 2026{" "}
                   <span className="text-[#B59A52]">
                     Doss Realty
@@ -118,7 +118,7 @@ const Footer = () => {
                 </p>
 
                 {/* Social */}
-                <div className="flex items-center gap-5">
+                <div className="hidden items-center gap-5 lg:flex">
 
                   <Link href="#">
                     <FaWhatsapp
@@ -166,7 +166,7 @@ const Footer = () => {
 
                 </div>
 
-                <p className="text-[16px] text-[#AFAFAF]">
+                <p className="text-[14px] lg:text-[16px] text-[#AFAFAF]">
                   Designed & Developed by{" "}
                   <span className="text-[#B59A52]">
                     the internet company
@@ -179,7 +179,7 @@ const Footer = () => {
         </div>
 
         {/* MOBILE */}
-        <div className="px-5 py-8 lg:hidden">
+        <div className="px-5 py-8 md:hidden">
 
           {/* Menu */}
           <div>

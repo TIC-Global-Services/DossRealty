@@ -85,16 +85,16 @@ const Leadership = () => {
 
   return (
     <>
-      <section data-theme="light" className="py-2 md:py-14">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-20">
+      <section data-theme="light" className="py-2 md:py-6 lg:py-14">
+        <div className="mx-auto px-5 md:px-20">
           <div className="grid gap-12 lg:grid-cols-[35%_65%] lg:items-center">
             {/* LEFT SIDE */}
             <div>
-              <h2 className="font-heading text-[30px] leading-[65px] tracking-normal md:text-[60px] md:leading-[95%] md:tracking-[-0.04em] text-[#1B2327]">
+              <h2 className="font-heading text-[30px] leading-[65px] tracking-normal lg:text-[60px] lg:leading-[95%] lg:tracking-[-0.04em] text-[#1B2327]">
                 Leadership
               </h2>
 
-              <div className="mt-2 md:mt-4 h-[1px] w-full bg-[#C8CDD2]" />
+              <div className="mt-2 lg:mt-4 h-[1px] w-full bg-[#C8CDD2]" />
             </div>
 
             {/* RIGHT SIDE */}
@@ -114,7 +114,7 @@ const Leadership = () => {
                   "
                 >
                   {/* Image */}
-                  <div className="relative h-[388px] sm:h-[420px] md:h-[450px]">
+                  <div className="relative h-[388px] md:h-[420px] lg:h-[450px]">
                     <Image
                       src={leader.image}
                       alt={leader.name}
@@ -134,11 +134,11 @@ const Leadership = () => {
                       md:backdrop-blur-xl
                     "
                   >
-                    <h3 className="text-center leading-[23px] md:leading-none text-[16px] md:text-[28px] font-semibold text-white">
+                    <h3 className="text-center leading-[23px] lg:leading-none text-[16px] lg:text-[28px] font-semibold text-white">
                       {leader.name}
                     </h3>
 
-                    <p className="text-center leading-[16px] md:leading-[30px] text-[13px] md:text-[20px] text-white/90">
+                    <p className="text-center leading-[16px] lg:leading-[30px] text-[13px] lg:text-[20px] text-white/90">
                       {leader.role}
                     </p>
                   </div>
@@ -239,9 +239,9 @@ const Leadership = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     className="
                     absolute md:block w-[40px] -top-10 -left-[10px]
-                    md:-top-15
+                    lg:-top-15
                     md:left-[-10px]
-                    md:w-[60px]
+                    lg:w-[60px]
                     h-auto
                     pointer-events-none
                     z-10
@@ -262,7 +262,7 @@ const Leadership = () => {
                     className="
                     mb-3
                     text-[12px]
-                    md:text-[16px]
+                    lg:text-[16px]
                     uppercase
                     font-heading
                     font-[300]
@@ -283,15 +283,15 @@ const Leadership = () => {
                     tracking-normal
                     uppercase
                     text-[20px]
-                    md:text-[40px]
+                    lg:text-[40px]
                   "
                   >
                     {selectedLeader.name}
                   </h2>
 
                   {/* Description */}
-                  <div className="mt-4 md:mt-8">
-                    <p className="text-[13px] leading-[20px] md:text-[18px] font-small md:leading-[1.8] text-[#00000080] whitespace-pre-line">
+                  <div className="mt-4 lg:mt-8">
+                    <p className="text-[13px] leading-[20px] lg:text-[18px] font-small lg:leading-[1.8] text-[#00000080] whitespace-pre-line">
                       {isExpanded
                         ? selectedLeader.description
                         : `${selectedLeader.description.slice(

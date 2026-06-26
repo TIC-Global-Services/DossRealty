@@ -42,7 +42,7 @@ const StatsCounter = () => {
       ref={ref}
       className="py-2 md:py-24"
     >
-      <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
+      <div className="mx-auto px-5 md:px-8 lg:px-10">
         <div className="grid grid-cols-1 gap-14 text-center sm:grid-cols-3 md:gap-10">
 
           {stats.map((item, index) => (
@@ -69,10 +69,10 @@ const StatsCounter = () => {
               <h2
                 className="
                   text-[20px] leading-[38px] tracking-normal font-[300]
-                  md:text-[44px]
+                  lg:text-[44px]
                   md:font-semibold
-                  md:leading-none
-                  md:tracking-[-0.03em]
+                  lg:leading-none
+                  lg:tracking-[-0.03em]
                   text-[#202020]
                 "
               >
@@ -90,10 +90,10 @@ const StatsCounter = () => {
               {/* TEXT */}
               <p
                 className="mt-2
-                  md:mt-3 text-[16px] leading-[19px] tracking-normal
+                  lg:mt-3 text-[16px] leading-[19px] tracking-normal
                   max-w-[300px]
-                  md:text-[14px]
-                  md:leading-[150%]
+                  lg:text-[14px]
+                  lg:leading-[150%]
                   text-[#444]
                 "
               >

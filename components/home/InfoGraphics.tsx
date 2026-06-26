@@ -23,10 +23,10 @@ type InfographicItem = {
 
 const infographicData: InfographicItem[] = [
 
-  { id: "01", image: image2, stat: "30+",        description: "Years Experience"         },
-  { id: "02", image: image3, stat: "5+",         description: "Million SQFT Delivered"   },
-  { id: "03", image: image4, stat: "15+",        description: "Projects"                 },
-  { id: "04", image: image5, stat: "4000+",      description: "Family's Served"          },
+  { id: "01", image: image2, stat: "30+", description: "Years Experience" },
+  { id: "02", image: image3, stat: "5+", description: "Million SQFT Delivered" },
+  { id: "03", image: image4, stat: "15+", description: "Projects" },
+  { id: "04", image: image5, stat: "4000+", description: "Family's Served" },
 ];
 
 
@@ -84,19 +84,19 @@ function arcClipPath(sweep: number): string {
 
 export default function InfoGraphics() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const desktopImageRefs  = useRef<(HTMLDivElement    | null)[]>([]);
-  const desktopTextRefs   = useRef<(HTMLDivElement    | null)[]>([]);
-  const desktopNumberRefs = useRef<(HTMLSpanElement   | null)[]>([]);
-  const desktopClipRefs   = useRef<(SVGPathElement    | null)[]>([]);
+  const desktopImageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const desktopTextRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const desktopNumberRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const desktopClipRefs = useRef<(SVGPathElement | null)[]>([]);
 
-  const mobileImageRefs   = useRef<(HTMLDivElement    | null)[]>([]);
-  const mobileTextRefs    = useRef<(HTMLDivElement    | null)[]>([]);
-  const mobileClipRefs    = useRef<(SVGPathElement    | null)[]>([]);
+  const mobileImageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mobileTextRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mobileClipRefs = useRef<(SVGPathElement | null)[]>([]);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const currentIndexRef = useRef(0);
 
-  
+
   const mobileTlRef = useRef<gsap.core.Timeline | null>(null);
 
   const snapPoints = useMemo(
@@ -107,342 +107,342 @@ export default function InfoGraphics() {
 
   const jumpTo = (index: number) => {
     if (!sectionRef.current) return;
-    const sectionTop     = sectionRef.current.offsetTop;
-    const sectionHeight  = sectionRef.current.offsetHeight;
+    const sectionTop = sectionRef.current.offsetTop;
+    const sectionHeight = sectionRef.current.offsetHeight;
     const viewportHeight = window.innerHeight;
-    const progress       = index / (infographicData.length - 1);
+    const progress = index / (infographicData.length - 1);
     window.scrollTo({
-      top:      sectionTop + progress * (sectionHeight - viewportHeight),
+      top: sectionTop + progress * (sectionHeight - viewportHeight),
       behavior: "smooth",
     });
   };
 
   const animateToIndex = (
-  nextIndex: number,
-  direction: "next" | "prev" = "next"
-) => {
-  if (
-    nextIndex < 0 ||
-    nextIndex >= infographicData.length ||
-    nextIndex === currentIndexRef.current
-  ) return;
+    nextIndex: number,
+    direction: "next" | "prev" = "next"
+  ) => {
+    if (
+      nextIndex < 0 ||
+      nextIndex >= infographicData.length ||
+      nextIndex === currentIndexRef.current
+    ) return;
 
-  const currentIndex = currentIndexRef.current;
+    const currentIndex = currentIndexRef.current;
 
-  const currentImage = mobileImageRefs.current[currentIndex];
-  const nextImage = mobileImageRefs.current[nextIndex];
-  const currentText = mobileTextRefs.current[currentIndex];
-  const nextText = mobileTextRefs.current[nextIndex];
+    const currentImage = mobileImageRefs.current[currentIndex];
+    const nextImage = mobileImageRefs.current[nextIndex];
+    const currentText = mobileTextRefs.current[currentIndex];
+    const nextText = mobileTextRefs.current[nextIndex];
 
-  const clipPath =
-    direction === "prev"
-      ? mobileClipRefs.current[currentIndex]
-      : mobileClipRefs.current[nextIndex];
+    const clipPath =
+      direction === "prev"
+        ? mobileClipRefs.current[currentIndex]
+        : mobileClipRefs.current[nextIndex];
 
-  currentIndexRef.current = nextIndex;
+    currentIndexRef.current = nextIndex;
 
-  if (clipPath) {
-    clipPath.setAttribute(
-      "d",
-      arcClipPath(direction === "prev" ? 360 : 0)
-    );
-  }
+    if (clipPath) {
+      clipPath.setAttribute(
+        "d",
+        arcClipPath(direction === "prev" ? 360 : 0)
+      );
+    }
 
-  if (direction === "prev" && nextIndex > 0) {
-    const nc = mobileClipRefs.current[nextIndex];
-    if (nc) nc.setAttribute("d", arcClipPath(360));
-  }
+    if (direction === "prev" && nextIndex > 0) {
+      const nc = mobileClipRefs.current[nextIndex];
+      if (nc) nc.setAttribute("d", arcClipPath(360));
+    }
 
-  const proxy = {
-    sweep: direction === "prev" ? 360 : 0,
-  };
-
-  const tl = gsap.timeline({
-    onComplete: () => setActiveIndex(nextIndex),
-  });
-
-  if (direction === "prev") {
-    tl.set(nextImage, { opacity: 1, zIndex: 10 });
-    tl.set(currentImage, { zIndex: 20 });
-  } else {
-    tl.set(nextImage, { opacity: 1, zIndex: 20 });
-    tl.set(currentImage, { zIndex: 10 });
-  }
-
-  // Circular wipe
-  tl.to(
-    proxy,
-    {
-      sweep: direction === "prev" ? 0 : 360,
-      duration: 0.9,
-      ease: "power2.inOut",
-      onUpdate() {
-        if (clipPath) {
-          clipPath.setAttribute("d", arcClipPath(proxy.sweep));
-        }
-      },
-    },
-    0
-  );
-
-  // Fade old image
-  tl.to(
-    currentImage,
-    {
-      opacity: 0,
-      duration: 0.25,
-      ease: "power2.out",
-    },
-    0.78
-  );
-
-  // Text out
-  tl.to(
-    currentText,
-    {
-      opacity: 0,
-      y: direction === "next" ? -20 : 20,
-      filter: "blur(8px)",
-      duration: 0.35,
-      ease: "power3.out",
-    },
-    0
-  );
-
-  // Text in
-  tl.fromTo(
-    nextText,
-    {
-      opacity: 0,
-      y: direction === "next" ? 20 : -20,
-      filter: "blur(8px)",
-    },
-    {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      duration: 0.5,
-      ease: "power3.out",
-    },
-    0.2
-  );
-};
-
-  useEffect(() => {
-  if (!sectionRef.current) return;
-
-  const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-
-  if (!isDesktop) {
-    // ── Mobile init
-    gsap.set(mobileImageRefs.current, { opacity: 0 });
-    gsap.set(mobileImageRefs.current[0], { opacity: 1 });
-
-    mobileClipRefs.current.forEach((p) => {
-      if (p) p.setAttribute("d", arcClipPath(0));
-    });
-
-    gsap.set(mobileTextRefs.current, {
-      opacity: 0,
-      y: 50,
-      filter: "blur(8px)",
-    });
-
-    gsap.set(mobileTextRefs.current[0], {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-    });
-
-    setActiveIndex(0);
-    currentIndexRef.current = 0;
-
-    return () => {
-      mobileTlRef.current?.kill();
+    const proxy = {
+      sweep: direction === "prev" ? 360 : 0,
     };
-  }
-
-  // Desktop init + ScrollTrigger
-  const ctx = gsap.context(() => {
-    gsap.set(desktopImageRefs.current, { opacity: 0 });
-    gsap.set(desktopImageRefs.current[0], { opacity: 1 });
-
-    desktopClipRefs.current.forEach((p) => {
-      if (p) p.setAttribute("d", arcClipPath(0));
-    });
-
-    gsap.set(desktopTextRefs.current, {
-      opacity: 0,
-      y: 50,
-      filter: "blur(8px)",
-    });
-
-    gsap.set(desktopTextRefs.current[0], {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-    });
-
-    gsap.set(desktopNumberRefs.current, {
-      y: 0,
-      scale: 1,
-    });
-
-    setActiveIndex(0);
-    currentIndexRef.current = 0;
-
-    const totalItems = infographicData.length - 1;
 
     const tl = gsap.timeline({
-      scrollTrigger: {
+      onComplete: () => setActiveIndex(nextIndex),
+    });
+
+    if (direction === "prev") {
+      tl.set(nextImage, { opacity: 1, zIndex: 10 });
+      tl.set(currentImage, { zIndex: 20 });
+    } else {
+      tl.set(nextImage, { opacity: 1, zIndex: 20 });
+      tl.set(currentImage, { zIndex: 10 });
+    }
+
+    // Circular wipe
+    tl.to(
+      proxy,
+      {
+        sweep: direction === "prev" ? 0 : 360,
+        duration: 0.9,
+        ease: "power2.inOut",
+        onUpdate() {
+          if (clipPath) {
+            clipPath.setAttribute("d", arcClipPath(proxy.sweep));
+          }
+        },
+      },
+      0
+    );
+
+    // Fade old image
+    tl.to(
+      currentImage,
+      {
+        opacity: 0,
+        duration: 0.25,
+        ease: "power2.out",
+      },
+      0.78
+    );
+
+    // Text out
+    tl.to(
+      currentText,
+      {
+        opacity: 0,
+        y: direction === "next" ? -20 : 20,
+        filter: "blur(8px)",
+        duration: 0.35,
+        ease: "power3.out",
+      },
+      0
+    );
+
+    // Text in
+    tl.fromTo(
+      nextText,
+      {
+        opacity: 0,
+        y: direction === "next" ? 20 : -20,
+        filter: "blur(8px)",
+      },
+      {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 0.5,
+        ease: "power3.out",
+      },
+      0.2
+    );
+  };
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+
+    if (!isDesktop) {
+      // ── Mobile init
+      gsap.set(mobileImageRefs.current, { opacity: 0 });
+      gsap.set(mobileImageRefs.current[0], { opacity: 1 });
+
+      mobileClipRefs.current.forEach((p) => {
+        if (p) p.setAttribute("d", arcClipPath(0));
+      });
+
+      gsap.set(mobileTextRefs.current, {
+        opacity: 0,
+        y: 50,
+        filter: "blur(8px)",
+      });
+
+      gsap.set(mobileTextRefs.current[0], {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+      });
+
+      setActiveIndex(0);
+      currentIndexRef.current = 0;
+
+      return () => {
+        mobileTlRef.current?.kill();
+      };
+    }
+
+    // Desktop init + ScrollTrigger
+    const ctx = gsap.context(() => {
+      gsap.set(desktopImageRefs.current, { opacity: 0 });
+      gsap.set(desktopImageRefs.current[0], { opacity: 1 });
+
+      desktopClipRefs.current.forEach((p) => {
+        if (p) p.setAttribute("d", arcClipPath(0));
+      });
+
+      gsap.set(desktopTextRefs.current, {
+        opacity: 0,
+        y: 50,
+        filter: "blur(8px)",
+      });
+
+      gsap.set(desktopTextRefs.current[0], {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+      });
+
+      gsap.set(desktopNumberRefs.current, {
+        y: 0,
+        scale: 1,
+      });
+
+      setActiveIndex(0);
+      currentIndexRef.current = 0;
+
+      const totalItems = infographicData.length - 1;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: () => `+=${window.innerHeight * 4.2}`,
+          pin: true,
+          pinSpacing: true,
+          scrub: 1.2,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const index = Math.round(self.progress * totalItems);
+            currentIndexRef.current = index;
+            setActiveIndex(index);
+          },
+        },
+      });
+
+      infographicData.forEach((_, index) => {
+        if (index === 0) return;
+
+        const prevImage = desktopImageRefs.current[index - 1];
+        const curImage = desktopImageRefs.current[index];
+        const clipPath = desktopClipRefs.current[index];
+        const prevText = desktopTextRefs.current[index - 1];
+        const curText = desktopTextRefs.current[index];
+        const prevNumber = desktopNumberRefs.current[index - 1];
+        const curNumber = desktopNumberRefs.current[index];
+
+        tl.to({}, { duration: 0.45 });
+        tl.addLabel(`transition-${index}`);
+
+        const proxy = { sweep: 0 };
+
+        tl.set(curImage, { opacity: 1 }, "<");
+
+        tl.fromTo(
+          proxy,
+          { sweep: 0 },
+          {
+            sweep: 360,
+            duration: 1.4,
+            ease: "power2.inOut",
+            onUpdate() {
+              if (clipPath) {
+                clipPath.setAttribute("d", arcClipPath(proxy.sweep));
+              }
+            },
+            onComplete() {
+              if (clipPath) {
+                clipPath.setAttribute("d", arcClipPath(360));
+              }
+            },
+          },
+          "<"
+        );
+
+        tl.to(
+          prevImage,
+          {
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.in",
+          },
+          "<+0.9"
+        );
+
+        tl.to(
+          prevText,
+          {
+            opacity: 0,
+            y: -25,
+            filter: "blur(8px)",
+            duration: 0.55,
+            ease: "power3.inOut",
+          },
+          "<"
+        );
+
+        tl.fromTo(
+          curText,
+          {
+            opacity: 0,
+            y: 25,
+            filter: "blur(8px)",
+          },
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.65,
+            ease: "power4.out",
+          },
+          "<+0.08"
+        );
+
+        tl.to(
+          prevNumber,
+          {
+            y: -8,
+            scale: 0.96,
+            duration: 0.35,
+            ease: "power2.out",
+          },
+          "<"
+        );
+
+        tl.fromTo(
+          curNumber,
+          {
+            y: 8,
+            scale: 0.96,
+          },
+          {
+            y: 0,
+            scale: 1,
+            duration: 0.35,
+            ease: "power2.out",
+          },
+          "<"
+        );
+      });
+
+      ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
         end: () => `+=${window.innerHeight * 4.2}`,
-        pin: true,
-        pinSpacing: true,
-        scrub: 1.2,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const index = Math.round(self.progress * totalItems);
-          currentIndexRef.current = index;
-          setActiveIndex(index);
-        },
-      },
-    });
-
-    infographicData.forEach((_, index) => {
-      if (index === 0) return;
-
-      const prevImage = desktopImageRefs.current[index - 1];
-      const curImage = desktopImageRefs.current[index];
-      const clipPath = desktopClipRefs.current[index];
-      const prevText = desktopTextRefs.current[index - 1];
-      const curText = desktopTextRefs.current[index];
-      const prevNumber = desktopNumberRefs.current[index - 1];
-      const curNumber = desktopNumberRefs.current[index];
-
-      tl.to({}, { duration: 0.45 });
-      tl.addLabel(`transition-${index}`);
-
-      const proxy = { sweep: 0 };
-
-      tl.set(curImage, { opacity: 1 }, "<");
-
-      tl.fromTo(
-        proxy,
-        { sweep: 0 },
-        {
-          sweep: 360,
-          duration: 1.4,
+        snap: {
+          snapTo: snapPoints,
+          duration: 0.6,
           ease: "power2.inOut",
-          onUpdate() {
-            if (clipPath) {
-              clipPath.setAttribute("d", arcClipPath(proxy.sweep));
-            }
-          },
-          onComplete() {
-            if (clipPath) {
-              clipPath.setAttribute("d", arcClipPath(360));
-            }
-          },
         },
-        "<"
-      );
+      });
+    }, sectionRef);
 
-      tl.to(
-        prevImage,
-        {
-          opacity: 0,
-          duration: 0.4,
-          ease: "power2.in",
-        },
-        "<+0.9"
-      );
-
-      tl.to(
-        prevText,
-        {
-          opacity: 0,
-          y: -25,
-          filter: "blur(8px)",
-          duration: 0.55,
-          ease: "power3.inOut",
-        },
-        "<"
-      );
-
-      tl.fromTo(
-        curText,
-        {
-          opacity: 0,
-          y: 25,
-          filter: "blur(8px)",
-        },
-        {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          duration: 0.65,
-          ease: "power4.out",
-        },
-        "<+0.08"
-      );
-
-      tl.to(
-        prevNumber,
-        {
-          y: -8,
-          scale: 0.96,
-          duration: 0.35,
-          ease: "power2.out",
-        },
-        "<"
-      );
-
-      tl.fromTo(
-        curNumber,
-        {
-          y: 8,
-          scale: 0.96,
-        },
-        {
-          y: 0,
-          scale: 1,
-          duration: 0.35,
-          ease: "power2.out",
-        },
-        "<"
-      );
-    });
-
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top top",
-      end: () => `+=${window.innerHeight * 4.2}`,
-      snap: {
-        snapTo: snapPoints,
-        duration: 0.6,
-        ease: "power2.inOut",
-      },
-    });
-  }, sectionRef);
-
-  return () => {
-    ctx.revert();
-    mobileTlRef.current?.kill();
-  };
-}, [snapPoints]);
+    return () => {
+      ctx.revert();
+      mobileTlRef.current?.kill();
+    };
+  }, [snapPoints]);
 
   return (
     <section data-theme="light" ref={sectionRef} className="relative min-h-screen bg-white">
 
       {/* DESKTOP layout */}
-      <div className="hidden md:grid h-full grid-cols-[120px_1fr_320px] items-center px-10">
+      <div className="hidden md:grid h-full grid-cols-[90px_1fr_280px] lg:grid-cols-[120px_1fr_320px] items-center px-6 lg:px-10">
 
         {/* LEFT — slide numbers */}
         <div className="flex justify-center">
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col md:gap-2 lg:gap-5">
             {infographicData.map((item, index) => (
               <button
                 key={item.id}
@@ -450,12 +450,22 @@ export default function InfoGraphics() {
                 className="group flex justify-center"
               >
                 <span
-                  ref={(el) => { desktopNumberRefs.current[index] = el; }}  
+                  ref={(el) => {
+                    desktopNumberRefs.current[index] = el;
+                  }}
                   className={`
-                    block font-['Inter_Tight'] font-medium text-[32px]
-                    leading-[20px] tracking-[1.2px] text-center uppercase
-                    transition-colors duration-500
-                    ${index === activeIndex ? "!text-[#1A1814]" : "!text-[#BFBFBF]"}
+                    block font-['Inter_Tight'] font-medium
+                    text-[20px] lg:text-[32px]
+                    leading-[20px]
+                    tracking-[1.2px]
+                    text-center
+                    uppercase
+                    transition-colors
+                    duration-500
+                    ${index === activeIndex
+                            ? "!text-[#1A1814]"
+                            : "!text-[#BFBFBF]"
+                          }
                   `}
                 >
                   {item.id}
@@ -466,105 +476,109 @@ export default function InfoGraphics() {
         </div>
 
         {/* CENTER — circular image with wipe clip */}
-        <div className="flex items-center justify-center md:ml-[15%] xl:ml-[18%]">
-  <div className="relative h-[clamp(260px,40vw,420px)] w-[clamp(260px,40vw,420px)]">
+        <div className="flex items-center justify-center md:ml-[10%] xl:ml-[18%]">
+          <div className="relative h-[clamp(260px,40vw,420px)] w-[clamp(260px,40vw,420px)]">
 
-    <div className="absolute inset-0 z-[3] rounded-full border border-black/10" />
+            <div className="absolute inset-0 z-[3] rounded-full border border-black/10" />
 
-    <div className="absolute inset-0 z-[2] overflow-hidden rounded-full">
-      <svg
-        style={{
-          position: "absolute",
-          width: 0,
-          height: 0,
-          overflow: "hidden",
-        }}
-        aria-hidden="true"
-      >
-        <defs>
-          {infographicData.map((item, index) =>
-            index > 0 ? (
-              <clipPath
-                key={item.id}
-                id={`wipe-clip-desktop-${index}`}
-                clipPathUnits="userSpaceOnUse"
+            <div className="absolute inset-0 z-[2] overflow-hidden rounded-full">
+              <svg
+                style={{
+                  position: "absolute",
+                  width: 0,
+                  height: 0,
+                  overflow: "hidden",
+                }}
+                aria-hidden="true"
               >
-                <path
+                <defs>
+                  {infographicData.map((item, index) =>
+                    index > 0 ? (
+                      <clipPath
+                        key={item.id}
+                        id={`wipe-clip-desktop-${index}`}
+                        clipPathUnits="userSpaceOnUse"
+                      >
+                        <path
+                          ref={(el) => {
+                            desktopClipRefs.current[index] = el;
+                          }}
+                          d={arcClipPath(0)}
+                        />
+                      </clipPath>
+                    ) : null
+                  )}
+                </defs>
+              </svg>
+
+              {infographicData.map((item, index) => (
+                <div
+                  key={item.id}
                   ref={(el) => {
-                    desktopClipRefs.current[index] = el;
+                    desktopImageRefs.current[index] = el;
                   }}
-                  d={arcClipPath(0)}
-                />
-              </clipPath>
-            ) : null
-          )}
-        </defs>
-      </svg>
+                  className="absolute inset-0 will-change-transform backface-hidden"
+                  style={{
+                    zIndex: index,
+                    clipPath:
+                      index > 0
+                        ? `url(#wipe-clip-desktop-${index})`
+                        : undefined,
+                  }}
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.stat}
+                    fill
+                    priority={index === 0}
+                    className="object-cover scale-[1.06] -rotate-45"
+                  />
+                </div>
+              ))}
+            </div>
 
-      {infographicData.map((item, index) => (
-        <div
-          key={item.id}
-          ref={(el) => {
-            desktopImageRefs.current[index] = el;
-          }}
-          className="absolute inset-0 will-change-transform backface-hidden"
-          style={{
-            zIndex: index,
-            clipPath:
-              index > 0
-                ? `url(#wipe-clip-desktop-${index})`
-                : undefined,
-          }}
-        >
-          <Image
-            src={item.image}
-            alt={item.stat}
-            fill
-            priority={index === 0}
-            className="object-cover scale-[1.06] -rotate-45"
-          />
+            {/* Fixed diagonal line */}
+            <svg
+              className="pointer-events-none absolute inset-0 z-[5] h-full w-full overflow-visible"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line
+                x1="50"
+                y1="50"
+                x2="-20"
+                y2="120"
+                stroke="#1A1814"
+                strokeWidth="0.3"
+                opacity="0.2"
+              />
+            </svg>
+
+            {/* Center dot */}
+            <div className="absolute left-1/2 top-1/2 z-[10] h-[16px] w-[16px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1A1814] md:h-[18px] md:w-[18px] lg:h-[20px] lg:w-[20px]" />
+          </div>
         </div>
-      ))}
-    </div>
-
-    {/* Fixed diagonal line */}
-    <svg
-      className="pointer-events-none absolute inset-0 z-[5] h-full w-full overflow-visible"
-      viewBox="0 0 100 100"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <line
-        x1="50"
-        y1="50"
-        x2="-20"
-        y2="120"
-        stroke="#1A1814"
-        strokeWidth="0.3"
-        opacity="0.2"
-      />
-    </svg>
-
-    {/* Center dot */}
-    <div className="absolute left-1/2 top-1/2 z-[10] h-[16px] w-[16px] md:h-[20px] md:w-[20px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1A1814]" />
-  </div>
-</div>
 
         {/* RIGHT — stat text */}
         <div className="flex justify-center text-center">
-          <div className="relative min-h-[220px] w-[300px]">
+          <div className="relative min-h-[220px] w-[240px] lg:w-[300px]">
             {infographicData.map((item, index) => (
               <div
                 key={item.id}
-                ref={(el) => { desktopTextRefs.current[index] = el; }}  
-                className="absolute inset-0 will-change-transform flex flex-col items-center justify-center"
+                ref={(el) => {
+                  desktopTextRefs.current[index] = el;
+                }}
+                className="absolute inset-0 flex will-change-transform flex-col items-center justify-center"
               >
-                <p className="font-body text-[14px] font-[300] uppercase tracking-normal text-black md:text-[24px]">
+                <p className="font-body text-[14px] font-[300] uppercase tracking-normal text-black md:text-[16px] lg:text-[24px]">
                   View Infographics
                 </p>
-                <h2 className="font-['Inter_Tight'] text-[24px] font-medium leading-[150%] tracking-[0px] text-center text-[#1A1814] md:text-[36px]">
+
+                <h2 className="font-['Inter_Tight'] text-[24px] font-medium leading-[150%] tracking-[0px] text-center text-[#1A1814] md:text-[24px] lg:text-[36px]">
                   {item.stat}
                 </h2>
-                <p className="font-['Inter_Tight'] text-center text-[14px] font-light leading-[150%] tracking-[0] text-[#222222] md:text-[18px]">
+
+                <p className="font-['Inter_Tight'] text-center text-[14px] font-light leading-[150%] tracking-[0] text-[#222222] md:text-[14px] lg:text-[18px]">
                   {item.description}
                 </p>
               </div>
@@ -592,11 +606,11 @@ export default function InfoGraphics() {
                     index > 0 ? (
                       <clipPath
                         key={item.id}
-                        id={`wipe-clip-mobile-${index}`}   
+                        id={`wipe-clip-mobile-${index}`}
                         clipPathUnits="userSpaceOnUse"
                       >
                         <path
-                          ref={(el) => { mobileClipRefs.current[index] = el; }}  
+                          ref={(el) => { mobileClipRefs.current[index] = el; }}
                           d={arcClipPath(0)}
                         />
                       </clipPath>
@@ -608,11 +622,11 @@ export default function InfoGraphics() {
               {infographicData.map((item, index) => (
                 <div
                   key={item.id}
-                  ref={(el) => { mobileImageRefs.current[index] = el; }}  
+                  ref={(el) => { mobileImageRefs.current[index] = el; }}
                   className="absolute inset-0"
                   style={{
                     zIndex: index,
-                    clipPath: index > 0 ? `url(#wipe-clip-mobile-${index})` : undefined,  
+                    clipPath: index > 0 ? `url(#wipe-clip-mobile-${index})` : undefined,
                   }}
                 >
                   <Image
@@ -662,14 +676,14 @@ export default function InfoGraphics() {
 
         {/* Arrow nav buttons */}
         <div className="mt-6 flex items-center gap-4 ">
-              <button
-                onClick={() =>
-                  animateToIndex(
-                    currentIndexRef.current - 1,
-                    "prev"
-                  )
-                }
-                className="
+          <button
+            onClick={() =>
+              animateToIndex(
+                currentIndexRef.current - 1,
+                "prev"
+              )
+            }
+            className="
                   flex h-[42px] w-[42px]
                   items-center justify-center
                   rounded-full border
@@ -677,18 +691,18 @@ export default function InfoGraphics() {
                   transition-transform duration-300
                   active:scale-95
                 "
-              >
-                <ChevronLeft size={18} />
-              </button>
-              
-              <button
-                onClick={() =>
-                  animateToIndex(
-                    currentIndexRef.current + 1,
-                    "next"
-                  )
-                }
-                className="
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          <button
+            onClick={() =>
+              animateToIndex(
+                currentIndexRef.current + 1,
+                "next"
+              )
+            }
+            className="
                   flex h-[42px] w-[42px]
                   items-center justify-center
                   rounded-full
@@ -696,10 +710,10 @@ export default function InfoGraphics() {
                   transition-transform duration-300
                   active:scale-95
                 "
-              >
-                <ChevronRight size={18} />
-              </button>
-            </div>
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
       </div>
     </section>
   );

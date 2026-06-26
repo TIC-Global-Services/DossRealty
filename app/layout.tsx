@@ -47,14 +47,14 @@ export default function RootLayout({
           ${interTight.variable}
         `}
       >
-        {/* <LenisProvider> */}
+        <LenisProvider>
           <ScrollToTop />
           <SmoothScroll>
             <Navbar />
             {children}
             <Footer />
           </SmoothScroll>
-        {/* </LenisProvider> */}
+        </LenisProvider>
       </body>
     </html>
   );
