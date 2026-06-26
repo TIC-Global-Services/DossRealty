@@ -150,8 +150,7 @@ export default function WhyWorkWithUs() {
         >
           {/* Logo */}
           <div
-            key={currentWord}
-            className="mb-10 animate-pulse"
+            className="mb-10"
           >
             <Image
               src={logo}
