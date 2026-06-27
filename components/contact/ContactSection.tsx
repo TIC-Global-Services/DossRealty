@@ -134,7 +134,7 @@ export default function ContactSection() {
               Chennai
             </h2>
 
-            <div className="mt-2 grid md:grid-cols-2 gap-8  max-w-[250px] md:max-w-[500px] mx-auto lg:mx-0">
+            <div className="mt-2 grid lg:grid-cols-2 gap-8  max-w-[250px] md:max-w-[500px] mx-auto lg:mx-0">
 
               <div>
                 <p className="text-[#262B35] text-sm md:text-[18px] md:leading-[26px] tracking-normal font-[300] mb-2">
@@ -172,7 +172,7 @@ export default function ContactSection() {
           </div>
 
           {/* RIGHT */}
-          <div className="order-1 lg:order-2 w-full max-w-[560px] xl:max-w-[660px] lg:ml-auto">
+          <div className="order-1 lg:order-2 w-full lg:max-w-[660px] lg:ml-auto">
 
             {/* Tabs */}
             <div className="flex border-b border-[#D8D8D8] mb-4">
@@ -181,7 +181,7 @@ export default function ContactSection() {
                 onClick={() => setActiveTab("contact")}
                 className={`
                   flex-1 py-3
-                  text-[12px] md:text-[16px] font-grand leading-[20px]
+                  text-[12px] lg:text-[16px] font-grand leading-[20px]
                   uppercase
                   tracking-[0px]
                   relative
@@ -215,7 +215,7 @@ export default function ContactSection() {
                 onClick={() => setActiveTab("refer")}
                 className={`
                   flex-1 py-3
-                  text-[12px] md:text-[16px] font-grand leading-[20px]
+                  text-[12px] lg:text-[16px] font-grand leading-[20px]
                   uppercase
                   tracking-[0px]
                   relative
@@ -247,8 +247,9 @@ export default function ContactSection() {
             </div>
 
             {/* Card */}
+          <div className="flex justify-center lg:justify-end w-full">
             <div
-              className="w-full md:w-[570px]
+              className="w-full lg:w-[570px]
                 bg-white
                 rounded-[10px]
                 shadow-[0_10px_40px_rgba(0,0,0,0.10)]
@@ -264,8 +265,8 @@ export default function ContactSection() {
                       text-[#2F3147]
                       font-heading
                       text-[26px] leading-[30px]
-                      md:text-[45px]
-                      md:leading-[48px] tracking-[0px]
+                      lg:text-[45px]
+                      lg:leading-[48px] tracking-[0px]
                     "
                   >
                     WE’LL GET IN TOUCH WITH YOU SOON
@@ -379,7 +380,7 @@ export default function ContactSection() {
                       text-[#2F3147]
                       font-heading
                       text-[26px]
-                      md:text-[45px]
+                      lg:text-[45px]
                       leading-[48px] tracking-[0px]
                     "
                   >
@@ -548,6 +549,7 @@ export default function ContactSection() {
                 </>
               )}
             </div>
+          </div>
           </div>
         </div>
       </div>

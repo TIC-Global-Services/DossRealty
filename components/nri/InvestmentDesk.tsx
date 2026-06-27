@@ -65,10 +65,10 @@ const InvestmentDesk = () => {
   }, []);
 
   return (
-    <section data-theme="light" className="py-16 md:py-20">
+    <section data-theme="light" className="py-16 lg:py-20">
       <div className="mx-auto px-5 md:px-24">
 
-        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
 
           {/* LEFT CONTENT */}
           <div
@@ -76,9 +76,9 @@ const InvestmentDesk = () => {
             className="max-w-[580px]"
           >
             <p
-              className="
-                mb-5 text-[13px] leading-[20px]
-                md:text-[20px]
+              className="mb-3
+                lg:mb-5 text-[13px] leading-[20px]
+                lg:text-[20px]
                 font-medium
                 text-[#111111]
               "
@@ -90,10 +90,10 @@ const InvestmentDesk = () => {
               className="
                 font-heading
                 text-[24px] leading-[30px] tracking-normal
-                md:leading-[50px]
-                md:tracking-[-1.44px]
+                lg:leading-[50px]
+                lg:tracking-[-1.44px]
                 text-[#111111]
-                md:text-[48px]
+                lg:text-[48px]
               "
             >
             <span className="md:block hidden">India, Within Reach.</span>
@@ -101,12 +101,12 @@ const InvestmentDesk = () => {
             </h2>
 
             <p
-              className="
-                mt-8
+              className="mt-4
+                lg:mt-8
                 text-[16px] leading-[20px] tracking-normal
-                md:leading-[24px] md:tracking-[-0.48px]
+                lg:leading-[24px] lg:tracking-[-0.48px]
                 text-[#6B6B6B]
-                md:text-[16px]
+                lg:text-[16px]
               "
             >
               Distance should never create uncertainty. Our NRI Investment Desk offers considered, end-to-end guidance across project selection, documentation, financing coordination, registration, and post-purchase support.
@@ -121,7 +121,7 @@ const InvestmentDesk = () => {
               relative
               overflow-hidden
               rounded-[10px]
-              md:h-[450px]
+              lg:h-[450px]
             "
           >
             <Image

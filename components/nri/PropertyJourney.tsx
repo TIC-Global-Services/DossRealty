@@ -69,7 +69,7 @@ const PropertyJourney = () => {
   }, []);
 
   return (
-    <section data-theme="light" className="py-4 md:py-14">
+    <section data-theme="light" className="py-4 lg:py-14">
       <div className="mx-auto px-5 md:px-24">
 
         {/* TOP CONTENT */}
@@ -88,10 +88,10 @@ const PropertyJourney = () => {
               className="
                 font-heading
                 text-[24px] leading-[30px]
-                md:leading-[50px]
-                tracking-[-0.48px]
+                lg:leading-[50px]
+                lg:tracking-[-0.48px]
                 text-[#111111]
-                md:text-[46px]
+                lg:text-[46px]
               "
             >
              <span className="hidden md:block">One Relationship. <br/> Every Step.</span>
@@ -102,12 +102,12 @@ const PropertyJourney = () => {
           {/* RIGHT */}
           <div>
             <p
-              className="md:ml-6
-                md:max-w-[600px]
+              className="lg:ml-6
+                lg:max-w-[600px]
                 text-[16px] tracking-[-0.48px]
                 leading-[20px]
                 text-[#6B6B6B]
-                md:text-[16px]
+                lg:text-[16px]
               "
             >
               From the first conversation to final registration, a dedicated relationship manager remains your single point of contact. We coordinate virtual project presentations, document reviews, payment milestones, banking requirements, and Power of Attorney-led processes where applicable.
@@ -119,7 +119,7 @@ const PropertyJourney = () => {
         {/* IMAGE */}
         <div
           ref={imageRef}
-          className="mt-12 md:mt-6"
+          className="mt-10 lg:mt-6"
         >
           <div
             className="
@@ -135,7 +135,7 @@ const PropertyJourney = () => {
                 h-[340px]
                 w-full
                 object-cover object-bottom
-                md:h-[460px]
+                lg:h-[460px]
               "
               priority
             />

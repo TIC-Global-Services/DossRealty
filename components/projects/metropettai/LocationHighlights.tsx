@@ -148,7 +148,7 @@ const LocationHighlights =
     }, []);
 
     return (
-      <section className="py-4 md:py-8">
+      <section className="py-4 lg:py-8">
         <div
           ref={sectionRef}
           className="
@@ -170,9 +170,9 @@ const LocationHighlights =
                 font-[300]
                 uppercase
                 text-[#111]
-                md:text-[48px]
-                md:leading-[60px]
-                md:tracking-[-1.44px]
+                lg:text-[48px]
+                lg:leading-[60px]
+                lg:tracking-[-1.44px]
               "
             >
               <span className="block md:hidden">Building Spaces, <br /> Creating Trust</span>
@@ -180,11 +180,11 @@ const LocationHighlights =
             </h2>
 
             <p
-              className="
-                mt-4
+              className="mt-2
+                lg:mt-4
                 text-[16px]
                 text-[#8A8A8A]
-                md:text-[16px]
+                lg:text-[16px]
                 leading-[24px]
                 tracking-[-0.48px]
               "
@@ -197,7 +197,7 @@ const LocationHighlights =
           {/* MOBILE LAYOUT */}
           <div
             ref={accordionRef}
-            className="mt-10 flex flex-col gap-4 lg:hidden"
+            className="mt-8 flex flex-col gap-4 lg:hidden"
           >
             {highlights.map(
               (
@@ -308,7 +308,7 @@ const LocationHighlights =
                             alt={item.title}
                             fill
                             priority
-                            className="object-cover object-top"
+                            className="object-cover object-center"
                           />
                         </div>
                       </div>

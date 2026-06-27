@@ -76,7 +76,7 @@ const Navbar = () => {
         absolute
         left-0
         top-0
-        z-50
+        z-[10000]
         w-full
         transition-all
         duration-300
@@ -276,7 +276,7 @@ const Navbar = () => {
             setIsOpen(!isOpen)
           }
           className={`
-            z-[60]
+            z-[9999]
             lg:hidden
             ${isBlogsPage
               ? "text-black"
@@ -293,7 +293,7 @@ const Navbar = () => {
               className={`
                 fixed
                 inset-0
-                z-[100]
+                z-[9999]
                 bg-white
                 transition-transform
                 duration-500
@@ -485,7 +485,7 @@ const Navbar = () => {
                 </ul>
                 
                 {/* BUTTON */}
-                <div className="mt-auto pt-8">
+                <div className="mt-auto pt-10">
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
@@ -496,7 +496,7 @@ const Navbar = () => {
                         mx-auto
                         flex
                         w-full
-                        max-w-[320px]
+                        max-w-[200px]
                         justify-center
                         bg-black
                         px-6

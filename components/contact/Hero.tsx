@@ -57,9 +57,9 @@ export default function Hero() {
             text-white
             font-heading
             leading-[50px] tracking-wide
-            md:tracking-[-1.44px]
+            lg:tracking-[-1.44px]
             text-[24px]
-            md:text-[48px]
+            lg:text-[48px]
           "
         >
           Let's Connect
@@ -67,14 +67,14 @@ export default function Hero() {
 
         <p
           className="max-w-[215px]
-            md:mt-6
+            lg:mt-6
             md:max-w-[700px]
             text-white/90
             tracking-normal
             capitalize
             text-[13px] leading-[16px]
-            md:text-[18px]
-            md:leading-[20px]
+            lg:text-[18px]
+            lg:leading-[20px]
           "
         >
           Have a question or project in mind?

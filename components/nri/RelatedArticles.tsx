@@ -56,13 +56,13 @@ const RelatedArticles = () => {
 
   return (
     <section data-theme="light" ref={sectionRef} className="overflow-hidden py-14 md:py-16">
-      <div className="mx-auto px-5 md:px-8 lg:px-24">
+      <div className="mx-auto px-5 md:px-24">
         {/* Heading */}
         <h2
           ref={(el) => {
             if (el) textRevealRef.current[0] = el;
           }}
-          className="font-heading text-[30px] leading-[50px] tracking-[-0.05em] text-[#111111] md:text-[48px]"
+          className="font-heading text-[30px] leading-[50px] lg:tracking-[-0.05em] text-[#111111] lg:text-[48px]"
         >
           Related articles
         </h2>
@@ -112,9 +112,9 @@ const RelatedArticles = () => {
                 ref={(el) => {
                   if (el) textRevealRef.current[1] = el;
                 }}
-                className="absolute left-6 top-10 p-8 md:p-6 z-20 md:max-w-[46ch] md:left-8 md:top-8"
+                className="absolute left-6 top-10 p-8 lg:p-6 z-20 lg:max-w-[46ch] lg:left-8 lg:top-8"
               >
-                <h3 className="font-small text-[16px] leading-[20px] md:leading-[26px] md:tracking-[-0.72px] tracking-wide text-white md:text-[24px]">
+                <h3 className="font-small text-[16px] leading-[20px] lg:leading-[26px] lg:tracking-[-0.72px] tracking-wide text-white lg:text-[24px]">
                   A Complete Guide to NRI Property Investment in India
                 </h3>
               </div>
@@ -167,11 +167,11 @@ const RelatedArticles = () => {
                     if (el) textRevealRef.current[2] = el;
                   }}
                 >
-                  <h3 className="text-start mt-4 text-[16px] font-[500] leading-[20px] md:leading-[25px] text-[#111111] md:text-[20px]">
+                  <h3 className="text-start mt-4 text-[16px] font-[500] leading-[20px] md:leading-[25px] text-[#111111] lg:text-[20px]">
                     Key Benefits of Investing in Chennai Real Estate for NRIs
                   </h3>
 
-                  <p className="text-start mt-3 text-[13px] leading-[16px] md:leading-[20px] text-[#717171] md:text-[16px]">
+                  <p className="text-start mt-3 text-[13px] leading-[16px] lg:leading-[20px] text-[#717171] lg:text-[16px]">
                     Explore why Chennai continues to attract NRI investors through strong infrastructure growth, high rental demand, trusted developments, and long-term investment potential.
                   </p>
                 </div>
@@ -217,11 +217,11 @@ const RelatedArticles = () => {
                     if (el) textRevealRef.current[3] = el;
                   }}
                 >
-                  <h3 className="text-start mt-4 text-[16px] font-[500] leading-[20px] md:leading-[25px] text-[#111111] md:text-[20px]">
+                  <h3 className="text-start mt-4 text-[16px] font-[500] leading-[20px] lg:leading-[25px] text-[#111111] lg:text-[20px]">
                     Key Benefits of Investing in Chennai Real Estate for NRIs
                   </h3>
 
-                  <p className="text-start mt-3 text-[13px] leading-[16px] md:leading-[20px] text-[#717171] md:text-[16px]">
+                  <p className="text-start mt-3 text-[13px] leading-[16px] lg:leading-[20px] text-[#717171] lg:text-[16px]">
                     Explore why Chennai continues to attract NRI investors through strong infrastructure growth, high rental demand, trusted developments, and long-term investment potential.
                   </p>
                 </div>
@@ -237,11 +237,11 @@ const RelatedArticles = () => {
             >
               <Link href="/blogs">
                 <PrimaryBtn
-                  className="
+                  className="text-[13px]
                     font-small
                     rounded-full
                     bg-[#00256A]
-                    text-[16px]
+                    lg:text-[16px]
                     tracking-[-0.48px]
                     text-white
                     transition

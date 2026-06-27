@@ -6,7 +6,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-
 import image2 from "@/assets/home/infographics/img2.png";
 import image3 from "@/assets/home/infographics/img3.jpg";
 import image4 from "@/assets/home/infographics/img4.jpg";
@@ -22,13 +21,11 @@ type InfographicItem = {
 };
 
 const infographicData: InfographicItem[] = [
-
   { id: "01", image: image2, stat: "30+", description: "Years Experience" },
   { id: "02", image: image3, stat: "5+", description: "Million SQFT Delivered" },
   { id: "03", image: image4, stat: "15+", description: "Projects" },
   { id: "04", image: image5, stat: "4000+", description: "Family's Served" },
 ];
-
 
 const LINE_ANGLE_DEG = 225;
 
@@ -58,19 +55,8 @@ function arcClipPath(sweep: number): string {
   const startAngle = LINE_ANGLE_DEG;
   const endAngle = LINE_ANGLE_DEG - sweep;
 
-  const start = polarPoint(
-    cx,
-    cy,
-    r,
-    startAngle
-  );
-
-  const end = polarPoint(
-    cx,
-    cy,
-    r,
-    endAngle
-  );
+  const start = polarPoint(cx, cy, r, startAngle);
+  const end = polarPoint(cx, cy, r, endAngle);
 
   const largeArc = sweep > 180 ? 1 : 0;
 
@@ -89,6 +75,7 @@ export default function InfoGraphics() {
   const desktopNumberRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const desktopClipRefs = useRef<(SVGPathElement | null)[]>([]);
 
+
   const mobileImageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mobileTextRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mobileClipRefs = useRef<(SVGPathElement | null)[]>([]);
@@ -96,14 +83,12 @@ export default function InfoGraphics() {
   const [activeIndex, setActiveIndex] = useState(0);
   const currentIndexRef = useRef(0);
 
-
   const mobileTlRef = useRef<gsap.core.Timeline | null>(null);
 
   const snapPoints = useMemo(
     () => infographicData.map((_, i) => i / (infographicData.length - 1)),
     []
   );
-
 
   const jumpTo = (index: number) => {
     if (!sectionRef.current) return;
@@ -231,10 +216,11 @@ export default function InfoGraphics() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+  
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
 
     if (!isDesktop) {
-      // ── Mobile init
+      // Mobile + Tablet init
       gsap.set(mobileImageRefs.current, { opacity: 0 });
       gsap.set(mobileImageRefs.current[0], { opacity: 1 });
 
@@ -437,12 +423,12 @@ export default function InfoGraphics() {
   return (
     <section data-theme="light" ref={sectionRef} className="relative min-h-screen bg-white">
 
-      {/* DESKTOP layout */}
-      <div className="hidden md:grid h-full grid-cols-[90px_1fr_280px] lg:grid-cols-[120px_1fr_320px] items-center px-6 lg:px-10">
+      {/* DESKTOP */}
+      <div className="hidden lg:grid h-full grid-cols-[120px_1fr_320px] items-center px-6 lg:px-10">
 
         {/* LEFT — slide numbers */}
         <div className="flex justify-center">
-          <div className="flex flex-col md:gap-2 lg:gap-5">
+          <div className="flex flex-col lg:gap-5">
             {infographicData.map((item, index) => (
               <button
                 key={item.id}
@@ -455,7 +441,7 @@ export default function InfoGraphics() {
                   }}
                   className={`
                     block font-['Inter_Tight'] font-medium
-                    text-[20px] lg:text-[32px]
+                    text-[32px]
                     leading-[20px]
                     tracking-[1.2px]
                     text-center
@@ -476,7 +462,7 @@ export default function InfoGraphics() {
         </div>
 
         {/* CENTER — circular image with wipe clip */}
-        <div className="flex items-center justify-center md:ml-[10%] xl:ml-[18%]">
+        <div className="flex items-center justify-center xl:ml-[18%]">
           <div className="relative h-[clamp(260px,40vw,420px)] w-[clamp(260px,40vw,420px)]">
 
             <div className="absolute inset-0 z-[3] rounded-full border border-black/10" />
@@ -555,13 +541,13 @@ export default function InfoGraphics() {
             </svg>
 
             {/* Center dot */}
-            <div className="absolute left-1/2 top-1/2 z-[10] h-[16px] w-[16px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1A1814] md:h-[18px] md:w-[18px] lg:h-[20px] lg:w-[20px]" />
+            <div className="absolute left-1/2 top-1/2 z-[10] h-[20px] w-[20px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1A1814]" />
           </div>
         </div>
 
         {/* RIGHT — stat text */}
         <div className="flex justify-center text-center">
-          <div className="relative min-h-[220px] w-[240px] lg:w-[300px]">
+          <div className="relative min-h-[220px] w-[300px]">
             {infographicData.map((item, index) => (
               <div
                 key={item.id}
@@ -570,15 +556,15 @@ export default function InfoGraphics() {
                 }}
                 className="absolute inset-0 flex will-change-transform flex-col items-center justify-center"
               >
-                <p className="font-body text-[14px] font-[300] uppercase tracking-normal text-black md:text-[16px] lg:text-[24px]">
+                <p className="font-body text-[24px] font-[300] uppercase tracking-normal text-black">
                   View Infographics
                 </p>
 
-                <h2 className="font-['Inter_Tight'] text-[24px] font-medium leading-[150%] tracking-[0px] text-center text-[#1A1814] md:text-[24px] lg:text-[36px]">
+                <h2 className="font-['Inter_Tight'] text-[36px] font-medium leading-[150%] tracking-[0px] text-center text-[#1A1814]">
                   {item.stat}
                 </h2>
 
-                <p className="font-['Inter_Tight'] text-center text-[14px] font-light leading-[150%] tracking-[0] text-[#222222] md:text-[14px] lg:text-[18px]">
+                <p className="font-['Inter_Tight'] text-center text-[18px] font-light leading-[150%] tracking-[0] text-[#222222]">
                   {item.description}
                 </p>
               </div>
@@ -587,10 +573,10 @@ export default function InfoGraphics() {
         </div>
       </div>
 
-      {/* MOBILE layout  */}
-      <div className="flex h-full flex-col items-center px-6 pt-20 pb-8 md:hidden">
+      {/* MOBILE + TABLET */}
+      <div className="flex h-full flex-col items-center px-6 pt-20 pb-8 lg:hidden">
 
-        {/* CENTER — circular image */}
+        {/* CENTER */}
         <div className="flex items-center justify-center mt-20 mb-10">
           <div className="relative h-[400px] w-[400px]">
 
@@ -642,9 +628,10 @@ export default function InfoGraphics() {
 
             {/* Diagonal line */}
             <svg
-              className="pointer-events-none absolute  inset-0 z-[5] h-full w-full overflow-visible"
+              className="pointer-events-none absolute inset-0 z-[5] h-full w-full overflow-visible"
               viewBox="0 0 420 420"
             >
+              <line x1="210" y1="234" x2="-100" y2="520" stroke="#1A1814" strokeWidth="1" opacity="20" />
               <line x1="210" y1="234" x2="-100" y2="520" stroke="#1A1814" strokeWidth="1" opacity="20" />
             </svg>
 
@@ -658,7 +645,7 @@ export default function InfoGraphics() {
           {infographicData.map((item, index) => (
             <div
               key={item.id}
-              ref={(el) => { mobileTextRefs.current[index] = el; }}  // FIX Bug 1
+              ref={(el) => { mobileTextRefs.current[index] = el; }}
               className="absolute"
             >
               <p className="font-body text-[14px] font-light uppercase text-[#222]">

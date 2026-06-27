@@ -216,7 +216,7 @@ export default function Gallery() {
             leading-[20px]
             tracking-[-1px]
             text-[#00256A]
-            md:text-[48px]
+            lg:text-[48px]
           "
         >
           Gallery
@@ -229,7 +229,7 @@ export default function Gallery() {
         style={{
           height: isMobile
             ? 400
-            : 520,
+            : 500,
         }}
       >
         {images.map(
@@ -246,7 +246,7 @@ export default function Gallery() {
                   absolute
                   top-1/2
                   overflow-hidden
-                  rounded-xl
+                  rounded-[10px]
                 "
                 style={{
                   left: "50%",

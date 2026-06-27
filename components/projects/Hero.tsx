@@ -94,17 +94,17 @@ const Hero = () => {
               "
             >
               {/* TOP / LEFT */}
-              <div className="lg:w-full">
+              <div className="md:w-full">
                 <h2
                   className="
                     font-heading
                     text-[30px]
                     leading-[33px] tracking-normal
-                    md:tracking-[-0.04em]
+                    lg:tracking-[-0.04em]
                     text-[#00256A]
-                    md:text-[70px]
-                    md:leading-[65px]
-                    md:px-5
+                    lg:text-[70px]
+                    lg:leading-[65px]
+                    lg:px-5
                     text-center
                   "
                 >

@@ -184,13 +184,13 @@ export default function ConnectedToChennai({
         "
       >
         {/* Timeline */}
-        <div className="relative flex-shrink-0 px-2 md:pt-8">
-          <div className="relative h-[90px]">
+        <div className="relative flex-shrink-0 px-2 pt-2 lg:pt-8">
+          <div className="relative md:h-[60px] lg:h-[90px]">
             {/* Line Segments */}
-            <div className="absolute left-[7.5%] top-[58px] h-[1px] w-[28%] bg-black" />
-            <div className="absolute left-[37%] top-[58px] h-[1px] w-[28.5%] bg-black" />
-            <div className="absolute left-[67%] top-[58px] h-[1px] w-[25%] bg-black" />
-            <div className="absolute right-[0.5%] top-[58px] h-[1px] w-[6%] bg-black" />
+            <div className="absolute left-[7.5%] md:top-[54px] lg:top-[58px] h-[1px] w-[28%] bg-black" />
+            <div className="absolute left-[37%] md:top-[54px] lg:top-[58px] h-[1px] w-[28.5%] bg-black" />
+            <div className="absolute left-[67%] md:top-[54px] lg:top-[58px] h-[1px] w-[25%] bg-black" />
+            <div className="hidden lg:block absolute right-[0.5%] md:top-[54px]  lg:top-[58px] h-[1px] w-[6%] bg-black" />
 
             {/* Car */}
             <div
@@ -198,7 +198,7 @@ export default function ConnectedToChennai({
               className="
                 absolute
                 left-[2%]
-                top-[5px]
+                lg:top-[5px]
                 z-20
                 flex
                 flex-col
@@ -206,11 +206,11 @@ export default function ConnectedToChennai({
               "
             >
               <div
-                className="
+                className="md:text-[12px] md:leading-[12px]
                   mb-1
                   text-center
-                  text-[14px]
-                  leading-[14px]
+                  lg:text-[14px]
+                  lg:leading-[14px]
                   text-black
                 "
               >
@@ -224,12 +224,12 @@ export default function ConnectedToChennai({
                 alt="car"
                 width={78}
                 height={42}
-                className="object-contain"
+                className="object-contain md:w-[60px] md:h-[40px] lg:w-[78px] lg:h-[42px]"
               />
             </div>
 
             {/* 5 Minutes */}
-            <div className="absolute left-[34%] top-0 flex flex-col items-center pt-2">
+            <div className="absolute left-[32.5%] lg:left-[34%] top-0 flex flex-col items-center pt-1.5 lg:pt-2">
               <p
                 className={`
                   text-[13px]
@@ -246,11 +246,11 @@ export default function ConnectedToChennai({
                 MINUTES
               </p>
 
-              <div className="mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
+              <div className="mt-[16px] lg:mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
             </div>
 
             {/* 10 Minutes */}
-            <div className="absolute left-[64%] top-0 flex flex-col items-center pt-2">
+            <div className="absolute left-[62.5%] lg:left-[64%] top-0 flex flex-col items-center pt-1.5 lg:pt-2">
               <p
                 className={`
                   text-[13px]
@@ -267,11 +267,11 @@ export default function ConnectedToChennai({
                 MINUTES
               </p>
 
-              <div className="mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
+              <div className="mt-[16px] lg:mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
             </div>
 
             {/* 20 Minutes */}
-            <div className="absolute right-[5%] top-0 flex flex-col items-center pt-2">
+            <div className="absolute md:right-[4%] lg:right-[5%] top-0 flex flex-col items-center pt-1.5 lg:pt-2">
               <p
                 className={`
                   text-[13px]
@@ -288,7 +288,7 @@ export default function ConnectedToChennai({
                 MINUTES
               </p>
 
-              <div className="mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
+              <div className="mt-[16px] lg:mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
             </div>
           </div>
         </div>

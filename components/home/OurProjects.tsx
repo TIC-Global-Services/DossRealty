@@ -56,7 +56,7 @@ export default function OurProjects() {
   return (
     <section data-theme="dark"
       className="
-        mt-20
+        mt-10
         md:pt-10
         overflow-hidden
       "
@@ -73,13 +73,13 @@ export default function OurProjects() {
             text-center
             px-5
             md:px-10
-            mb-16
+            mb-10
           "
         >
           <h2
             className="
               text-[24px]
-              md:text-[48px]
+              lg:text-[48px]
               font-small font-[400]
               tracking-[-0.04em]
               text-black
@@ -89,7 +89,7 @@ export default function OurProjects() {
           </h2>
 
           <Link href="/projects">
-            <PrimaryBtn mode="light" className="mt-5 text-black transition duration-300 hover:scale-105">
+            <PrimaryBtn mode="light" className="mt-5 !text-[13px] lg:!text-[16px] !w-[140px] !h-[40px] lg:!w-[160px] lg:!h-[44px] text-black transition duration-300 hover:scale-105">
               View Projects
             </PrimaryBtn>
           </Link>
@@ -168,7 +168,7 @@ export default function OurProjects() {
                     <div
                       className="
                       flex items-center gap-2
-                      h-[40px]              
+                      lg:h-[40px]              
                     "
                     >
                       <span className="relative flex">
@@ -191,12 +191,12 @@ export default function OurProjects() {
                     {/* GLASS BUTTON */}
                   <Link href={project.href}>
                     <button
-                      className="
-                      h-[44px]
+                      className="h-[40px]
+                      lg:h-[44px]
                       px-5.5
                       rounded-full
                       text-white text-[13px]
-                      md:text-[16px] tracking-wide
+                      lg:text-[16px] tracking-wide
                       border border-white/20
                       bg-[rgba(255,255,255,0.10)]
                       backdrop-blur-[20px]
@@ -227,7 +227,7 @@ export default function OurProjects() {
                         relative
                         w-full
                         min-h-[145px]
-                        md:min-h-[165px]
+                        lg:min-h-[165px]
                         overflow-hidden
                         flex
                         items-end
@@ -285,14 +285,14 @@ export default function OurProjects() {
                           z-[2]
                           w-full
                           py-6
-                          md:py-8
+                          lg:py-8
                         "
                       >
                         <div
                           className="
                             mx-auto
-                            px-5
-                            md:px-20
+                            px-5 md:px-8
+                            lg:px-20
                           "
                         >
                           <div className="max-w-full">
@@ -302,10 +302,10 @@ export default function OurProjects() {
                               className="font-small
                                 text-white
                                 text-[18px]
-                                md:text-[26px]
+                                lg:text-[26px]
                                 font-light
-                                leading-[18px]
-                                mb-4
+                                leading-[18px] mb-2
+                                lg:mb-4
                               "
                             >
                               <span className="hidden md:inline">
@@ -326,7 +326,7 @@ export default function OurProjects() {
                                 w-full
                                 text-[#FFFFFF80]
                                 text-[14px] 
-                                md:text-[16px]
+                                lg:text-[16px]
                                 leading-[20px]
                               "
                             >

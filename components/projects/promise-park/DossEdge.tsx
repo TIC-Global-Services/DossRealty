@@ -102,7 +102,7 @@ const DossEdge = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-6 md:py-12"
+      className="py-6 lg:py-12"
     >
       <div className="mx-auto">
         {/* TITLE */}
@@ -119,8 +119,8 @@ const DossEdge = () => {
               uppercase
               tracking-[-1px]
               text-[#111]
-              md:mb-[2%]
-              md:text-[46px]
+              lg:mb-[2%]
+              lg:text-[46px]
             "
           >
             THE DOSS EDGE

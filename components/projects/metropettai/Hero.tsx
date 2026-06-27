@@ -178,22 +178,22 @@ const Hero = () => {
                 font-[600]
                 text-[13px]
                 text-white/80
-                md:text-[22px]
-                leading-[24px]
+                lg:text-[22px]
+                lg:leading-[24px]
               "
             >
               Plotted Development
             </p>
 
             <h2
-              className="
-                mt-2
+              className="mt-1
+                lg:mt-2
                 font-heading
                 text-[24px] leading-[30px]
                 font-[300]
                 text-white
-                md:text-[54px]
-                md:leading-[56px]
+                lg:text-[54px]
+                lg:leading-[56px]
               "
             >
               Metropettai
@@ -202,14 +202,14 @@ const Hero = () => {
             <button
               onClick={() => setIsModalOpen(true)}
               className="mt-4
-                md:mt-6
+                lg:mt-6
                 rounded-full
                 border
                 border-white/20
                 bg-[rgba(0,37,106,0.2)]
-                md:px-8 px-4 py-2
-                md:py-3 text-[13px]
-                md:text-[16px]
+                lg:px-8 px-4 py-2
+                lg:py-3 text-[13px]
+                lg:text-[16px]
                 text-white
                 backdrop-blur-md
                 transition
@@ -246,12 +246,12 @@ const Hero = () => {
 
             <div className="md:max-w-[420px]">
               <p
-                className="w-[320px]
+                className="w-[330px]
                   text-[13px]
                   font-light
                   leading-[16px]
                   text-white/90
-                  md:text-[18px]
+                  lg:text-[18px]
                   lg:w-[44ch]
                   lg:leading-[20px]
                 "
@@ -261,13 +261,12 @@ const Hero = () => {
 
               <div
                 className="mt-3
-                  md:mt-5
                   flex
                   items-center
                   gap-3
                   text-[13px]
                   text-[#C7A85E]
-                  md:text-[16px]
+                  lg:text-[16px]
                   lg:mt-6
                 "
               >

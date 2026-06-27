@@ -121,8 +121,8 @@ const Highlights = () => {
                     font-medium
                     leading-[16px]
                     text-[#2A2A2A]
-                    md:text-[19px] md:leading-[21px]
-                    md:tracking-normal
+                    lg:text-[19px] lg:leading-[21px]
+                    lg:tracking-normal
                   "
                 >
                   {item.title}

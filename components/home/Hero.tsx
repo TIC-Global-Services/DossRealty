@@ -453,7 +453,7 @@ export default function Hero() {
               px-[20px]
               pt-[22vh]
               md:px-6
-              md:pt-[16vh]
+              md:pt-[25vh]
               lg:pt-[18vh]
               xl:pt-[16vh]
             "

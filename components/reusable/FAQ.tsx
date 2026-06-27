@@ -55,7 +55,7 @@ const FAQ = ({
           rounded-[40px]
           px-5
           py-10
-          md:px-10
+          md:px-5
           md:py-10
           lg:px-14
           lg:py-20
@@ -191,8 +191,8 @@ const FAQ = ({
             tracking-normal
             text-[#00256A]
             md:w-[12ch]
-            md:text-[38px]
-            md:leading-[42px]
+            md:text-[30px]
+            md:leading-[38px]
             md:tracking-[-0.05em]
             lg:w-[14ch]
             lg:text-[48px]

@@ -217,8 +217,9 @@ useEffect(() => {
               relative
               overflow-hidden
               rounded-[10px]
-              min-h-[800px]
-              md:min-h-[320px]
+              min-h-[800px] 
+              md:min-h-[400px]
+              lg:min-h-[320px]
               will-change-transform
             "
           >
@@ -250,9 +251,9 @@ useEffect(() => {
                   className="
                     text-white
                     font-small
-                    md:leading-[50px] md:tracking-[-1.44px]
-                    text-[24px] leading-[30px]
-                    md:text-[48px]
+                    lg:leading-[50px] lg:tracking-[-1.44px]
+                    text-[24px] leading-[30px] md:leading-[24px]
+                    lg:text-[48px]
                   "
                 >
                   {activeTab === "partner" ? (
@@ -267,12 +268,12 @@ useEffect(() => {
                 </h2>
 
                 <p
-                  className="
-                    mt-4
+                  className="mt-2
+                    lg:mt-4
                     text-white/90
                     text-[13px] leading-[16px]
-                    md:text-[16px]
-                    md:leading-[20px] md:tracking-[-0.48px]
+                    lg:text-[16px]
+                    lg:leading-[20px] lg:tracking-[-0.48px]
                     max-w-[550px]
                   "
                 >
@@ -284,13 +285,13 @@ useEffect(() => {
                 <button
                   onClick={() => setShowModal(true)}
                   className="mt-4
-                    md:mt-6 font-small
+                    lg:mt-6 font-small
                     bg-white
                     text-[#032B7A] px-6 py-2.5
-                    md:px-8
-                    md:py-3
+                    lg:px-8
+                    lg:py-3
                     rounded-full text-[13px] leading-[20px]
-                    md:text-[16px] md:leading-[20px] tracking-[-0.48px]
+                    lg:text-[16px] lg:leading-[20px] tracking-[-0.48px]
                     font-medium
                     transition-all
                     duration-300
@@ -305,7 +306,7 @@ useEffect(() => {
               </div>
 
               {/* Premium Glass Tabs */}
-              <div className="flex justify-center mt-auto pt-100 lg:mt-12 lg:pt-0">
+              <div className="flex justify-center mt-auto pt-100 md:pt-20 lg:mt-12 lg:pt-0">
                 <div
                   className="
                     relative
@@ -352,7 +353,7 @@ useEffect(() => {
                       items-center
                       justify-center
                       rounded-full text-[13px] tracking-[-0.5px]
-                      md:text-[14px] leading-[16px] md:tracking-[-0.48px]
+                      lg:text-[14px] leading-[16px] lg:tracking-[-0.48px]
                       font-medium
                       transition-all
                       cursor-pointer
@@ -378,7 +379,7 @@ useEffect(() => {
                       items-center
                       justify-center
                       rounded-full text-[13px] tracking-[-0.5px]
-                      md:text-[14px] leading-[16px] md:tracking-[-0.48px]
+                      lg:text-[14px] leading-[16px] lg:tracking-[-0.48px]
                       font-medium
                       cursor-pointer
                       transition-all
@@ -453,7 +454,7 @@ useEffect(() => {
 
               {activeTab === "partner" ? (
                 <>
-                  <h2 className="text-center font-heading text-[#2F3147] text-[36px] md:text-[45px]">
+                  <h2 className="text-center font-heading text-[#2F3147] text-[36px] lg:text-[45px]">
                     REGISTER NOW
                   </h2>
 
@@ -594,7 +595,7 @@ useEffect(() => {
                 </>
               ) : (
                 <>
-                  <h2 className="text-center font-heading text-[#2F3147] text-[36px] md:text-[45px]">
+                  <h2 className="text-center font-heading text-[#2F3147] text-[36px] lg:text-[45px]">
                     APPLY NOW
                   </h2>
 

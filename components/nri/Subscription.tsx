@@ -5,8 +5,8 @@ import phoneImg from "@/assets/nri/handImg.png";
 
 export default function Subscription() {
   return (
-    <section className="py-10 md:py-[40px] md:mt-25">
-      <div className="mx-5 max-w-[1440px] md:mx-10 md:px-5">
+    <section className="py-10 lg:py-[40px] lg:mt-25">
+      <div className="mx-5 md:mx-10 md:px-5">
         <div
           className="
             min-h-[60vh]
@@ -16,10 +16,10 @@ export default function Subscription() {
             flex
             flex-col
             items-center
-            md:h-[400px]
-            md:flex-row
-            md:items-center
-            md:justify-between
+            lg:h-[400px]
+            lg:flex-row
+            lg:items-center
+            lg:justify-between
           "
         >
           {/* LEFT CONTENT */}
@@ -43,15 +43,15 @@ export default function Subscription() {
                 max-w-[520px]
                 text-[20px] leading-[24px]
                 font-light
-                md:leading-[95%]
-                md:tracking-[-0.02em]
+                lg:leading-[95%]
+                lg:tracking-[-0.02em]
                 text-white
-                md:text-[40px]
+                lg:text-[40px]
                 lg:max-w-[520px]
               "
             >
               Subscribe for weekly
-              <br />
+              <br className="md:hidden lg:block" />
               real estate insights
             </h2>
 
@@ -61,13 +61,13 @@ export default function Subscription() {
                 mt-6
                 max-w-[470px]
                 text-[13px] leading-[16px]
-                md:leading-[150%]
+                lg:leading-[150%]
                 text-white
                 opacity-90
 
-                md:text-[16px]
+                lg:text-[16px]
 
-                lg:mx-0
+                md:mx-0
               "
             >
               Invest in premium
@@ -95,7 +95,7 @@ export default function Subscription() {
                 w-full
                 max-w-[500px]
 
-                lg:mx-0
+                md:mx-0
               "
             >
               <input
@@ -134,30 +134,31 @@ export default function Subscription() {
           {/* IMAGE */}
           <div
             className="
-            mt-4
-            flex
-            w-full
-            justify-center
-            items-end
-            overflow-visible
-            lg:mt-0
-            lg:self-end
-          "
+              mt-4
+              flex
+              w-full
+              justify-center
+              items-end
+              overflow-visible
+              md:mt-4
+              lg:mt-0
+              lg:self-end
+            "
           >
             <Image
-              src={phoneImg}
-              alt="Doss Realty Mobile App"
-              className="
-              w-full
-              h-auto
-              mx-auto
-              object-cover
-              md:w-[360px]
-              lg:w-[800px]
-              lg:h-[650px]
-            "
-              priority
-            />
+                src={phoneImg}
+                alt="Doss Realty Mobile App"
+                priority
+                className="
+                  mx-auto
+                  h-auto
+                  w-full
+                  object-cover
+                  md:w-[640px] md:h-[500px]
+                  lg:w-[800px]
+                  lg:h-[650px]
+                "
+              />
           </div>
         </div>
       </div>

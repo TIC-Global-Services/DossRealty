@@ -28,10 +28,10 @@ const Hero = () => {
               font-heading
               text-white
               text-[24px]
-              md:text-[48px]
+              lg:text-[48px]
               leading-[32px] tracking-wide
-              md:leading-[50px]
-              md:tracking-[-1.44px]
+              lg:leading-[50px]
+              lg:tracking-[-1.44px]
               capitalize
             "
           >
@@ -58,8 +58,8 @@ const Hero = () => {
             text-white/80
             text-[13px]
             leading-[20px]
-            md:text-[18px]
-            md:leading-[20px]
+            lg:text-[18px]
+            lg:leading-[20px]
             tracking-[-2%]
           "
         >

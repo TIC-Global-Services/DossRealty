@@ -216,7 +216,7 @@ export default function Gallery() {
             leading-[20px]
             tracking-[-1px]
             text-[#00256A]
-            md:text-[48px]
+            lg:text-[48px]
           "
         >
           Gallery

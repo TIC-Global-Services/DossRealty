@@ -7,7 +7,7 @@ import locationPin from "@/assets/contact/pin.png";
 
 const Location = () => {
   return (
-    <section className="py-14 lg:py-16">
+    <section className="py-8 lg:py-16">
       <div className="mx-auto px-6 lg:px-2">
         <div
           className="
@@ -26,10 +26,10 @@ const Location = () => {
               relative
               overflow-hidden
               rounded-[10px]
-              w-full
-              max-w-[600px]
+              w-full md:max-w-[500px]
+              lg:max-w-[600px]
               h-[260px]
-              md:h-[340px]
+              md:h-[280px]
               lg:h-[300px]
               flex-shrink-0
               border
@@ -106,8 +106,8 @@ const Location = () => {
 
           {/* RIGHT CONTENT */}
           <div
-            className="
-              max-w-[420px]
+            className="md:max-w-[490px]
+              lg:max-w-[420px]
               flex
               flex-col
               justify-center
@@ -118,11 +118,11 @@ const Location = () => {
               className="
                 font-small
                 text-[#111111]
-                md:leading-[1]
-                md:tracking-[-1.44px]
+                lg:leading-[1]
+                lg:tracking-[-1.44px]
                 text-[32px]
                 leading-[36px]
-                md:text-[48px]
+                lg:text-[48px]
               "
             >
               Everyday Access
@@ -131,8 +131,8 @@ const Location = () => {
             </h2>
 
             <p
-              className="
-                mt-5
+              className="mt-3
+                lg:mt-5
                 text-[#666666]
                 text-[16px]
                 leading-[20px]
@@ -152,16 +152,17 @@ const Location = () => {
               className="flex justify-start"
             >
               <button
-                className="
-                  mt-8
+                className="mt-4
+                  lg:mt-8
                   rounded-full
                   bg-[#002D80]
-                  px-8
-                  py-3
+                  px-6 py-2
+                  lg:px-8
+                  lg:py-3
                   text-white
                   text-[13px]
                   leading-[20px]
-                  md:text-[16px]
+                  lg:text-[16px]
                   font-medium
                   transition
                   duration-300

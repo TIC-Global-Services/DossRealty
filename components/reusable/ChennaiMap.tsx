@@ -280,7 +280,7 @@ export default function ChennaiMap({
       {/* Bottom Card */}
       {activeMinute !== 0 && (
         <div
-          className={`
+          className={`hidden lg:block
             absolute
             z-[1000]
             md:bottom-10

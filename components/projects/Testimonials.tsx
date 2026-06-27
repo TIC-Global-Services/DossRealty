@@ -77,8 +77,8 @@ const Testimonials = () => {
     useState(0);
 
   return (
-    <section data-theme="light" className="py-16 md:py-20 overflow-hidden">
-      <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
+    <section data-theme="light" className="py-16 lg:py-20 overflow-hidden">
+      <div className="mx-auto px-5 md:px-8 lg:px-10">
 
         {/* HEADING */}
         <div className="mx-auto text-center">
@@ -86,8 +86,8 @@ const Testimonials = () => {
             className="
               font-heading
               text-[30px] leading-[36px]
-              md:text-[48px]
-              md:leading-[54px]
+              lg:text-[48px]
+              lg:leading-[54px]
               tracking-[-1.44px]
               text-[#00256A]
             "
@@ -127,7 +127,7 @@ const Testimonials = () => {
                   key={index}
                   className="
                     !w-[90%]
-                    md:!w-[48%]
+                    md:!w-[41%]
                     lg:!w-[31.5%]
                   "
                 >
@@ -137,8 +137,8 @@ const Testimonials = () => {
                     <div
                       className={`
                         rounded-[10px]
-                        bg-white
-                        p-6
+                        bg-white p-4
+                        lg:p-6
                         shadow-[0_4px_20px_rgba(0,0,0,0.10)]
                         transition-all
                         duration-500
@@ -154,7 +154,7 @@ const Testimonials = () => {
                       <div className="flex items-center gap-4">
 
                         {/* IMAGE */}
-                        <div className="relative w-[50px] h-[50px] md:h-[100px] md:w-[100px] shrink-0 overflow-hidden rounded-full">
+                        <div className="relative w-[50px] h-[50px] lg:h-[100px] lg:w-[100px] shrink-0 overflow-hidden rounded-full">
                           <Image
                             src={
                               item.image
@@ -169,20 +169,20 @@ const Testimonials = () => {
 
                         {/* INFO */}
                         <div>
-                          <h3 className="text-[16px] md:text-[22px] leading-[24px] font-small tracking-[-2%] text-[#222]">
+                          <h3 className="text-[16px] lg:text-[22px] leading-[24px] font-small tracking-[-2%] text-[#222]">
                             {
                               item.name
                             }
                           </h3>
 
-                          <p className="text-[13px] md:text-[14px] leading-[16px] tracking-[-3%] text-[#000000]">
+                          <p className="text-[13px] lg:text-[14px] leading-[16px] tracking-[-3%] text-[#000000]">
                             {
                               item.country
                             }
                           </p>
 
                           {/* STARS */}
-                          <div className="mt-1 md:mt-2.5 flex gap-1 text-[#D0A93E]">
+                          <div className="mt-1 lg:mt-2.5 flex gap-1 text-[#D0A93E]">
                             {[
                               ...Array(
                                 5
@@ -209,7 +209,7 @@ const Testimonials = () => {
                       <p
                         className="
                           mt-6 text-[13px]
-                          md:text-[14px]
+                          lg:text-[14px]
                           leading-[16px]
                           text-[#606060]
                         "

@@ -154,9 +154,9 @@ export default function BlogsArticles() {
                 <div className="flex justify-center">
                   <div
                     className="
-                    relative
-                    h-[160px]
-                    w-[250px]
+                    relative 
+                    lg:h-[160px]
+                    lg:w-[250px]
                     overflow-hidden
                     rounded-[20px]
                     -rotate-6
@@ -292,7 +292,7 @@ export default function BlogsArticles() {
                     className="
                     relative
                     mt-20
-                    h-[190px]
+                    h-[190px] md:h-[200px] md:w-[350px]
                     w-[75%]
                     overflow-hidden
                     rounded-[28px]

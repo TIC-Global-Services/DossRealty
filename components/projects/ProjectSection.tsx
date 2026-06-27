@@ -187,7 +187,7 @@ useEffect(() => {
         : deliveredProjects;
 
   return (
-    <section data-theme="light" className="py-10 md:py-12">
+    <section data-theme="light" className="py-10 lg:py-12">
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-10">
         {/* TOGGLE */}
         <div className="mb-14 flex justify-center">
@@ -207,8 +207,8 @@ useEffect(() => {
               }
               className={`
                 rounded-full px-15 py-2.5
-                md:px-8
-                md:py-3
+                lg:px-8
+                lg:py-3
                 text-[13px]
                 md:text-[15px]
                 transition-all
@@ -234,8 +234,8 @@ useEffect(() => {
               }
               className={`
                 rounded-full px-15 py-2.5
-                md:px-8
-                md:py-3
+                lg:px-8
+                lg:py-3
                 text-[13px]
                 md:text-[15px]
                 transition-all
@@ -306,8 +306,8 @@ useEffect(() => {
                       group
                       relative
                       overflow-hidden
-                      rounded-[10px]
-                      md:aspect-[16/9]
+                      rounded-[10px] md:aspect-[16/10]
+                      lg:aspect-[16/9]
                       ${isClickable
                         ? "cursor-pointer"
                         : "cursor-default"
@@ -315,12 +315,12 @@ useEffect(() => {
                     `}
                   >
                     {/* IMAGE */}
-                    <div className="relative h-[300px] overflow-hidden md:h-[370px]">
+                    <div className="relative h-[300px] overflow-hidden lg:h-[370px]">
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
-                        className="
+                        className="object-bottom lg:object-cover
                           object-cover
                           transition
                           duration-700
@@ -357,7 +357,7 @@ useEffect(() => {
                           `}
                         />
 
-                        <span className="text-[13px] leading-[18px] md:text-[14px] text-white">
+                        <span className="text-[13px] leading-[18px] lg:text-[14px] text-white">
                           {activeTab ===
                             "active"
                             ? "Active"
@@ -366,8 +366,8 @@ useEffect(() => {
                       </div>
 
                       <button
-                        className="
-                          h-[44px]
+                        className="h-[30px] md:h-[34px]
+                          lg:h-[44px]
                           rounded-full
                           border
                           border-white/20
@@ -381,7 +381,7 @@ useEffect(() => {
                           transition
                           duration-300
                           hover:bg-white/20
-                          md:text-[16px]
+                          lg:text-[16px]
                           cursor-pointer
                         "
                       >
@@ -416,20 +416,20 @@ useEffect(() => {
                           />
                         </div>
 
-                        <div className="relative z-[2] w-full py-6 md:py-8">
-                          <div className="px-5 md:px-8">
+                        <div className="relative z-[2] w-full py-2 lg:py-8">
+                          <div className="px-5 lg:px-8">
                             {activeTab === "active" ? (
                               <>
-                                <h3 className="text-[13px] text-white md:text-[26px]">
+                                <h3 className="text-[13px] text-white lg:text-[26px]">
                                   {project.title}
                                 </h3>
 
                                 <div className="max-w-[500px]">
-                                  <p className="text-[11px] md:text-[13px] leading-[15px] text-white font-semibold">
+                                  <p className="text-[11px] lg:text-[13px] leading-[15px] text-white font-semibold">
                                     {project.text1}
                                   </p>
 
-                                  <p className="text-[11px] md:text-[13px] leading-[15px] text-white/80 font-[300]">
+                                  <p className="text-[11px] lg:text-[13px] leading-[15px] text-white/80 font-[300]">
                                     {project.text2}
                                   </p>
                                 </div>
@@ -442,7 +442,7 @@ useEffect(() => {
                                     <h3
                                       className="
                                       text-[24px]
-                                      md:text-[34px]
+                                      lg:text-[34px]
                                       font-[400]
                                       leading-none
                                       text-white
@@ -461,7 +461,7 @@ useEffect(() => {
                                       px-6
                                       py-1.5
                                       text-[12px]
-                                      md:text-[14px] leading-[16px]
+                                      lg:text-[14px] leading-[16px]
                                       text-white
                                     "
                                     >

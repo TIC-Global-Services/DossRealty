@@ -85,7 +85,7 @@ const About = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-16 md:py-24"
+      className="py-16 lg:py-24"
     >
       <div className="mx-auto max-w-[1440px] px-5 md:px-8 lg:px-40">
         {/* TOP INFO */}
@@ -105,16 +105,16 @@ const About = () => {
             md:justify-center
             md:gap-y-4
             md:text-center
-            md:gap-x-10
+            lg:gap-x-8
           "
         >
           <div className="flex items-center gap-2">
             <div className=" h-5 w-[1px] bg-black md:hidden" />
-            <span className="font-small text-sm md:text-[18px] md:leading-[20px]">
+            <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
               Area :
             </span>
 
-            <span className="font-small text-sm text-[#C7A85E] md:text-[18px] md:leading-[20px]">
+            <span className="font-small text-sm text-[#C7A85E] lg:text-[18px] lg:leading-[20px]">
               10 Acres
             </span>
           </div>
@@ -123,11 +123,11 @@ const About = () => {
 
           <div className="flex items-center gap-2">
             <div className=" h-5 w-[1px] bg-black md:block" />
-            <span className="font-small text-sm md:text-[18px] md:leading-[20px]">
+            <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
               Year of build:
             </span>
 
-            <span className="font-small text-sm text-[#C59D5F] md:text-[18px] md:leading-[20px]">
+            <span className="font-small text-sm text-[#C59D5F] lg:text-[18px] lg:leading-[20px]">
               2026
             </span>
           </div>
@@ -136,11 +136,11 @@ const About = () => {
 
           <div className="flex items-center gap-2">
             <div className=" h-5 w-[1px] bg-black md:block" />
-            <span className="font-small text-sm md:text-[18px] md:leading-[20px]">
+            <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
               Property status:
             </span>
 
-            <span className="font-small text-sm text-[#C59D5F] md:text-[18px] md:leading-[20px]">
+            <span className="font-small text-sm text-[#C59D5F] lg:text-[18px] lg:leading-[20px]">
               Active
             </span>
           </div>
@@ -149,11 +149,11 @@ const About = () => {
 
           <div className="flex items-center gap-2">
             <div className=" h-5 w-[1px] bg-black md:block" />
-            <span className="font-small text-sm md:text-[18px] md:leading-[20px]">
+            <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
               Size :
             </span>
 
-            <span className="font-small text-sm text-[#C59D5F] md:text-[18px] md:leading-[20px]">
+            <span className="font-small text-sm text-[#C59D5F] lg:text-[18px] lg:leading-[20px]">
               270 Units
             </span>
           </div>
@@ -165,7 +165,7 @@ const About = () => {
         {/* CONTENT */}
         <div
           ref={contentRef}
-          className="mt-12"
+          className="mt-8 lg:mt-12"
         >
           <h2
             className="
@@ -174,7 +174,7 @@ const About = () => {
               font-[300]
               tracking-[0px]
               text-[#111]
-              md:text-[46px]
+              lg:text-[46px]
               leading-[50px]
             "
           >
@@ -183,15 +183,15 @@ const About = () => {
 
           <p
             className="
-              mt-6
+              lg:mt-6
               text-[16px]
               leading-[20px]
               text-[#717171]
 
-              md:max-w-[800px]
-              md:text-[18px]
-              md:leading-[20px]
-              md:tracking-[0.48px]
+              lg:max-w-[800px]
+              lg:text-[18px]
+              lg:leading-[20px]
+              lg:tracking-[0.48px]
             "
           >
             Metropettai is a modern
@@ -218,7 +218,7 @@ const About = () => {
         {/* VIDEO SECTION */}
         <div
           ref={videoRef}
-          className="mt-10"
+          className="mt-6 lg:mt-10"
         >
           <div
             className="
@@ -276,13 +276,14 @@ const About = () => {
                   duration-300
                   group-hover:scale-110
 
-                  md:h-[60px]
-                  md:w-[60px]
+                  lg:h-[60px]
+                  lg:w-[60px]
                 "
               >
                 <Play
                   size={22}
                   fill="white"
+                  className="lg:size-[22px] size-[18px]"
                 />
               </div>
 
@@ -292,7 +293,7 @@ const About = () => {
                   text-[18px]
                   font-[300]
 
-                  md:text-[38px]
+                  lg:text-[38px]
                 "
               >
                 Watch Showreel
