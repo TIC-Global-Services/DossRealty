@@ -1,45 +1,32 @@
 "use client";
 
-import {
-  useLayoutEffect,
-  useRef,
-} from "react";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
 import heroImg from "@/assets/projects/promisePark/galleryImg1.png";
+import BrochureModal from "@/components/reusable/BrochureModal";
 
 const Hero = () => {
-  const leftContentRef =
-    useRef<HTMLDivElement>(null);
-
-  const rightContentRef =
-    useRef<HTMLDivElement>(null);
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const rightContentRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // LEFT CONTENT
-      gsap.from(
-        leftContentRef.current,
-        {
-          x: -120,
-          opacity: 0,
-          duration: 1.3,
-          ease: "power3.out",
-        }
-      );
+      gsap.from(leftContentRef.current, {
+        x: -120,
+        opacity: 0,
+        duration: 1.3,
+        ease: "power3.out",
+      });
 
-      // RIGHT CONTENT
-      gsap.from(
-        rightContentRef.current,
-        {
-          x: 120,
-          opacity: 0,
-          duration: 1.3,
-          delay: 0.2,
-          ease: "power3.out",
-        }
-      );
+      gsap.from(rightContentRef.current, {
+        x: 120,
+        opacity: 0,
+        duration: 1.3,
+        delay: 0.2,
+        ease: "power3.out",
+      });
     });
 
     return () => ctx.revert();
@@ -50,13 +37,13 @@ const Hero = () => {
       {/* Background Image */}
       <Image
         src={heroImg}
-        alt="Metropettai"
+        alt="Promise Park"
         fill
         priority
-        className="object-cover object-[25%] md:object-cover md:object-bottom"
+        className="object-cover object-[25%] md:object-bottom"
       />
 
-      {/* Dark Overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
@@ -81,8 +68,11 @@ const Hero = () => {
             h-full
             w-full
             flex-col
-            translate-x-10 translate-y-10 md:translate-x-0 md:translate-y-0
+            translate-x-10
+            translate-y-10
             justify-between
+            md:translate-x-0
+            md:translate-y-0
             md:flex-row
             md:items-end
           "
@@ -105,10 +95,12 @@ const Hero = () => {
             </p>
 
             <h2
-              className="mt-1
+              className="
+                mt-1
                 lg:mt-2
                 font-heading
-                text-[24px] leading-[30px]
+                text-[24px]
+                leading-[30px]
                 font-[300]
                 text-white
                 lg:text-[54px]
@@ -118,26 +110,10 @@ const Hero = () => {
               Promise Park
             </h2>
 
-            <button
-              className="mt-2
-                lg:mt-6
-                rounded-full
-                border
-                border-white/20
-                bg-[rgba(0,37,106,0.2)]
-                lg:px-8 px-4 py-2
-                lg:py-3 text-[13px]
-                lg:text-[16px]
-                text-white
-                backdrop-blur-md
-                transition
-                duration-300
-                hover:bg-[rgba(0,37,106,0.3)]
-                cursor-pointer
-              "
-            >
-              Download Brochure
-            </button>
+            <BrochureModal
+              project="promise-park"
+              brochure="/brochure/promisePark-brochure.pdf"
+            />
           </div>
 
           {/* RIGHT CONTENT */}
@@ -164,47 +140,40 @@ const Hero = () => {
 
             <div className="md:max-w-[420px]">
               <p
-                className="w-[320px]
+                className="
+                  w-[320px]
                   text-[13px]
                   font-light
                   leading-[16px]
                   text-white/90
-                  lg:text-[18px]
                   lg:w-[42ch]
+                  lg:text-[18px]
                   lg:leading-[24px]
                 "
               >
-                A modern architectural
-                residence crafted with
-                clean geometry, open
-                living spaces, and
-                timeless material
-                aesthetics designed for
-                elevated contemporary
-                living.
+                A modern architectural residence crafted with
+                clean geometry, open living spaces, and
+                timeless material aesthetics designed for
+                elevated contemporary living.
               </p>
 
               <div
-                className="mt-3
-                  md:mt-3
+                className="
+                  mt-3
                   flex
                   items-center
                   gap-3
                   text-[13px]
                   text-[#C7A85E]
-                  lg:text-[16px]
                   lg:mt-6
+                  lg:text-[16px]
                 "
               >
-                <span>
-                  Luxury Living
-                </span>
+                <span>Luxury Living</span>
 
                 <span className="h-[4px] w-[4px] rounded-full bg-[#C7A85E]" />
 
-                <span>
-                  Chennai, TN
-                </span>
+                <span>Chennai, TN</span>
               </div>
             </div>
           </div>

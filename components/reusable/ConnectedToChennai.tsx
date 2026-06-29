@@ -88,7 +88,7 @@ export default function ConnectedToChennai({
         });
 
         tl.to(carRef.current, {
-          x: "85vw",
+          x: "86vw",
           ease: "none",
           duration: PIN_DISTANCE,
         });
@@ -184,41 +184,45 @@ export default function ConnectedToChennai({
         "
       >
         {/* Timeline */}
-        <div className="relative flex-shrink-0 px-2 pt-2 lg:pt-8">
-          <div className="relative md:h-[60px] lg:h-[90px]">
-            {/* Line Segments */}
-            <div className="absolute left-[7.5%] md:top-[54px] lg:top-[58px] h-[1px] w-[28%] bg-black" />
-            <div className="absolute left-[37%] md:top-[54px] lg:top-[58px] h-[1px] w-[28.5%] bg-black" />
-            <div className="absolute left-[67%] md:top-[54px] lg:top-[58px] h-[1px] w-[25%] bg-black" />
-            <div className="hidden lg:block absolute right-[0.5%] md:top-[54px]  lg:top-[58px] h-[1px] w-[6%] bg-black" />
+        <div className="relative flex-shrink-0 px-8 pt-2 lg:pt-8">
+          <div className="relative h-[60px] lg:h-[90px]">
+            {(() => {
+              const GAP = 10;
+              const points = [3, 34, 64, 95];
+              const segments: { left: string; width: string; tail?: boolean }[] = [];
+
+              for (let i = 0; i < points.length - 1; i++) {
+                segments.push({
+                  left: `calc(${points[i]}% + ${GAP}px)`,
+                  width: `calc(${points[i + 1] - points[i]}% - ${GAP * 2}px)`,
+                });
+              }
+              segments.push({
+                left: `calc(${points[3]}% + ${GAP}px)`,
+                width: `calc(${100 - points[3]}% - ${GAP}px)`,
+                tail: true,
+              });
+
+              return segments.map((seg, i) => (
+                <div
+                  key={i}
+                  style={{ left: seg.left, width: seg.width }}
+                  className={`absolute top-[54px] lg:top-[58px] h-[1px] bg-black ${seg.tail ? "hidden lg:block" : ""
+                    }`}
+                />
+              ));
+            })()}
 
             {/* Car */}
             <div
               ref={carRef}
-              className="
-                absolute
-                left-[2%]
-                lg:top-[5px]
-                z-20
-                flex
-                flex-col
-                items-center
-              "
+              className="absolute left-[3%] -translate-x-1/2 lg:top-[5px] z-40 flex flex-col items-center"
             >
-              <div
-                className="md:text-[12px] md:leading-[12px]
-                  mb-1
-                  text-center
-                  lg:text-[14px]
-                  lg:leading-[14px]
-                  text-black
-                "
-              >
+              <div className="mb-1 text-center text-[12px] leading-[12px] lg:text-[14px] lg:leading-[14px] text-black">
                 Doss
                 <br />
                 Realty
               </div>
-
               <Image
                 src="/car.png"
                 alt="car"
@@ -228,68 +232,28 @@ export default function ConnectedToChennai({
               />
             </div>
 
-            {/* 5 Minutes */}
-            <div className="absolute left-[32.5%] lg:left-[34%] top-0 flex flex-col items-center pt-1.5 lg:pt-2">
-              <p
-                className={`
-                  text-[13px]
-                  leading-[14px]
-                  text-center
-                  text-black
-                  transition-all
-                  duration-300
-                  ${activeMinute === 5 ? "opacity-0" : "opacity-100"}
-                `}
+            {/* Stops */}
+            {[
+              { minute: 5, left: "34%" },
+              { minute: 10, left: "64%" },
+              { minute: 20, left: "95%" },
+            ].map((stop) => (
+              <div
+                key={stop.minute}
+                style={{ left: stop.left }}
+                className="absolute top-0 z-20 flex -translate-x-1/2 flex-col items-center pt-1.5 lg:pt-2"
               >
-                5
-                <br />
-                MINUTES
-              </p>
-
-              <div className="mt-[16px] lg:mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
-            </div>
-
-            {/* 10 Minutes */}
-            <div className="absolute left-[62.5%] lg:left-[64%] top-0 flex flex-col items-center pt-1.5 lg:pt-2">
-              <p
-                className={`
-                  text-[13px]
-                  leading-[14px]
-                  text-center
-                  text-black
-                  transition-all
-                  duration-300
-                  ${activeMinute === 10 ? "opacity-0" : "opacity-100"}
-                `}
-              >
-                10
-                <br />
-                MINUTES
-              </p>
-
-              <div className="mt-[16px] lg:mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
-            </div>
-
-            {/* 20 Minutes */}
-            <div className="absolute md:right-[4%] lg:right-[5%] top-0 flex flex-col items-center pt-1.5 lg:pt-2">
-              <p
-                className={`
-                  text-[13px]
-                  leading-[14px]
-                  text-center
-                  text-black
-                  transition-all
-                  duration-300
-                  ${activeMinute === 20 ? "opacity-0" : "opacity-100"}
-                `}
-              >
-                20
-                <br />
-                MINUTES
-              </p>
-
-              <div className="mt-[16px] lg:mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
-            </div>
+                <p
+                  className={`text-[13px] leading-[14px] text-center text-black transition-all duration-300 ${activeMinute === stop.minute ? "opacity-0" : "opacity-100"
+                    }`}
+                >
+                  {stop.minute}
+                  <br />
+                  MINUTES
+                </p>
+                <div className="mt-[16px] lg:mt-[18px] h-[8px] w-[8px] rounded-full bg-black" />
+              </div>
+            ))}
           </div>
         </div>
 
@@ -377,9 +341,9 @@ export default function ConnectedToChennai({
                 transition-all
                 duration-300
                 ${activeMinute === 5
-                        ? "opacity-100 font-medium"
-                        : "opacity-50"
-                      }
+                    ? "opacity-100 font-medium"
+                    : "opacity-50"
+                  }
               `}
               >
                 5
@@ -410,9 +374,9 @@ export default function ConnectedToChennai({
                 transition-all
                 duration-300
                 ${activeMinute === 10
-                        ? "opacity-100 font-medium"
-                        : "opacity-50"
-                      }
+                    ? "opacity-100 font-medium"
+                    : "opacity-50"
+                  }
               `}
               >
                 10
@@ -443,9 +407,9 @@ export default function ConnectedToChennai({
                 transition-all
                 duration-300
                 ${activeMinute === 20
-                        ? "opacity-100 font-medium"
-                        : "opacity-50"
-                      }
+                    ? "opacity-100 font-medium"
+                    : "opacity-50"
+                  }
               `}
               >
                 20
@@ -459,10 +423,10 @@ export default function ConnectedToChennai({
         {/* Map */}
         <div className="mt-2 min-h-0 flex-1">
           <ChennaiMap
-  activeMinute={activeMinute}
-  projectLocation={projectLocation}
-  locationData={locationData}
-/>
+            activeMinute={activeMinute}
+            projectLocation={projectLocation}
+            locationData={locationData}
+          />
         </div>
       </section>
     </div>

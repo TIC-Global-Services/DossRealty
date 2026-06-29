@@ -7,7 +7,7 @@ import testimonial1 from "@/assets/home/testimonials/testimonial1.jpg";
 import testimonial2 from "@/assets/home/testimonials/testimonial2.jpg";
 import testimonial3 from "@/assets/home/testimonials/testimonial3.jpg";
 import testimonial4 from "@/assets/home/testimonials/testimonial4.jpg";
-import testimonial5 from "@/assets/home/testimonials/testimonial2.jpg";
+
 import Link from "next/link";
 
 
@@ -17,14 +17,14 @@ const testimonials = [
     location: "Chennai, India",
     text:
       "Been staying in DOSS community for 16 years now, they have provided me with a wonderful safe neighbourhood for my family.",
-    image: testimonial1,
+    image: testimonial2,
   },
   {
     name: "Dhilip Reddy",
     location: "Chennai, Inida",
     text:
       "Expert investment advice, our property doubled in value in two years. The salespeople made it feel more like consultation, helping us choose the perfect unit.",
-    image: testimonial2,
+    image: testimonial1,
   },
   {
     name: "Chinnarasu",
@@ -38,28 +38,28 @@ const testimonials = [
     location: "Chennai, India",
     text:
       "Bought my first plot from DOSS, good support and maintenance.",
-    image: testimonial4,
+    image: testimonial1,
   },
   {
     name: "Ajay Eshwar",
     location: "Chennai, India",
     text:
       "Highly impressed with the layout quality, the gated community has excellent security and is packed with tress providing a good nature living experience in the city.",
-    image: testimonial5,
+    image: testimonial3,
   },
   {
     name: "K Dhanasekar",
     location: "Chennai, India",
     text:
       "I’m an NRI buying from Dubai, the sales team clearly explained and assisted in all the processes, it was very smooth and easy.",
-    image: testimonial5,
+    image: testimonial1,
   },
   {
     name: "Harikumar G",
     location: "Chennai, India",
     text:
       "We have seen plenty of plots, but DOSS felt instantly different. Everything felt like it was thought about, the attention to detail is spectacular. The quality stands out.",
-    image: testimonial5,
+    image: testimonial3,
   },
 ];
 

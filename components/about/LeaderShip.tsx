@@ -76,6 +76,26 @@ const Leadership = () => {
     };
   }, [selectedLeader]);
 
+  useEffect(() => {
+  const el = contentRef.current;
+  if (!el || !selectedLeader) return;
+
+  const handleWheel = (e: WheelEvent) => {
+    const { scrollTop, scrollHeight, clientHeight } = el;
+    const atTop = scrollTop <= 0;
+    const atBottom = scrollTop + clientHeight >= scrollHeight - 1;
+    
+    e.stopPropagation();
+
+    if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
+      e.preventDefault();
+    }
+  };
+
+  el.addEventListener("wheel", handleWheel, { passive: false });
+  return () => el.removeEventListener("wheel", handleWheel);
+}, [selectedLeader]);
+
   const openLeader = (leader: Leader) => {
     setIsExpanded(false);
     setSelectedLeader(leader);

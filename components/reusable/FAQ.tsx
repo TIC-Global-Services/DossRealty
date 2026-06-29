@@ -99,6 +99,7 @@ const FAQ = ({
                       md:text-left
                       transition-all
                       duration-300
+                      cursor-pointer
                     "
                   >
                     <span

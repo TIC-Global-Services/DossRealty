@@ -199,9 +199,9 @@ const BuildTrust = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10" />
 
               <div className="absolute left-2 top-4 p-5 z-10">
-                <p className="text-[16px] leading-[20px] font-[700] tracking-[-0.48px] text-white">
+                <p className="text-[16px] leading-[20px] font-[700] tracking-normal text-white">
                   Verified at Every Stage 
-                  <br/><span className="font-[300]">Project approvals, title records, agreements, payment schedules, and registration requirements are presented with care and transparency.</span>
+                  <br/><span className="font-[300] tracking-[-0.48px]">Project approvals, title records, agreements, payment schedules, and registration requirements are presented with care and transparency.</span>
                 </p>
               </div>
             </div>
@@ -220,9 +220,9 @@ const BuildTrust = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10" />
 
               <div className="absolute left-2 top-4 p-6 z-10">
-                <p className="text-[16px] leading-[20px] font-[700] tracking-[-0.48px] text-white">
+                <p className="text-[16px] leading-[20px] font-[700] tracking-normal text-white">
                   Present When You Cannot Be 
-                  <br/><span className="font-[300]">From virtual consultations to on-ground coordination, we manage each stage with continuity, keeping you informed wherever you are.</span>
+                  <br/><span className="font-[300] tracking-[-0.48px]">From virtual consultations to on-ground coordination, we manage each stage with continuity, keeping you informed wherever you are.</span>
                 </p>
               </div>
             </div>

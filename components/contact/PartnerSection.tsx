@@ -4,90 +4,17 @@ import { useState, useLayoutEffect, useRef, useEffect } from "react";
 import Image from "next/image";
 
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-
 import bannerImg from "@/assets/contact/partnerBg.jpg";
 
-gsap.registerPlugin(ScrollTrigger);
+import PartnerForm from "@/components/reusable/forms/PartnerForm";
+import JobForm from "@/components/reusable/forms/JobForm";
 
 
-const nameValidation = z
-  .string()
-  .min(3, "Name must be at least 3 characters")
-  .regex(
-    /^[A-Za-z\s]+$/,
-    "Only letters are allowed"
-  );
 
-const textValidation = z
-  .string()
-  .min(3, "Minimum 3 characters required")
-  .regex(
-    /^[A-Za-z\s]+$/,
-    "Only letters are allowed"
-  );
-
-const gmailValidation = z
-  .string()
-  .min(1, "Email is required")
-  .email("Invalid email address")
-  .refine(
-    (email) => email.toLowerCase().endsWith("@gmail.com"),
-    {
-      message: "Only Gmail addresses are allowed",
-    }
-  );
-
-const phoneValidation = z
-  .string()
-  .min(1, "Phone number is required")
-  .length(10, "Phone number must be 10 digits")
-  .regex(/^[6-9]\d{9}$/, "Enter valid mobile number");
-
-const partnerSchema = z.object({
-  brokerageFirm: textValidation,
-
-  fullName: textValidation,
-
-  email: gmailValidation,
-
-  city: textValidation,
-
-  phone: phoneValidation,
-});
-
-const jobSchema = z.object({
-  name: nameValidation,
-
-  email: gmailValidation,
-
-  phone: phoneValidation,
-
-  position: z
-    .string()
-    .min(1, "Please select a position"),
-
-  cvLink: z
-    .string()
-    .min(10, "Please enter your CV link and message"),
-});
-
-type PartnerFormData = z.infer<typeof partnerSchema>;
-type JobFormData = z.infer<typeof jobSchema>;
-
-const positions = [
-  "Sales Executive",
-  "Pre-sales Executive",
-  "Project Manager",
-];
 
 export default function PartnerSection() {
   const [activeTab, setActiveTab] = useState<"partner" | "job">("partner");
   const [showModal, setShowModal] = useState(false);
-  const [loading, setLoading] = useState(false);
 
 
 useEffect(() => {
@@ -99,113 +26,32 @@ useEffect(() => {
   }
 }, []);
 
-  const {
-    register: partnerRegister,
-    handleSubmit: partnerHandleSubmit,
-    reset: resetPartner,
-    formState: {
-      errors: partnerErrors,
-    },
-  } = useForm<PartnerFormData>({
-    resolver: zodResolver(
-      partnerSchema
-    ),
-  });
-
-  const {
-    register: jobRegister,
-    handleSubmit: jobHandleSubmit,
-    reset: resetJob,
-    formState: {
-      errors: jobErrors,
-    },
-  } = useForm<JobFormData>({
-    resolver: zodResolver(
-      jobSchema
-    ),
-  });
-
-  const onPartnerSubmit = async (
-    data: PartnerFormData
-  ) => {
-    try {
-      setLoading(true);
-
-      console.log(
-        "Partner Form:",
-        data
-      );
-
-      resetPartner();
-
-      alert(
-        "Partner enquiry submitted successfully"
-      );
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const onJobSubmit = async (
-    data: JobFormData
-  ) => {
-    try {
-      setLoading(true);
-
-      console.log(
-        "Job Form:",
-        data
-      );
-
-      resetJob();
-
-      alert(
-        "Application submitted successfully"
-      );
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Card animation
-      gsap.from(cardRef.current, {
-        y: 80,
-        opacity: 0,
-        scale: 0.96,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 80%",
-        },
-      });
-
-      // Content stagger
-      gsap.from(contentRef.current?.children || [], {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 80%",
-        },
-      });
+  const ctx = gsap.context(() => {
+    gsap.from(cardRef.current, {
+      y: 80,
+      opacity: 0,
+      scale: 0.96,
+      duration: 1.2,
+      ease: "power3.out",
     });
 
-    return () => ctx.revert();
-  }, []);
+    gsap.from(contentRef.current?.children || [], {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      delay: 0.2,
+    });
+  });
+
+  return () => ctx.revert();
+}, []);
 
   return (
     <>
@@ -452,314 +298,29 @@ useEffect(() => {
                 ×
               </button>
 
-              {activeTab === "partner" ? (
-                <>
-                  <h2 className="text-center font-heading text-[#2F3147] text-[36px] lg:text-[45px]">
-                    REGISTER NOW
-                  </h2>
+              <button
+  onClick={() => setShowModal(false)}
+  className="
+    absolute
+    top-5
+    right-5
+    z-20
+    text-[#2F3147]
+    text-[28px]
+    leading-none
+    cursor-pointer
+  "
+>
+  ×
+</button>
 
-                  <form
-                    onSubmit={partnerHandleSubmit(onPartnerSubmit)} className="mt-10 space-y-4">
-                    <div>
-                      <input
-                        {...partnerRegister("brokerageFirm")}
-                        type="text"
-                        placeholder="Your Brokerage Firm name*"
-                        onInput={(e) => {
-                          e.currentTarget.value =
-                            e.currentTarget.value.replace(
-                              /[^A-Za-z\s]/g,
-                              ""
-                            );
-                        }}
-                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                      />
+{activeTab === "partner" ? (
+  <PartnerForm />
+) : (
+  <JobForm />
+)}
 
-                      {partnerErrors.brokerageFirm && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {partnerErrors.brokerageFirm.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <input
-                        {...partnerRegister("fullName")}
-                        type="text"
-                        placeholder="Full Name*"
-                        onInput={(e) => {
-                          e.currentTarget.value =
-                            e.currentTarget.value.replace(
-                              /[^A-Za-z\s]/g,
-                              ""
-                            );
-                        }}
-                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                      />
-
-                      {partnerErrors.fullName && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {partnerErrors.fullName.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <input
-                        {...partnerRegister("email")}
-                        type="email"
-                        placeholder="Email*"
-                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                      />
-
-                      {partnerErrors.email && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {partnerErrors.email.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <input
-                        {...partnerRegister("city")}
-                        type="text"
-                        placeholder="City*"
-                        onInput={(e) => {
-                          e.currentTarget.value =
-                            e.currentTarget.value.replace(
-                              /[^A-Za-z\s]/g,
-                              ""
-                            );
-                        }}
-                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                      />
-
-                      {partnerErrors.city && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {partnerErrors.city.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="flex gap-4">
-                      <input
-                        type="text"
-                        value="+91"
-                        readOnly
-                        className="w-[90px] border-b border-[#E5E5E5] pb-3 outline-none"
-                      />
-
-                      <div className="flex-1">
-                        <input
-                          {...partnerRegister("phone")}
-                          type="tel"
-                          inputMode="numeric"
-                          maxLength={10}
-                          placeholder="9876543210"
-                          onInput={(e) => {
-                            e.currentTarget.value =
-                              e.currentTarget.value.replace(/\D/g, "");
-                          }}
-                          className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                        />
-
-                        {partnerErrors.phone && (
-                          <p className="text-red-500 text-xs mt-1">
-                            {partnerErrors.phone.message}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="flex justify-end pt-2">
-                      <button
-                        type="submit"
-                        disabled={loading}
-                        className="
-                      bg-[#032B7A]
-                      text-white
-                      px-10
-                      py-3
-                      rounded-full
-                      transition
-                      duration-300
-                      hover:scale-105
-                      disabled:opacity-50
-                      disabled:cursor-not-allowed
-                    "
-                      >
-                        {loading ? "Sending..." : "Send inquiry"}
-                      </button>
-                    </div>
-                  </form>
-                </>
-              ) : (
-                <>
-                  <h2 className="text-center font-heading text-[#2F3147] text-[36px] lg:text-[45px]">
-                    APPLY NOW
-                  </h2>
-
-                  <form
-                    onSubmit={jobHandleSubmit(onJobSubmit)}
-                    className="mt-10 space-y-3"
-                  >
-                    {/* Name */}
-                    <div>
-                      <input
-                        {...jobRegister("name")}
-                        type="text"
-                        placeholder="Your name*"
-                        onInput={(e) => {
-                          e.currentTarget.value =
-                            e.currentTarget.value.replace(
-                              /[^A-Za-z\s]/g,
-                              ""
-                            );
-                        }}
-                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                      />
-
-                      {jobErrors.name && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {jobErrors.name.message}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <input
-                        {...jobRegister("email")}
-                        type="email"
-                        placeholder="Your email address*"
-                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                      />
-
-                      {jobErrors.email && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {jobErrors.email.message}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Phone */}
-                    <div>
-                      <input
-                        {...jobRegister("phone")}
-                        type="tel"
-                        inputMode="numeric"
-                        maxLength={10}
-                        placeholder="Your phone"
-                        onInput={(e) => {
-                          e.currentTarget.value =
-                            e.currentTarget.value.replace(/\D/g, "");
-                        }}
-                        className="w-full border-b border-[#E5E5E5] pb-3 outline-none"
-                      />
-
-                      {jobErrors.phone && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {jobErrors.phone.message}
-                        </p>
-                      )}
-                    </div>
-
-
-                    {/* Opening Position */}
-                    <div className="relative max-w-[500px]">
-                      <select {...jobRegister("position")} defaultValue=""
-                        className="
-                        w-full
-                        appearance-none
-                        border-b
-                        border-[#E5E5E5]
-                        pb-4
-                        pr-10
-                        outline-none
-                        bg-transparent
-                        text-[16px]
-                        text-[#7f7f7f]
-                        cursor-pointer
-                      ">
-                        <option value="" disabled>
-                          Opening Positions
-                        </option>
-
-                        {positions.map((position) => (
-                          <option key={position} value={position}>
-                            {position}
-                          </option>
-                        ))}
-                      </select>
-
-                      {/* Custom Arrow */}
-                      <svg
-                        className="
-                        pointer-events-none
-                        absolute
-                        right-0
-                        top-1/2
-                        -translate-y-1/2
-                        h-4
-                        w-4
-                        text-[#8A8A8A]
-                      "
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-
-                      {jobErrors.position && (
-                        <p className="text-red-500 text-xs mt-2">
-                          {jobErrors.position.message}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* CV Link */}
-                    <div>
-                      <textarea
-                        {...jobRegister("cvLink")}
-                        rows={3}
-                        placeholder="Paste your CV & Message"
-                        className="w-full border-b border-[#E5E5E5] pb-2 outline-none resize-none"
-                      />
-
-                      {jobErrors.cvLink && (
-                        <p className="text-red-500 text-xs mt-1">
-                          {jobErrors.cvLink.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="flex justify-end pt-2">
-                      <button
-                        type="submit"
-                        disabled={loading}
-                        className="
-                      bg-[#032B7A]
-                      text-white
-                      px-10
-                      py-3
-                      rounded-full
-                      transition
-                      duration-300
-                      hover:scale-105
-                      disabled:opacity-50
-                      disabled:cursor-not-allowed
-                    "
-                      >
-                        {loading ? "Applying..." : "Apply now"}
-                      </button>
-                    </div>
-                  </form>
-                </>
-              )}
+              
             </div>
           </div>
         </div>
