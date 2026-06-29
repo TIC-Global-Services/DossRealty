@@ -7,6 +7,9 @@ import testimonial1 from "@/assets/home/testimonials/testimonial1.jpg";
 import testimonial2 from "@/assets/home/testimonials/testimonial2.jpg";
 import testimonial3 from "@/assets/home/testimonials/testimonial3.jpg";
 import testimonial4 from "@/assets/home/testimonials/testimonial4.jpg";
+import priyaImg from "@/assets/home/testimonials/priyaImg.jpg";
+import prabhuImg from "@/assets/home/testimonials/prabhuImg.png";
+
 
 import Link from "next/link";
 
@@ -17,7 +20,7 @@ const testimonials = [
     location: "Chennai, India",
     text:
       "Been staying in DOSS community for 16 years now, they have provided me with a wonderful safe neighbourhood for my family.",
-    image: testimonial2,
+    image: priyaImg,
   },
   {
     name: "Dhilip Reddy",
@@ -61,6 +64,28 @@ const testimonials = [
       "We have seen plenty of plots, but DOSS felt instantly different. Everything felt like it was thought about, the attention to detail is spectacular. The quality stands out.",
     image: testimonial3,
   },
+  {
+    name: "Archana",
+    location: "Chennai, India",
+    text:
+      "Quality of the project was definitely the key factor behind choosing DOSS.",
+    image: testimonial4,
+  },
+  {
+    name: "Prabhu M",
+    location: "Chennai, India",
+    text:
+      "What gave us confidence was the transparency. The documentation, approvals, and process were clearly explained, which made the decision feel secure from the beginning.",
+    image: prabhuImg,
+  },
+  {
+    name: "Sanjana Shankar",
+    location: "Chennai, India",
+    text:
+      "What we appreciated most was how organised everything felt. The project and the finish also just felt premium comparatively.",
+    image: testimonial4,
+  },
+  
 ];
 
 export default function TestimonialSection() {
@@ -234,12 +259,12 @@ function Card({ item }: any) {
       </p>
 
       <div className="flex items-center gap-3">
-        <div className="relative h-[30px] w-[30px] md:h-[40px] md:w-[40px] overflow-hidden rounded-full">
+        <div className="relative h-[30px] w-[30px] md:h-[40px] md:w-[40px] lg:w-[60px] lg:h-[60px] overflow-hidden rounded-full">
           <Image
             src={item.image}
             alt={item.name}
             fill
-            className="object-cover"
+            className="object-cover object-center"
           />
         </div>
 
