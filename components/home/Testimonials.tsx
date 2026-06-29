@@ -8,7 +8,7 @@ import testimonial2 from "@/assets/home/testimonials/testimonial2.jpg";
 import testimonial3 from "@/assets/home/testimonials/testimonial3.jpg";
 import testimonial4 from "@/assets/home/testimonials/testimonial4.jpg";
 import priyaImg from "@/assets/home/testimonials/priyaImg.jpg";
-import prabhuImg from "@/assets/home/testimonials/prabhuImg.png";
+import prabhuImg from "@/assets/home/testimonials/prabhuImg2.png";
 
 
 import Link from "next/link";
