@@ -125,25 +125,8 @@ const Location = () => {
                 lg:text-[48px]
               "
             >
-              Everyday Access
-              <br />
-              Made Easy
+              Our Office
             </h2>
-
-            <p
-              className="mt-3
-                lg:mt-5
-                text-[#666666]
-                text-[16px]
-                leading-[20px]
-                tracking-[-0.48px]
-              "
-            >
-              Serene Grove Villas is located in a well-connected
-              residential area with easy access to schools,
-              healthcare, shopping destinations, business hubs,
-              and major transport routes.
-            </p>
 
             <a
               href="https://maps.google.com/?q=13.0328,80.1268"

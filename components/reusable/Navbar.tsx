@@ -30,12 +30,36 @@ const navLinks = [
     dropdown: {
       projects: [
         {
-          title: "Lorem",
-          location: "Anna Nagar",
+          title: "Promise Park",
+          location: "Kanchipuram",
         },
         {
-          title: "Lorem",
-          location: "xxxxx",
+          title: "Metropettai",
+          location: "Poonamallee, Chennai",
+        },
+        {
+          title: "VV Nagar",
+          location: "Kovur",
+        },
+        {
+          title: "Anjanayar Avenue",
+          location: "Mangadu",
+        },
+        {
+          title: "Poonamallee Farms",
+          location: "Avadi",
+        },
+        {
+          title: "Samayapuram",
+          location: "Kundrathur",
+        },
+        {
+          title: "Everest Garden",
+          location: "Porur",
+        },
+        {
+          title: "Sri Vari Nagar",
+          location: "Poonamalle",
         },
       ],
       status: [
@@ -43,6 +67,10 @@ const navLinks = [
         "Delivered",
       ],
     },
+  },
+  {
+    name: "Blog",
+    href: "/blogs",
   },
   {
     name: "Contact",
@@ -140,7 +168,7 @@ const Navbar = () => {
                         duration-300
                         hover:opacity-70
                         ${isBlogsPage
-                          ? "text-black font-semibold"
+                          ? "text-black"
                           : "text-white"
                         }
                       `}
@@ -289,8 +317,8 @@ const Navbar = () => {
       </div>
 
       {/* MOBILE MENU OVERLAY */}
-            <div
-              className={`
+      <div
+        className={`
                 fixed
                 inset-0
                 z-[9999]
@@ -301,10 +329,10 @@ const Navbar = () => {
                 lg:hidden
                 ${isOpen ? "translate-x-0" : "translate-x-full"}
               `}
-            >
-              {/* TOP BAR */}
-              <div
-                className="
+      >
+        {/* TOP BAR */}
+        <div
+          className="
                   sticky
                   top-0
                   z-10
@@ -317,31 +345,31 @@ const Navbar = () => {
                   bg-white
                   px-5
                 "
-              >
-                <Link
-                  href="/"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Image
-                    src="/blackLogo.png"
-                    alt="Doss Realty Logo"
-                    width={160}
-                    height={50}
-                    priority
-                  />
-                </Link>
-              
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="text-black"
-                >
-                  <X size={30} />
-                </button>
-              </div>
-              
-              {/* SCROLLABLE CONTENT */}
-              <div
-                className="
+        >
+          <Link
+            href="/"
+            onClick={() => setIsOpen(false)}
+          >
+            <Image
+              src="/blackLogo.png"
+              alt="Doss Realty Logo"
+              width={160}
+              height={50}
+              priority
+            />
+          </Link>
+
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-black"
+          >
+            <X size={30} />
+          </button>
+        </div>
+
+        {/* SCROLLABLE CONTENT */}
+        <div
+          className="
                   flex
                   h-[calc(100dvh-72px)]
                   flex-col
@@ -350,26 +378,26 @@ const Navbar = () => {
                   pt-4
                   pb-[max(20px,env(safe-area-inset-bottom))]
                 "
+        >
+          {/* MENU */}
+          <ul className="flex flex-1 flex-col">
+            {navLinks.map((link) => (
+              <li
+                key={link.name}
+                className="border-b border-black/10"
               >
-                {/* MENU */}
-                <ul className="flex flex-1 flex-col">
-                  {navLinks.map((link) => (
-                    <li
-                      key={link.name}
-                      className="border-b border-black/10"
-                    >
-                      {link.hasDropdown ? (
-                        <>
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setOpenDropdown(
-                                openDropdown === link.name
-                                  ? null
-                                  : link.name
-                              )
-                            }
-                            className="
+                {link.hasDropdown ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setOpenDropdown(
+                          openDropdown === link.name
+                            ? null
+                            : link.name
+                        )
+                      }
+                      className="
                               flex
                               w-full
                               items-center
@@ -380,75 +408,73 @@ const Navbar = () => {
                               font-medium
                               text-black
                             "
-                          >
-                            <span>{link.name}</span>
-                          
-                            <ChevronDown
-                              size={20}
-                              className={`
+                    >
+                      <span>{link.name}</span>
+
+                      <ChevronDown
+                        size={20}
+                        className={`
                                 transition-transform
                                 duration-300
-                                ${
-                                  openDropdown === link.name
-                                    ? "rotate-180"
-                                    : ""
-                                }
+                                ${openDropdown === link.name
+                            ? "rotate-180"
+                            : ""
+                          }
                               `}
-                            />
-                          </button>
-                              
-                          <div
-                            className={`
+                      />
+                    </button>
+
+                    <div
+                      className={`
                               overflow-hidden
                               transition-all
                               duration-300
-                              ${
-                                openDropdown === link.name
-                                  ? "max-h-40 pb-4"
-                                  : "max-h-0"
-                              }
+                              ${openDropdown === link.name
+                          ? "max-h-40 pb-4"
+                          : "max-h-0"
+                        }
                             `}
-                          >
-                            <div className="ml-5 flex flex-col gap-3">
-                              <Link
-                                href="/projects?tab=active"
-                                onClick={() => {
-                                  setIsOpen(false);
-                                  setOpenDropdown(null);
-                                }}
-                                className="
-                                  text-[16px]
-                                  text-black/70
-                                  transition
-                                  hover:text-black
-                                "
-                              >
-                                Active
-                              </Link>
-                              
-                              <Link
-                                href="/projects?tab=delivered"
-                                onClick={() => {
-                                  setIsOpen(false);
-                                  setOpenDropdown(null);
-                                }}
-                                className="
-                                  text-[16px]
-                                  text-black/70
-                                  transition
-                                  hover:text-black
-                                "
-                              >
-                                Delivered
-                              </Link>
-                            </div>
-                          </div>
-                        </>
-                      ) : (
+                    >
+                      <div className="ml-5 flex flex-col gap-3">
                         <Link
-                          href={link.href}
-                          onClick={() => setIsOpen(false)}
+                          href="/projects?tab=active"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setOpenDropdown(null);
+                          }}
                           className="
+                                  text-[16px]
+                                  text-black/70
+                                  transition
+                                  hover:text-black
+                                "
+                        >
+                          Active
+                        </Link>
+
+                        <Link
+                          href="/projects?tab=delivered"
+                          onClick={() => {
+                            setIsOpen(false);
+                            setOpenDropdown(null);
+                          }}
+                          className="
+                                  text-[16px]
+                                  text-black/70
+                                  transition
+                                  hover:text-black
+                                "
+                        >
+                          Delivered
+                        </Link>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="
                             flex
                             items-center
                             justify-between
@@ -457,42 +483,24 @@ const Navbar = () => {
                             font-medium
                             text-black
                           "
-                        >
-                          {link.name}
-                        </Link>
-                      )}
-                    </li>
-                  ))}
-            
-                  {/* MOBILE ONLY BLOGS */}
-                  <li className="border-b border-black/10">
-                    <Link
-                      href="/blogs"
-                      onClick={() => setIsOpen(false)}
-                      className="
-                        flex
-                        items-center
-                        justify-between
-                        py-5
-                        text-[20px]
-                        font-medium
-                        text-black
-                      "
-                    >
-                      Blogs
-                    </Link>
-                  </li>
-                </ul>
-                
-                {/* BUTTON */}
-                <div className="mt-auto pt-10">
-                  <Link
-                    href="/contact"
-                    onClick={() => setIsOpen(false)}
                   >
-                    <PrimaryBtn
-                      mode="light"
-                      className="
+                    {link.name}
+                  </Link>
+                )}
+              </li>
+            ))}
+
+          </ul>
+
+          {/* BUTTON */}
+          <div className="mt-auto pt-10">
+            <Link
+              href="/contact"
+              onClick={() => setIsOpen(false)}
+            >
+              <PrimaryBtn
+                mode="light"
+                className="
                         mx-auto
                         flex
                         w-full
@@ -505,13 +513,13 @@ const Navbar = () => {
                         text-[16px]
                         text-white
                       "
-                    >
-                      Get in Touch
-                    </PrimaryBtn>
-                  </Link>
-                </div>
-              </div>
-            </div>
+              >
+                Get in Touch
+              </PrimaryBtn>
+            </Link>
+          </div>
+        </div>
+      </div>
     </header>
   );
 };

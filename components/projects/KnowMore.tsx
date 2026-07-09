@@ -43,7 +43,7 @@ const KnowMore = () => {
         }
         description="Find answers to common questions about our architectural process, project planning, timelines, and design approach."
         buttonText="Contact Us"
-        defaultOpenIndex={1}
+        defaultOpenIndex={0}
       />
     </>
   );

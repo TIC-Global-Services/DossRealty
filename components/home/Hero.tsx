@@ -206,9 +206,11 @@ export default function Hero() {
       });
 
 
-      gsap.set(smokeRef.current, {
-        yPercent: 40,
-      });
+      if (smokeRef.current) {
+        gsap.set(smokeRef.current, {
+          yPercent: 40,
+        });
+      }
 
       gsap.set(logoRef.current, {
         opacity: 0,
@@ -359,15 +361,13 @@ export default function Hero() {
       );
 
       // Smoke movement
-      tl.to(
-        smokeRef.current,
-        {
-          yPercent: 0,
-          ease: "none",
-          duration: 6.5,
-        },
-        0
-      );
+      if (smokeRef.current) {
+          tl.to(smokeRef.current, {
+            yPercent: 0,
+            ease: "none",
+            duration: 6.5,
+          }, 0);
+        }
 
       // Hold scene longer
       tl.to(
@@ -468,9 +468,7 @@ export default function Hero() {
                   md:leading-[100%]
                   text-[clamp(36px,4vw,60px)]
                   text-white
-                  md:text-black
-                  drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]
-                "
+                  md:text-black"
               >
                 DISCOVER THE COLLECTION
               </h2>
@@ -484,9 +482,7 @@ export default function Hero() {
                   md:leading-[20px]
                   font-body
                   text-white
-                  md:text-black
-                  drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]
-                "
+                  md:text-black"
               >
                 Expert Support. Real Insights. Clear Direction
                 For What Comes Next.

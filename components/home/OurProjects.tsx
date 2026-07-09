@@ -119,7 +119,7 @@ export default function OurProjects() {
                 ease: "easeOut",
               }}
             >
-              
+              <Link href={project.href} className="block w-full">
                 <div
                   className="
                     relative
@@ -189,8 +189,7 @@ export default function OurProjects() {
                     </div>
 
                     {/* GLASS BUTTON */}
-                  <Link href={project.href}>
-                    <button
+                    <div
                       className="h-[40px]
                       lg:h-[44px]
                       px-5.5
@@ -204,11 +203,11 @@ export default function OurProjects() {
                       transition duration-300
                       hover:bg-white/20
                       cursor-pointer
+                      flex items-center justify-center
                     "
                     >
                       Plots
-                    </button>
-                  </Link>
+                    </div>
                   </div>
 
                   {/* CONTENT AREA */}
@@ -347,6 +346,7 @@ export default function OurProjects() {
                     </div>
                   </div>
                 </div>
+              </Link>
             </motion.div>
           ))}
         </div>

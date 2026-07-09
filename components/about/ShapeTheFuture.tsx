@@ -81,7 +81,7 @@ const ShapeTheFuture = () => {
     >
       <div className="mx-auto px-5 md:px-8 lg:px-10">
         <div className="flex flex-col gap-4 md:gap-12 md:flex-row">
-          
+
           {/* LEFT SIDE */}
           <div
             ref={titleRef}
@@ -104,12 +104,12 @@ const ShapeTheFuture = () => {
               tracking-[-0.04em]
               text-[#111111]"
             >
-             <span className="hidden md:block">Shaping <br />
-              the Future <br />
-              of Living</span>
+              <span className="hidden md:block">Shaping <br />
+                the Future <br />
+                of Living</span>
 
               <span className="block md:hidden">Shaping the Future <br />
-              of Living</span>
+                of Living</span>
             </h2>
           </div>
 
@@ -128,16 +128,7 @@ const ShapeTheFuture = () => {
                 lg:tracking-[1px]
                 text-[#222A2C]"
               >
-                At Doss Realty, our vision is to shape the future of real estate
-                through developments that reflect excellence, innovation, and
-                purposeful living. We aspire to create spaces that go beyond
-                structures environments that inspire comfort, connection, and a
-                higher standard of living for individuals and communities alike.
-                We believe every project should stand as a symbol of quality,
-                trust, and timeless design. By combining modern architecture,
-                strategic locations, and sustainable thinking, our goal is to
-                deliver lasting value while continuously evolving with the needs
-                of contemporary lifestyles.
+                To create iconic developments through a distinctive design philosophy, meticulous craftsmanship, and an uncompromising pursuit of quality, setting new benchmarks for how real estate is planned, built, and experienced.
               </p>
 
               <br />

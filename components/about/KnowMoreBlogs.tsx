@@ -49,7 +49,7 @@ const KnowMoreBlogs = () => {
                 }
                 description="Insights, ideas, and stories crafted to inspire, inform, and spark new perspectives."
                 buttonText="Contact Us"
-                defaultOpenIndex={1}
+                defaultOpenIndex={0}
             />
         </>
     );

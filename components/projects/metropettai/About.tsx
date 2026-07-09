@@ -3,8 +3,8 @@
 import {
   useLayoutEffect,
   useRef,
+  useState,
 } from "react";
-import Image from "next/image";
 import { Play } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -23,6 +23,41 @@ const About = () => {
 
   const videoRef =
     useRef<HTMLDivElement>(null);
+
+  const videoElementRef =
+    useRef<HTMLVideoElement>(null);
+
+  const [isPlaying, setIsPlaying] =
+    useState(false);
+
+  const handlePlay = () => {
+    if (videoElementRef.current) {
+      videoElementRef.current.muted = false;
+      videoElementRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  const handlePause = () => {
+    setIsPlaying(false);
+  };
+
+  const handleVideoClick = () => {
+    if (videoElementRef.current) {
+      if (isPlaying) {
+        videoElementRef.current.pause();
+      } else {
+        handlePlay();
+      }
+    }
+  };
+
+  const handleEnded = () => {
+    setIsPlaying(false);
+    if (videoElementRef.current) {
+      videoElementRef.current.currentTime = 0;
+    }
+  };
 
   useLayoutEffect(() => {
     gsap.registerPlugin(
@@ -228,77 +263,89 @@ const About = () => {
               rounded-[10px]
             "
           >
-            {/* IMAGE */}
-            <div className="relative h-[460px] md:h-[450px]">
-              <Image
-                src={aboutImg}
-                alt="About Project"
-                fill
+            {/* VIDEO */}
+            <div className="relative h-[460px] md:h-[450px] w-full">
+              <video
+                ref={videoElementRef}
+                src="/Metropettai-showreel1.mp4"
+                poster={aboutImg.src}
+                playsInline
+                onClick={handleVideoClick}
+                onPause={handlePause}
+                onEnded={handleEnded}
                 className="
+                  w-full
+                  h-full
                   object-cover
-                  transition
-                  duration-700
-                  group-hover:scale-105
+                  cursor-pointer
                 "
               />
             </div>
 
             {/* OVERLAY */}
-            <div className="absolute inset-0 bg-black/10" />
+            {!isPlaying && (
+              <div
+                onClick={handlePlay}
+                className="absolute inset-0 bg-black/10 cursor-pointer z-10"
+              />
+            )}
 
             {/* PLAY BUTTON */}
-            <button
-              className="
-                absolute
-                left-1/2
-                top-1/2
-                z-10
-                flex
-                -translate-x-1/2
-                -translate-y-1/2
-                items-center
-                gap-3
-                text-white
-                md:gap-4
-              "
-            >
-              <div
+            {!isPlaying && (
+              <button
+                onClick={handlePlay}
                 className="
+                  absolute
+                  left-1/2
+                  top-1/2
+                  z-20
                   flex
-                  h-[52px]
-                  w-[52px]
+                  -translate-x-1/2
+                  -translate-y-1/2
                   items-center
-                  justify-center
-                  rounded-full
-                  bg-white/20
-                  backdrop-blur-md
-                  transition
-                  duration-300
-                  group-hover:scale-110
-
-                  lg:h-[60px]
-                  lg:w-[60px]
+                  gap-3
+                  text-white
+                  md:gap-4
                 "
               >
-                <Play
-                  size={22}
-                  fill="white"
-                  className="lg:size-[22px] size-[18px]"
-                />
-              </div>
+                <div
+                  className="
+                    flex
+                    h-[52px]
+                    w-[52px]
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-white/20
+                    backdrop-blur-md
+                    transition
+                    duration-300
+                    group-hover:scale-110
 
-              <span
-                className="
-                  whitespace-nowrap
-                  text-[18px]
-                  font-[300]
+                    lg:h-[60px]
+                    lg:w-[60px]
+                  "
+                >
+                  <Play
+                    size={22}
+                    fill="white"
+                    className="lg:size-[22px] size-[18px]"
+                  />
+                </div>
 
-                  lg:text-[38px]
-                "
-              >
-                Watch Showreel
-              </span>
-            </button>
+                <span
+                  className="
+                    whitespace-nowrap
+                    text-[18px]
+                    font-[300]
+
+                    lg:text-[38px]
+                  "
+                >
+                  Watch Showreel
+                </span>
+              </button>
+            )}
           </div>
         </div>
       </div>
