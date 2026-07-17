@@ -10,8 +10,8 @@ import {
     type JobFormData,
 } from "@/data/partnerSchema";
 
-const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbzOfuJyXdftiZVb8IYeBc_h9gTQVPjfup5HkwFGddrXM_OIUDbyss9Ul1l64rltJKia/exec";
+export const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbx-1mpJBLsL9dNmbp6Ml9nGTyaM__IqJkGwbqVfpoZflBtC3jBzTNuGbCY7zfdPxXA_RA/exec";
 
 export default function JobForm() {
     const [loading, setLoading] =
@@ -40,7 +40,7 @@ export default function JobForm() {
                     {
                         method: "POST",
                         body: JSON.stringify({
-                          formType: "Job",
+                          formType: "Careers",
 
                           name: data.name,
                           email: data.email,

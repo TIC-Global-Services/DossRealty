@@ -8,9 +8,10 @@ import {
   referSchema,
   type ReferFormData,
 } from "@/data/contactSchema";
+import { GOOGLE_SCRIPT_URL } from "./JobForm";
 
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzOfuJyXdftiZVb8IYeBc_h9gTQVPjfup5HkwFGddrXM_OIUDbyss9Ul1l64rltJKia/exec";
+// const GOOGLE_SCRIPT_URL =
+//   "https://script.google.com/macros/s/AKfycbxXvRWkA7Vp6YrUX17ZatLbs2lkvZ-NF8T_DqIq8jGvwFEKmA0MdyyLFrRQewEawurphg/exec";
 
 export default function ReferFriendForm() {
   const [loading, setLoading] =
@@ -39,7 +40,7 @@ export default function ReferFriendForm() {
           {
             method: "POST",
             body: JSON.stringify({
-              formType: "Refer",
+              formType: "Referrals",
 
               yourName: data.yourName,
               yourEmail: data.yourEmail,

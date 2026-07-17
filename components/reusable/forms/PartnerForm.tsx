@@ -8,9 +8,10 @@ import {
   partnerSchema,
   type PartnerFormData,
 } from "@/data/partnerSchema";
+import { GOOGLE_SCRIPT_URL } from "./JobForm";
 
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzOfuJyXdftiZVb8IYeBc_h9gTQVPjfup5HkwFGddrXM_OIUDbyss9Ul1l64rltJKia/exec";
+// const GOOGLE_SCRIPT_URL =
+//   "https://script.google.com/macros/s/AKfycbxXvRWkA7Vp6YrUX17ZatLbs2lkvZ-NF8T_DqIq8jGvwFEKmA0MdyyLFrRQewEawurphg/exec ";
 
 export default function PartnerForm() {
   const [loading, setLoading] =
@@ -31,6 +32,7 @@ export default function PartnerForm() {
     data: PartnerFormData
   ) => {
     try {
+      console.log("Submitting partner form:", data);
       setLoading(true);
 
       const response =
@@ -39,7 +41,7 @@ export default function PartnerForm() {
           {
             method: "POST",
             body: JSON.stringify({
-              formType: "Partner",
+              formType: "Partners",
 
               brokerageFirm:
                 data.brokerageFirm,
