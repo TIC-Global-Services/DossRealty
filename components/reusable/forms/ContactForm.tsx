@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 
 import {
   contactSchema,
@@ -61,13 +62,13 @@ export default function ContactForm() {
 
       reset();
 
-      alert(
+      toast.success(
         "Inquiry submitted successfully!"
       );
     } catch (error) {
       console.error(error);
 
-      alert(
+      toast.error(
         "Something went wrong."
       );
     } finally {

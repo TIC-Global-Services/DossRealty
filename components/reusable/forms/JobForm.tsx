@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 
 import {
     jobSchema,
@@ -66,13 +67,13 @@ export default function JobForm() {
 
             reset();
 
-            alert(
+            toast.success(
                 "Application submitted successfully!"
             );
         } catch (error) {
             console.error(error);
 
-            alert(
+            toast.error(
                 "Something went wrong."
             );
         } finally {
