@@ -2,6 +2,7 @@
 
 import { useSectionTheme } from "@/hooks/useSectionTheme";
 import Image from "next/image";
+import Link from "next/link";
 import shareIcon from "@/assets/chatIcons/chatImg.png";
 import whatsAppIcon from "@/assets/chatIcons/whatsAppImg.png";
 
@@ -82,10 +83,8 @@ export default function EnquiryBtn() {
       </a>
 
       {/* CHAT */}
-      <a
-        href="https://t.me/"
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        href="/contact"
         className={`
           flex h-[30px] w-[30px]
           lg:h-[50px]
@@ -111,7 +110,7 @@ export default function EnquiryBtn() {
           priority
           className="object-contain h-[15px] w-[15px] lg:h-[20px] lg:w-[20px]"
         />
-      </a>
+      </Link>
     </div>
   );
 }
