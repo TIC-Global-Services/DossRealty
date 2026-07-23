@@ -37,30 +37,6 @@ const navLinks = [
           title: "Metropettai",
           location: "Poonamallee, Chennai",
         },
-        {
-          title: "VV Nagar",
-          location: "Kovur",
-        },
-        {
-          title: "Anjanayar Avenue",
-          location: "Mangadu",
-        },
-        {
-          title: "Poonamallee Farms",
-          location: "Avadi",
-        },
-        {
-          title: "Samayapuram",
-          location: "Kundrathur",
-        },
-        {
-          title: "Everest Garden",
-          location: "Porur",
-        },
-        {
-          title: "Sri Vari Nagar",
-          location: "Poonamalle",
-        },
       ],
       status: [
         "Active",
@@ -188,26 +164,25 @@ const Navbar = () => {
                     {link.hasDropdown &&
                       link.dropdown && (
                         <div
-                          className="
-                            invisible
-                            absolute
-                            left-1/2
-                            top-[48px]
-                            z-[100]
-                            w-[480px]
-                            -translate-x-1/2
-                            rounded-[10px]
-                            border
-                            border-[#EAEAEA]
-                            bg-white
-                            opacity-0
-                            shadow-[0_15px_50px_rgba(0,0,0,0.08)]
-                            transition-all
-                            duration-300
-                            ease-out
-                            group-hover:visible
-                            group-hover:opacity-100
-                          "
+                            className="
+                              invisible
+                              absolute
+                              left-1/2
+                              top-[48px]
+                              z-[100]
+                              w-[480px]
+                              -translate-x-1/2
+                              rounded-[10px]
+                              border
+                              border-white/10
+                              bg-white
+                              opacity-0
+                              transition-all
+                              duration-300
+                              ease-out
+                              group-hover:visible
+                              group-hover:opacity-100
+                            "
                         >
                           <div className="grid grid-cols-[50%_50%] gap-12 p-8">
                             <div>

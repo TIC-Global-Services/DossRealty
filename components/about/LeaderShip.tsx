@@ -47,38 +47,31 @@ const Leadership = () => {
     if (!selectedLeader) return;
 
     const isMobile = window.innerWidth < 768;
+    if (isMobile) return;
+
     const scrollY = window.scrollY;
 
-    if (isMobile) {
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.left = "0";
-      document.body.style.right = "0";
-      document.body.style.width = "100%";
-    }
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
 
     return () => {
-      if (isMobile) {
-        document.documentElement.style.overflow = "";
-        document.body.style.overflow = "";
-      } else {
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.left = "";
-        document.body.style.right = "";
-        document.body.style.width = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
 
-        window.scrollTo(0, scrollY);
-      }
+      window.scrollTo(0, scrollY);
     };
   }, [selectedLeader]);
 
   useEffect(() => {
   const el = contentRef.current;
   if (!el || !selectedLeader) return;
+  if (window.innerWidth < 768) return;
 
   const handleWheel = (e: WheelEvent) => {
     const { scrollTop, scrollHeight, clientHeight } = el;
@@ -189,12 +182,11 @@ const Leadership = () => {
             className="
               relative
               w-full
-              min-h-screen
+              h-screen
               bg-white
-              md:min-h-0
-              md:h-screen
-              md:w-[90vw]
-              md:overflow-hidden
+              flex
+              flex-col
+              overflow-hidden
             "
             onClick={(e) => e.stopPropagation()}
           >
@@ -217,9 +209,11 @@ const Leadership = () => {
             <div className="
                 flex
                 flex-col gap-6 md:gap-0
+                flex-1
                 md:grid
                 md:grid-cols-2
                 md:h-full
+                overflow-hidden
               ">
               {/* LEFT IMAGE */}
               <div className="
@@ -245,7 +239,8 @@ const Leadership = () => {
                   p-10
                   md:p-12
                   lg:p-16
-              
+               
+                  overflow-y-auto
                   md:h-full md:mt-2
                   md:overflow-y-auto
                   md:scrollbar-thin

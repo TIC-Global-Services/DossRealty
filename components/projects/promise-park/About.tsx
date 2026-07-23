@@ -66,17 +66,17 @@ const About = () => {
         "-=0.3"
       );
 
-      // VIDEO
-      tl.from(
-        videoRef.current,
-        {
-          scale: 0.94,
-          opacity: 0,
-          duration: 1.2,
-          ease: "power3.out",
-        },
-        "-=0.5"
-      );
+      // // VIDEO
+      // tl.from(
+      //   videoRef.current,
+      //   {
+      //     scale: 0.94,
+      //     opacity: 0,
+      //     duration: 1.2,
+      //     ease: "power3.out",
+      //   },
+      //   "-=0.5"
+      // );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -204,7 +204,7 @@ const About = () => {
         </div>
 
         {/* VIDEO SECTION */}
-        <div
+        {/* <div
           ref={videoRef}
           className="mt-10"
         >
@@ -216,7 +216,6 @@ const About = () => {
               rounded-[10px]
             "
           >
-            {/* IMAGE */}
             <div className="relative h-[460px] md:h-[400px] lg:h-[450px]">
               <Image
                 src={aboutImg}
@@ -231,10 +230,8 @@ const About = () => {
               />
             </div>
 
-            {/* OVERLAY */}
             <div className="absolute inset-0 bg-black/10" />
 
-            {/* PLAY BUTTON */}
             <button
               className="
                 absolute
@@ -287,7 +284,7 @@ const About = () => {
               </span>
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

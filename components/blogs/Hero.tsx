@@ -36,7 +36,7 @@ const Hero = () => {
             text-[24px] md:text-[42px]
             lg:text-[60px]
             leading-[66px]
-            tracking-[-1.8px]
+            tracking-tight
           "
         >
           Learn Before You Invest
@@ -65,7 +65,7 @@ const Hero = () => {
             text-[13px] leading-[16px] md:text-[14px] md:leading-[24px]
             lg:text-[16px] 
             lg:leading-[24px]
-            tracking-[-0.48px]
+            tracking-tight
           "
         >
           Clear, practical insights to help you make informed
