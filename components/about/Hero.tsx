@@ -136,7 +136,7 @@ const Hero = () => {
                 text-white/90
               "
             >
-              DOSS Realty is driven by a vision to shape enduring legacies through transformative real estate. Built on over three decades of
+              Doss Realty is driven by a vision to shape enduring legacies through transformative real estate. Built on over three decades of
               experience, we bring together integrity, strategic vision, and disciplined execution to deliver developments of lasting
               significance. Guided by a commitment to craftsmanship, distinctive design, and uncompromising quality, we create
               communities that enrich lives, preserve wealth, and stand as enduring expressions of our pursuit of excellence.

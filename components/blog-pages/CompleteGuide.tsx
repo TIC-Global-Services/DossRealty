@@ -241,7 +241,7 @@ export default function CompleteGuide() {
               <p className="text-[15px] leading-[28px] text-[#4D4D4D] sm:text-[16px] md:text-[18px] md:leading-[30px]">
                 For an overseas buyer, confidence is created through
                 verified documentation, accountable advice, and a team that
-                remains present after the transaction. At DOSS Realty, we
+                remains present after the transaction. At Doss Realty, we
                 approach every NRI relationship with discretion,
                 continuity, and the belief that distance should never
                 diminish certainty.

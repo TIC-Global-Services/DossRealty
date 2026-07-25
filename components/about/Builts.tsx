@@ -16,11 +16,11 @@ const readMore = [
     name: "D.V. Prathap Reddy",
     role: "Founder & Chairman",
     description: [
-      "D.V. Prathap Reddy is the Founder and Chairman of DOSS Realty. In 1991, he recognized the growing potential of Chennai's real estate market and established a business founded on transparency, reliability, and long-term value creation.",
+      "D.V. Prathap Reddy is the Founder and Chairman of Doss Realty. In 1991, he recognized the growing potential of Chennai's real estate market and established a business founded on transparency, reliability, and long-term value creation.",
 
       "Beginning with land development, he built a reputation for identifying opportunities and transforming them into thriving communities. Over the past three decades, Mr. Prathap has overseen the development of more than 5 million square feet and helped thousands of families realize their aspirations through real estate.",
 
-      "Under his leadership, DOSS Realty has evolved into a trusted name built on integrity, disciplined growth, and a commitment to delivering lasting value.",
+      "Under his leadership, Doss Realty has evolved into a trusted name built on integrity, disciplined growth, and a commitment to delivering lasting value.",
 
       "Mr. Prathap also serves as a Board Member of Sri Ramakrishna Polytechnic College and supports a range of community and philanthropic initiatives, reflecting the values of stewardship and social responsibility that have guided his career.",
 

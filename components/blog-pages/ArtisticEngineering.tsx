@@ -36,7 +36,7 @@ export default function ArtisticEngineering() {
 
     "Artistic Engineering is ultimately a way of thinking. It asks more of every decision, insisting that the practical can be beautiful, that beauty can serve a purpose, and that real estate can offer more than ownership alone.",
 
-    "At DOSS Realty, it is the standard through which we seek to create places of distinctive character, enduring relevance, and timeless value.",
+    "At Doss Realty, it is the standard through which we seek to create places of distinctive character, enduring relevance, and timeless value.",
   ];
 
   return (

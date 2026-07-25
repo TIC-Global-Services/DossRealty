@@ -20,16 +20,16 @@ const leaders: Leader[] = [
     role: "Managing Director",
     image: founder1,
     subHeading: "Founder's Note",
-    description: `Varun V.P. – Managing Director Varun V.P. leads the strategic direction, product vision, and growth initiatives of DOSS Realty. Holding a Bachelor of Engineering (Honours) in Engineering Business Management from the University of Warwick, United Kingdom, he combines entrepreneurial thinking with a deep passion for creating real estate that stands apart in quality, planning, and long-term relevance.
-Prior to joining DOSS Realty, Varun founded INGA, an investment-focused technology platform, reflecting his longstanding interest in innovation, markets, and business building. At DOSS Realty, he focuses on shaping the company's development philosophy, strengthening its market position, and driving its evolution into a modern real estate institution.
-He believes that superior developments are created through an uncompromising commitment to design, execution, and customer experience. His vision is to establish DOSS Realty as a benchmark for thoughtfully planned communities and enduring value, setting a new standard for land development in India.`,
+    description: `Varun V.P. – Managing Director Varun V.P. leads the strategic direction, product vision, and growth initiatives of Doss Realty. Holding a Bachelor of Engineering (Honours) in Engineering Business Management from the University of Warwick, United Kingdom, he combines entrepreneurial thinking with a deep passion for creating real estate that stands apart in quality, planning, and long-term relevance.
+Prior to joining Doss Realty, Varun founded INGA, an investment-focused technology platform, reflecting his longstanding interest in innovation, markets, and business building. At Doss Realty, he focuses on shaping the company's development philosophy, strengthening its market position, and driving its evolution into a modern real estate institution.
+He believes that superior developments are created through an uncompromising commitment to design, execution, and customer experience. His vision is to establish Doss Realty as a benchmark for thoughtfully planned communities and enduring value, setting a new standard for land development in India.`,
   },
   {
     name: "Guru V.P",
     role: "Managing Director",
     image: founder2,
     subHeading: "Leadership & Growth",
-    description: `Guru V.P. oversees the financial strategy, investment philosophy, and long-term growth initiatives of DOSS Realty. Holding a Bachelor of Arts (Honours) in Political Science from O.P. Jindal Global University, New Delhi, he brings a market-oriented perspective to the company's investment and expansion decisions.
+    description: `Guru V.P. oversees the financial strategy, investment philosophy, and long-term growth initiatives of Doss Realty. Holding a Bachelor of Arts (Honours) in Political Science from O.P. Jindal Global University, New Delhi, he brings a market-oriented perspective to the company's investment and expansion decisions.
 Driven by a conviction that real estate should be approached as both a tangible asset class and a long-term wealth creation vehicle, Guru focuses on capital allocation, project viability, investment planning, and the financial foundations that support the company's expansion.
 His approach emphasizes disciplined growth, value preservation, and the creation of enduring assets that appreciate across generations.`,
   },

@@ -152,7 +152,7 @@ export default function Development() {
 
             <Reveal>
               <p className="text-[15px] leading-[28px] text-[#4D4D4D] sm:text-[16px] md:text-[18px] md:leading-[34px]">
-                At DOSS Realty, we believe a considered development is one
+                At Doss Realty, we believe a considered development is one
                 in which every decision carries purpose, from the reading
                 of the land to the final expression of the place.
               </p>
