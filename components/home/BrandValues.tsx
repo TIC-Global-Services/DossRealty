@@ -5,10 +5,10 @@ import Image, {
 } from "next/image";
 import { motion } from "framer-motion";
 
-import designImg from "@/assets/home/designImg.png";
-import craftImg from "@/assets/home/craftmanshipImg.jpeg";
+import designImg from "@/assets/home/designImg.webp";
+import craftImg from "@/assets/home/craftmanshipImg.webp";
 import qualityImg from "@/assets/home/qualityImg.webp";
-import purposeMobileImg from "@/assets/home/puposeMobileImg.jpg";
+import purposeMobileImg from "@/assets/home/puposeMobileImg.webp";
 
 type ValueCard = {
     title: string;

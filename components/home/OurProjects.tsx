@@ -4,9 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-import project1 from "@/assets/home/project1.jpg";
-import project2 from "@/assets/home/project2.jpg";
-import project2Mobile from "@/assets/home/project2mobile.jpg";
+import project1 from "@/assets/home/project1.webp";
+import project2 from "@/assets/home/project2.webp";
 
 import PrimaryBtn from "../reusable/PrimaryBtn";
 

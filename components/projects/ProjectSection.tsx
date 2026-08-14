@@ -11,10 +11,10 @@ import Image, {
 import { motion } from "framer-motion";
 
 
-import project1 from "@/assets/projects/projectImg1.jpg";
-import project2 from "@/assets/projects/projectImg2.jpg";
-import promiseParkImg from "@/assets/projects/promisePark/galleryImg1.png";
-import metropettaiImg from "@/assets/projects/metropettai/galleryImg2.jpg";
+import project1 from "@/assets/projects/projectImg1.webp";
+import project2 from "@/assets/projects/projectImg2.webp";
+import promiseParkImg from "@/assets/projects/promisePark/galleryImg1.webp";
+import metropettaiImg from "@/assets/projects/metropettai/galleryImg2.webp";
 import plotsIcon from "@/assets/projects/plotImg.png";
 import acreIcon from "@/assets/projects/mapImg.png";
 import villaIcon from "@/assets/projects/villaIcon.png";

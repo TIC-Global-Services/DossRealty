@@ -4,7 +4,7 @@ import Image from "next/image";
 import EnquiryBtn from "../reusable/EnquiryBtn";
 import Reveal from "../reusable/BlogReveal";
 
-import developmentImg from "@/assets/blogs/blogPage/developmentImg.jpeg";
+import developmentImg from "@/assets/blogs/blogPage/developmentImg.webp";
 
 export default function Development() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import phoneImg from "@/assets/nri/handImg.png";
+import phoneImg from "@/assets/nri/handImg.webp";
 
 export default function Subscription() {
   return (

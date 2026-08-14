@@ -20,9 +20,9 @@ import {
 
 import "swiper/css";
 
-import edge1 from "@/assets/projects/metropettai/edgeImg1.png";
-import edge2 from "@/assets/projects/metropettai/edgeImg2.png";
-import edge3 from "@/assets/projects/metropettai/edgeImg3.png";
+import edge1 from "@/assets/projects/metropettai/edgeImg1.webp";
+import edge2 from "@/assets/projects/metropettai/edgeImg2.webp";
+import edge3 from "@/assets/projects/metropettai/edgeImg3.webp";
 
 const edgeData = [
   {

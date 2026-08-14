@@ -10,9 +10,9 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import article1 from "@/assets/nri/articleImg1.jpg";
-import article2 from "@/assets/nri/articleImg2.jpg";
-import article3 from "@/assets/nri/articleImg3.jpg";
+import article1 from "@/assets/nri/articleImg1.webp";
+import article2 from "@/assets/nri/articleImg2.webp";
+import article3 from "@/assets/nri/articleImg3.webp";
 
 import PrimaryBtn from "../reusable/PrimaryBtn";
 

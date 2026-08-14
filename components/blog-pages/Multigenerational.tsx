@@ -4,7 +4,7 @@ import Image from "next/image";
 import EnquiryBtn from "../reusable/EnquiryBtn";
 import Reveal from "../reusable/BlogReveal";
 
-import multigenerationalImg from "@/assets/blogs/blogPage/multiImg.png";
+import multigenerationalImg from "@/assets/blogs/blogPage/multiImg.webp";
 
 export default function Multigenerational() {
   return (

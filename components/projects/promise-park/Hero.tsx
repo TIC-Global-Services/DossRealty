@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
-import heroImg from "@/assets/projects/promisePark/galleryImg1.png";
+import heroImg from "@/assets/projects/promisePark/galleryImg1.webp";
 import BrochureModal from "@/components/reusable/BrochureModal";
 
 const Hero = () => {
@@ -45,6 +45,9 @@ const Hero = () => {
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40" />
+
+      {/* Top nav contrast gradient */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[50vh] bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
 
       {/* Content */}
       <div

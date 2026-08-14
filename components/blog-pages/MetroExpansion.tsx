@@ -4,7 +4,7 @@ import Image from "next/image";
 import EnquiryBtn from "../reusable/EnquiryBtn";
 import Reveal from "../reusable/BlogReveal";
 
-import metroExpansionImg from "@/assets/blogs/blogPage/metroExpansionImg.jpeg";
+import metroExpansionImg from "@/assets/blogs/blogPage/metroExpansionImg.webp";
 
 export default function MetroExpansion() {
   return (

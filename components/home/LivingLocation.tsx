@@ -6,9 +6,9 @@ import { MapPin } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import leftLocation from "@/assets/home/leftImg.png";
-import rightLocation from "@/assets/home/rightImg.png";
-import fogImg from "@/assets/home/hero/cloudImgmain.png";
+import leftLocation from "@/assets/home/leftImg.webp";
+import rightLocation from "@/assets/home/rightImg.webp";
+import fogImg from "@/assets/home/hero/cloudImgmain.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 

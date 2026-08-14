@@ -3,11 +3,8 @@
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import heroBg from "@/assets/projects/heroImg.jpg";
-
-gsap.registerPlugin(ScrollTrigger);
+import heroBg from "@/assets/projects/heroImg.webp";
 
 const Hero = () => {
   const cardRef =
@@ -15,27 +12,20 @@ const Hero = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.set(cardRef.current, {
-        opacity: 0,
-        y: 120,
-        scale: 0.92,
-        filter: "blur(10px)",
-      });
-
-      gsap.to(cardRef.current, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        filter: "blur(0px)",
-        duration: 1.4,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 85%",
-          toggleActions:
-            "play none none reverse",
-        },
-      });
+      // Animate the card in on page load so it's visible when entering the page
+      // (previously scroll-gated via ScrollTrigger, which kept it hidden on mobile until scroll)
+      gsap.fromTo(
+        cardRef.current,
+        { opacity: 0, y: 120, scale: 0.92, filter: "blur(10px)" },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 1.4,
+          ease: "power4.out",
+        }
+      );
     });
 
     return () => ctx.revert();
@@ -56,6 +46,9 @@ const Hero = () => {
 
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/20" />
+
+        {/* Top nav contrast gradient */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[50vh] bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
 
         {/* Floating Card */}
         <div

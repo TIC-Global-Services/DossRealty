@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
-import heroBg from "@/assets/careers/herobgImg.png";
+import heroBg from "@/assets/careers/herobgImg.webp";
 
 const Hero = () => {
   const contentRef =
@@ -56,6 +56,9 @@ const Hero = () => {
           bg-black/35
         "
       />
+
+      {/* Top nav contrast gradient */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-[50vh] bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
 
       {/* Content */}
       <div

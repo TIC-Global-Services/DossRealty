@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
-import heroImg from "@/assets/projects/metropettai/galleryImg3.jpg";
+import heroImg from "@/assets/projects/metropettai/galleryImg3.webp";
 import BrochureModal from "@/components/reusable/BrochureModal";
 
 const Hero = () => {
@@ -43,6 +43,9 @@ const Hero = () => {
       />
 
       <div className="absolute inset-0 bg-black/40" />
+
+      {/* Top nav contrast gradient */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[50vh] bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
 
       <div className="relative z-10 flex h-full px-5 py-24 md:px-10 lg:px-16 lg:pb-20 lg:pt-0">
         <div className="mx-auto flex h-full w-full flex-col translate-x-10 translate-y-10 justify-between md:translate-x-0 md:translate-y-0 md:flex-row md:items-end">

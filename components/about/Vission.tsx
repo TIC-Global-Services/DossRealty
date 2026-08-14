@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import missionOutlineImg from "@/assets/about/missionOutline.png";
-import missionColorImg from "@/assets/about/missionImg.png";
+import missionColorImg from "@/assets/about/missionImg.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 

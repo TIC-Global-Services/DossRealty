@@ -4,7 +4,7 @@ import Image from "next/image";
 import EnquiryBtn from "../reusable/EnquiryBtn";
 import Reveal from "@/components/reusable/BlogReveal";
 
-import completeGuideImg from "@/assets/blogs/blogPage/completeGuideImg.jpeg";
+import completeGuideImg from "@/assets/blogs/blogPage/completeGuideImg.webp";
 
 export default function CompleteGuide() {
   return (

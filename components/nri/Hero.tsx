@@ -19,6 +19,9 @@ const Hero = () => {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
+      {/* Top nav contrast gradient */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[50vh] bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
+
       {/* Center Content */}
       <div className="relative z-10 flex min-h-screen items-center justify-center px-5">
         <div className="max-w-[900px] text-center">

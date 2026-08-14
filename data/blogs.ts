@@ -1,12 +1,12 @@
-import consideredGuideImg from "@/assets/blogs/blogPage/consideredImg.jpeg";
-import nriGuideImg from "@/assets/blogs/blogPage/completeGuideImg.jpeg";
-import tamilNaduImg from "@/assets/blogs/blogPage/tamilNaduImg.jpeg";
-import metroExpansionImg from "@/assets/blogs/blogPage/metroExpansionImg.jpeg";
-import metropettaiImg from "@/assets/blogs/articleImg1.jpg";
-import developmentImg from "@/assets/blogs/blogPage/developmentImg.jpeg";
-import craftsmanshipImg from "@/assets/blogs/blogPage/craftmanshipImg.jpeg";
-import artisticEngineeringImg from "@/assets/blogs/blogPage/artisticImg.jpeg";
-import multigenerationalImg from "@/assets/blogs/blogPage/multiImg.png";
+import consideredGuideImg from "@/assets/blogs/blogPage/consideredImg.webp";
+import nriGuideImg from "@/assets/blogs/blogPage/completeGuideImg.webp";
+import tamilNaduImg from "@/assets/blogs/blogPage/tamilNaduImg.webp";
+import metroExpansionImg from "@/assets/blogs/blogPage/metroExpansionImg.webp";
+import metropettaiImg from "@/assets/blogs/articleImg1.webp";
+import developmentImg from "@/assets/blogs/blogPage/developmentImg.webp";
+import craftsmanshipImg from "@/assets/blogs/blogPage/craftmanshipImg.webp";
+import artisticEngineeringImg from "@/assets/blogs/blogPage/artisticImg.webp";
+import multigenerationalImg from "@/assets/blogs/blogPage/multiImg.webp";
 
 export const blogs = [
   {

@@ -4,7 +4,7 @@ import { useState, useLayoutEffect, useRef, useEffect } from "react";
 import Image from "next/image";
 
 import gsap from "gsap";
-import bannerImg from "@/assets/contact/partnerBg.jpg";
+import bannerImg from "@/assets/contact/partnerBg.webp";
 
 import PartnerForm from "@/components/reusable/forms/PartnerForm";
 import JobForm from "@/components/reusable/forms/JobForm";

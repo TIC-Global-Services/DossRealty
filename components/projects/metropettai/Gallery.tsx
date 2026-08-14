@@ -7,10 +7,10 @@ import {
 } from "react";
 import Image from "next/image";
 
-import img1 from "@/assets/projects/metropettai/galleryImg1.png";
-import img2 from "@/assets/projects/metropettai/galleryImg2.jpg";
-import img3 from "@/assets/projects/metropettai/galleryImg3.jpg";
-import img4 from "@/assets/projects/metropettai/galleryimg4.jpg";
+import img1 from "@/assets/projects/metropettai/galleryImg1.webp";
+import img2 from "@/assets/projects/metropettai/galleryImg2.webp";
+import img3 from "@/assets/projects/metropettai/galleryImg3.webp";
+import img4 from "@/assets/projects/metropettai/galleryimg4.webp";
 
 const images = [
   img1,

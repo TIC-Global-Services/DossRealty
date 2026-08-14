@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 
-import founder1 from "@/assets/about/FounderSample.jpg";
-import founder2 from "@/assets/about/FounderSample.jpg";
+import founder1 from "@/assets/about/FounderSample.webp";
+import founder2 from "@/assets/about/FounderSample.webp";
 
 type Leader = {
   name: string;

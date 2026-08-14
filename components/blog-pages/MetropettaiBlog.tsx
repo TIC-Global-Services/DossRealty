@@ -4,7 +4,7 @@ import Image from "next/image";
 import EnquiryBtn from "../reusable/EnquiryBtn";
 import Reveal from "../reusable/BlogReveal";
 
-import metropettaiLogo from "@/assets/projects/metropettai/logo.png";
+import metropettaiLogo from "@/assets/projects/metropettai/logo.webp";
 
 export default function MetropettaiBlog() {
   return (

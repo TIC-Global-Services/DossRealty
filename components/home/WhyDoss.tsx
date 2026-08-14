@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import bgImage from "@/assets/home/whyDossImg.jpeg";
+import bgImage from "@/assets/home/whyDossImg.webp";
 import GlassCard from "@/components/reusable/GlassCard";
 
 export default function WhyDoss() {

@@ -8,7 +8,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import journeyImg from "@/assets/nri/journeyImg.png";
+import journeyImg from "@/assets/nri/journeyImg.webp";
 
 gsap.registerPlugin(
   ScrollTrigger

@@ -16,9 +16,9 @@ import {
 
 import "swiper/css";
 
-import profile1 from "@/assets/projects/profilePic.jpg";
-import profile2 from "@/assets/projects/profilePic.jpg";
-import profile3 from "@/assets/projects/profilePic.jpg";
+import profile1 from "@/assets/projects/profilePic.webp";
+import profile2 from "@/assets/projects/profilePic.webp";
+import profile3 from "@/assets/projects/profilePic.webp";
 
 type Testimonial = {
   name: string;

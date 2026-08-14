@@ -23,7 +23,7 @@ type AccordionSectionProps = {
 const FAQ = ({
   faqData,
   heading,
-  description,
+  //description,
   buttonText = "Contact Us",
   buttonAction,
   defaultOpenIndex = 0,
@@ -203,7 +203,7 @@ const FAQ = ({
               {heading}
             </h2>
 
-            <p
+            {/* <p
               className="
             mt-5
             max-w-[420px]
@@ -218,7 +218,7 @@ const FAQ = ({
           "
             >
               {description}
-            </p>
+            </p> */}
 
             <PrimaryBtn
               onClick={

@@ -7,7 +7,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 
-import builtImg from "@/assets/about/builtsImg.jpg";
+import builtImg from "@/assets/about/builtsImg.webp";
 import PrimaryBtn from "../reusable/PrimaryBtn";
 
 const readMore = [

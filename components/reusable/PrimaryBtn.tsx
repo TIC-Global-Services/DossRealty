@@ -29,7 +29,7 @@ export default function PrimaryBtn({
     relative group
     w-[180px]
     h-[44px]
-    rounded-[100px]
+    rounded-full
     flex items-center justify-center
     overflow-hidden isolate
     font-medium text-[16px]

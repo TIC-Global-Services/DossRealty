@@ -4,7 +4,7 @@ import Image from "next/image";
 import EnquiryBtn from "../reusable/EnquiryBtn";
 import Reveal from "../reusable/BlogReveal";
 
-import consideredGuideImg from "@/assets/blogs/blogPage/consideredImg.jpeg";
+import consideredGuideImg from "@/assets/blogs/blogPage/consideredImg.webp";
 
 export default function ConsideredGuide() {
   return (

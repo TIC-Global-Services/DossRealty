@@ -4,7 +4,7 @@ import Image from "next/image";
 import EnquiryBtn from "../reusable/EnquiryBtn";
 import Reveal from "../reusable/BlogReveal";
 
-import craftsmanshipImg from "@/assets/blogs/blogPage/craftmanshipImg.jpeg";
+import craftsmanshipImg from "@/assets/blogs/blogPage/craftmanshipImg.webp";
 
 export default function Craftsmanship() {
   return (

@@ -9,9 +9,9 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import townsideImg from "@/assets/projects/promisePark/galleryImg4.png";
-import readyDesignImg from "@/assets/projects/promisePark/galleryImg1.png";
-import growthCorridorImg from "@/assets/projects/promisePark/galleryImg2.png";
+import townsideImg from "@/assets/projects/promisePark/galleryImg4.webp";
+import readyDesignImg from "@/assets/projects/promisePark/galleryImg1.webp";
+import growthCorridorImg from "@/assets/projects/promisePark/galleryImg2.webp";
 
 const highlights = [
   {

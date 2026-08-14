@@ -4,7 +4,7 @@ import Image from "next/image";
 import EnquiryBtn from "../reusable/EnquiryBtn";
 import Reveal from "../reusable/BlogReveal";
 
-import tamilNaduImg from "@/assets/blogs/blogPage/tamilNaduImg.jpeg";
+import tamilNaduImg from "@/assets/blogs/blogPage/tamilNaduImg.webp";
 
 export default function TamilNadu() {
   return (

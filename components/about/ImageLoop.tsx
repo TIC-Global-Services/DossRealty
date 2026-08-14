@@ -6,10 +6,10 @@ import Image, {
 } from "next/image";
 import { motion } from "framer-motion";
 
-import image1 from "@/assets/about/loopImg.jpg";
-import image2 from "@/assets/about/loopImg2.jpg";
-import image3 from "@/assets/about/loopImg3.jpg";
-import image4 from "@/assets/about/loopImg4.jpg";
+import image1 from "@/assets/about/loopImg.webp";
+import image2 from "@/assets/about/loopImg2.webp";
+import image3 from "@/assets/about/loopImg3.webp";
+import image4 from "@/assets/about/loopImg4.webp";
 
 type LoopItem = {
   image: StaticImageData;

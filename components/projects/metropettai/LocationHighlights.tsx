@@ -9,9 +9,9 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import connectivityImg from "@/assets/projects/metropettai/galleryimg4.jpg";
-import floodImg from "@/assets/projects/metropettai/galleryImg2.jpg";
-import growthValueImg from "@/assets/projects/metropettai/galleryImg3.jpg";
+import connectivityImg from "@/assets/projects/metropettai/galleryimg4.webp";
+import floodImg from "@/assets/projects/metropettai/galleryImg2.webp";
+import growthValueImg from "@/assets/projects/metropettai/galleryImg3.webp";
 
 const highlights = [
   // {

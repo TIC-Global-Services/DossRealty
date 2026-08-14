@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import mapImg from "@/assets/contact/map.png";
+import mapImg from "@/assets/contact/map.webp";
 import locationPin from "@/assets/contact/pin.png";
 
 const Location = () => {

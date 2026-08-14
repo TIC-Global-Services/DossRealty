@@ -4,7 +4,7 @@ import Image from "next/image";
 import EnquiryBtn from "../reusable/EnquiryBtn";
 import Reveal from "@/components/reusable/BlogReveal";
 
-import artisticEngineeringImg from "@/assets/blogs/blogPage/artisticImg.jpeg";
+import artisticEngineeringImg from "@/assets/blogs/blogPage/artisticImg.webp";
 
 export default function ArtisticEngineering() {
   const paragraphs = [

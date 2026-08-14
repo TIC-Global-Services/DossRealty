@@ -6,10 +6,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import image2 from "@/assets/home/infographics/img2.png";
-import image3 from "@/assets/home/infographics/img3.jpg";
-import image4 from "@/assets/home/infographics/img4.jpg";
-import image5 from "@/assets/home/infographics/img5.png";
+import image2 from "@/assets/home/infographics/img2.webp";
+import image3 from "@/assets/home/infographics/img3.webp";
+import image4 from "@/assets/home/infographics/img4.webp";
+import image5 from "@/assets/home/infographics/img5.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 

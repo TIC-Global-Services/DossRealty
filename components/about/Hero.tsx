@@ -4,7 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
-import heroBg from "@/assets/about/heroBgImg.png";
+import heroBg from "@/assets/about/heroBgImg.webp";
 
 const Hero = () => {
   const sectionRef =
@@ -66,6 +66,9 @@ const Hero = () => {
 
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/35" />
+
+        {/* Top nav contrast gradient */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[50vh] bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
       </div>
 
       {/* Content */}

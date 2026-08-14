@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import bgImg from "@/assets/home/hero/heroBg.jpg";
+import bgImg from "@/assets/home/hero/heroBg.webp";
 
 import Link from "next/link";
 
@@ -429,6 +429,9 @@ export default function Hero() {
               pointer-events-none
             "
             />
+
+            {/* Top nav contrast gradient */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[50vh] bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
           </div>
 
           {/* Hero Text */}

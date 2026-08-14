@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import gsap from "gsap";
 
-import bgImage from "@/assets/contact/heroBg.png";
+import bgImage from "@/assets/contact/heroBg.webp";
 
 export default function Hero() {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -39,6 +39,9 @@ export default function Hero() {
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/10" />
+
+      {/* Top nav contrast gradient */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[50vh] bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
 
       {/* Content */}
       <div

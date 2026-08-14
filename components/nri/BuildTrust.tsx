@@ -13,8 +13,8 @@ import {
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import trust1 from "@/assets/nri/buildImg1.jpg";
-import trust2 from "@/assets/nri/buildImg2.jpg";
+import trust1 from "@/assets/nri/buildImg1.webp";
+import trust2 from "@/assets/nri/buildImg2.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 

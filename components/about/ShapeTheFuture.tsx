@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import futureImg from "@/assets/about/shapeFutureImg.jpg";
+import futureImg from "@/assets/about/shapeFutureImg.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
