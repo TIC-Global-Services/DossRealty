@@ -6,10 +6,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import image2 from "@/assets/home/infographics/img2.webp";
-import image3 from "@/assets/home/infographics/img3.webp";
-import image4 from "@/assets/home/infographics/img4.webp";
-import image5 from "@/assets/home/infographics/img5.webp";
+import experienceimg from "@/assets/home/infographics/experience.webp";
+import sqftimg from "@/assets/home/infographics/sqft-delivered.webp";
+import projectsimg from "@/assets/home/infographics/projects.webp";
+import familyimg from "@/assets/home/infographics/family.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,10 +21,10 @@ type InfographicItem = {
 };
 
 const infographicData: InfographicItem[] = [
-  { id: "01", image: image2, stat: "30+", description: "Years Experience" },
-  { id: "02", image: image3, stat: "5+", description: "Million SQFT Delivered" },
-  { id: "03", image: image4, stat: "15+", description: "Projects" },
-  { id: "04", image: image5, stat: "4000+", description: "Family's Served" },
+  { id: "01", image: experienceimg, stat: "30+", description: "Years Experience" },
+  { id: "02", image: sqftimg, stat: "5+", description: "Million SQFT Delivered" },
+  { id: "03", image: projectsimg, stat: "15+", description: "Projects" },
+  { id: "04", image: familyimg, stat: "4000+", description: "Family's Served" },
 ];
 
 const LINE_ANGLE_DEG = 225;
@@ -517,7 +517,7 @@ export default function InfoGraphics() {
                     alt={item.stat}
                     fill
                     priority={index === 0}
-                    className="object-cover scale-[1.06] -rotate-45"
+                    className="object-cover scale-[1.06]"
                   />
                 </div>
               ))}
@@ -620,7 +620,7 @@ export default function InfoGraphics() {
                     alt={item.stat}
                     fill
                     priority={index === 0}
-                    className="object-cover scale-[1] -rotate-45"
+                    className="object-cover scale-[1]"
                   />
                 </div>
               ))}
