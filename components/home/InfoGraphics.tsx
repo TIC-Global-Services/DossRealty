@@ -641,7 +641,7 @@ export default function InfoGraphics() {
         </div>
 
         {/* Stat text */}
-        <div className="mt-16 text-center min-h-[140px] flex flex-col items-center justify-center">
+        <div className="mt-8 text-center min-h-[140px] flex flex-col items-center justify-center">
           {infographicData.map((item, index) => (
             <div
               key={item.id}
