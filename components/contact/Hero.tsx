@@ -67,22 +67,6 @@ export default function Hero() {
         >
           Let's Connect
         </h2>
-
-        <p
-          className="max-w-[215px]
-            lg:mt-6
-            md:max-w-[700px]
-            text-white/90
-            tracking-normal
-            capitalize
-            text-[13px] leading-[16px]
-            lg:text-[18px]
-            lg:leading-[20px]
-          "
-        >
-          Have a question or project in mind?
-          Our team is here to help every step of the way.
-        </p>
       </div>
     </section>
   );

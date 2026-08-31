@@ -89,21 +89,13 @@ const Footer = () => {
               <div className="flex justify-between gap-10">
 
                 {/* Left */}
-                <div className="max-w-[300px] lg:max-w-[500px]">
+                <div className="max-w-[300px] lg:max-w-xl">
                   <h3 className="font-heading text-[18px] lg:text-[30px] leading-none">
                     About{" "}
                     <span className="text-[#B59A52]">
-                      Doss Realty
+                      DOSS DEVELOPERS PVT LTD
                     </span>
                   </h3>
-
-                  <p className="mt-4 text-[12px] lg:text-[14px] leading-[1.6] text-[#B8B8B8]">
-                    We Craft Functional Luxury,
-                    Focusing On Intentional Design &
-                    Bringing It To Life With Ethical
-                    Craftsmanship, Using Responsibly
-                    Sourced Materials.
-                  </p>
                 </div>
 
                 {/* Right */}
@@ -237,7 +229,7 @@ const Footer = () => {
 
           {/* Menu */}
           <div>
-            <div className="mt-5 flex flex-wrap gap-x-10 gap-y-3">
+            <div className="mt-5 flex flex-wrap justify-center gap-x-10 gap-y-3">
 
               {footerLinks.map((link) => {
                 const isActive =
@@ -268,7 +260,7 @@ const Footer = () => {
           </div>
 
           {/* About */}
-          <div className="mt-10">
+          <div className="mt-10 text-center">
             <h3 className="font-heading text-[16px] md:text-[26px] leading-none">
               About{" "}
               <span className="text-[#B59A52]">
@@ -304,20 +296,20 @@ const Footer = () => {
           </div>
 
           {/* Bottom */}
-          <div className="mt-10 flex justify-between gap-4">
+          <div className="mt-10 flex flex-col items-center gap-1.5 text-center">
 
-            <p className="max-w-[140px] text-[13px] leading-[24px] tracking-[-0.48px] text-[#AFAFAF]">
-              Copyright © 2026{" "} <br/>
+            <p className="text-[13px] leading-[24px] tracking-[-0.48px] text-[#AFAFAF]">
+              Copyright © 2026{" "}
               <span className="text-[#B59A52]">
-                Doss Realty 
-              </span>{" "} 
-              All <br/>Rights Reserved.
+                Doss Realty
+              </span>{" "}
+              All Rights Reserved.
             </p>
 
-            <p className="max-w-[150px] capitalize text-left text-[13px] leading-[24px] tracking-[-0.48px] text-[#AFAFAF]">
-              Designed & <br/> Developed by {" "}
+            <p className="capitalize text-[13px] leading-[24px] tracking-[-0.48px] text-[#AFAFAF]">
+              Designed & Developed by{" "}
               <span className="text-[#B59A52]">
-                the <br/> internet company
+                the internet company
               </span>
             </p>
           </div>

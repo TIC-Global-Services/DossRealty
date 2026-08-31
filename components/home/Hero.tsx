@@ -475,21 +475,6 @@ export default function Hero() {
               >
                 DISCOVER THE COLLECTION
               </h2>
-
-              <p
-                className="
-                  text-[clamp(13px,3.5vw,18px)]
-                  mt-4
-                  md:mt-0
-                  leading-[18px]
-                  md:leading-[20px]
-                  font-body
-                  text-white
-                  md:text-black"
-              >
-                Expert Support. Real Insights. Clear Direction
-                For What Comes Next.
-              </p>
             </div>
 
             <Link href="/about">

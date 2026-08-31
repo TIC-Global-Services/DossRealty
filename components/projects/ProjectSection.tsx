@@ -420,16 +420,16 @@ useEffect(() => {
                           <div className="px-5 lg:px-8">
                             {activeTab === "active" ? (
                               <>
-                                <h3 className="text-[13px] text-white lg:text-[26px]">
+                                <h3 className="text-xl text-white lg:text-[26px]">
                                   {project.title}
                                 </h3>
 
                                 <div className="max-w-[500px]">
-                                  <p className="text-[11px] lg:text-[13px] leading-[15px] text-white font-semibold">
+                                  <p className="text-sm lg:text-[13px] leading-tight text-white font-semibold">
                                     {project.text1}
                                   </p>
 
-                                  <p className="text-[11px] lg:text-[13px] leading-[15px] text-white/80 font-[300]">
+                                  <p className="text-xs lg:text-[13px] leading-tight text-white/80 font-[300]">
                                     {project.text2}
                                   </p>
                                 </div>
@@ -461,7 +461,7 @@ useEffect(() => {
                                       px-6
                                       py-1.5
                                       text-[12px]
-                                      lg:text-[14px] leading-[16px]
+                                      lg:text-[14px] leading-tight
                                       text-white
                                     "
                                     >
@@ -471,7 +471,7 @@ useEffect(() => {
 
                                   {/* Icons */}
                                   <div className="mt-3 flex items-center gap-6">
-                                    <div className="flex items-center gap-1">
+                                    {/* <div className="flex items-center gap-1">
                                       <Image
                                         src={project.plotsIcon!}
                                         alt="Plots"
@@ -488,7 +488,7 @@ useEffect(() => {
                                       >
                                         plots
                                       </span>
-                                    </div>
+                                    </div> */}
 
                                     <div className="flex items-center gap-1">
                                       <Image

@@ -11,10 +11,12 @@ import PrimaryBtn from "../reusable/PrimaryBtn";
 
 type Project = {
   title: string;
-  description: string;
+
+  // Same copy as the Active cards in ProjectSection.tsx
+  text1?: string;
+  text2?: string;
 
   mobileTitle?: string;
-  mobileDescription?: string;
 
   image: any;
   mobileImage?: any;
@@ -25,23 +27,18 @@ type Project = {
 const projects: Project[] = [
   {
     title: "Promises Park",
-    description:
-      "Located on the Kanchi–Arakkonam Highway in the heart of Kanchipuram, this ready-to-build community offers approved plots, completed infrastructure, and easy access to schools, hospitals, temples, and everyday conveniences. With a familiar location and a strong foundation in place, it provides the perfect setting to build your future with confidence.",
+    text1: "From ₹15L Onwards in Kanchipuram",
+    text2:
+      "Indulge in the Divine Aura of Kanchipuram, Alluring Plots from 443 to 2348 SQFT",
     image: project1,
     href: "/projects/promise-park",
   },
 
   {
-    // Desktop content
     title: "Metropettai",
-    description:
-      "Metropettai is a modern community defined by connection. Located at the intersection of the upcoming Metro corridor, the Chennai–Bengaluru Highway, and the Outer Ring Road, it oﬀers direct access to the people, places, and opportunities that shape everyday life. Surrounded by leading employment hubs, educational institutions, and evolving infrastructure, Metropettai is designed for those who value access, opportunity, and long-term relevance.",
-
-    // Mobile content
-    mobileTitle: "Metropettai",
-
-    mobileDescription:
-      "Metropettai is a modern community defined by connection. Located at the intersection of the upcoming Metro corridor, the Chennai–Bengaluru Highway, and the Outer Ring Road, it oﬀers direct access to the people, places, and opportunities that shape everyday life. Surrounded by leading employment hubs, educational institutions, and evolving infrastructure, Metropettai is designed for those who value access, opportunity, and long-term relevance.",
+    text1: "From ₹45L Onwards in  Poonamallee, chennai",
+    text2:
+      "Connected West Chennai address with  luxury plots from 711 to 2,400 SQFT",
 
     // Images
     image: project2,
@@ -316,27 +313,37 @@ export default function OurProjects() {
                               </span>
                             </h3>
 
-                            {/* DESCRIPTION */}
-                            <p
-                              className="
-                                font-body
-                                font-light
-                                w-full
-                                text-[#FFFFFF80]
-                                text-[14px] 
-                                lg:text-[16px]
-                                leading-[20px]
-                              "
-                            >
-                              <span className="hidden md:inline">
-                                {project.description}
-                              </span>
+                            {/* DESCRIPTION — same copy as ProjectSection text1/text2 */}
+                            <div className="w-full">
+                              <p
+                                className="
+                                  font-body
+                                  font-semibold
+                                  w-full
+                                  text-white
+                                  text-[14px]
+                                  lg:text-[16px]
+                                  leading-[20px]
+                                "
+                              >
+                                {project.text1}
+                              </p>
 
-                              <span className="md:hidden">
-                                {project.mobileDescription ||
-                                  project.description}
-                              </span>
-                            </p>
+                              <p
+                                className="
+                                  font-body
+                                  font-light
+                                  w-full
+                                  text-[#FFFFFF80]
+                                  text-[14px]
+                                  lg:text-[16px]
+                                  leading-[20px]
+                                  mt-1
+                                "
+                              >
+                                {project.text2}
+                              </p>
+                            </div>
 
                           </div>
                         </div>
