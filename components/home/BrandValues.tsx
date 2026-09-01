@@ -167,133 +167,68 @@ export default function LegacyVisionPurpose() {
                 </div>
             </section>
 
-            {/* MOBILE */}
-            <section className="bg-white py-16 md:hidden">
-                <div className="relative mx-auto px-18">
-                    {values.map(
-                        (item, index) => (
-                            <div
-                                key={index}
-                                className="relative mb-12"
-                            >
-                                <motion.div
-                                    initial={{
-                                        opacity: 0,
-                                        y: 60,
-                                    }}
-                                    whileInView={{
-                                        opacity: 1,
-                                        y: 0,
-                                    }}
-                                    viewport={{
-                                        once: true,
-                                        amount: 0.2,
-                                    }}
-                                    transition={{
-                                        duration: 0.8,
-                                        ease: [
-                                            0.22, 1, 0.36, 1,
-                                        ],
-                                    }}
-                                    className="relative"
-                                >
-                                    {/* IMAGE */}
-                                    <div className="relative w-[280px] h-[290px] overflow-hidden rounded-[10px]">
-                                        <Image
-                                            src={item.mobileImage || item.image}
-                                            alt={item.title}
-                                            fill
-                                            className="object-cover"
-                                        />
-                                    </div>
+            {/* MOBILE — horizontal slider */}
+            <section className="bg-white py-10 md:hidden overflow-hidden">
+                <div
+                    className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-6 pt-2"
+                    style={{
+                        scrollbarWidth: "none",
+                        msOverflowStyle: "none",
+                    }}
+                >
+                    <style>{`div::-webkit-scrollbar{display:none}`}</style>
+                    {values.map((item, index) => (
+                        <motion.div
+                            key={item.title}
+                            initial={{ opacity: 0, y: 18 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.35 }}
+                            transition={{
+                                duration: 0.6,
+                                delay: index * 0.08,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
+                            className="relative flex w-[78vw] max-w-[300px] shrink-0 snap-center flex-col items-center"
+                        >
+                            {/* title — above image */}
+                            <h2 className="mb-3 flex min-h-[44px] items-end text-center text-[17px] font-medium leading-[20px] tracking-tight text-[#111111]">
+                                {item.title}
+                            </h2>
 
-                                    {/* LINE + CONTENT */}
-                                    <div className="relative pl-[60px] pt-8">
-                                        {index !==
-                                            values.length -
-                                            1 && (
-                                                <motion.div
-                                                    initial={{
-                                                        scaleY: 0,
-                                                        opacity: 0,
-                                                    }}
-                                                    whileInView={{
-                                                        scaleY: 1,
-                                                        opacity: 1,
-                                                    }}
-                                                    viewport={{
-                                                        once: true,
-                                                    }}
-                                                    transition={{
-                                                        duration: 0.8,
-                                                        delay: 0.15,
-                                                    }}
-                                                    style={{
-                                                        transformOrigin:
-                                                            "top",
-                                                    }}
-                                                    className="
-                                                      absolute
-                                                      left-[40px]
-                                                      top-0
-                                                      h-[1040px]
-                                                      w-[1px]
-                                                      bg-[#D5D5D5]
-                                                    "
-                                                />
-                                            )}
+                            {/* image + horizontal connector */}
+                            <div className="relative w-full">
+                                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[12px] bg-[#F2F2F2]">
+                                    <Image
+                                        src={item.mobileImage || item.image}
+                                        alt={item.title}
+                                        fill
+                                        className="object-cover"
+                                        sizes="78vw"
+                                    />
+                                </div>
 
-                                        {/* CONTENT */}
-                                        <motion.div
-                                            initial={{
-                                                opacity: 0,
-                                                x: 30,
-                                            }}
-                                            whileInView={{
-                                                opacity: 1,
-                                                x: 0,
-                                            }}
-                                            viewport={{
-                                                once: true,
-                                                amount: 0.3,
-                                            }}
-                                            transition={{
-                                                duration: 0.7,
-                                                delay: 0.1,
-                                                ease: [
-                                                    0.22, 1, 0.36, 1,
-                                                ],
-                                            }}
-                                        >
-                                            <h2
-                                                className="
-                                                  mb-4
-                                                  text-[24px]
-                                                  font-heading
-                                                  leading-[30px]
-                                                  tracking-normal
-                                                  text-[#111111]
-                                                "
-                                            >
-                                                {item.title}
-                                            </h2>
-
-                                            <p
-                                                className="max-w-[220px]
-                                                  text-[13px]
-                                                  leading-[18px]
-                                                  text-[#666666]
-                                                "
-                                            >
-                                                {item.description}
-                                            </p>
-                                        </motion.div>
-                                    </div>
-                                </motion.div>
+                                {/* ── line to next card — sits in the 24px gap, centered on image ── */}
+                                {index !== values.length - 1 && (
+                                    <div
+                                        aria-hidden
+                                        className="pointer-events-none absolute top-1/2 -right-6 h-px w-6 bg-[#D5D5D5]"
+                                        style={{ transform: "translateY(-50%)" }}
+                                    />
+                                )}
                             </div>
-                        )
-                    )}
+
+                            {/* description — below image */}
+                            <p className="mt-3 max-w-[26ch] text-center text-[13px] leading-[18px] text-[#666666]">
+                                {item.description}
+                            </p>
+                        </motion.div>
+                    ))}
                 </div>
+
+                {/* subtle edge fade + scroll hint */}
+                <p className="mt-1 text-center text-[11px] tracking-[0.14em] text-[#AAAAAA]">
+                    ← swipe →
+                </p>
             </section>
         </>
     );
