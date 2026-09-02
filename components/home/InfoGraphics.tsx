@@ -379,6 +379,10 @@ export default function InfoGraphics() {
   const currentIndexRef = useRef(0);
   const mobileTlRef = useRef<gsap.core.Timeline | null>(null);
 
+  // Touch swipe refs
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+
   const snapPoints = useMemo(
     () => infographicData.map((_, i) => i / (infographicData.length - 1)),
     []
@@ -410,27 +414,38 @@ export default function InfoGraphics() {
     mobileTlRef.current?.kill();
 
     const currentIndex = currentIndexRef.current;
-    const currentIcon = mobileIconRefs.current[currentIndex];
-    const nextIcon = mobileIconRefs.current[nextIndex];
-    const currentText = mobileTextRefs.current[currentIndex];
-    const nextText = mobileTextRefs.current[nextIndex];
+    const allIcons = mobileIconRefs.current;
+    const allTexts = mobileTextRefs.current;
+    const currentIcon = allIcons[currentIndex];
+    const nextIcon = allIcons[nextIndex];
+    const currentText = allTexts[currentIndex];
+    const nextText = allTexts[nextIndex];
 
     currentIndexRef.current = nextIndex;
+    setActiveIndex(nextIndex);
+
+    // Hide any other icons/texts that may be lingering
+    allIcons.forEach((icon, i) => {
+      if (icon && i !== currentIndex && i !== nextIndex) {
+        gsap.set(icon, { opacity: 0, zIndex: 1 });
+      }
+    });
+    allTexts.forEach((text, i) => {
+      if (text && i !== currentIndex && i !== nextIndex) {
+        gsap.set(text, { opacity: 0, y: 24, filter: "blur(8px)" });
+      }
+    });
 
     // prep next icon strokes fresh each trigger
     prepStroke(nextIcon);
-
     const nextNodes = strokeNodes(nextIcon);
 
-    // layer
     if (nextIcon) {
       gsap.set(nextIcon, { opacity: 1, zIndex: 20 });
       if (currentIcon) gsap.set(currentIcon, { zIndex: 10 });
     }
 
-    const tl = gsap.timeline({
-      onComplete: () => setActiveIndex(nextIndex),
-    });
+    const tl = gsap.timeline();
     mobileTlRef.current = tl;
 
     // stroke draw – main reveal
@@ -438,92 +453,120 @@ export default function InfoGraphics() {
       nextNodes,
       {
         strokeDashoffset: 0,
-        duration: 1.05,
-        stagger: 0.045,
+        duration: 0.9,
+        stagger: 0.04,
         ease: "power2.inOut",
       },
       0
     );
 
-    // subtle fill reveal for 30YEARS
-    tl.add(() => revealFill(nextIcon), 0.75);
+    // fill reveal for 30YEARS
+    tl.add(() => revealFill(nextIcon), 0.65);
 
-    // previous icon fades as soon as the next one starts drawing
-    tl.to(
-      currentIcon,
-      { opacity: 0, duration: 0.32, ease: "power2.out" },
-      0.12
-    );
+    // previous icon fades out
+    if (currentIcon) {
+      tl.to(
+        currentIcon,
+        { opacity: 0, duration: 0.28, ease: "power2.out" },
+        0.1
+      );
+    }
 
     // text out / in
-    tl.to(
-      currentText,
-      {
-        opacity: 0,
-        y: direction === "next" ? -16 : 16,
-        filter: "blur(8px)",
-        duration: 0.32,
-        ease: "power3.out",
-      },
-      0
-    );
+    if (currentText) {
+      tl.to(
+        currentText,
+        {
+          opacity: 0,
+          y: direction === "next" ? -16 : 16,
+          filter: "blur(8px)",
+          duration: 0.28,
+          ease: "power3.out",
+        },
+        0
+      );
+    }
 
-    tl.fromTo(
-      nextText,
-      {
-        opacity: 0,
-        y: direction === "next" ? 20 : -20,
-        filter: "blur(8px)",
-      },
-      {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 0.5,
-        ease: "power3.out",
-      },
-      0.18
-    );
+    if (nextText) {
+      tl.fromTo(
+        nextText,
+        {
+          opacity: 0,
+          y: direction === "next" ? 18 : -18,
+          filter: "blur(8px)",
+        },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 0.45,
+          ease: "power3.out",
+        },
+        0.15
+      );
+    }
+  };
+
+  // Touch gesture handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const diff = touchStartX.current - touchEndX.current;
+    const threshold = 40;
+
+    if (diff > threshold && currentIndexRef.current < infographicData.length - 1) {
+      animateToIndex(currentIndexRef.current + 1, "next");
+    } else if (diff < -threshold && currentIndexRef.current > 0) {
+      animateToIndex(currentIndexRef.current - 1, "prev");
+    }
+
+    touchStartX.current = null;
+    touchEndX.current = null;
   };
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    const mm = gsap.matchMedia();
 
-    // common init: prep all icons hidden except first will draw
+    // ── Mobile / Tablet (< 1024px) ──
+    mm.add("(max-width: 1023px)", () => {
+      const allMobile = mobileIconRefs.current;
+      const allTexts = mobileTextRefs.current;
 
-    const allDesktop = desktopIconRefs.current;
-    const allMobile = mobileIconRefs.current;
-
-    if (!isDesktop) {
       allMobile.forEach((el, i) => {
         if (!el) return;
         prepStroke(el);
-        // first icon should draw on mount, others stay hidden
-        gsap.set(el, { opacity: i === 0 ? 1 : 0 });
+        gsap.set(el, { opacity: i === 0 ? 1 : 0, zIndex: i === 0 ? 10 : 1 });
       });
 
       // draw first icon on mount
-      const firstNodes = strokeNodes(allMobile[0]);
-      gsap.to(firstNodes, {
-        strokeDashoffset: 0,
-        duration: 1.1,
-        stagger: 0.05,
-        ease: "power2.inOut",
-        delay: 0.15,
-        onComplete: () => revealFill(allMobile[0]),
-      });
+      if (allMobile[0]) {
+        const firstNodes = strokeNodes(allMobile[0]);
+        gsap.to(firstNodes, {
+          strokeDashoffset: 0,
+          duration: 1.0,
+          stagger: 0.04,
+          ease: "power2.inOut",
+          delay: 0.1,
+          onComplete: () => revealFill(allMobile[0]),
+        });
+      }
 
-      gsap.set(mobileTextRefs.current, {
-        opacity: 0,
-        y: 28,
-        filter: "blur(8px)",
-      });
-      gsap.set(mobileTextRefs.current[0], {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
+      allTexts.forEach((el, i) => {
+        if (!el) return;
+        gsap.set(el, {
+          opacity: i === 0 ? 1 : 0,
+          y: i === 0 ? 0 : 20,
+          filter: i === 0 ? "blur(0px)" : "blur(8px)",
+        });
       });
 
       setActiveIndex(0);
@@ -532,10 +575,11 @@ export default function InfoGraphics() {
       return () => {
         mobileTlRef.current?.kill();
       };
-    }
+    });
 
-    // ── Desktop: pinned section — stroke draws on reveal (not scrubbed) ──
-    const ctx = gsap.context(() => {
+    // ── Desktop (>= 1024px) ──
+    mm.add("(min-width: 1024px)", () => {
+      const allDesktop = desktopIconRefs.current;
       allDesktop.forEach((el, i) => {
         if (!el) return;
         prepStroke(el);
@@ -549,21 +593,18 @@ export default function InfoGraphics() {
         y: 36,
         filter: "blur(8px)",
       });
-      gsap.set(desktopTextRefs.current[0], {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-      });
+      if (desktopTextRefs.current[0]) {
+        gsap.set(desktopTextRefs.current[0], {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+        });
+      }
       gsap.set(desktopNumberRefs.current, { y: 0, scale: 1 });
 
       setActiveIndex(0);
       currentIndexRef.current = 0;
 
-      // ── why the flash happened: the old code let the scrubbed
-      // timeline make the next icon (with stale dashoffset:0) visible
-      // for a frame before playIconDraw() reset dashoffset to length.
-      // Fix: keep the icon hidden (opacity 0) while we reset dashes,
-      // then fade it in + draw. Icon opacity is NO LONGER scrubbed.
       let lastDrawn = -1;
       const playIconDraw = (idx: number) => {
         if (idx === lastDrawn) return;
@@ -572,7 +613,6 @@ export default function InfoGraphics() {
         const root = allDesktop[idx];
         if (!root) return;
 
-        // fade out the icon we're leaving
         if (prevIdx >= 0 && prevIdx !== idx) {
           const prev = allDesktop[prevIdx];
           if (prev) {
@@ -581,9 +621,7 @@ export default function InfoGraphics() {
           }
         }
 
-        // reset strokes WHILE the incoming icon is still invisible
         gsap.killTweensOf(root);
-        // ensure fills start invisible before the delayed fill tween
         const fills = Array.from(
           root.querySelectorAll<SVGGeometryElement>("[fill='white']")
         );
@@ -593,9 +631,8 @@ export default function InfoGraphics() {
         }
         const nodes = strokeNodes(root);
         gsap.killTweensOf(nodes);
-        prepStroke(root); // dashoffset = length, still opacity 0 → no flash
+        prepStroke(root);
 
-        // now reveal + draw
         gsap.set(root, { opacity: 1 });
         gsap.to(nodes, {
           strokeDashoffset: 0,
@@ -613,7 +650,6 @@ export default function InfoGraphics() {
         }
       };
 
-      // first icon draws on mount
       playIconDraw(0);
 
       const totalItems = infographicData.length - 1;
@@ -652,10 +688,6 @@ export default function InfoGraphics() {
 
         tl.to({}, { duration: 0.45 });
         tl.addLabel(`transition-${index}`);
-
-        // icon visibility + stroke draw is handled by playIconDraw() on reveal,
-        // not by this scrubbed timeline — otherwise the icon would appear
-        // with stale dashoffset:0 for one frame before the reset.
 
         tl.to(
           prevText,
@@ -705,11 +737,10 @@ export default function InfoGraphics() {
           ease: "power2.inOut",
         },
       });
-    }, sectionRef);
+    });
 
     return () => {
-      ctx.revert();
-      mobileTlRef.current?.kill();
+      mm.revert();
     };
   }, [snapPoints]);
 
@@ -717,9 +748,9 @@ export default function InfoGraphics() {
     <section
       data-theme="light"
       ref={sectionRef}
-      className="relative min-h-screen bg-white"
+      className="relative min-h-[auto] bg-white lg:min-h-screen"
     >
-      {/* DESKTOP */}
+      {/* DESKTOP (>= 1024px) */}
       <div className="hidden h-full grid-cols-[120px_1fr_320px] items-center px-6 lg:grid lg:px-10">
         {/* LEFT — slide numbers */}
         <div className="flex justify-center">
@@ -728,7 +759,7 @@ export default function InfoGraphics() {
               <button
                 key={item.id}
                 onClick={() => jumpTo(index)}
-                className="group flex justify-center"
+                className="group flex justify-center cursor-pointer p-1"
                 aria-label={`Go to ${item.stat}`}
               >
                 <span
@@ -748,11 +779,9 @@ export default function InfoGraphics() {
           </div>
         </div>
 
-        {/* CENTER — stroke icon (no disc bg) */}
+        {/* CENTER — stroke icon */}
         <div className="flex items-center justify-center xl:ml-[18%]">
           <div className="relative h-[clamp(280px,40vw,460px)] w-[clamp(280px,40vw,460px)]">
-
-            {/* stacked icons */}
             {infographicData.map((_, index) => {
               const Icon = iconComponents[index];
               return (
@@ -761,7 +790,7 @@ export default function InfoGraphics() {
                   ref={(el) => {
                     desktopIconRefs.current[index] = el;
                   }}
-                  className="absolute inset-0 flex items-center justify-center p-10 sm:p-12 will-change-transform"
+                  className="absolute inset-0 flex items-center justify-center p-10 sm:p-12 will-change-transform pointer-events-none"
                   style={{ zIndex: index }}
                 >
                   <div className="h-full w-full max-h-[320px] max-w-[320px]">
@@ -799,80 +828,104 @@ export default function InfoGraphics() {
         </div>
       </div>
 
-      {/* MOBILE + TABLET */}
-      <div className="flex h-full flex-col items-center px-6 pb-8 pt-20 lg:hidden">
-        <div className="mb-10 mt-10 flex items-center justify-center">
-          <div className="relative h-[min(78vw,400px)] w-[min(78vw,400px)]">
+      {/* MOBILE + TABLET (< 1024px) */}
+      <div
+        className="flex w-full flex-col items-center justify-center px-5 py-14 sm:py-16 md:py-20 lg:hidden select-none"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Top bar with category & counter */}
+        <div className="flex w-full max-w-[340px] items-center justify-between px-2 mb-2">
+          <span className="font-body text-[12px] font-medium uppercase tracking-[0.2em] text-[#8C8C8C]">
+            View Infographics
+          </span>
+          <span className="font-['Inter_Tight'] text-[14px] font-medium tracking-wider text-[#1A1814]">
+            {infographicData[activeIndex].id} <span className="text-[#999999]">/ 04</span>
+          </span>
+        </div>
 
-            {infographicData.map((_, index) => {
-              const Icon = iconComponents[index];
-              return (
-                <div
-                  key={infographicData[index].id}
-                  ref={(el) => {
-                    mobileIconRefs.current[index] = el;
-                  }}
-                  className="absolute inset-0 flex items-center justify-center p-8"
-                  style={{ zIndex: index }}
-                >
-                  <div className="h-full w-full max-h-[260px] max-w-[260px]">
-                    <Icon />
-                  </div>
+        {/* Icon Card Container */}
+        <div className="relative my-4 flex h-[min(65vw,260px)] w-[min(65vw,260px)] sm:h-[280px] sm:w-[280px] items-center justify-center">
+          {infographicData.map((_, index) => {
+            const Icon = iconComponents[index];
+            return (
+              <div
+                key={infographicData[index].id}
+                ref={(el) => {
+                  mobileIconRefs.current[index] = el;
+                }}
+                className={`absolute inset-0 flex items-center justify-center p-3 pointer-events-none transition-opacity duration-300 ${
+                  index === activeIndex ? "opacity-100" : "opacity-0"
+                }`}
+                style={{ zIndex: index === activeIndex ? 20 : 1 }}
+              >
+                <div className="h-full w-full max-h-[220px] max-w-[220px] sm:max-h-[250px] sm:max-w-[250px]">
+                  <Icon />
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Stat text */}
-        <div className="relative flex min-h-[140px] w-full max-w-[320px] flex-col items-center justify-center text-center">
+        <div className="relative flex min-h-[110px] w-full max-w-[320px] flex-col items-center justify-center text-center mt-2">
           {infographicData.map((item, index) => (
             <div
               key={item.id}
               ref={(el) => {
                 mobileTextRefs.current[index] = el;
               }}
-              className="absolute inset-0 flex flex-col items-center justify-center"
+              className={`absolute inset-0 flex flex-col items-center justify-center ${
+                index === activeIndex ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+              }`}
             >
-              <p className="font-body text-[13px] font-light uppercase tracking-[0.18em] text-[#9A9A9A]">
-                View Infographics
-              </p>
-              <h2 className="font-['Inter_Tight'] text-[38px] font-medium leading-[120%] text-[#1A1814]">
+              <h2 className="font-['Inter_Tight'] text-[34px] sm:text-[40px] font-medium leading-[115%] text-[#1A1814] tracking-tight">
                 {item.stat}
               </h2>
-              <p className="font-['Inter_Tight'] text-[16px] font-light text-[#555]">
+              <p className="mt-1 font-['Inter_Tight'] text-[15px] sm:text-[17px] font-light leading-[140%] text-[#4A4A4A]">
                 {item.description}
               </p>
             </div>
           ))}
         </div>
 
-        {/* Arrow nav */}
-        <div className="mt-6 flex items-center gap-4">
-          <button
-            onClick={() => animateToIndex(currentIndexRef.current - 1, "prev")}
-            aria-label="Previous"
-            className="flex h-[42px] w-[42px] items-center justify-center rounded-full border border-[#D2D2D2] transition-transform duration-300 active:scale-95"
-          >
-            <ChevronLeft size={18} />
-          </button>
-          <button
-            onClick={() => animateToIndex(currentIndexRef.current + 1, "next")}
-            aria-label="Next"
-            className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#EEF1F5] transition-transform duration-300 active:scale-95"
-          >
-            <ChevronRight size={18} />
-          </button>
-        </div>
+        {/* Arrow controls & interactive dots */}
+        <div className="mt-6 flex flex-col items-center gap-4">
+          <div className="flex items-center gap-5">
+            <button
+              onClick={() => animateToIndex(currentIndexRef.current - 1, "prev")}
+              disabled={activeIndex === 0}
+              aria-label="Previous stat"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#D6D6D6] text-[#1A1814] transition-all duration-200 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer hover:bg-black/5"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={() => animateToIndex(currentIndexRef.current + 1, "next")}
+              disabled={activeIndex === infographicData.length - 1}
+              aria-label="Next stat"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1A1814] text-white transition-all duration-200 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer hover:bg-black/85"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
 
-        {/* dots */}
-        <div className="mt-5 flex gap-2">
-          {infographicData.map((_, i) => (
-            <span
-              key={i}
-              className={`h-[6px] w-[6px] rounded-full transition-colors ${i === activeIndex ? "bg-[#1A1814]" : "bg-black/15"}`}
-            />
-          ))}
+          {/* Pagination dots */}
+          <div className="flex items-center gap-2">
+            {infographicData.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => animateToIndex(i, i > activeIndex ? "next" : "prev")}
+                aria-label={`Slide ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  i === activeIndex
+                    ? "w-6 bg-[#1A1814]"
+                    : "w-2 bg-black/20 hover:bg-black/40"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
