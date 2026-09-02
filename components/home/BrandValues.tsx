@@ -1,14 +1,15 @@
 "use client";
 
+import { useRef, useState } from "react";
 import Image, {
     StaticImageData,
 } from "next/image";
 import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import designImg from "@/assets/home/designImg.webp";
 import craftImg from "@/assets/home/craftmanshipImg.webp";
 import qualityImg from "@/assets/home/qualityImg.webp";
-import purposeMobileImg from "@/assets/home/puposeMobileImg.webp";
 
 type ValueCard = {
     title: string;
@@ -34,16 +35,39 @@ const values: ValueCard[] = [
         title: "Uncompromising Quality",
         description:
             "Materials, methods, and finishes selected with discipline, so every development carries a sense of permanence.",
-
-        // desktop image
         image: qualityImg,
-
-        // mobile image
         mobileImage: qualityImg,
     },
 ];
 
 export default function LegacyVisionPurpose() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const touchStartX = useRef<number | null>(null);
+    const touchEndX = useRef<number | null>(null);
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.targetTouches[0].clientX;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        touchEndX.current = e.targetTouches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        if (touchStartX.current === null || touchEndX.current === null) return;
+        const diff = touchStartX.current - touchEndX.current;
+        const threshold = 40;
+
+        if (diff > threshold && currentIndex < values.length - 1) {
+            setCurrentIndex((prev) => prev + 1);
+        } else if (diff < -threshold && currentIndex > 0) {
+            setCurrentIndex((prev) => prev - 1);
+        }
+
+        touchStartX.current = null;
+        touchEndX.current = null;
+    };
+
     return (
         <>
             {/* Desktop */}
@@ -167,68 +191,97 @@ export default function LegacyVisionPurpose() {
                 </div>
             </section>
 
-            {/* MOBILE — horizontal slider */}
-            <section className="bg-white py-10 md:hidden overflow-hidden">
-                <div
-                    className="flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-6 pt-2"
-                    style={{
-                        scrollbarWidth: "none",
-                        msOverflowStyle: "none",
-                    }}
-                >
-                    <style>{`div::-webkit-scrollbar{display:none}`}</style>
-                    {values.map((item, index) => (
-                        <motion.div
-                            key={item.title}
-                            initial={{ opacity: 0, y: 18 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.35 }}
-                            transition={{
-                                duration: 0.6,
-                                delay: index * 0.08,
-                                ease: [0.22, 1, 0.36, 1],
-                            }}
-                            className="relative flex w-[78vw] max-w-[300px] shrink-0 snap-center flex-col items-center"
-                        >
-                            {/* title — above image */}
-                            <h2 className="mb-3 flex min-h-[44px] items-end text-center text-[17px] font-medium leading-[20px] tracking-tight text-[#111111]">
-                                {item.title}
-                            </h2>
+            {/* MOBILE — interactive horizontal slider */}
+            <section className="bg-white py-12 md:hidden overflow-hidden select-none">
+                {/* Top category label & counter */}
+                <div className="mx-auto flex w-full max-w-[340px] items-center justify-between px-4 mb-2">
+                    <span className="font-body text-[12px] font-medium uppercase tracking-[0.2em] text-[#8C8C8C]">
+                        Brand Values
+                    </span>
+                    <span className="font-['Inter_Tight'] text-[14px] font-medium tracking-wider text-[#111111]">
+                        0{currentIndex + 1} <span className="text-[#999999]">/ 0{values.length}</span>
+                    </span>
+                </div>
 
-                            {/* image + horizontal connector */}
-                            <div className="relative w-full">
-                                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[12px] bg-[#F2F2F2]">
+                <div
+                    className="relative w-full overflow-hidden px-4"
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                >
+                    <motion.div
+                        className="flex"
+                        animate={{ x: `-${currentIndex * 100}%` }}
+                        transition={{ type: "spring", stiffness: 280, damping: 28 }}
+                    >
+                        {values.map((item, index) => (
+                            <div
+                                key={item.title}
+                                className="w-full shrink-0 px-2 flex flex-col items-center"
+                            >
+                                {/* title — above image */}
+                                <h2 className="mb-3 flex min-h-[36px] items-center text-center text-[20px] font-medium leading-[24px] tracking-tight text-[#111111]">
+                                    {item.title}
+                                </h2>
+
+                                {/* image card */}
+                                <div className="relative w-full max-w-[320px] aspect-[4/3] overflow-hidden rounded-[14px] shadow-[0_8px_24px_rgba(0,0,0,0.08)] bg-[#F5F5F5]">
                                     <Image
                                         src={item.mobileImage || item.image}
                                         alt={item.title}
                                         fill
                                         className="object-cover"
-                                        sizes="78vw"
+                                        sizes="(max-width: 768px) 85vw, 320px"
+                                        priority={index === 0}
                                     />
                                 </div>
 
-                                {/* ── line to next card — sits in the 24px gap, centered on image ── */}
-                                {index !== values.length - 1 && (
-                                    <div
-                                        aria-hidden
-                                        className="pointer-events-none absolute top-1/2 -right-6 h-px w-6 bg-[#D5D5D5]"
-                                        style={{ transform: "translateY(-50%)" }}
-                                    />
-                                )}
+                                {/* description — below image */}
+                                <p className="mt-4 max-w-[280px] text-center text-[14px] leading-[20px] text-[#555555]">
+                                    {item.description}
+                                </p>
                             </div>
-
-                            {/* description — below image */}
-                            <p className="mt-3 max-w-[26ch] text-center text-[13px] leading-[18px] text-[#666666]">
-                                {item.description}
-                            </p>
-                        </motion.div>
-                    ))}
+                        ))}
+                    </motion.div>
                 </div>
 
-                {/* subtle edge fade + scroll hint */}
-                <p className="mt-1 text-center text-[11px] tracking-[0.14em] text-[#AAAAAA]">
-                    ← swipe →
-                </p>
+                {/* Controls: Arrows + Dots */}
+                <div className="mt-7 flex flex-col items-center gap-4">
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
+                            disabled={currentIndex === 0}
+                            aria-label="Previous brand value"
+                            className="flex h-11 w-11 items-center justify-center rounded-full border border-[#D6D6D6] text-[#111111] transition-all active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed hover:bg-black/5 cursor-pointer"
+                        >
+                            <ChevronLeft size={20} />
+                        </button>
+                        <button
+                            onClick={() => setCurrentIndex((prev) => Math.min(values.length - 1, prev + 1))}
+                            disabled={currentIndex === values.length - 1}
+                            aria-label="Next brand value"
+                            className="flex h-11 w-11 items-center justify-center rounded-full bg-[#111111] text-white transition-all active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed hover:bg-black/85 cursor-pointer"
+                        >
+                            <ChevronRight size={20} />
+                        </button>
+                    </div>
+
+                    {/* Dots */}
+                    {/* <div className="flex items-center gap-2">
+                        {values.map((_, i) => (
+                            <button
+                                key={i}
+                                onClick={() => setCurrentIndex(i)}
+                                aria-label={`Go to slide ${i + 1}`}
+                                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                                    i === currentIndex
+                                        ? "w-6 bg-[#111111]"
+                                        : "w-2 bg-black/20 hover:bg-black/40"
+                                }`}
+                            />
+                        ))}
+                    </div> */}
+                </div>
             </section>
         </>
     );
