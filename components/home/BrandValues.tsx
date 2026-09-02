@@ -252,7 +252,7 @@ export default function LegacyVisionPurpose() {
                             onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
                             disabled={currentIndex === 0}
                             aria-label="Previous brand value"
-                            className="flex h-11 w-11 items-center justify-center rounded-full border border-[#D6D6D6] text-[#111111] transition-all active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed hover:bg-black/5 cursor-pointer"
+                            className="flex h-11 w-11 items-center justify-center rounded-full border bg-[#111111] text-white transition-all active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed hover:bg-black/5 cursor-pointer"
                         >
                             <ChevronLeft size={20} />
                         </button>
