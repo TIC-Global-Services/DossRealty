@@ -69,31 +69,54 @@ const Leadership = () => {
   }, [selectedLeader]);
 
   useEffect(() => {
-  const el = contentRef.current;
-  if (!el || !selectedLeader) return;
-  if (window.innerWidth < 768) return;
+    const el = contentRef.current;
+    if (!el || !selectedLeader) return;
+    if (window.innerWidth < 768) return;
 
-  const handleWheel = (e: WheelEvent) => {
-    const { scrollTop, scrollHeight, clientHeight } = el;
-    const atTop = scrollTop <= 0;
-    const atBottom = scrollTop + clientHeight >= scrollHeight - 1;
-    
-    e.stopPropagation();
+    const handleWheel = (e: WheelEvent) => {
+      const { scrollTop, scrollHeight, clientHeight } = el;
+      const atTop = scrollTop <= 0;
+      const atBottom = scrollTop + clientHeight >= scrollHeight - 1;
 
-    if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
-      e.preventDefault();
-    }
-  };
+      e.stopPropagation();
 
-  el.addEventListener("wheel", handleWheel, { passive: false });
-  return () => el.removeEventListener("wheel", handleWheel);
-}, [selectedLeader]);
+      if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
+        e.preventDefault();
+      }
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => el.removeEventListener("wheel", handleWheel);
+  }, [selectedLeader]);
 
   const openLeader = (leader: Leader) => {
     setIsExpanded(false);
     setSelectedLeader(leader);
   };
+  useEffect(() => {
+    if (!selectedLeader) return;
 
+    const scrollY = window.scrollY;
+
+    // Freeze the entire page
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+
+      window.scrollTo(0, scrollY);
+    };
+  }, [selectedLeader]);
   const closeLeader = () => setSelectedLeader(null);
 
   return (
@@ -165,16 +188,19 @@ const Leadership = () => {
       {/* POPUP MODAL */}
       {selectedLeader && (
         <div
-         className="
+          className="
           fixed
           inset-0
           z-[999]
           bg-black/60
-          overflow-y-auto
+          overflow-hidden
           md:flex
-          md:items-center
-          md:justify-center
+          
+          mt-[20%]
+          items-center
+          justify-center
           md:p-5
+          
         "
           onClick={closeLeader}
         >
@@ -182,10 +208,12 @@ const Leadership = () => {
             className="
               relative
               w-full
-              h-screen
+              h-[80dvh]
               bg-white
               flex
               flex-col
+              items-center
+              justify-center
               overflow-hidden
             "
             onClick={(e) => e.stopPropagation()}
@@ -218,7 +246,7 @@ const Leadership = () => {
               {/* LEFT IMAGE */}
               <div className="
                 relative
-                h-[300px]
+                h-[400px]
                 md:h-screen
               ">
                 <Image
@@ -310,16 +338,16 @@ const Leadership = () => {
                       {isExpanded
                         ? selectedLeader.description
                         : `${selectedLeader.description.slice(
-                            0,
-                            DESCRIPTION_PREVIEW_LENGTH
-                          )}...`}
+                          0,
+                          DESCRIPTION_PREVIEW_LENGTH
+                        )}...`}
                     </p>
 
                     {selectedLeader.description.length >
                       DESCRIPTION_PREVIEW_LENGTH && (
-                      <button
-                        onClick={() => setIsExpanded((prev) => !prev)}
-                        className="
+                        <button
+                          onClick={() => setIsExpanded((prev) => !prev)}
+                          className="
                           mt-5
                           text-[#00256A]
                           font-semibold
@@ -327,10 +355,10 @@ const Leadership = () => {
                           hover:underline
                           cursor-pointer
                         "
-                      >
-                        {isExpanded ? "Read Less" : "Read More"}
-                      </button>
-                    )}
+                        >
+                          {isExpanded ? "Read Less" : "Read More"}
+                        </button>
+                      )}
                   </div>
                 </div>
               </div>

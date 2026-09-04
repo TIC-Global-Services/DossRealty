@@ -192,6 +192,16 @@ const About = () => {
               270 Units
             </span>
           </div>
+          <div className="flex items-center gap-2">
+            <div className=" h-5 w-[1px] bg-black md:block" />
+            <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
+              RERA :
+            </span>
+
+            <span className="font-small text-sm text-[#C59D5F] lg:text-[18px] lg:leading-[20px]">
+              TN/01/Reg-Layout/0995/2023
+            </span>
+          </div>
         </div>
 
         {/* LINE */}
