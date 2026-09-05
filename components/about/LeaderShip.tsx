@@ -46,16 +46,15 @@ const Leadership = () => {
   useEffect(() => {
     if (!selectedLeader) return;
 
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) return;
-
     const scrollY = window.scrollY;
 
+    // Freeze page scroll when modal is open
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
     document.body.style.left = "0";
     document.body.style.right = "0";
     document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
 
     return () => {
       document.body.style.position = "";
@@ -63,6 +62,7 @@ const Leadership = () => {
       document.body.style.left = "";
       document.body.style.right = "";
       document.body.style.width = "";
+      document.body.style.overflow = "";
 
       window.scrollTo(0, scrollY);
     };
@@ -93,30 +93,7 @@ const Leadership = () => {
     setIsExpanded(false);
     setSelectedLeader(leader);
   };
-  useEffect(() => {
-    if (!selectedLeader) return;
 
-    const scrollY = window.scrollY;
-
-    // Freeze the entire page
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = "0";
-    document.body.style.right = "0";
-    document.body.style.width = "100%";
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "";
-
-      window.scrollTo(0, scrollY);
-    };
-  }, [selectedLeader]);
   const closeLeader = () => setSelectedLeader(null);
 
   return (
@@ -189,72 +166,135 @@ const Leadership = () => {
       {selectedLeader && (
         <div
           className="
-          fixed
-          inset-0
-          z-[999]
-          bg-black/60
-          overflow-hidden
-          md:flex
-          
-          mt-[20%]
-          items-center
-          justify-center
-          md:p-5
-          
-        "
+            fixed
+            inset-0
+            z-[999]
+            bg-black/60
+            backdrop-blur-md
+            flex
+            items-center
+            justify-center
+            p-3
+            sm:p-6
+            md:p-0
+            overflow-hidden
+          "
           onClick={closeLeader}
         >
-          <div data-modal
+          <div
+            data-modal
             className="
               relative
               w-full
-              h-[80dvh]
+              lg:max-h-[100dvh]
+              max-h-[85dvh]
+              md:h-screen
               bg-white
+              rounded-[24px]
+              sm:rounded-[28px]
+              md:rounded-none
               flex
               flex-col
-              items-center
-              justify-center
-              overflow-hidden
+              overflow-y-auto
+              md:overflow-hidden
+              shadow-2xl
             "
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close */}
+            {/* Desktop Close Button (Top Right) */}
             <button
               onClick={closeLeader}
               className="
+                hidden
+                md:flex
                 absolute
-                right-4 top-4
-                md:right-5 md:top-5
-                z-20
-                text-[32px]
-                md:text-[40px]
+                right-6
+                top-6
+                z-30
+                w-10
+                h-10
+                items-center
+                justify-center
+                rounded-full
+                bg-black/5
+                hover:bg-black/10
+                text-black
+                text-[28px]
+                font-light
                 cursor-pointer
+                transition-all
+                leading-none
               "
+              aria-label="Close modal"
             >
               ×
             </button>
 
-            <div className="
+            <div
+              className="
                 flex
-                flex-col gap-6 md:gap-0
+                flex-col
                 flex-1
                 md:grid
                 md:grid-cols-2
                 md:h-full
-                overflow-hidden
-              ">
+                w-full
+              "
+            >
               {/* LEFT IMAGE */}
-              <div className="
-                relative
-                h-[400px]
-                md:h-screen
-              ">
+              <div
+                className="
+                  relative
+                  w-full
+                  h-[320px]
+                  sm:h-[380px]
+                  md:h-screen
+                  shrink-0
+                  bg-gray-100
+                  rounded-t-[24px]
+                  sm:rounded-t-[28px]
+                  md:rounded-none
+                  overflow-hidden
+                "
+              >
                 <Image
                   src={selectedLeader.image}
                   alt={selectedLeader.name}
                   fill
                   className="object-cover"
+                  priority
                 />
+
+                {/* Mobile Close Button (Top Right of Image) */}
+                <button
+                  onClick={closeLeader}
+                  className="
+                    md:hidden
+                    absolute
+                    top-4
+                    right-4
+                    z-30
+                    w-9
+                    h-9
+                    flex
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-black/50
+                    hover:bg-black/70
+                    active:scale-95
+                    text-white
+                    text-lg
+                    font-light
+                    backdrop-blur-md
+                    cursor-pointer
+                    transition-all
+                    shadow-md
+                  "
+                  aria-label="Close modal"
+                >
+                  ✕
+                </button>
               </div>
 
               {/* RIGHT CONTENT */}
@@ -264,31 +304,32 @@ const Leadership = () => {
                   WebkitOverflowScrolling: "touch",
                 }}
                 className="
-                  p-10
-                  md:p-12
-                  lg:p-16
-               
+                  px-6
+                  py-6
+                  sm:px-10
+                  sm:py-8
+                  md:px-12
+                  md:py-12
+                  lg:px-16
+                  lg:py-16
                   overflow-y-auto
-                  md:h-full md:mt-2
-                  md:overflow-y-auto
+                  md:h-full
                   md:scrollbar-thin
+                  flex-1
                 "
               >
-                <div className="relative w-full">
+                <div className="relative w-full pt-2 md:pt-4">
                   {/* Quote SVG */}
                   <svg
                     viewBox="0 0 170 120"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     className="
-                    absolute md:block w-[40px] -top-10 -left-[10px]
-                    lg:-top-15
-                    md:left-[-10px]
-                    lg:w-[60px]
-                    h-auto
-                    pointer-events-none
-                    z-10
-                  "
+                      w-[36px] md:w-[48px] lg:w-[56px]
+                      h-auto
+                      mb-4
+                      pointer-events-none
+                    "
                   >
                     <path
                       d="M35 22C35 9.8 44.8 0 57 0H76V31H62C58.1 31 55 34.1 55 38V54H91V120H35V22Z"
@@ -303,16 +344,16 @@ const Leadership = () => {
                   {/* Role */}
                   <p
                     className="
-                    mb-3
-                    text-[12px]
-                    lg:text-[16px]
-                    uppercase
-                    font-heading
-                    font-[300]
-                    leading-[100%]
-                    tracking-normal
-                    text-[#000000]
-                  "
+                      mb-2
+                      text-[12px]
+                      lg:text-[15px]
+                      uppercase
+                      font-heading
+                      font-[500]
+                      leading-[100%]
+                      tracking-wider
+                      text-[#00256A]
+                    "
                   >
                     {selectedLeader.role}
                   </p>
@@ -320,45 +361,48 @@ const Leadership = () => {
                   {/* Name */}
                   <h2
                     className="
-                    font-wide
-                    font-[700]
-                    leading-[100%]
-                    tracking-normal
-                    uppercase
-                    text-[20px]
-                    lg:text-[40px]
-                  "
+                      font-wide
+                      font-[700]
+                      leading-[110%]
+                      tracking-tight
+                      uppercase
+                      text-[22px]
+                      sm:text-[28px]
+                      lg:text-[38px]
+                      text-[#1B2327]
+                    "
                   >
                     {selectedLeader.name}
                   </h2>
 
                   {/* Description */}
-                  <div className="mt-4 lg:mt-8">
-                    <p className="text-[13px] leading-[20px] lg:text-[18px] font-small lg:leading-[1.8] text-[#00000080] whitespace-pre-line">
+                  <div className="mt-5 lg:mt-7">
+                    <p className="text-[14px] sm:text-[15px] leading-[24px] lg:text-[17px] lg:leading-[1.8] text-[#333333] whitespace-pre-line font-normal">
                       {isExpanded
                         ? selectedLeader.description
                         : `${selectedLeader.description.slice(
-                          0,
-                          DESCRIPTION_PREVIEW_LENGTH
-                        )}...`}
+                            0,
+                            DESCRIPTION_PREVIEW_LENGTH
+                          )}...`}
                     </p>
 
                     {selectedLeader.description.length >
                       DESCRIPTION_PREVIEW_LENGTH && (
-                        <button
-                          onClick={() => setIsExpanded((prev) => !prev)}
-                          className="
+                      <button
+                        onClick={() => setIsExpanded((prev) => !prev)}
+                        className="
                           mt-5
                           text-[#00256A]
                           font-semibold
-                          text-[16px]
+                          text-[15px]
                           hover:underline
                           cursor-pointer
+                          inline-block
                         "
-                        >
-                          {isExpanded ? "Read Less" : "Read More"}
-                        </button>
-                      )}
+                      >
+                        {isExpanded ? "Read Less" : "Read More"}
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
