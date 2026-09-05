@@ -382,12 +382,11 @@ const Leadership = () => {
                         ? selectedLeader.description
                         : `${selectedLeader.description.slice(
                             0,
-                            DESCRIPTION_PREVIEW_LENGTH
+                            150
                           )}...`}
                     </p>
 
-                    {selectedLeader.description.length >
-                      DESCRIPTION_PREVIEW_LENGTH && (
+                    {selectedLeader.description.length > 150 && (
                       <button
                         onClick={() => setIsExpanded((prev) => !prev)}
                         className="
