@@ -249,7 +249,7 @@ const Builts = () => {
                 className="
                   absolute top-5 right-5
                   z-20
-                  flex h-[42px] w-[42px]
+                  flex h-[25px] w-[25px] md:h-[40px] md:w-[40px]
                   items-center justify-center
                   rounded-full
                   border border-white/20
@@ -275,7 +275,7 @@ const Builts = () => {
                 >
                   <h2
                     className="
-                      text-[32px]
+                      text-[28px]
                       md:text-[48px]
                       font-light
                       leading-tight
@@ -286,7 +286,7 @@ const Builts = () => {
 
                   <p
                     className="
-                      mt-2
+                      md:mt-2
                       text-[16px]
                       text-white/60
                     "
@@ -294,7 +294,7 @@ const Builts = () => {
                     {item.role}
                   </p>
 
-                  <div className="mt-8 space-y-4">
+                  <div className="mt-8 space-y-4  md:space-y-4">
                     {item.description.map(
                       (
                         paragraph,
@@ -303,7 +303,7 @@ const Builts = () => {
                         <p
                           key={index}
                           className="
-                            text-[15px]
+                            text-sm
                             md:text-[18px]
                             leading-[1.2]
                             text-white/75
