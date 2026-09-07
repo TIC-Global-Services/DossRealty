@@ -109,10 +109,12 @@ const navLinks = [
         {
           title: "Promise Park",
           location: "Kanchipuram",
+          href:"/projects/promise-park",
         },
         {
           title: "Metropettai",
           location: "Poonamallee, Chennai",
+          href:"/projects/metropettai"
         },
       ],
       status: [
@@ -296,8 +298,8 @@ const Navbar = () => {
           <Image
             src={
               isBlogsPage
-                ? "/blackLogo.png"
-                : "/doss_logo2.png"
+                ? "/doss_logo.png"
+                : "/doss_logo.png"
             }
             alt="Doss Realty Logo"
             width={100}
@@ -447,7 +449,7 @@ const Navbar = () => {
                                   ) => (
                                     <Link
                                       key={index}
-                                      href="/projects"
+                                      href={project.title}
                                       className="transition duration-300 hover:opacity-70"
                                     >
                                       <p className={`font-small text-[13px] md:text-[18px] leading-[20px] font-medium ${isBlogsPage ? "text-black" : "text-white"}`}>
