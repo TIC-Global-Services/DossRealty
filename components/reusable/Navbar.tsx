@@ -60,6 +60,19 @@ const InstagramIcon = ({ className }: IconProps) => (
   </svg>
 );
 
+const LinkedInIcon = ({ className }: IconProps) => (
+  <svg
+    viewBox="0 0 448 512"
+    width="1em"
+    height="1em"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
+  </svg>
+);
+
 const navLinks = [
   {
     name: "Home",
@@ -298,8 +311,8 @@ const Navbar = () => {
           <Image
             src={
               isBlogsPage
-                ? "/doss_logo.png"
-                : "/doss_logo.png"
+                ? "/doss-black.png"
+                : "/doss_logo2.png"
             }
             alt="Doss Realty Logo"
             width={100}
@@ -733,6 +746,15 @@ const Navbar = () => {
               className="text-white/60 transition duration-300 hover:text-white"
             >
               <WhatsAppIcon className="text-[22px]" />
+            </Link>
+
+            <Link
+              href="#"
+              aria-label="LinkedIn"
+              onClick={closeMobileMenu}
+              className="text-white/60 transition duration-300 hover:text-white"
+            >
+              <LinkedInIcon className="text-[20px]" />
             </Link>
 
             <Link

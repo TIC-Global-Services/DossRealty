@@ -195,6 +195,7 @@ const Leadership = () => {
               md:rounded-none
               flex
               flex-col
+              my-6
               overflow-y-auto
               md:overflow-hidden
               shadow-2xl
