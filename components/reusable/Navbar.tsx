@@ -462,7 +462,7 @@ const Navbar = () => {
                                   ) => (
                                     <Link
                                       key={index}
-                                      href={project.title}
+                                      href={project.href}
                                       className="transition duration-300 hover:opacity-70"
                                     >
                                       <p className={`font-small text-[13px] md:text-[18px] leading-[20px] font-medium ${isBlogsPage ? "text-black" : "text-white"}`}>
