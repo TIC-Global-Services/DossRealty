@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
@@ -17,6 +17,7 @@ const PIN_DISTANCE = 1800;
 
 export default function BuiltForLiving() {
   const pinWrapperRef = useRef<HTMLDivElement>(null);
+  const [resume, setResume] = useState<File | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   // desktop
@@ -32,6 +33,20 @@ export default function BuiltForLiving() {
   const tabletGoldRef = useRef<HTMLDivElement>(null);
   const tabletNavyRef = useRef<HTMLDivElement>(null);
   const tabletCardsRef = useRef<HTMLDivElement>(null);
+
+  const handleSubmit = () => {
+
+    const subject = encodeURIComponent("Job Application - Resume Submission");
+
+    const body = encodeURIComponent(
+      `Hello,
+
+I would like to submit my resume for a job opportunity.
+Thank you.`
+    );
+
+    window.location.href = `mailto:info@dossrealty.in?subject=${subject}&body=${body}`;
+  };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -249,10 +264,25 @@ export default function BuiltForLiving() {
                 Don&apos;t see your role?<br />
                 <span className="font-[400]">We welcome exceptional talent across emerging roles. Share your CV, and we will contact you when a suitable opportunity arises.</span>
               </p>
+              <Link
+                href={`mailto:info@dossrealty.in?subject=${encodeURIComponent(
+                  "Resume Submission - Job Application"
+                )}&body=${encodeURIComponent(
+                  `Hello Doss Reality Team,
 
-              <button type="button" className="font-small mt-5 rounded-full bg-[#00256A] px-8 py-2.5 text-[13px] leading-[20px] tracking-[-0.48px] font-medium text-white">
-                Share your cv
-              </button>
+I would like to share my resume for suitable job opportunities at Doss Reality.
+
+Please find my resume attached.
+
+Thank you.`
+                )}`}
+              >
+
+                <button type="button" onClick={handleSubmit} className="font-small mt-5 rounded-full bg-[#00256A] px-8 py-2.5 text-[13px] leading-[20px] tracking-[-0.48px] font-medium text-white">
+                  Share your cv
+                </button>
+              </Link>
+
             </div>
           </div>
         </div>
@@ -324,9 +354,23 @@ export default function BuiltForLiving() {
                 <span className="font-[400]">We welcome exceptional talent across emerging roles. Share your CV, and we will contact you when a suitable opportunity arises.</span>
               </p>
 
-              <button type="button" className="font-small mt-5 rounded-full bg-[#00256A] px-9 py-3 text-[15px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
-                Share your cv
-              </button>
+              <Link
+                href={`mailto:info@dossrealty.in?subject=${encodeURIComponent(
+                  "Resume Submission - Job Application"
+                )}&body=${encodeURIComponent(
+                  `Hello Doss Reality Team,
+
+I would like to share my resume for suitable job opportunities at Doss Reality.
+
+Please find my resume attached.
+
+Thank you.`
+                )}`}
+
+              >
+                <button type="button" className="font-small mt-5 rounded-full bg-[#00256A] px-9 py-3 text-[15px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
+                  Share your cv
+                </button></Link>
             </div>
           </div>
         </div>
@@ -360,9 +404,22 @@ export default function BuiltForLiving() {
                 <span className="font-[400]">We welcome exceptional talent across emerging roles. Share your CV, and we will contact you when a suitable opportunity arises.</span>
               </p>
 
-              <button type="button" className="font-small w-fit mt-4 rounded-full bg-[#00256A] px-10 py-2.5 text-sm md:text-[16px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
-                Share your cv
-              </button>
+              <Link href={`mailto:info@dossrealty.in?subject=${encodeURIComponent(
+                "Resume Submission - Job Application"
+              )}&body=${encodeURIComponent(
+                `Hello Doss Reality Team,
+
+I would like to share my resume for suitable job opportunities at Doss Reality.
+
+Please find my resume attached.
+
+Thank you.`
+              )}`}>
+                <button type="button" className="font-small w-fit mt-4 rounded-full bg-[#00256A] px-10 py-2.5 text-sm md:text-[16px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
+                  Share your cv
+                </button>
+              </Link>
+
             </div>
           </div>
 
