@@ -144,7 +144,6 @@ const About = () => {
           "
         >
           <div className="flex items-center gap-2">
-            <div className=" h-5 w-[1px] bg-black md:hidden" />
             <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
               Area :
             </span>
@@ -157,7 +156,6 @@ const About = () => {
           <div className="hidden h-5 w-[1px] bg-black md:block" />
 
           <div className="flex items-center gap-2">
-            <div className=" h-5 w-[1px] bg-black md:block" />
             <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
               Year of build:
             </span>
@@ -170,7 +168,6 @@ const About = () => {
           <div className="hidden h-5 w-[1px] bg-black md:block" />
 
           <div className="flex items-center gap-2">
-            <div className=" h-5 w-[1px] bg-black md:block" />
             <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
               Property status:
             </span>
@@ -183,7 +180,6 @@ const About = () => {
           <div className="hidden h-5 w-[1px] bg-black md:block" />
 
           <div className="flex items-center gap-2">
-            <div className=" h-5 w-[1px] bg-black md:block" />
             <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
               Size :
             </span>
@@ -192,8 +188,10 @@ const About = () => {
               270 Units
             </span>
           </div>
+
+          <div className="hidden h-5 w-[1px] bg-black md:block" />
+
           <div className="flex items-center gap-2">
-            <div className=" h-5 w-[1px] bg-black md:block" />
             <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
               RERA :
             </span>
@@ -202,8 +200,10 @@ const About = () => {
               TN/01/Reg-Layout/0995/2023
             </span>
           </div>
+
+          <div className="hidden h-5 w-[1px] bg-black md:block" />
+
           <div className="flex items-center gap-2">
-            <div className=" h-5 w-[1px] bg-black md:block" />
             <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
               CMDA :
             </span>
