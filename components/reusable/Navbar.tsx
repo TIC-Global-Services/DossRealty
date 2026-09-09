@@ -326,18 +326,24 @@ const Navbar = () => {
         inset-x-0
         top-0
         z-[10000]
-        flex
-        justify-center
-        transition-all
-        duration-700
-        ease-[cubic-bezier(0.16,1,0.3,1)]
-        ${!isAtTop ? "lg:px-4 lg:pt-3" : ""}
       `}
     >
+      {/* HIDE/SHOW GROUP — logo bar + hamburger only; kept separate from the
+          fullscreen overlay below so this transform never becomes its containing block */}
+      <div
+        className={`
+          flex
+          justify-center
+          transition-transform
+          duration-700
+          ease-[cubic-bezier(0.16,1,0.3,1)]
+          ${scrollState === "down" && !isOpen ? "-translate-y-full" : "translate-y-0"}
+          ${!isAtTop ? "lg:px-4 lg:pt-3" : ""}
+        `}
+      >
       <div
         className={`
           mx-auto
-          flex
           h-[70px]
           w-full
           items-center
@@ -350,13 +356,12 @@ const Navbar = () => {
           bg-transparent
           shadow-none
           backdrop-blur-none
-          translate-y-0
           transition-all
           duration-700
           ease-[cubic-bezier(0.16,1,0.3,1)]
           lg:px-12
+          ${isAtTop ? "flex" : "hidden lg:flex"}
           ${isOpen ? "pointer-events-none opacity-0" : "opacity-100"}
-          ${scrollState === "down" ? "lg:-translate-y-[150%] lg:opacity-0" : ""}
           ${
             !isAtTop
               ? "lg:h-[56px] lg:max-w-[1200px] lg:rounded-full lg:border-white/15 lg:bg-black/30 lg:shadow-[0_8px_32px_rgba(0,0,0,0.25)] lg:backdrop-blur-xl"
@@ -662,6 +667,7 @@ const Navbar = () => {
           />
         </div>
       </button>
+      </div>
 
       {/* MOBILE MENU OVERLAY */}
       <div
