@@ -142,9 +142,48 @@ const navLinks = [
   },
 ];
 
+const SCROLL_TOP_THRESHOLD = 8;
+
 const Navbar = () => {
   const [isOpen, setIsOpen] =
     useState(false);
+
+  const [scrollState, setScrollState] = useState<"top" | "up" | "down">("top");
+  const rafIdRef = useRef<number | null>(null);
+  const lastScrollYRef = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (rafIdRef.current !== null) return;
+
+      rafIdRef.current = requestAnimationFrame(() => {
+        rafIdRef.current = null;
+
+        const currentY = window.scrollY;
+        const lastY = lastScrollYRef.current;
+
+        if (currentY <= SCROLL_TOP_THRESHOLD) {
+          setScrollState("top");
+        } else if (currentY > lastY) {
+          setScrollState("down");
+        } else if (currentY < lastY) {
+          setScrollState("up");
+        }
+
+        lastScrollYRef.current = currentY;
+      });
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafIdRef.current !== null) cancelAnimationFrame(rafIdRef.current);
+    };
+  }, []);
+
+  const isAtTop = scrollState === "top";
 
   const pathname =
     usePathname();
@@ -283,13 +322,16 @@ const Navbar = () => {
   return (
     <header
       className={`
-        absolute
-        left-0
+        fixed
+        inset-x-0
         top-0
         z-[10000]
-        w-full
+        flex
+        justify-center
         transition-all
-        duration-300
+        duration-700
+        ease-[cubic-bezier(0.16,1,0.3,1)]
+        ${!isAtTop ? "lg:px-4 lg:pt-3" : ""}
       `}
     >
       <div
@@ -297,13 +339,29 @@ const Navbar = () => {
           mx-auto
           flex
           h-[70px]
+          w-full
           items-center
           justify-between
           px-5
+          max-w-none
+          rounded-none
+          border
+          border-transparent
+          bg-transparent
+          shadow-none
+          backdrop-blur-none
+          translate-y-0
           transition-all
-          duration-300
+          duration-700
+          ease-[cubic-bezier(0.16,1,0.3,1)]
           lg:px-12
           ${isOpen ? "pointer-events-none opacity-0" : "opacity-100"}
+          ${scrollState === "down" ? "lg:-translate-y-[150%] lg:opacity-0" : ""}
+          ${
+            !isAtTop
+              ? "lg:h-[56px] lg:max-w-[1200px] lg:rounded-full lg:border-white/15 lg:bg-black/30 lg:shadow-[0_8px_32px_rgba(0,0,0,0.25)] lg:backdrop-blur-xl"
+              : ""
+          }
         `}
       >
         {/* LOGO */}
@@ -380,13 +438,12 @@ const Navbar = () => {
                             -translate-x-1/2
                             rounded-[10px]
                             border
-                            ${isBlogsPage
-                              ? "border-black/10 bg-black/10"
-                              : "border-white/10 bg-white/10"
-                            }
+                            border-white/15
+                            bg-[#0b0b0f]/85
                             px-3
                             py-4
-                            backdrop-blur-sm
+                            shadow-[0_8px_32px_rgba(0,0,0,0.35)]
+                            backdrop-blur-xl
                             opacity-0
                             transition-all
                             duration-300
@@ -400,7 +457,7 @@ const Navbar = () => {
                               <Link
                                 key={item.name}
                                 href={item.href}
-                                className={`
+                                className="
                                   block
                                   text-center
                                   font-small
@@ -408,11 +465,11 @@ const Navbar = () => {
                                   md:text-[18px]
                                   leading-tight
                                   font-medium
-                                  ${isBlogsPage ? "text-black/80" : "text-white/80"}
+                                  text-white/80
                                   transition
                                   duration-300
                                   hover:opacity-70
-                                `}
+                                "
                               >
                                 {item.name}
                               </Link>
@@ -435,11 +492,10 @@ const Navbar = () => {
                               -translate-x-1/2
                               rounded-[10px]
                               border
-                              ${isBlogsPage
-                                ? "border-black/10 bg-black/10"
-                                : "border-white/10 bg-white/10"
-                              }
-                              backdrop-blur-sm
+                              border-white/15
+                              bg-[#0b0b0f]/85
+                              shadow-[0_8px_32px_rgba(0,0,0,0.35)]
+                              backdrop-blur-xl
                               opacity-0
                               transition-all
                               duration-300
@@ -450,7 +506,7 @@ const Navbar = () => {
                         >
                           <div className="grid grid-cols-[50%_50%] gap-12 p-8">
                             <div>
-                              <h3 className={`text-[14px] font-small md:text-[16px] leading-[21px] uppercase tracking-[1px] underline ${isBlogsPage ? "text-black" : "text-white"}`}>
+                              <h3 className="text-[14px] font-small md:text-[16px] leading-[21px] uppercase tracking-[1px] underline text-white">
                                 All Projects
                               </h3>
 
@@ -465,13 +521,13 @@ const Navbar = () => {
                                       href={project.href}
                                       className="transition duration-300 hover:opacity-70"
                                     >
-                                      <p className={`font-small text-[13px] md:text-[18px] leading-[20px] font-medium ${isBlogsPage ? "text-black" : "text-white"}`}>
+                                      <p className="font-small text-[13px] md:text-[18px] leading-[20px] font-medium text-white">
                                         {
                                           project.title
                                         }
                                       </p>
 
-                                      <p className={`mt-1 text-[14px] leading-[20px] ${isBlogsPage ? "text-black/60" : "text-gray-300"}`}>
+                                      <p className="mt-1 text-[14px] leading-[20px] text-gray-300">
                                         {
                                           project.location
                                         }
@@ -483,7 +539,7 @@ const Navbar = () => {
                             </div>
 
                             <div>
-                              <h3 className={`text-[14px] font-small md:text-[16px] leading-[21px] uppercase tracking-[1px] underline ${isBlogsPage ? "text-black" : "text-white"}`}>
+                              <h3 className="text-[14px] font-small md:text-[16px] leading-[21px] uppercase tracking-[1px] underline text-white">
                                 Project Status
                               </h3>
 
@@ -493,7 +549,7 @@ const Navbar = () => {
                                     <Link
                                       key={index}
                                       href={`/projects?tab=${item.toLowerCase()}`}
-                                      className={`block text-left font-small text-[13px] md:text-[18px] leading-[20px] font-medium ${isBlogsPage ? "text-black" : "text-white"} transition duration-300 hover:opacity-70`}
+                                      className="block text-left font-small text-[13px] md:text-[18px] leading-[20px] font-medium text-white transition duration-300 hover:opacity-70"
                                     >
                                       {item}
                                     </Link>
@@ -536,76 +592,76 @@ const Navbar = () => {
             </button>
           </Link>
         </div>
-
-        {/* MOBILE MENU BUTTON */}
-        <button
-          ref={menuBtnRef}
-          onClick={toggleMobileMenu}
-          aria-label="Toggle Menu"
-          aria-expanded={isOpen}
-          className={`
-            fixed
-            top-[15px]
-            right-5
-            z-[9999]
-            flex
-            h-10
-            w-10
-            items-center
-            justify-center
-            rounded-full
-            border
-            border-white/20
-            bg-black/20
-            backdrop-blur-[20px]
-            shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]
-            cursor-pointer
-            lg:hidden
-          `}
-        >
-          <div className="relative flex h-[12px] w-5 flex-col items-center justify-between">
-            <div
-              className={`
-                absolute
-                left-0
-                h-[1.5px]
-                w-5
-                transition-all
-                duration-300
-                ease-in-out
-                ${isBlogsPage ? "bg-black" : "bg-white"}
-                ${isOpen ? "top-[5px]" : "top-0"}
-              `}
-            />
-            <div
-              className={`
-                absolute
-                left-0
-                top-[5px]
-                h-[1.5px]
-                w-5
-                transition-all
-                duration-300
-                ease-in-out
-                ${isBlogsPage ? "bg-black" : "bg-white"}
-              `}
-            />
-            <div
-              className={`
-                absolute
-                left-0
-                h-[1.5px]
-                w-5
-                transition-all
-                duration-300
-                ease-in-out
-                ${isBlogsPage ? "bg-black" : "bg-white"}
-                ${isOpen ? "top-[5px]" : "top-[10px]"}
-              `}
-            />
-          </div>
-        </button>
       </div>
+
+      {/* MOBILE MENU BUTTON — sibling of the hide/show bar so it always stays visible */}
+      <button
+        ref={menuBtnRef}
+        onClick={toggleMobileMenu}
+        aria-label="Toggle Menu"
+        aria-expanded={isOpen}
+        className={`
+          fixed
+          top-[15px]
+          right-5
+          z-[9999]
+          flex
+          h-10
+          w-10
+          items-center
+          justify-center
+          rounded-full
+          border
+          border-white/20
+          bg-black/20
+          backdrop-blur-[20px]
+          shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]
+          cursor-pointer
+          lg:hidden
+        `}
+      >
+        <div className="relative flex h-[12px] w-5 flex-col items-center justify-between">
+          <div
+            className={`
+              absolute
+              left-0
+              h-[1.5px]
+              w-5
+              transition-all
+              duration-300
+              ease-in-out
+              ${isBlogsPage ? "bg-black" : "bg-white"}
+              ${isOpen ? "top-[5px]" : "top-0"}
+            `}
+          />
+          <div
+            className={`
+              absolute
+              left-0
+              top-[5px]
+              h-[1.5px]
+              w-5
+              transition-all
+              duration-300
+              ease-in-out
+              ${isBlogsPage ? "bg-black" : "bg-white"}
+            `}
+          />
+          <div
+            className={`
+              absolute
+              left-0
+              h-[1.5px]
+              w-5
+              transition-all
+              duration-300
+              ease-in-out
+              ${isBlogsPage ? "bg-black" : "bg-white"}
+              ${isOpen ? "top-[5px]" : "top-[10px]"}
+            `}
+          />
+        </div>
+      </button>
 
       {/* MOBILE MENU OVERLAY */}
       <div

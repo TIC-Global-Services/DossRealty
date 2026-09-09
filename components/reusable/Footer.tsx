@@ -86,9 +86,9 @@ const Footer = () => {
                 {/* Left */}
                 <div className="max-w-[300px] lg:max-w-xl">
                   <h3 className="font-heading text-[18px] lg:text-[30px] leading-none">
-                    About{" "}
+                 
                     <span className="text-[#B59A52]">
-                      DOSS DEVELOPERS PVT LTD
+                      Doss Developers Pvt Ltd
                     </span>
                   </h3>
                 </div>
@@ -153,7 +153,7 @@ const Footer = () => {
                 <p className="text-[14px] lg:text-[16px] text-[#AFAFAF]">
                   Copyright © 2026{" "}
                   <span className="text-[#B59A52]">
-                    Doss Realty
+                    Doss Developers Pvt Ltd.
                   </span>{" "}
                   All Rights Reserved.
                 </p>
@@ -161,7 +161,12 @@ const Footer = () => {
                 {/* Social */}
                 <div className="hidden items-center gap-5 lg:flex">
 
-                  <Link href="#">
+                  <Link
+                    href="https://wa.me/+919962996977"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                  >
                     <WhatsAppIcon
                       className="
                         text-[22px]
@@ -172,7 +177,7 @@ const Footer = () => {
                     />
                   </Link>
 
-                  <Link href="#" aria-label="LinkedIn">
+                  <Link href="https://www.linkedin.com/company/dossrealty" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                     <LinkedInIcon
                       className="
                         text-[20px]
@@ -183,7 +188,7 @@ const Footer = () => {
                     />
                   </Link>
 
-                  <Link href="#">
+                  <Link href="#" target="_blank" rel="noopener noreferrer">
                     <FacebookIcon
                       className="
                         text-[18px]
@@ -194,7 +199,7 @@ const Footer = () => {
                     />
                   </Link>
 
-                  <Link href="#">
+                  <Link href="https://www.instagram.com/dossrealty/" target="_blank" rel="noopener noreferrer">
                     <InstagramIcon
                       className="
                         text-[22px]
@@ -209,9 +214,9 @@ const Footer = () => {
 
                 <p className="text-[14px] lg:text-[16px] text-[#AFAFAF]">
                   Designed & Developed by{" "}
-                  <span className="text-[#B59A52]">
-                    the internet company
-                  </span>
+                  <Link href={'https://www.theinternetcompany.one/'} target="_blank" className="text-[#B59A52]">
+                    The Internet Company
+                  </Link>
                 </p>
               </div>
 
@@ -257,9 +262,9 @@ const Footer = () => {
           {/* About */}
           <div className="mt-10 text-center">
             <h3 className="font-heading text-[16px] md:text-[26px] leading-none">
-              About{" "}
+            
               <span className="text-[#B59A52]">
-                Doss Realty
+               Doss Developers Pvt Ltd
               </span>
             </h3>
 
@@ -272,8 +277,62 @@ const Footer = () => {
             </p>
           </div>
 
+          {/* Social */}
+          <div className="mt-14 flex items-center justify-center gap-5">
+
+            <Link
+              href="https://wa.me/+919962996977"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+            >
+              <WhatsAppIcon
+                className="
+                  text-[22px]
+                  transition
+                  duration-300
+                  hover:text-[#B59A52]
+                "
+              />
+            </Link>
+
+            <Link href="https://www.linkedin.com/company/dossrealty" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <LinkedInIcon
+                className="
+                  text-[20px]
+                  transition
+                  duration-300
+                  hover:text-[#B59A52]
+                "
+              />
+            </Link>
+
+            <Link href="#" target="_blank" rel="noopener noreferrer">
+              <FacebookIcon
+                className="
+                  text-[18px]
+                  transition
+                  duration-300
+                  hover:text-[#B59A52]
+                "
+              />
+            </Link>
+
+            <Link href="https://www.instagram.com/dossrealty/" target="_blank" rel="noopener noreferrer">
+              <InstagramIcon
+                className="
+                  text-[22px]
+                  transition
+                  duration-300
+                  hover:text-[#B59A52]
+                "
+              />
+            </Link>
+
+          </div>
+
           {/* Heading */}
-          <div className="mt-14 text-center">
+          <div className="mt-8 text-center">
             <p className="font-small text-[16px] leading-[50px] md:text-[24px]">
               Build Beyond
             </p>
@@ -296,66 +355,17 @@ const Footer = () => {
             <p className="text-[13px] leading-[24px] tracking-[-0.48px] text-[#AFAFAF]">
               Copyright © 2026{" "}
               <span className="text-[#B59A52]">
-                Doss Realty
+                Doss Developers Pvt Ltd.
               </span>{" "}
               All Rights Reserved.
             </p>
 
             <p className="capitalize text-[13px] leading-[24px] tracking-[-0.48px] text-[#AFAFAF]">
               Designed & Developed by{" "}
-              <span className="text-[#B59A52]">
+              <Link href={'https://www.theinternetcompany.one/'} target="_blank" className="text-[#B59A52]">
                 the internet company
-              </span>
+              </Link>
             </p>
-          </div>
-
-          {/* Social */}
-          <div className="mt-8 hidden md:block items-center gap-5">
-
-            <Link href="#">
-              <WhatsAppIcon
-                className="
-                  text-[22px]
-                  transition
-                  duration-300
-                  hover:text-[#B59A52]
-                "
-              />
-            </Link>
-
-            <Link href="#" aria-label="LinkedIn">
-              <LinkedInIcon
-                className="
-                  text-[20px]
-                  transition
-                  duration-300
-                  hover:text-[#B59A52]
-                "
-              />
-            </Link>
-
-            <Link href="#">
-              <FacebookIcon
-                className="
-                  text-[18px]
-                  transition
-                  duration-300
-                  hover:text-[#B59A52]
-                "
-              />
-            </Link>
-
-            <Link href="#">
-              <InstagramIcon
-                className="
-                  text-[22px]
-                  transition
-                  duration-300
-                  hover:text-[#B59A52]
-                "
-              />
-            </Link>
-
           </div>
         </div>
       </div>

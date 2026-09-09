@@ -265,7 +265,9 @@ useEffect(() => {
             items-start
             lg:items-center
             px-4
-            py-8
+            pt-[25%]
+            pb-8
+            lg:py-8
           "
           >
             <div

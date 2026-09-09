@@ -2,7 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type TouchEvent,
+} from "react";
 
 import { blogs } from "@/data/blogs";
 
@@ -10,6 +16,8 @@ import rightArrow from "@/assets/blogs/rightArrow.png";
 
 const AUTO_SLIDE_INTERVAL = 2000;
 const RESUME_AFTER_INTERACTION = 6000;
+const RESUME_AFTER_SWIPE = 3000;
+const SWIPE_THRESHOLD = 40;
 
 export default function BlogsArticles() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -18,6 +26,7 @@ export default function BlogsArticles() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const rafIdRef = useRef<number | null>(null);
   const pauseTimeoutRef = useRef<number | null>(null);
+  const touchStartXRef = useRef<number | null>(null);
 
   const handleScroll = useCallback(() => {
     if (rafIdRef.current !== null) return;
@@ -45,7 +54,7 @@ export default function BlogsArticles() {
     el.scrollTo({ left: index * slideWidth, behavior: "smooth" });
   }, []);
 
-  const pauseAutoSlide = useCallback(() => {
+  const pauseAutoSlide = useCallback((duration: number = RESUME_AFTER_INTERACTION) => {
     setIsPaused(true);
 
     if (pauseTimeoutRef.current !== null) {
@@ -54,7 +63,7 @@ export default function BlogsArticles() {
 
     pauseTimeoutRef.current = window.setTimeout(() => {
       setIsPaused(false);
-    }, RESUME_AFTER_INTERACTION);
+    }, duration);
   }, []);
 
   const goToSlide = useCallback(
@@ -64,6 +73,36 @@ export default function BlogsArticles() {
       setActiveSlide(index);
     },
     [pauseAutoSlide, scrollToIndex]
+  );
+
+  const handleTouchStart = useCallback(
+    (e: TouchEvent<HTMLDivElement>) => {
+      pauseAutoSlide(RESUME_AFTER_SWIPE);
+      touchStartXRef.current = e.touches[0].clientX;
+    },
+    [pauseAutoSlide]
+  );
+
+  const handleTouchEnd = useCallback(
+    (e: TouchEvent<HTMLDivElement>) => {
+      const startX = touchStartXRef.current;
+      touchStartXRef.current = null;
+      if (startX === null) return;
+
+      const deltaX = startX - e.changedTouches[0].clientX;
+      if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+
+      setActiveSlide((prev) => {
+        const next =
+          deltaX > 0
+            ? Math.min(prev + 1, blogs.length - 1)
+            : Math.max(prev - 1, 0);
+
+        scrollToIndex(next);
+        return next;
+      });
+    },
+    [scrollToIndex]
   );
 
   // Autoplay
@@ -228,7 +267,8 @@ export default function BlogsArticles() {
             ref={sliderRef}
             data-lenis-prevent
             onScroll={handleScroll}
-            onTouchStart={pauseAutoSlide}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
             style={{
               WebkitOverflowScrolling: "touch",
               touchAction: "pan-x",
