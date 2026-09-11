@@ -313,3 +313,20 @@ html.lenis body {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
+
+/* Hide navbar and floating action buttons when a modal is open */
+body.modal-open header {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transform: translateY(-100%) !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+body.modal-open [data-enquiry-btn] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transform: translateY(20px) !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}

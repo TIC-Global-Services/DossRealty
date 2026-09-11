@@ -16,6 +16,7 @@ export default function EnquiryBtn() {
 
   return (
     <div
+      data-enquiry-btn
       className="fixed right-4 bottom-8 z-[10000] flex flex-col gap-2"
     >
       {/* WHATSAPP */}
