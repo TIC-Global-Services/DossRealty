@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image, { StaticImageData } from "next/image";
 
 import founder1 from "@/assets/about/FounderSample.webp";
@@ -40,23 +41,37 @@ const DESCRIPTION_PREVIEW_LENGTH = 450;
 const Leadership = () => {
   const [selectedLeader, setSelectedLeader] = useState<Leader | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const scrollYRef = useRef(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!selectedLeader) return;
 
     const scrollY = window.scrollY;
 
-    // Freeze page scroll when modal is open
+    // Freeze page scroll and mark modal open
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
     document.body.style.left = "0";
     document.body.style.right = "0";
     document.body.style.width = "100%";
     document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeLeader();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      document.body.classList.remove("modal-open");
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.left = "";
@@ -64,6 +79,7 @@ const Leadership = () => {
       document.body.style.width = "";
       document.body.style.overflow = "";
 
+      window.removeEventListener("keydown", handleKeyDown);
       window.scrollTo(0, scrollY);
     };
   }, [selectedLeader]);
@@ -163,7 +179,7 @@ const Leadership = () => {
       </section>
 
       {/* POPUP MODAL */}
-      {selectedLeader && (
+      {selectedLeader && mounted && typeof document !== "undefined" && createPortal(
         <div
           className="
             fixed
@@ -195,6 +211,7 @@ const Leadership = () => {
               flex
               flex-col
               my-6
+              md:my-0
               overflow-y-auto
               md:overflow-hidden
               shadow-2xl
@@ -203,6 +220,7 @@ const Leadership = () => {
           >
             {/* Desktop Close Button (Top Right) */}
             <button
+              type="button"
               onClick={closeLeader}
               className="
                 hidden
@@ -210,7 +228,7 @@ const Leadership = () => {
                 absolute
                 right-6
                 top-6
-                z-30
+                z-50
                 w-10
                 h-10
                 items-center
@@ -218,6 +236,7 @@ const Leadership = () => {
                 rounded-full
                 bg-black/5
                 hover:bg-black/10
+                active:scale-95
                 text-black
                 text-[28px]
                 font-light
@@ -267,13 +286,14 @@ const Leadership = () => {
 
                 {/* Mobile Close Button (Top Right of Image) */}
                 <button
+                  type="button"
                   onClick={closeLeader}
                   className="
                     md:hidden
                     absolute
                     top-4
                     right-4
-                    z-30
+                    z-50
                     w-9
                     h-9
                     flex
@@ -438,7 +458,8 @@ const Leadership = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

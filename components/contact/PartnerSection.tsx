@@ -26,6 +26,17 @@ useEffect(() => {
   }
 }, []);
 
+useEffect(() => {
+  if (showModal) {
+    document.body.classList.add("modal-open");
+  } else {
+    document.body.classList.remove("modal-open");
+  }
+  return () => {
+    document.body.classList.remove("modal-open");
+  };
+}, [showModal]);
+
 
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -251,7 +262,7 @@ useEffect(() => {
           className="
           fixed
           inset-0
-          z-[9999]
+          z-[99999]
           bg-black/40
           backdrop-blur-sm
           overflow-y-auto
