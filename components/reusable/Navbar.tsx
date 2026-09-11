@@ -15,6 +15,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import gsap from "gsap";
+import { motion } from "framer-motion";
 
 import PrimaryBtn from "./PrimaryBtn";
 
@@ -185,6 +186,37 @@ const Navbar = () => {
 
   const isAtTop = scrollState === "top";
 
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const pillActive = isDesktop && !isAtTop;
+
+  const pillStyle = isDesktop
+    ? {
+        height: pillActive ? 56 : 70,
+        maxWidth: pillActive ? 1200 : 4000,
+        borderRadius: pillActive ? 9999 : 0,
+        backgroundColor: pillActive
+          ? "rgba(0,0,0,0.3)"
+          : "rgba(0,0,0,0)",
+        borderColor: pillActive
+          ? "rgba(255,255,255,0.15)"
+          : "rgba(255,255,255,0)",
+        boxShadow: pillActive
+          ? "0px 8px 32px rgba(0,0,0,0.25)"
+          : "0px 0px 0px rgba(0,0,0,0)",
+        backdropFilter: pillActive ? "blur(24px)" : "blur(0px)",
+        WebkitBackdropFilter: pillActive ? "blur(24px)" : "blur(0px)",
+      }
+    : undefined;
+
   const pathname =
     usePathname();
 
@@ -330,18 +362,23 @@ const Navbar = () => {
     >
       {/* HIDE/SHOW GROUP — logo bar + hamburger only; kept separate from the
           fullscreen overlay below so this transform never becomes its containing block */}
-      <div
+      <motion.div
+        animate={{
+          y: scrollState === "down" && !isOpen ? "-100%" : "0%",
+        }}
+        transition={{ type: "spring", stiffness: 320, damping: 34 }}
         className={`
           flex
           justify-center
-          transition-transform
+          transition-[padding]
           duration-700
           ease-[cubic-bezier(0.16,1,0.3,1)]
-          ${scrollState === "down" && !isOpen ? "-translate-y-full" : "translate-y-0"}
           ${!isAtTop ? "lg:px-4 lg:pt-3" : ""}
         `}
       >
-      <div
+      <motion.div
+        animate={pillStyle}
+        transition={{ type: "spring", stiffness: 260, damping: 30 }}
         className={`
           mx-auto
           h-[70px]
@@ -356,16 +393,17 @@ const Navbar = () => {
           bg-transparent
           shadow-none
           backdrop-blur-none
-          transition-all
+          transition-opacity
           duration-700
           ease-[cubic-bezier(0.16,1,0.3,1)]
           lg:px-12
-          ${isAtTop ? "flex" : "hidden lg:flex"}
-          ${isOpen ? "pointer-events-none opacity-0" : "opacity-100"}
+          flex
           ${
-            !isAtTop
-              ? "lg:h-[56px] lg:max-w-[1200px] lg:rounded-full lg:border-white/15 lg:bg-black/30 lg:shadow-[0_8px_32px_rgba(0,0,0,0.25)] lg:backdrop-blur-xl"
-              : ""
+            isOpen
+              ? "opacity-0 pointer-events-none"
+              : isAtTop
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto"
           }
         `}
       >
@@ -597,7 +635,7 @@ const Navbar = () => {
             </button>
           </Link>
         </div>
-      </div>
+      </motion.div>
 
       {/* MOBILE MENU BUTTON — sibling of the hide/show bar so it always stays visible */}
       <button
@@ -667,7 +705,7 @@ const Navbar = () => {
           />
         </div>
       </button>
-      </div>
+      </motion.div>
 
       {/* MOBILE MENU OVERLAY */}
       <div
