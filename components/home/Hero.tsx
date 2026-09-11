@@ -489,8 +489,6 @@ export default function Hero() {
                   overflow-hidden
                   cursor-pointer
                   mt-5
-                  h-[44px]
-                  w-[116px]
                   rounded-full
                   border
                   border-white/40
@@ -506,6 +504,8 @@ export default function Hero() {
                   before:content-['']
                   before:absolute
                   before:inset-0
+                  px-4
+                  py-2
                   before:rounded-full
                   before:pointer-events-none
                   before:[box-shadow:inset_0_1px_0_rgba(255,255,255,0.8),inset_0_-1px_0_rgba(255,255,255,0.8)]
