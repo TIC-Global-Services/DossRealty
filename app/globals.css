@@ -13,101 +13,78 @@
 
 @theme {
   --font-heading:
-    var(
-      --font-agrandir-wide-light
-    );
+    var(--font-itc-blair);
 
   --font-small:
-    var(
-      --font-agrandir-regular
-    );
+    var(--font-itc-blair);
 
   --font-heavy:
-    var(
-      --font-agrandir-grand-heavy
-    );
+    var(--font-itc-blair);
 
   --font-grand:
-    var(
-      --font-agrandir-grand-light
-    );
+    var(--font-itc-blair);
 
   --font-narrow:
-    var(
-      --font-agrandir-narrow
-    );
+    var(--font-itc-blair);
 
   --font-secondary:
-    var(
-      --font-agrandir-text-bold
-    );
+    var(--font-itc-blair);
 
   --font-tight:
-    var(--font-agrandir-tight);
+    var(--font-itc-blair);
 
   --font-wide:
-    var(
-      --font-agrandir-wide-black
-    );
+    var(--font-itc-blair);
 
   --font-body:
-    var(
-      --font-inter-tight
-    );
+    var(--font-poppins);
 }
 
 /* TYPOGRAPHY CLASSES */
 
 .font-heading {
-  font-family:
-    var(--font-agrandir-wide-light),
-    sans-serif !important;
+  font-family: var(--font-itc-blair), sans-serif !important;
+  font-weight: 300 !important;
 }
 
 .font-small {
-  font-family:
-    var(--font-agrandir-regular),
-    sans-serif !important;
+  font-family: var(--font-itc-blair), sans-serif !important;
+  font-weight: 500 !important;
 }
 
 .font-heavy {
-  font-family:
-    var(--font-agrandir-grand-heavy),
-    sans-serif !important;
+  font-family: var(--font-itc-blair), sans-serif !important;
+  font-weight: 700 !important;
 }
 
 .font-grand {
-  font-family:
-    var(--font-agrandir-grand-light),
-    sans-serif !important;
+  font-family: var(--font-itc-blair), sans-serif !important;
+  font-weight: 300 !important;
 }
 
 .font-narrow {
-  font-family:
-    var(--font-agrandir-narrow),
-    sans-serif !important;
+  font-family: var(--font-itc-blair), sans-serif !important;
+  font-weight: 500 !important;
 }
 
 .font-secondary {
-  font-family:
-    var(--font-agrandir-text-bold);
+  font-family: var(--font-itc-blair);
+  font-weight: 700 !important;
 }
 
 .font-tight {
-  font-family:
-    var(--font-agrandir-tight),
-    sans-serif !important;
+  font-family: var(--font-itc-blair), sans-serif !important;
+  font-weight: 500 !important;
 }
 
 .font-wide {
-  font-family:
-    var(--font-agrandir-wide-black),
-    sans-serif !important;
+  font-family: var(--font-itc-blair), sans-serif !important;
+  font-weight: 700 !important;
 }
 
 .font-body {
   font-family:
-    var(--font-inter-tight),
+    var(--font-poppins),
     sans-serif !important;
 }
 
@@ -126,7 +103,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family:
-    var(--font-inter-tight),
+    var(--font-poppins),
     sans-serif;
   width: 100%;
 }

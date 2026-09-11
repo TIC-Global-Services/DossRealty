@@ -766,7 +766,7 @@ export default function InfoGraphics() {
                   ref={(el) => {
                     desktopNumberRefs.current[index] = el;
                   }}
-                  className={`block font-['Inter_Tight'] text-[32px] font-medium uppercase leading-[20px] tracking-[1.2px] transition-colors duration-500 ${
+                  className={`block font-['Poppins'] text-[32px] font-medium uppercase leading-[20px] tracking-[1.2px] transition-colors duration-500 ${
                     index === activeIndex
                       ? "!text-[#1A1814]"
                       : "!text-[#BFBFBF]"
@@ -816,10 +816,10 @@ export default function InfoGraphics() {
                 <p className="font-body text-[14px] font-light uppercase tracking-[0.18em] text-[#9A9A9A]">
                   View Infographics
                 </p>
-                <h2 className="mt-1 font-['Inter_Tight'] text-[36px] font-medium leading-[150%] text-[#1A1814]">
+                <h2 className="mt-1 font-['Poppins'] text-[36px] font-medium leading-[150%] text-[#1A1814]">
                   {item.stat}
                 </h2>
-                <p className="font-['Inter_Tight'] text-center text-[18px] font-light leading-[150%] text-[#222222]">
+                <p className="font-['Poppins'] text-center text-[18px] font-light leading-[150%] text-[#222222]">
                   {item.description}
                 </p>
               </div>
@@ -840,7 +840,7 @@ export default function InfoGraphics() {
           <span className="font-body text-[12px] font-medium uppercase tracking-[0.2em] text-[#8C8C8C]">
             View Infographics
           </span>
-          <span className="font-['Inter_Tight'] text-[14px] font-medium tracking-wider text-[#1A1814]">
+          <span className="font-['Poppins'] text-[14px] font-medium tracking-wider text-[#1A1814]">
             {infographicData[activeIndex].id} <span className="text-[#999999]">/ 04</span>
           </span>
         </div>
@@ -880,10 +880,10 @@ export default function InfoGraphics() {
                 index === activeIndex ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
               }`}
             >
-              <h2 className="font-['Inter_Tight'] text-[34px] sm:text-[40px] font-medium leading-[115%] text-[#1A1814] tracking-tight">
+              <h2 className="font-['Poppins'] text-[34px] sm:text-[40px] font-medium leading-[115%] text-[#1A1814] tracking-tight">
                 {item.stat}
               </h2>
-              <p className="mt-1 font-['Inter_Tight'] text-[15px] sm:text-[17px] font-light leading-[140%] text-[#4A4A4A]">
+              <p className="mt-1 font-['Poppins'] text-[15px] sm:text-[17px] font-light leading-[140%] text-[#4A4A4A]">
                 {item.description}
               </p>
             </div>

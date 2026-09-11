@@ -198,7 +198,7 @@ export default function LegacyVisionPurpose() {
                     <span className="font-body text-[12px] font-medium uppercase tracking-[0.2em] text-[#8C8C8C]">
                         Brand Values
                     </span>
-                    <span className="font-['Inter_Tight'] text-[14px] font-medium tracking-wider text-[#111111]">
+                    <span className="font-['Poppins'] text-[14px] font-medium tracking-wider text-[#111111]">
                         0{currentIndex + 1} <span className="text-[#999999]">/ 0{values.length}</span>
                     </span>
                 </div>

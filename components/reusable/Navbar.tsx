@@ -481,11 +481,11 @@ const Navbar = () => {
                             -translate-x-1/2
                             rounded-[10px]
                             border
-                            border-white/15
-                            bg-[#0b0b0f]/85
+                            border-black/10
+                            bg-white/95
                             px-3
                             py-4
-                            shadow-[0_8px_32px_rgba(0,0,0,0.35)]
+                            shadow-[0_8px_32px_rgba(0,0,0,0.15)]
                             backdrop-blur-xl
                             opacity-0
                             transition-all
@@ -503,12 +503,12 @@ const Navbar = () => {
                                 className="
                                   block
                                   text-center
-                                  font-small
+                                  font-body
                                   text-[13px]
                                   md:text-[18px]
                                   leading-tight
                                   font-medium
-                                  text-white/80
+                                  text-black/80
                                   transition
                                   duration-300
                                   hover:opacity-70
@@ -535,9 +535,9 @@ const Navbar = () => {
                               -translate-x-1/2
                               rounded-[10px]
                               border
-                              border-white/15
-                              bg-[#0b0b0f]/85
-                              shadow-[0_8px_32px_rgba(0,0,0,0.35)]
+                              border-black/10
+                              bg-white/95
+                              shadow-[0_8px_32px_rgba(0,0,0,0.15)]
                               backdrop-blur-xl
                               opacity-0
                               transition-all
@@ -549,7 +549,7 @@ const Navbar = () => {
                         >
                           <div className="grid grid-cols-[50%_50%] gap-12 p-8">
                             <div>
-                              <h3 className="text-[14px] font-small md:text-[16px] leading-[21px] uppercase tracking-[1px] underline text-white">
+                              <h3 className="text-[14px] font-body md:text-[16px] leading-[21px] uppercase tracking-[1px] underline text-black">
                                 All Projects
                               </h3>
 
@@ -564,13 +564,13 @@ const Navbar = () => {
                                       href={project.href}
                                       className="transition duration-300 hover:opacity-70"
                                     >
-                                      <p className="font-small text-[13px] md:text-[18px] leading-[20px] font-medium text-white">
+                                      <p className="font-body text-[13px] md:text-[18px] leading-[20px] font-medium text-black">
                                         {
                                           project.title
                                         }
                                       </p>
 
-                                      <p className="mt-1 text-[14px] leading-[20px] text-gray-300">
+                                      <p className="mt-1 text-[14px] leading-[20px] text-gray-500">
                                         {
                                           project.location
                                         }
@@ -582,7 +582,7 @@ const Navbar = () => {
                             </div>
 
                             <div>
-                              <h3 className="text-[14px] font-small md:text-[16px] leading-[21px] uppercase tracking-[1px] underline text-white">
+                              <h3 className="text-[14px] font-body md:text-[16px] leading-[21px] uppercase tracking-[1px] underline text-black">
                                 Project Status
                               </h3>
 
@@ -592,7 +592,7 @@ const Navbar = () => {
                                     <Link
                                       key={index}
                                       href={`/projects?tab=${item.toLowerCase()}`}
-                                      className="block text-left font-small text-[13px] md:text-[18px] leading-[20px] font-medium text-white transition duration-300 hover:opacity-70"
+                                      className="block text-left font-body text-[13px] md:text-[18px] leading-[20px] font-medium text-black transition duration-300 hover:opacity-70"
                                     >
                                       {item}
                                     </Link>

@@ -10,18 +10,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { LenisProvider } from "@/lib/lenis-context";
 import { ToastContainer } from "react-toastify";
 
-import {
-  agrandirRegular,
-  agrandirWideLight,
-  agrandirGrandHeavy,
-  agrandirGrandLight,
-  agrandirNarrow,
-  agrandirTextBold,
-  agrandirThinItalic,
-  agrandirTight,
-  agrandirWideBlack,
-  interTight,
-} from "@/app/fonts";
+import { poppins } from "@/app/fonts";
+import { itcBlair } from "@/font";
 
 export const metadata: Metadata = {
   title: "Doss Realty",
@@ -37,16 +27,8 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`
-          ${agrandirRegular.variable}
-          ${agrandirWideLight.variable}
-          ${agrandirGrandHeavy.variable}
-          ${agrandirGrandLight.variable}
-          ${agrandirNarrow.variable}
-          ${agrandirTextBold.variable}
-          ${agrandirThinItalic.variable}
-          ${agrandirTight.variable}
-          ${agrandirWideBlack.variable}
-          ${interTight.variable}
+          ${itcBlair.variable}
+          ${poppins.variable}
         `}
       >
         <LenisProvider>
