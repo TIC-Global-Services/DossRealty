@@ -168,7 +168,7 @@ const Leadership = () => {
           className="
             fixed
             inset-0
-            z-[999]
+            z-[10050]
             bg-black/60
             backdrop-blur-md
             flex
@@ -186,13 +186,12 @@ const Leadership = () => {
             className="
               relative
               w-full
-              lg:max-h-[100dvh]
               max-h-[85dvh]
-              md:h-screen
+              md:max-w-[900px]
+              md:h-[85vh]
               bg-white
               rounded-[24px]
               sm:rounded-[28px]
-              md:rounded-none
               flex
               flex-col
               my-6
@@ -249,7 +248,7 @@ const Leadership = () => {
                   w-full
                   h-[320px]
                   sm:h-[380px]
-                  md:h-screen
+                  md:h-full
                   shrink-0
                   bg-gray-100
                   rounded-t-[24px]
@@ -378,7 +377,8 @@ const Leadership = () => {
 
                   {/* Description */}
                   <div className="mt-5 lg:mt-7">
-                    <p className="text-[14px] sm:text-[15px] leading-[24px] lg:text-[17px] lg:leading-[1.8] text-[#333333] whitespace-pre-line font-normal">
+                    {/* Mobile: short preview with Read More */}
+                    <p className="md:hidden text-[14px] sm:text-[15px] leading-[24px] text-[#333333] whitespace-pre-line font-normal">
                       {isExpanded
                         ? selectedLeader.description
                         : `${selectedLeader.description.slice(
@@ -391,6 +391,7 @@ const Leadership = () => {
                       <button
                         onClick={() => setIsExpanded((prev) => !prev)}
                         className="
+                          md:hidden
                           mt-5
                           text-[#00256A]
                           font-semibold
@@ -398,6 +399,35 @@ const Leadership = () => {
                           hover:underline
                           cursor-pointer
                           inline-block
+                        "
+                      >
+                        {isExpanded ? "Read Less" : "Read More"}
+                      </button>
+                    )}
+
+                    {/* Desktop: longer preview with Read More */}
+                    <p className="hidden md:block lg:text-[17px] lg:leading-[1.8] text-[#333333] whitespace-pre-line font-normal">
+                      {isExpanded
+                        ? selectedLeader.description
+                        : `${selectedLeader.description.slice(
+                            0,
+                            DESCRIPTION_PREVIEW_LENGTH
+                          )}...`}
+                    </p>
+
+                    {selectedLeader.description.length >
+                      DESCRIPTION_PREVIEW_LENGTH && (
+                      <button
+                        onClick={() => setIsExpanded((prev) => !prev)}
+                        className="
+                          hidden
+                          md:inline-block
+                          mt-5
+                          text-[#00256A]
+                          font-semibold
+                          text-[15px]
+                          hover:underline
+                          cursor-pointer
                         "
                       >
                         {isExpanded ? "Read Less" : "Read More"}

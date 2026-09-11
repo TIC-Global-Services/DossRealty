@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   motion,
@@ -31,6 +31,30 @@ const readMore = [
 
 const Builts = () => {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const scrollY = window.scrollY;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+
+      window.scrollTo(0, scrollY);
+    };
+  }, [open]);
 
   return (
     <>
@@ -187,7 +211,7 @@ const Builts = () => {
             }
             className="
               fixed inset-0
-              z-[9999]
+              z-[10050]
               flex items-center justify-center
               bg-black/50
               backdrop-blur-md
@@ -221,7 +245,8 @@ const Builts = () => {
                 relative
                 w-full
                 max-w-[750px]
-                overflow-hidden
+                max-h-[85vh]
+                overflow-y-auto
                 rounded-[32px]
                 border border-white/20
                 bg-[rgba(255,255,255,0.08)]

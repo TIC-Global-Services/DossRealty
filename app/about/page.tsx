@@ -19,7 +19,7 @@ const page = () => {
       <StatsCounter />
       <Builts />
       <Leadership />
-      <ImageLoop />\
+      <ImageLoop />
       <KnowMoreBlogs />
     </>
   )
