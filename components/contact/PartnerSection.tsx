@@ -90,7 +90,7 @@ useEffect(() => {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/25" />
+            {/* <div className="absolute inset-0 bg-black/25" /> */}
 
             {/* Content */}
             <div
@@ -176,6 +176,7 @@ useEffect(() => {
                     p-[6px]
                     shadow-[0_10px_35px_rgba(0,0,0,0.25)]
                     overflow-hidden
+                    z-50
                   "
                 >
                   {/* Active Slider */}
@@ -262,7 +263,7 @@ useEffect(() => {
           className="
           fixed
           inset-0
-          z-[99999]
+          z-[999]
           bg-black/40
           backdrop-blur-sm
           overflow-y-auto

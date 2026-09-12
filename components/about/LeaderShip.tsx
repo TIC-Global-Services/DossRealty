@@ -138,17 +138,17 @@ const Leadership = () => {
                     overflow-hidden
                     bg-[#D9D9D9]
                     text-left
-                    md:rounded-none
+                    md:rounded-[10px]
                     cursor-pointer
                   "
                 >
                   {/* Image */}
-                  <div className="relative h-[388px] md:h-[420px] lg:h-[450px]">
+                  <div className="relative h-[450px] lg:h-[70dvh]">
                     <Image
                       src={leader.image}
                       alt={leader.name}
                       fill
-                      className="object-cover transition duration-700 group-hover:scale-105"
+                      className="object-cover transition duration-700 group-hover:scale-105 rounded-[10px]"
                     />
                   </div>
 
@@ -161,6 +161,7 @@ const Leadership = () => {
                       px-5 py-4
                       md:px-6 md:py-5 backdrop-blur-md
                       md:backdrop-blur-xl
+                      rounded-[10px]
                     "
                   >
                     <h3 className="text-center leading-[23px] lg:leading-none text-[16px] lg:text-[28px] font-semibold text-white">

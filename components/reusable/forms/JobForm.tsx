@@ -12,7 +12,7 @@ import {
 } from "@/data/partnerSchema";
 
 export const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbx-1mpJBLsL9dNmbp6Ml9nGTyaM__IqJkGwbqVfpoZflBtC3jBzTNuGbCY7zfdPxXA_RA/exec";
+    "https://script.google.com/macros/s/AKfycbx0ohy_4f8bzTgV1G63MJH2nVUwBK717ln9QVMyRqXq1FtozDy-ly95veFqHPn6XUdZ_g/exec";
 
 export default function JobForm() {
     const [loading, setLoading] =

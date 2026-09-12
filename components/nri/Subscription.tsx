@@ -1,9 +1,50 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+import { toast } from "react-toastify";
+
 import phoneImg from "@/assets/nri/handImg.webp";
+import { GOOGLE_SCRIPT_URL } from "@/components/reusable/forms/JobForm";
 
 export default function Subscription() {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubscribe = async () => {
+    if (!email.trim()) {
+      toast.error("Please enter your email.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          formType: "Subscriptions",
+          email,
+        }),
+      });
+
+      const text = await response.text();
+      const result = JSON.parse(text);
+
+      if (!result.success) {
+        throw new Error("Failed to subscribe.");
+      }
+
+      setEmail("");
+      toast.success("Subscribed successfully!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="py-10 lg:py-[40px] lg:mt-25">
       <div className="mx-5 md:mx-10 md:px-5">
@@ -87,7 +128,11 @@ export default function Subscription() {
             </p>
 
             {/* INPUT */}
-            <div
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubscribe();
+              }}
               className="
                 relative
                 mx-auto
@@ -100,6 +145,9 @@ export default function Subscription() {
             >
               <input
                 type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 className="
                   h-[56px]
@@ -113,6 +161,8 @@ export default function Subscription() {
               />
 
               <button
+                type="submit"
+                disabled={loading}
                 className="
                   absolute
                   right-[6px]
@@ -124,11 +174,13 @@ export default function Subscription() {
                   bg-[#002878]
                   px-8
                   text-white
+                  disabled:opacity-50
+                  disabled:cursor-not-allowed
                 "
               >
-                Subscribe
+                {loading ? "..." : "Subscribe"}
               </button>
-            </div>
+            </form>
           </div>
 
           {/* IMAGE */}

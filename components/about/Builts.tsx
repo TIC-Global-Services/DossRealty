@@ -20,11 +20,11 @@ const founder = {
 
 const Builts = () => {
   return (
-    <section data-theme="light" className="py-14 lg:py-20">
+    <section data-theme="light" className="py-14 lg:py-0">
       <div className="mx-auto px-5 md:px-8 lg:px-10">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 lg:items-center">
           {/* IMAGE */}
-          <div className="relative h-[320px] sm:h-[420px] lg:h-[520px] overflow-hidden rounded-[10px] bg-[#D9D9D9]">
+          <div className="relative h-[450px]  lg:h-[80dvh] overflow-hidden rounded-[10px]  bg-[#D9D9D9]">
             <Image
               src={founderImg}
               alt={founder.name}

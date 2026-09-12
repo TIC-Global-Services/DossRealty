@@ -38,7 +38,7 @@ export default function RootLayout({
             {children}
             <Footer />
           </SmoothScroll>
-          <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} />
+          <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} style={{ zIndex: 10100 }} />
         </LenisProvider>
       </body>
     </html>
