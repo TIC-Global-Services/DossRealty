@@ -199,6 +199,7 @@ const Leadership = () => {
         >
           <div
             data-modal
+            style={{ WebkitOverflowScrolling: "touch" }}
             className="
               relative
               w-full
@@ -332,7 +333,7 @@ const Leadership = () => {
                   md:py-12
                   lg:px-16
                   lg:py-16
-                  overflow-y-auto
+                  md:overflow-y-auto
                   md:h-full
                   md:scrollbar-thin
                   flex-1
