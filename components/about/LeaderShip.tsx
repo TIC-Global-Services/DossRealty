@@ -56,6 +56,7 @@ const Leadership = () => {
   ) => ({
     onPointerDown: (e: React.PointerEvent<HTMLDivElement>) => {
       if (e.pointerType !== "mouse") return;
+      if ((e.target as HTMLElement).closest("button")) return;
       const el = e.currentTarget;
       const overflowY = getComputedStyle(el).overflowY;
       const scrollable =

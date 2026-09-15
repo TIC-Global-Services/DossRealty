@@ -31,6 +31,7 @@ const Builts = () => {
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.pointerType !== "mouse") return;
+    if ((e.target as HTMLElement).closest("button")) return;
     dragRef.current = { startY: e.clientY, startScrollTop: e.currentTarget.scrollTop };
     e.currentTarget.setPointerCapture(e.pointerId);
   };
