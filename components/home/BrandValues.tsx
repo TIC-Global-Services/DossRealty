@@ -71,7 +71,7 @@ export default function LegacyVisionPurpose() {
       {/* Desktop */}
       <section
         data-theme="light"
-        className="hidden min-h-screen items-center overflow-hidden md:flex md:py-8 lg:py-10"
+        className="hidden min-h-screen items-center overflow-hidden lg:flex md:py-8 lg:py-10"
       >
         <div className="mx-auto w-full px-6 md:px-8 lg:px-30">
           <div className="grid grid-cols-3 gap-4 md:gap-5 lg:gap-6 xl:gap-8">
@@ -156,6 +156,7 @@ export default function LegacyVisionPurpose() {
                     <h2
                       className="
                                                   mb-3
+                                                  wrap-break-word
                                                   text-[clamp(23px,1.88vw,25px)]
                                                   leading-tight
                                                   font-small
@@ -185,7 +186,7 @@ export default function LegacyVisionPurpose() {
       </section>
 
       {/* MOBILE — interactive horizontal slider */}
-      <section className="bg-white py-12 md:hidden overflow-hidden select-none">
+      <section className="bg-white py-12 lg:hidden overflow-hidden select-none">
         {/* Top category label & counter */}
         <div className="mx-auto flex w-full max-w-[clamp(300px,88vw,360px)] items-center justify-between px-4 mb-2">
           <span className="font-body text-[clamp(11px,2.2vw,13px)] font-medium uppercase tracking-[0.2em] text-[#8C8C8C]">
@@ -198,7 +199,7 @@ export default function LegacyVisionPurpose() {
         </div>
 
         <div
-          className="relative w-full overflow-hidden px-4"
+          className="relative w-full overflow-hidden px-4 touch-pan-y"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}

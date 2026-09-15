@@ -44,6 +44,39 @@ const Leadership = () => {
   const [mounted, setMounted] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const scrollYRef = useRef(0);
+  const modalDragRef = useRef<{ startY: number; startScrollTop: number } | null>(
+    null
+  );
+  const contentDragRef = useRef<{ startY: number; startScrollTop: number } | null>(
+    null
+  );
+
+  const makeDragHandlers = (
+    dragRef: React.MutableRefObject<{ startY: number; startScrollTop: number } | null>
+  ) => ({
+    onPointerDown: (e: React.PointerEvent<HTMLDivElement>) => {
+      if (e.pointerType !== "mouse") return;
+      const el = e.currentTarget;
+      const overflowY = getComputedStyle(el).overflowY;
+      const scrollable =
+        (overflowY === "auto" || overflowY === "scroll") &&
+        el.scrollHeight > el.clientHeight;
+      if (!scrollable) return;
+      dragRef.current = { startY: e.clientY, startScrollTop: el.scrollTop };
+      el.setPointerCapture(e.pointerId);
+    },
+    onPointerMove: (e: React.PointerEvent<HTMLDivElement>) => {
+      if (!dragRef.current) return;
+      e.currentTarget.scrollTop =
+        dragRef.current.startScrollTop - (e.clientY - dragRef.current.startY);
+    },
+    onPointerUp: () => {
+      dragRef.current = null;
+    },
+  });
+
+  const modalDragHandlers = makeDragHandlers(modalDragRef);
+  const contentDragHandlers = makeDragHandlers(contentDragRef);
 
   useEffect(() => {
     setMounted(true);
@@ -215,10 +248,17 @@ const Leadership = () => {
               my-6
               md:my-0
               overflow-y-auto
+              overscroll-contain
+              touch-pan-y
               md:overflow-hidden
               shadow-2xl
             "
             onClick={(e) => e.stopPropagation()}
+            onPointerDown={modalDragHandlers.onPointerDown}
+            onPointerMove={modalDragHandlers.onPointerMove}
+            onPointerUp={modalDragHandlers.onPointerUp}
+            onPointerCancel={modalDragHandlers.onPointerUp}
+            onPointerLeave={modalDragHandlers.onPointerUp}
           >
             {/* Desktop Close Button (Top Right) */}
             <button
@@ -325,6 +365,11 @@ const Leadership = () => {
                 style={{
                   WebkitOverflowScrolling: "touch",
                 }}
+                onPointerDown={contentDragHandlers.onPointerDown}
+                onPointerMove={contentDragHandlers.onPointerMove}
+                onPointerUp={contentDragHandlers.onPointerUp}
+                onPointerCancel={contentDragHandlers.onPointerUp}
+                onPointerLeave={contentDragHandlers.onPointerUp}
                 className="
                   px-6
                   py-6

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 
@@ -25,6 +25,25 @@ const founder = {
 const Builts = () => {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const dragRef = useRef<{ startY: number; startScrollTop: number } | null>(
+    null
+  );
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== "mouse") return;
+    dragRef.current = { startY: e.clientY, startScrollTop: e.currentTarget.scrollTop };
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragRef.current) return;
+    e.currentTarget.scrollTop =
+      dragRef.current.startScrollTop - (e.clientY - dragRef.current.startY);
+  };
+
+  const handlePointerUp = () => {
+    dragRef.current = null;
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -122,7 +141,7 @@ const Builts = () => {
                 src={founderImg}
                 alt={founder.name}
                 fill
-                className="object-cover object-left"
+                className="object-cover object-[60%_15%]"
                 priority
               />
 
@@ -195,12 +214,19 @@ const Builts = () => {
           >
             <div
               onClick={(e) => e.stopPropagation()}
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              onPointerCancel={handlePointerUp}
+              onPointerLeave={handlePointerUp}
               className="
                 relative
                 w-full
                 max-w-[750px]
                 max-h-[85dvh]
                 overflow-y-auto
+                overscroll-contain
+                touch-pan-y
                 rounded-[24px]
                 sm:rounded-[32px]
                 bg-white
