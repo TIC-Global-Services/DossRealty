@@ -98,8 +98,8 @@ const ShapeTheFuture = () => {
 
             <h2
               className="font-heading
-              text-[30px] leading-[38px]
-              lg:text-[52px]
+              text-[26px] leading-[38px]
+              lg:text-[46px]
               lg:leading-[95%]
               tracking-[-0.04em]
               text-[#111111]"
@@ -122,8 +122,8 @@ const ShapeTheFuture = () => {
             >
               <p
                 className="font-small
-                text-[13px] leading-[16px] tracking-normal
-                lg:text-[18px] 
+                text-[11px] leading-[16px] tracking-normal
+                lg:text-[16px] 
                 lg:leading-[21px]
                 lg:tracking-[1px]
                 text-[#222A2C]"
@@ -135,8 +135,8 @@ const ShapeTheFuture = () => {
 
               <p
                 className="font-small
-                text-[13px] leading-[16px] tracking-normal
-                lg:text-[18px]
+                text-[11px] leading-[16px] tracking-normal
+                lg:text-[16px]
                 lg:leading-[21px]
                 lg:tracking-[1px]
                 text-[#222A2C]"

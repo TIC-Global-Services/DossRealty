@@ -102,11 +102,11 @@ const Hero = () => {
                 mt-1
                 lg:mt-2
                 font-heading
-                text-[24px]
+                text-[21px]
                 leading-[30px]
                 font-[300]
                 text-white
-                lg:text-[54px]
+                lg:text-[48px]
                 lg:leading-[56px]
               "
             >

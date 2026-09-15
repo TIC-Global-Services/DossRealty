@@ -30,8 +30,8 @@ const Hero = () => {
             className="
               font-heading
               text-white
-              text-[24px]
-              lg:text-[48px]
+              text-[21px]
+              lg:text-[42px]
               leading-[32px] tracking-wide
               lg:leading-[50px]
               lg:tracking-[-1.44px]

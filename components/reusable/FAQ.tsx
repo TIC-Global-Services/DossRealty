@@ -187,16 +187,16 @@ const FAQ = ({
             <h2
               className="
             font-heading
-            text-[24px]
+            text-[21px]
             leading-[30px]
             tracking-normal
             text-[#00256A]
             md:w-[12ch]
-            md:text-[30px]
+            md:text-[26px]
             md:leading-[38px]
             md:tracking-[-0.05em]
             lg:w-[14ch]
-            lg:text-[48px]
+            lg:text-[42px]
             lg:leading-[50px]
           "
             >

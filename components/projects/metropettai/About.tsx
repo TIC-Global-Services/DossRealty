@@ -144,11 +144,11 @@ const About = () => {
           "
         >
           <div className="flex items-center gap-2">
-            <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs lg:text-[16px] lg:leading-[20px]">
               Area :
             </span>
 
-            <span className="font-small text-sm text-[#C7A85E] lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs text-[#C7A85E] lg:text-[16px] lg:leading-[20px]">
               10 Acres
             </span>
           </div>
@@ -156,11 +156,11 @@ const About = () => {
           <div className="hidden h-5 w-[1px] bg-black md:block" />
 
           <div className="flex items-center gap-2">
-            <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs lg:text-[16px] lg:leading-[20px]">
               Year of build:
             </span>
 
-            <span className="font-small text-sm text-[#C59D5F] lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs text-[#C59D5F] lg:text-[16px] lg:leading-[20px]">
               2026
             </span>
           </div>
@@ -168,11 +168,11 @@ const About = () => {
           <div className="hidden h-5 w-[1px] bg-black md:block" />
 
           <div className="flex items-center gap-2">
-            <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs lg:text-[16px] lg:leading-[20px]">
               Property status:
             </span>
 
-            <span className="font-small text-sm text-[#C59D5F] lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs text-[#C59D5F] lg:text-[16px] lg:leading-[20px]">
               Active
             </span>
           </div>
@@ -180,11 +180,11 @@ const About = () => {
           <div className="hidden h-5 w-[1px] bg-black md:block" />
 
           <div className="flex items-center gap-2">
-            <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs lg:text-[16px] lg:leading-[20px]">
               Size :
             </span>
 
-            <span className="font-small text-sm text-[#C59D5F] lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs text-[#C59D5F] lg:text-[16px] lg:leading-[20px]">
               270 Units
             </span>
           </div>
@@ -192,11 +192,11 @@ const About = () => {
           <div className="hidden h-5 w-[1px] bg-black md:block" />
 
           <div className="flex items-center gap-2">
-            <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs lg:text-[16px] lg:leading-[20px]">
               RERA :
             </span>
 
-            <span className="font-small text-sm text-[#C59D5F] lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs text-[#C59D5F] lg:text-[16px] lg:leading-[20px]">
               TN/01/Reg-Layout/0995/2023
             </span>
           </div>
@@ -204,11 +204,11 @@ const About = () => {
           <div className="hidden h-5 w-[1px] bg-black md:block" />
 
           <div className="flex items-center gap-2">
-            <span className="font-small text-sm lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs lg:text-[16px] lg:leading-[20px]">
               CMDA :
             </span>
 
-            <span className="font-small text-sm text-[#C59D5F] lg:text-[18px] lg:leading-[20px]">
+            <span className="font-small text-xs text-[#C59D5F] lg:text-[16px] lg:leading-[20px]">
               11/2023
             </span>
           </div>
@@ -225,11 +225,11 @@ const About = () => {
           <h2
             className="
               font-heading
-              text-[24px]
+              text-[21px]
               font-[300]
               tracking-[0px]
               text-[#111]
-              lg:text-[46px]
+              lg:text-[40px]
               leading-[50px]
             "
           >

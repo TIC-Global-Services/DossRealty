@@ -91,8 +91,8 @@ export default function ReferFriendForm() {
           text-center
           text-[#2F3147]
           font-heading
-          text-[26px]
-          lg:text-[45px]
+          text-[23px]
+          lg:text-[40px]
           leading-[48px]
         "
       >
@@ -315,7 +315,7 @@ export default function ReferFriendForm() {
               px-8
               py-3
               rounded-full
-              text-[13px]
+              text-[11px]
               transition
               duration-300
               hover:scale-105

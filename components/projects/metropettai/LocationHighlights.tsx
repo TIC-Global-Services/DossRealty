@@ -166,11 +166,11 @@ const LocationHighlights =
             <h2
               className="
                 font-heading
-                text-[24px] leading-[38px] tracking-normal
+                text-[21px] leading-[38px] tracking-normal
                 font-[300]
                 uppercase
                 text-[#111]
-                lg:text-[48px]
+                lg:text-[42px]
                 lg:leading-[60px]
                 lg:tracking-[-1.44px]
               "

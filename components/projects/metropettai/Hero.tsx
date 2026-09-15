@@ -54,7 +54,7 @@ const Hero = () => {
               Plotted Development
             </p>
 
-            <h2 className="mt-1 font-heading text-[24px] font-[300] leading-[30px] text-white lg:mt-2 lg:text-[54px] lg:leading-[56px]">
+            <h2 className="mt-1 font-heading text-[21px] font-[300] leading-[30px] text-white lg:mt-2 lg:text-[48px] lg:leading-[56px]">
               Metropettai
             </h2>
 

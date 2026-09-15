@@ -3,7 +3,7 @@ import {
   LOCATION_DATA,
 } from "@/data/locationData";
 
-import KnowMore from '@/components/projects/KnowMore'
+import MetropettaiFAQ from '@/components/projects/metropettai/MetropettaiFAQ'
 import About from '@/components/projects/metropettai/About'
 import DossEdge from '@/components/projects/metropettai/DossEdge'
 import Gallery from '@/components/projects/metropettai/Gallery'
@@ -29,7 +29,7 @@ const page = () => {
       />
       <Gallery />
       <LocationHighlights />
-      <KnowMore />
+      <MetropettaiFAQ />
     </>
   )
 }

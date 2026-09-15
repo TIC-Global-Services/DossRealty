@@ -494,7 +494,7 @@ export default function Hero() {
                   border-white/40
                   bg-white/10
                   backdrop-blur-[5px]
-                  text-[16px]
+                  text-[14px]
                   font-light
                   text-white
                   shadow-[0_4px_20px_rgba(0,0,0,0.12)]

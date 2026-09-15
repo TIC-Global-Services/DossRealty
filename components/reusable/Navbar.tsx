@@ -614,13 +614,13 @@ const Navbar = () => {
             <button
               className={`
                 font-small
-                text-[16px]
+                text-[14px]
                 rounded-full
                 border
                 bg-transparent
                 px-6
                 py-2.5
-                text-sm
+                text-xs
                 transition-all
                 duration-300
                 hover:scale-105
@@ -784,7 +784,7 @@ const Navbar = () => {
                             justify-center
                             py-3
                             font-small
-                            text-[24px]
+                            text-[21px]
                             font-medium
                             text-white
                           "
@@ -806,7 +806,7 @@ const Navbar = () => {
                           onClick={closeMobileMenu}
                           className="
                             font-small
-                            text-[17px]
+                            text-[15px]
                             text-white/70
                             transition
                             hover:text-white

@@ -74,8 +74,8 @@ export default function OurProjects() {
         >
           <h2
             className="
-              text-[24px]
-              lg:text-[48px]
+              text-[21px]
+              lg:text-[42px]
               font-small font-[400]
               tracking-[-0.04em]
               text-black
@@ -296,8 +296,8 @@ export default function OurProjects() {
                             <h3
                               className="font-small
                                 text-white
-                                text-[18px]
-                                lg:text-[26px]
+                                text-[16px]
+                                lg:text-[23px]
                                 font-light
                                 leading-[18px] mb-2
                                 lg:mb-4

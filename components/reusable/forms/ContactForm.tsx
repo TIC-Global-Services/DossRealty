@@ -83,9 +83,9 @@ export default function ContactForm() {
           text-center
           text-[#2F3147]
           font-heading
-          text-[26px]
+          text-[23px]
           leading-[30px]
-          lg:text-[45px]
+          lg:text-[40px]
           lg:leading-[48px]
         "
       >
@@ -224,7 +224,7 @@ export default function ContactForm() {
               px-8
               py-3
               rounded-full
-              text-[13px]
+              text-[11px]
               transition
               duration-300
               hover:scale-105

@@ -212,7 +212,7 @@ Thank you.`
             "
             >
               <div className="flex h-full flex-col justify-between">
-                <h2 className="font-heading text-[30px] leading-[30px] text-white">
+                <h2 className="font-heading text-[26px] leading-[30px] text-white">
                   PEOPLE<br />DEFINE THE<br />STANDARD
                 </h2>
                 <p className="text-[15px] text-white/80">
@@ -229,7 +229,7 @@ Thank you.`
             "
             >
               <div className="flex h-full flex-col justify-between">
-                <h2 className="font-heading text-[30px] leading-[30px] text-white">
+                <h2 className="font-heading text-[26px] leading-[30px] text-white">
                   CRAFT LIVES<br />IN THE<br />DETAILS
                 </h2>
                 <p className="text-[15px] text-white/80">
@@ -240,7 +240,7 @@ Thank you.`
           </div>
 
           <div className="mt-6 text-center">
-            <h2 className="font-heading text-[24px] leading-[30px] tracking-[0px] text-[#3A3A3A]">
+            <h2 className="font-heading text-[21px] leading-[30px] tracking-[0px] text-[#3A3A3A]">
               View opening<br />positions
             </h2>
 
@@ -254,7 +254,7 @@ Thank you.`
             </ul>
 
             <Link href="/contact?form=job">
-              <button className="mt-6 font-small w-fit rounded-full bg-[#00256A] px-10 py-2.5 text-[13px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
+              <button className="mt-6 font-small w-fit rounded-full bg-[#00256A] px-10 py-2.5 text-[11px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
                 Apply now
               </button>
             </Link>
@@ -278,7 +278,7 @@ Thank you.`
                 )}`}
               >
 
-                <button type="button" onClick={handleSubmit} className="font-small mt-5 rounded-full bg-[#00256A] px-8 py-2.5 text-[13px] leading-[20px] tracking-[-0.48px] font-medium text-white">
+                <button type="button" onClick={handleSubmit} className="font-small mt-5 rounded-full bg-[#00256A] px-8 py-2.5 text-[11px] leading-[20px] tracking-[-0.48px] font-medium text-white">
                   Share your cv
                 </button>
               </Link>
@@ -301,7 +301,7 @@ Thank you.`
             "
             >
               <div className="flex h-full flex-col justify-between">
-                <h2 className="font-heading text-[36px] leading-[38px] uppercase text-white">
+                <h2 className="font-heading text-[32px] leading-[38px] uppercase text-white">
                   PEOPLE<br />DEFINE THE<br />STANDARD
                 </h2>
                 <p className="max-w-[280px] text-[17px] leading-relaxed text-white/80">
@@ -318,7 +318,7 @@ Thank you.`
             "
             >
               <div className="flex h-full flex-col justify-between">
-                <h2 className="font-heading text-[36px] leading-[38px] uppercase text-white">
+                <h2 className="font-heading text-[32px] leading-[38px] uppercase text-white">
                   CRAFT LIVES<br />IN THE<br />DETAILS
                 </h2>
                 <p className="max-w-[280px] text-[17px] leading-relaxed text-white/80">
@@ -329,7 +329,7 @@ Thank you.`
           </div>
 
           <div className="mt-40 text-center">
-            <h2 className="font-heading text-[32px] leading-[38px] text-[#1E1E1E]">
+            <h2 className="font-heading text-[28px] leading-[38px] text-[#1E1E1E]">
               View opening<br />positions
             </h2>
 
@@ -343,7 +343,7 @@ Thank you.`
             </ul>
 
             <Link href="/contact?form=job">
-              <button className="mt-7 font-small w-fit rounded-full bg-[#00256A] px-10 py-3 text-[15px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
+              <button className="mt-7 font-small w-fit rounded-full bg-[#00256A] px-10 py-3 text-[13px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
                 Apply now
               </button>
             </Link>
@@ -368,7 +368,7 @@ Thank you.`
                 )}`}
 
               >
-                <button type="button" className="font-small mt-5 rounded-full bg-[#00256A] px-9 py-3 text-[15px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
+                <button type="button" className="font-small mt-5 rounded-full bg-[#00256A] px-9 py-3 text-[13px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
                   Share your cv
                 </button></Link>
             </div>
@@ -378,7 +378,7 @@ Thank you.`
         {/* DESKTOP (>=1024px) — unchanged */}
         <div className="hidden lg:flex lg:w-full lg:items-center">
           <div className="flex flex-1 flex-col">
-            <h2 className="mb-8 text-[24px] md:text-[50px] md:leading-[55px] font-heading leading-[1.05] text-[#1E1E1E]">
+            <h2 className="mb-8 text-[21px] md:text-[44px] md:leading-[55px] font-heading leading-[1.05] text-[#1E1E1E]">
               View opening<br />positions
             </h2>
 
@@ -393,7 +393,7 @@ Thank you.`
 
             <Link
               href="/contact?form=job"
-              className="font-small w-fit rounded-full bg-[#00256A] px-10 py-2.5 text-sm md:text-[16px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer"
+              className="font-small w-fit rounded-full bg-[#00256A] px-10 py-2.5 text-xs md:text-[14px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer"
             >
               Apply now
             </Link>
@@ -415,7 +415,7 @@ Please find my resume attached.
 
 Thank you.`
               )}`}>
-                <button type="button" className="font-small w-fit mt-4 rounded-full bg-[#00256A] px-10 py-2.5 text-sm md:text-[16px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
+                <button type="button" className="font-small w-fit mt-4 rounded-full bg-[#00256A] px-10 py-2.5 text-xs md:text-[14px] font-medium text-white transition duration-300 hover:scale-105 cursor-pointer">
                   Share your cv
                 </button>
               </Link>

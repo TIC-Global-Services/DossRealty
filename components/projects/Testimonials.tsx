@@ -85,8 +85,8 @@ const Testimonials = () => {
           <h2
             className="
               font-heading
-              text-[30px] leading-[36px]
-              lg:text-[48px]
+              text-[26px] leading-[36px]
+              lg:text-[42px]
               lg:leading-[54px]
               tracking-[-1.44px]
               text-[#00256A]
@@ -169,7 +169,7 @@ const Testimonials = () => {
 
                         {/* INFO */}
                         <div>
-                          <h3 className="text-[16px] lg:text-[22px] leading-[24px] font-small tracking-[-2%] text-[#222]">
+                          <h3 className="text-[14px] lg:text-[19px] leading-[24px] font-small tracking-[-2%] text-[#222]">
                             {
                               item.name
                             }

@@ -85,7 +85,7 @@ const Footer = () => {
 
                 {/* Left */}
                 <div className="max-w-[300px] lg:max-w-xl">
-                  <h3 className="font-heading text-[18px] lg:text-[30px] leading-none">
+                  <h3 className="font-heading text-[16px] lg:text-[26px] leading-none">
                  
                     <span className="text-[#B59A52]">
                       Doss Developers Pvt Ltd
@@ -129,14 +129,14 @@ const Footer = () => {
               {/* Center */}
               <div className="flex flex-1 items-center justify-center pt-6 text-center">
                 <div>
-                  <p className="font-heading text-[30px] lg:text-[42px] text-white">
+                  <p className="font-heading text-[26px] lg:text-[37px] text-white">
                     Build Beyond
                   </p>
 
                   <h2
                     className="
-                      font-heading text-[100px]
-                      lg:text-[200px]
+                      font-heading text-[88px]
+                      lg:text-[176px]
                       leading-[0.9]
                       tracking-[-0.05em]
                       text-white
@@ -261,7 +261,7 @@ const Footer = () => {
 
           {/* About */}
           <div className="mt-10 text-center">
-            <h3 className="font-heading text-[16px] md:text-[26px] leading-none">
+            <h3 className="font-heading text-[14px] md:text-[23px] leading-none">
             
               <span className="text-[#B59A52]">
                Doss Developers Pvt Ltd
@@ -333,14 +333,14 @@ const Footer = () => {
 
           {/* Heading */}
           <div className="mt-8 text-center">
-            <p className="font-small text-[16px] leading-[50px] md:text-[24px]">
+            <p className="font-small text-[14px] leading-[50px] md:text-[21px]">
               Build Beyond
             </p>
 
             <h2
               className="
-                font-small text-[48px] leading-[50px] tracking-[-1.44px]
-                md:text-[62px]
+                font-small text-[42px] leading-[50px] tracking-[-1.44px]
+                md:text-[55px]
                 md:leading-[0.95]
                 md:tracking-[-0.05em]
               "

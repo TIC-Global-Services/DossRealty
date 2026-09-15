@@ -120,7 +120,7 @@ export default function TestimonialSection() {
 
           {/* Content Below */}
           <div className="mt-10">
-            <h2 className="mb-5 text-[24px] font-heading font-normal leading-[120%] text-[#111]">
+            <h2 className="mb-5 text-[clamp(18px,4.5vw,22px)] font-heading font-normal leading-[120%] text-[#111]">
               A Measure Of Trust
             </h2>
             
@@ -178,7 +178,7 @@ export default function TestimonialSection() {
 
           {/* RIGHT SIDE */}
           <div className="absolute right-0 top-1/2 max-w-[550px] -translate-y-1/2">
-            <h2 className="mb-5 text-[30px] font-small font-normal leading-[50px] tracking-tight text-[#121212] md:text-[48px]">
+            <h2 className="mb-5 text-[clamp(36px,3.2vw,46px)] font-small font-normal leading-[50px] tracking-tight text-[#121212]">
               A Measure Of Trust
             </h2>
 
@@ -254,12 +254,12 @@ function Card({ item }: any) {
         shadow-[0px_4px_4px_rgba(233,227,220,0.25),0px_1px_1px_rgba(166,101,24,0.08)]
       "
     >
-      <p className="mb-6 text-[13px] md:text-[16px] leading-[16px] md:leading-[24px] text-[#717171]">
+      <p className="mb-6 text-[clamp(13px,1.13vw,16px)] leading-[clamp(16px,1.56vw,24px)] text-[#717171]">
         {item.text}
       </p>
 
       <div className="flex items-center gap-3">
-        <div className="relative h-[30px] w-[30px] md:h-[40px] md:w-[40px] lg:w-[60px] lg:h-[60px] overflow-hidden rounded-full">
+        <div className="relative h-[clamp(30px,3.52vw,60px)] w-[clamp(30px,3.52vw,60px)] overflow-hidden rounded-full">
           <Image
             src={item.image}
             alt={item.name}
@@ -269,11 +269,11 @@ function Card({ item }: any) {
         </div>
 
         <div>
-          <h4 className="text-[12px] md:text-[16px] font-medium leading-[20px] text-[#121212]">
+          <h4 className="text-[clamp(12px,1.1vw,16px)] font-medium leading-[20px] text-[#121212]">
             {item.name}
           </h4>
 
-          <p className="text-[12px] md:text-[16px] font-medium leading-[20px] text-[#717171]">
+          <p className="text-[clamp(12px,1.1vw,16px)] font-medium leading-[20px] text-[#717171]">
             {item.location}
           </p>
         </div>

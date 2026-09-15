@@ -18,13 +18,13 @@ export default function MetroExpansion() {
             <h1
               className="
                 font-small
-                text-[28px]
+                text-[25px]
                 leading-[1.1]
                 tracking-[-0.5px]
                 text-[#111111]
-                sm:text-[36px]
-                md:text-[52px]
-                lg:text-[72px]
+                sm:text-[32px]
+                md:text-[46px]
+                lg:text-[63px]
                 lg:tracking-[-1.5px]
               "
             >

@@ -1,5 +1,5 @@
 import Hero from '@/components/projects/Hero'
-import KnowMore from '@/components/projects/KnowMore'
+import ProjectsFAQ from '@/components/projects/ProjectsFAQ'
 import ProjectSection from '@/components/projects/ProjectSection'
 import Testimonials from '@/components/projects/Testimonials'
 import EnquiryBtn from '@/components/reusable/EnquiryBtn'
@@ -12,7 +12,7 @@ const page = () => {
      <Hero /> 
      <ProjectSection />
      <Testimonials />
-     <KnowMore />
+     <ProjectsFAQ />
     </>
   )
 }

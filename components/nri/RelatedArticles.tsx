@@ -62,7 +62,7 @@ const RelatedArticles = () => {
           ref={(el) => {
             if (el) textRevealRef.current[0] = el;
           }}
-          className="font-heading text-[30px] leading-[50px] lg:tracking-[-0.05em] text-[#111111] lg:text-[48px]"
+          className="font-heading text-[26px] leading-[50px] lg:tracking-[-0.05em] text-[#111111] lg:text-[42px]"
         >
           Related articles
         </h2>
@@ -114,7 +114,7 @@ const RelatedArticles = () => {
                 }}
                 className="absolute left-6 top-10 p-8 lg:p-6 z-20 lg:max-w-[46ch] lg:left-8 lg:top-8"
               >
-                <h3 className="font-small text-[16px] leading-[20px] lg:leading-[26px] lg:tracking-[-0.72px] tracking-wide text-white lg:text-[24px]">
+                <h3 className="font-small text-[14px] leading-[20px] lg:leading-[26px] lg:tracking-[-0.72px] tracking-wide text-white lg:text-[21px]">
                   A Complete Guide to NRI Property Investment in India
                 </h3>
               </div>
@@ -237,11 +237,11 @@ const RelatedArticles = () => {
             >
               <Link href="/blogs">
                 <PrimaryBtn
-                  className="text-[13px]
+                  className="text-[11px]
                     font-small
                     rounded-full
                     bg-[#00256A]
-                    lg:text-[16px]
+                    lg:text-[14px]
                     tracking-[-0.48px]
                     text-white
                     transition

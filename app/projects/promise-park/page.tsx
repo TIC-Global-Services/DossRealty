@@ -2,7 +2,7 @@ import {
   PROMISE_PARK_PROJECT_LOCATION,
   PROMISE_PARK_LOCATION_DATA,
 } from "@/data/locationData";
-import KnowMore from '@/components/projects/KnowMore'
+import PromiseParkFAQ from '@/components/projects/promise-park/PromiseParkFAQ'
 import About from '@/components/projects/promise-park/About'
 import DossEdge from '@/components/projects/promise-park/DossEdge'
 import Gallery from '@/components/projects/promise-park/Gallery'
@@ -29,7 +29,7 @@ const page = () => {
       />
       <Gallery />
       <LocationHighlights />
-      <KnowMore />
+      <PromiseParkFAQ />
     </>
   )
 }

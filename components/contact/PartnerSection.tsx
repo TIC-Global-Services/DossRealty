@@ -109,8 +109,8 @@ useEffect(() => {
                     text-white
                     font-small
                     lg:leading-[50px] lg:tracking-[-1.44px]
-                    text-[24px] leading-[30px] md:leading-[24px]
-                    lg:text-[48px]
+                    text-[21px] leading-[30px] md:leading-[24px]
+                    lg:text-[42px]
                   "
                 >
                   {activeTab === "partner" ? (
@@ -147,8 +147,8 @@ useEffect(() => {
                     text-[#032B7A] px-6 py-2.5
                     lg:px-8
                     lg:py-3
-                    rounded-full text-[13px] leading-[20px]
-                    lg:text-[16px] lg:leading-[20px] tracking-[-0.48px]
+                    rounded-full text-[11px] leading-[20px]
+                    lg:text-[14px] lg:leading-[20px] tracking-[-0.48px]
                     font-medium
                     transition-all
                     duration-300

@@ -61,8 +61,8 @@ export default function Hero() {
             font-heading
             leading-[50px] tracking-wide
             lg:tracking-[-1.44px]
-            text-[24px]
-            lg:text-[48px]
+            text-[21px]
+            lg:text-[42px]
           "
         >
           Let's Connect

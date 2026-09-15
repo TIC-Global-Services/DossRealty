@@ -88,8 +88,8 @@ export default function JobForm() {
                   text-center
                   font-heading
                   text-[#2F3147]
-                  text-[36px]
-                  lg:text-[45px]
+                  text-[32px]
+                  lg:text-[40px]
                 "
             >
                 APPLY NOW

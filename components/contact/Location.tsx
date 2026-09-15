@@ -120,9 +120,9 @@ const Location = () => {
                 text-[#111111]
                 lg:leading-[1]
                 lg:tracking-[-1.44px]
-                text-[32px]
+                text-[28px]
                 leading-[36px]
-                lg:text-[48px]
+                lg:text-[42px]
               "
             >
               Our Office

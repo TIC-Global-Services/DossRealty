@@ -87,11 +87,11 @@ const PropertyJourney = () => {
             <h2
               className="
                 font-heading
-                text-[24px] leading-[30px]
+                text-[21px] leading-[30px]
                 lg:leading-[50px]
                 lg:tracking-[-0.48px]
                 text-[#111111]
-                lg:text-[46px]
+                lg:text-[40px]
               "
             >
              <span className="hidden md:block">One Relationship. <br/> Every Step.</span>

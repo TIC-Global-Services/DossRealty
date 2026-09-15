@@ -33,8 +33,8 @@ const Hero = () => {
           className="
             font-small
             text-[#111111]
-            text-[24px] md:text-[42px]
-            lg:text-[60px]
+            text-[21px] md:text-[37px]
+            lg:text-[53px]
             leading-[66px]
             tracking-tight
           "

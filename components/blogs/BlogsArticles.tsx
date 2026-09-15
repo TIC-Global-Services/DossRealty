@@ -164,7 +164,7 @@ export default function BlogsArticles() {
                   <p
                     className="
                     font-wide
-                    text-[18px]
+                    text-[16px]
                     leading-[20px]
                     italic
                     font-[900]
@@ -301,7 +301,7 @@ export default function BlogsArticles() {
                 <p
                   className="mt-4
                   font-wide
-                  text-[13px] leading-[20px]
+                  text-[11px] leading-[20px]
                   italic
                   font-[900]
                   tracking-normal

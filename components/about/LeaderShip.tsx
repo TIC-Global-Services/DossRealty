@@ -119,7 +119,7 @@ const Leadership = () => {
           <div className="grid gap-12 lg:grid-cols-[35%_65%] lg:items-center">
             {/* LEFT SIDE */}
             <div>
-              <h2 className="font-heading text-[30px] leading-[65px] tracking-normal lg:text-[60px] lg:leading-[95%] lg:tracking-[-0.04em] text-[#1B2327]">
+              <h2 className="font-heading text-[26px] leading-[65px] tracking-normal lg:text-[53px] lg:leading-[95%] lg:tracking-[-0.04em] text-[#1B2327]">
                 Leadership
               </h2>
 
@@ -367,8 +367,8 @@ const Leadership = () => {
                   <p
                     className="
                       mb-2
-                      text-[12px]
-                      lg:text-[15px]
+                      text-[11px]
+                      lg:text-[13px]
                       uppercase
                       font-heading
                       font-[500]
@@ -388,9 +388,9 @@ const Leadership = () => {
                       leading-[110%]
                       tracking-tight
                       uppercase
-                      text-[22px]
-                      sm:text-[28px]
-                      lg:text-[38px]
+                      text-[19px]
+                      sm:text-[25px]
+                      lg:text-[33px]
                       text-[#1B2327]
                     "
                   >

@@ -101,12 +101,12 @@ const Hero = () => {
             <h1
               className="
                 text-white
-                text-[36px]
+                text-[32px]
                 leading-[40px]
-                md:text-[48px]
+                md:text-[42px]
                 md:leading-[48px]
                 lg:leading-[1.1]
-                lg:text-[60px]
+                lg:text-[53px]
                 uppercase
                 font-heading
                 font-[300]

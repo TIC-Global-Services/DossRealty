@@ -5,27 +5,27 @@ import FAQ from "../reusable/FAQ";
 const faqData = [
     {
         question:
-            "What does Doss Realty specialize in?",
+            "What informs the DOSS point of view?",
         answer:
-            "We specialize in premium residential and commercial developments designed with modern architecture, functionality, and long-term value.",
+            "Our perspective is shaped by more than three decades in real estate, supported by market research, development experience, and close observation of how cities evolve.",
     },
     {
         question:
-            "Why choose Doss Realty?",
+            "What subjects does DOSS explore?",
         answer:
-            "We focus on quality craftsmanship, strategic planning, and customer satisfaction to create spaces that inspire better living.",
+            "Markets, infrastructure, design, investment, and the decisions that shape enduring real estate value.",
     },
     {
         question:
-            "Do you assist with property investments?",
+            "Does DOSS publish guidance for buyers and NRIs?",
         answer:
-            "Yes, we help clients identify investment opportunities aligned with long-term growth and value.",
+            "Yes. Selected articles cover ownership, due diligence, financing, and the buying process with clarity.",
     },
     {
         question:
-            "How does your project process work?",
+            "How often is the journal updated?",
         answer:
-            "Our process includes planning, consultation, design, execution, and seamless project delivery with continuous client support.",
+            "New perspectives are added as markets, projects, and ideas evolve.",
     },
 ];
 

@@ -113,7 +113,7 @@ export default function LegacyVisionPurpose() {
                 overflow-hidden
                 rounded-[14px]
                 shadow-[0_10px_30px_rgba(0,0,0,0.08)]
-                ${index === 1 ? "md:mt-[30px] lg:mt-[60px]" : ""}
+                ${index === 1 ? "mt-[clamp(30px,3.52vw,60px)]" : ""}
               `}
                   >
                     <Image
@@ -134,8 +134,7 @@ export default function LegacyVisionPurpose() {
                   <div
                     className="
                 absolute
-                left-[28px]
-                lg:left-[36px]
+                left-[clamp(28px,2.5vw,36px)]
                 top-[20%]
                 bottom-[-40px]
                 w-[1px]
@@ -149,8 +148,7 @@ export default function LegacyVisionPurpose() {
                     className="
                 relative
                 z-10
-                pl-[46px]
-                lg:pl-[60px]
+                pl-[clamp(46px,4.14vw,60px)]
                 pt-14
                 lg:pt-12
               "
@@ -158,10 +156,9 @@ export default function LegacyVisionPurpose() {
                     <h2
                       className="
                                                   mb-3
-                                                  text-[26px] leading-[30px]
-                                                  lg:text-[28px]
+                                                  text-[clamp(23px,1.88vw,25px)]
+                                                  leading-[clamp(30px,3.13vw,50px)]
                                                   font-small
-                                                  lg:leading-[50px]
                                                   tracking-tighter
                                                   text-[#111111]
                                                 "
@@ -171,11 +168,9 @@ export default function LegacyVisionPurpose() {
 
                     <p
                       className="
-                                              w-[24ch]
-                                              lg:w-[33ch]
-                                              text-[12px] leading-[16px]
-                                              lg:text-[16px]
-                                              lg:leading-[20px]
+                                              w-[clamp(24ch,28vw,33ch)]
+                                              text-[clamp(12px,1.1vw,16px)]
+                                              leading-[clamp(16px,1.41vw,20px)]
                                               text-[#666666]
                                             "
                     >
@@ -192,11 +187,11 @@ export default function LegacyVisionPurpose() {
       {/* MOBILE — interactive horizontal slider */}
       <section className="bg-white py-12 md:hidden overflow-hidden select-none">
         {/* Top category label & counter */}
-        <div className="mx-auto flex w-full max-w-[340px] items-center justify-between px-4 mb-2">
-          <span className="font-body text-[12px] font-medium uppercase tracking-[0.2em] text-[#8C8C8C]">
+        <div className="mx-auto flex w-full max-w-[clamp(300px,88vw,360px)] items-center justify-between px-4 mb-2">
+          <span className="font-body text-[clamp(11px,2.2vw,13px)] font-medium uppercase tracking-[0.2em] text-[#8C8C8C]">
             Brand Values
           </span>
-          <span className="font-['Poppins'] text-[14px] font-medium tracking-wider text-[#111111]">
+          <span className="font-['Poppins'] text-[clamp(13px,2.57vw,15px)] font-medium tracking-wider text-[#111111]">
             0{currentIndex + 1}{" "}
             <span className="text-[#999999]">/ 0{values.length}</span>
           </span>
@@ -219,12 +214,12 @@ export default function LegacyVisionPurpose() {
                 className="w-full shrink-0 px-2 flex flex-col items-center"
               >
                 {/* title — above image */}
-                <h2 className="mb-3 flex min-h-[36px] items-center text-center text-[20px] font-medium leading-[24px] tracking-tight text-[#111111]">
+                <h2 className="mb-3 flex min-h-[36px] items-center text-center text-[clamp(18px,3.68vw,22px)] font-medium leading-[clamp(22px,4.41vw,26px)] tracking-tight text-[#111111]">
                   {item.title}
                 </h2>
 
                 {/* image card */}
-                <div className="relative w-full max-w-[320px] aspect-[4/3] overflow-hidden rounded-[14px] shadow-[0_8px_24px_rgba(0,0,0,0.08)] bg-[#F5F5F5]">
+                <div className="relative w-full max-w-[clamp(280px,85vw,340px)] aspect-[4/3] overflow-hidden rounded-[14px] shadow-[0_8px_24px_rgba(0,0,0,0.08)] bg-[#F5F5F5]">
                   <Image
                     src={item.mobileImage || item.image}
                     alt={item.title}
@@ -236,7 +231,7 @@ export default function LegacyVisionPurpose() {
                 </div>
 
                 {/* description — below image */}
-                <p className="mt-4 max-w-[280px] text-center text-[14px] leading-[20px] text-[#555555]">
+                <p className="mt-4 max-w-[clamp(240px,75vw,300px)] text-center text-[clamp(13px,2.57vw,15px)] leading-[clamp(18px,3.68vw,22px)] text-[#555555]">
                   {item.description}
                 </p>
               </div>

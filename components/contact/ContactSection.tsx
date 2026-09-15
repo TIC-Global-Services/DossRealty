@@ -17,8 +17,8 @@ export default function ContactSection() {
             <h2
               className="font-secondary font-[700]
               text-black leading-[20px] md:pl-0
-              text-[24px]
-              lg:text-[28px]
+              text-[21px]
+              lg:text-[25px]
               tracking-tighter
               uppercase"
             >
@@ -46,14 +46,14 @@ export default function ContactSection() {
 
                 <a
                   href="tel:+919962996977"
-                  className="block text-[#717580] text-sm md:text-[18px] md:leading-[20px] font-heading font-[300] mb-3"
+                  className="block text-[#717580] text-xs md:text-[16px] md:leading-[20px] font-heading font-[300] mb-3"
                 >
                   +91 9962996977
                 </a>
 
                 <a
                   href="mailto:info@dossrealty.com"
-                  className="block text-sm md:text-[18px] md:leading-[20px] font-heading font-[300] underline"
+                  className="block text-xs md:text-[16px] md:leading-[20px] font-heading font-[300] underline"
                 >
                   info@dossrealty.in
                 </a>
@@ -72,7 +72,7 @@ export default function ContactSection() {
                 onClick={() => setActiveTab("contact")}
                 className={`
                   flex-1 py-3
-                  text-[12px] lg:text-[16px] font-grand leading-[20px]
+                  text-[11px] lg:text-[14px] font-grand leading-[20px]
                   uppercase
                   tracking-[0px]
                   relative
@@ -106,7 +106,7 @@ export default function ContactSection() {
                 onClick={() => setActiveTab("refer")}
                 className={`
                   flex-1 py-3
-                  text-[12px] lg:text-[16px] font-grand leading-[20px]
+                  text-[11px] lg:text-[14px] font-grand leading-[20px]
                   uppercase
                   tracking-[0px]
                   relative

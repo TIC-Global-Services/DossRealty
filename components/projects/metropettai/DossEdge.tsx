@@ -114,13 +114,13 @@ const DossEdge = () => {
             className="
               font-heading
               text-center
-              text-[34px]
+              text-[30px]
               font-[300]
               uppercase
               tracking-[-1px]
               text-[#111]
               lg:mb-[2%]
-              lg:text-[46px]
+              lg:text-[40px]
             "
           >
             THE DOSS EDGE
@@ -248,7 +248,7 @@ const DossEdge = () => {
                       <h4
                         className="
                           font-small
-                          text-[20px] leading-[24px]
+                          text-[18px] leading-[24px]
                           font-[400]
                           uppercase
                           text-white
@@ -348,7 +348,7 @@ const DossEdge = () => {
                     backdrop-blur-[2px]
                   "
                 >
-                  <h4 className="font-small text-[30px] leading-[32px] font-[300] uppercase text-white">
+                  <h4 className="font-small text-[26px] leading-[32px] font-[300] uppercase text-white">
                     {item.title}
                   </h4>
 

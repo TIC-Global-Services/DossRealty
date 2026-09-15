@@ -169,10 +169,10 @@ const Vission = () => {
           ref={headingRef}
           className="
             font-heading
-            text-[30px]
+            text-[26px]
             leading-[28px]
             tracking-normal
-            lg:text-[60px]
+            lg:text-[53px]
             lg:leading-[1.1]
             lg:tracking-[-2.3px]
             text-[#111111]

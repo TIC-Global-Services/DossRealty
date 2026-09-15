@@ -82,12 +82,12 @@ export default function Subscription() {
             <h2
               className="text-start font-small
                 max-w-[520px]
-                text-[20px] leading-[24px]
+                text-[18px] leading-[24px]
                 font-light
                 lg:leading-[95%]
                 lg:tracking-[-0.02em]
                 text-white
-                lg:text-[40px]
+                lg:text-[35px]
                 lg:max-w-[520px]
               "
             >
