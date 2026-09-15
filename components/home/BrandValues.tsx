@@ -157,7 +157,7 @@ export default function LegacyVisionPurpose() {
                       className="
                                                   mb-3
                                                   text-[clamp(23px,1.88vw,25px)]
-                                                  leading-[clamp(30px,3.13vw,50px)]
+                                                  leading-tight
                                                   font-small
                                                   tracking-tighter
                                                   text-[#111111]

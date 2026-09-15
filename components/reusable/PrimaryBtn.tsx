@@ -27,7 +27,7 @@ export default function PrimaryBtn({
 }: PrimaryBtnProps) {
   const baseStyles = `
     relative group
-    w-[180px]
+    px-6
     h-[44px]
     rounded-full
     flex items-center justify-center
