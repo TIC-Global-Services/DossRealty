@@ -188,7 +188,7 @@ const Footer = () => {
                     />
                   </Link>
 
-                  <Link href="#" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://www.facebook.com/share/1EDcbDawXJ/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                     <FacebookIcon
                       className="
                         text-[18px]
@@ -307,7 +307,7 @@ const Footer = () => {
               />
             </Link>
 
-            <Link href="#" target="_blank" rel="noopener noreferrer">
+            <Link href="https://www.facebook.com/share/1EDcbDawXJ/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <FacebookIcon
                 className="
                   text-[18px]

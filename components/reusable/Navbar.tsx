@@ -840,7 +840,9 @@ const Navbar = () => {
           {/* SOCIAL */}
           <div ref={socialRef} className="mt-8 flex items-center gap-6">
             <Link
-              href="#"
+              href="https://wa.me/+919962996977"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="WhatsApp"
               onClick={closeMobileMenu}
               className="text-white/60 transition duration-300 hover:text-white"
@@ -849,7 +851,9 @@ const Navbar = () => {
             </Link>
 
             <Link
-              href="#"
+              href="https://www.linkedin.com/company/dossrealty"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="LinkedIn"
               onClick={closeMobileMenu}
               className="text-white/60 transition duration-300 hover:text-white"
@@ -858,7 +862,9 @@ const Navbar = () => {
             </Link>
 
             <Link
-              href="#"
+              href="https://www.facebook.com/share/1EDcbDawXJ/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
               onClick={closeMobileMenu}
               className="text-white/60 transition duration-300 hover:text-white"
@@ -867,7 +873,9 @@ const Navbar = () => {
             </Link>
 
             <Link
-              href="#"
+              href="https://www.instagram.com/dossrealty/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               onClick={closeMobileMenu}
               className="text-white/60 transition duration-300 hover:text-white"
