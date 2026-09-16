@@ -11,23 +11,23 @@ import icon3 from "@/assets/about/Img3.png";
 const stats = [
   {
     icon: icon1,
-    value: 5000,
+    value: 30,
     suffix: "+",
-    title: "Units delivered",
-  },
-  {
-    icon: icon2,
-    value: 54000,
-    suffix: "+",
-    title:
-      "Units in progress and planning",
+    title: "Years Experience",
   },
   {
     icon: icon3,
-    value: 100,
-    suffix: "+ M SQFT",
+    value: 5,
+    suffix: " Million+",
     title:
-      "Project area in planning and progress",
+      "SQFT Delivered",
+  },
+  {
+    icon: icon2,
+    value: 4000,
+    suffix: "+",
+    title:
+      "Family’s Served",
   },
 ];
 
