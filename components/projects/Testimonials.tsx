@@ -85,8 +85,8 @@ const Testimonials = () => {
           <h2
             className="
               font-heading
-              text-[26px] leading-[36px]
-              lg:text-[42px]
+              text-[23px] leading-[36px]
+              lg:text-[37px]
               lg:leading-[54px]
               tracking-[-1.44px]
               text-[#00256A]

@@ -83,9 +83,9 @@ export default function ContactForm() {
           text-center
           text-[#2F3147]
           font-heading
-          text-[23px]
+          text-[20px]
           leading-[30px]
-          lg:text-[40px]
+          lg:text-[35px]
           lg:leading-[48px]
         "
       >

@@ -78,7 +78,7 @@ const deliveredProjects: Project[] = [
     title: "Poonamallee Farms",
     location: "Avadi",
     size: "20 Acres",
-    category: "Villas",
+    category: "Plots",
     image: project1,
     plotsIcon: villaIcon,
     acreIcon: acreIcon,
@@ -386,7 +386,7 @@ useEffect(() => {
                         "
                       >
                         {activeTab === "active"
-                          ? "Villas"
+                          ? "Plots"
                           : project.category}
                       </button>
                     </div>

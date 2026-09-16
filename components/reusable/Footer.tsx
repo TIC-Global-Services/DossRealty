@@ -85,7 +85,7 @@ const Footer = () => {
 
                 {/* Left */}
                 <div className="max-w-[300px] lg:max-w-xl">
-                  <h3 className="font-heading text-[16px] lg:text-[26px] leading-none">
+                  <h3 className="font-heading text-[14px] lg:text-[23px] leading-none">
                  
                     <span className="text-[#B59A52]">
                       Doss Developers Pvt Ltd
@@ -129,14 +129,14 @@ const Footer = () => {
               {/* Center */}
               <div className="flex flex-1 items-center justify-center pt-6 text-center">
                 <div>
-                  <p className="font-heading text-[26px] lg:text-[37px] text-white">
+                  <p className="font-heading text-[23px] lg:text-[33px] text-white">
                     Build Beyond
                   </p>
 
                   <h2
                     className="
-                      font-heading text-[88px]
-                      lg:text-[176px]
+                      font-heading text-[77px]
+                      lg:text-[155px]
                       leading-[0.9]
                       tracking-[-0.05em]
                       text-white
@@ -261,7 +261,7 @@ const Footer = () => {
 
           {/* About */}
           <div className="mt-10 text-center">
-            <h3 className="font-heading text-[14px] md:text-[23px] leading-none">
+            <h3 className="font-heading text-[12px] md:text-[20px] leading-none">
             
               <span className="text-[#B59A52]">
                Doss Developers Pvt Ltd

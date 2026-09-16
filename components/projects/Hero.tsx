@@ -91,11 +91,11 @@ const Hero = () => {
                 <h2
                   className="
                     font-heading
-                    text-[26px]
+                    text-[23px]
                     leading-[33px] tracking-normal
                     lg:tracking-[-0.04em]
                     text-[#00256A]
-                    lg:text-[62px]
+                    lg:text-[55px]
                     lg:leading-[65px]
                     lg:px-5
                     text-center

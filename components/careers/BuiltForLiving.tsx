@@ -212,7 +212,7 @@ Thank you.`
             "
             >
               <div className="flex h-full flex-col justify-between">
-                <h2 className="font-heading text-[26px] leading-[30px] text-white">
+                <h2 className="font-heading text-[23px] leading-[30px] text-white">
                   PEOPLE<br />DEFINE THE<br />STANDARD
                 </h2>
                 <p className="text-[15px] text-white/80">
@@ -229,7 +229,7 @@ Thank you.`
             "
             >
               <div className="flex h-full flex-col justify-between">
-                <h2 className="font-heading text-[26px] leading-[30px] text-white">
+                <h2 className="font-heading text-[23px] leading-[30px] text-white">
                   CRAFT LIVES<br />IN THE<br />DETAILS
                 </h2>
                 <p className="text-[15px] text-white/80">
@@ -240,7 +240,7 @@ Thank you.`
           </div>
 
           <div className="mt-6 text-center">
-            <h2 className="font-heading text-[21px] leading-[30px] tracking-[0px] text-[#3A3A3A]">
+            <h2 className="font-heading text-[18px] leading-[30px] tracking-[0px] text-[#3A3A3A]">
               View opening<br />positions
             </h2>
 
@@ -301,7 +301,7 @@ Thank you.`
             "
             >
               <div className="flex h-full flex-col justify-between">
-                <h2 className="font-heading text-[32px] leading-[38px] uppercase text-white">
+                <h2 className="font-heading text-[28px] leading-[38px] uppercase text-white">
                   PEOPLE<br />DEFINE THE<br />STANDARD
                 </h2>
                 <p className="max-w-[280px] text-[17px] leading-relaxed text-white/80">
@@ -318,7 +318,7 @@ Thank you.`
             "
             >
               <div className="flex h-full flex-col justify-between">
-                <h2 className="font-heading text-[32px] leading-[38px] uppercase text-white">
+                <h2 className="font-heading text-[28px] leading-[38px] uppercase text-white">
                   CRAFT LIVES<br />IN THE<br />DETAILS
                 </h2>
                 <p className="max-w-[280px] text-[17px] leading-relaxed text-white/80">
@@ -329,7 +329,7 @@ Thank you.`
           </div>
 
           <div className="mt-40 text-center">
-            <h2 className="font-heading text-[28px] leading-[38px] text-[#1E1E1E]">
+            <h2 className="font-heading text-[25px] leading-[38px] text-[#1E1E1E]">
               View opening<br />positions
             </h2>
 
@@ -378,7 +378,7 @@ Thank you.`
         {/* DESKTOP (>=1024px) — unchanged */}
         <div className="hidden lg:flex lg:w-full lg:items-center">
           <div className="flex flex-1 flex-col">
-            <h2 className="mb-8 text-[21px] md:text-[44px] md:leading-[55px] font-heading leading-[1.05] text-[#1E1E1E]">
+            <h2 className="mb-8 text-[18px] md:text-[39px] md:leading-[55px] font-heading leading-[1.05] text-[#1E1E1E]">
               View opening<br />positions
             </h2>
 

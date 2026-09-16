@@ -98,7 +98,7 @@ const BuildTrust = () => {
             <div key={activeSlide}>
               <h2
                 ref={headingRef}
-                className="font-heading text-[21px] leading-[36px] md:leading-[30px] lg:tracking-[-1.44px] text-[#111111] lg:text-[42px] lg:leading-[50px]"
+                className="font-heading text-[18px] leading-[36px] md:leading-[30px] lg:tracking-[-1.44px] text-[#111111] lg:text-[37px] lg:leading-[50px]"
               >
                 <span className="md:hidden">
                   Trust, Built Into

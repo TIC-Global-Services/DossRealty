@@ -98,8 +98,8 @@ const ShapeTheFuture = () => {
 
             <h2
               className="font-heading
-              text-[26px] leading-[38px]
-              lg:text-[46px]
+              text-[23px] leading-[38px]
+              lg:text-[40px]
               lg:leading-[95%]
               tracking-[-0.04em]
               text-[#111111]"

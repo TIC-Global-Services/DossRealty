@@ -26,7 +26,7 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Promises Park",
+    title: "Promise Park",
     text1: "From ₹15L Onwards in Kanchipuram",
     text2:
       "Indulge in the Divine Aura of Kanchipuram, Alluring Plots from 443 to 2348 SQFT",
@@ -85,7 +85,7 @@ export default function OurProjects() {
           </h2>
 
           <Link href="/projects">
-            <PrimaryBtn mode="light" className="mt-5 !text-[13px] lg:!text-[16px] !w-[140px] !h-[40px] lg:!w-[160px] lg:!h-[44px] text-black transition duration-300 hover:scale-105">
+            <PrimaryBtn mode="light" className="mt-5 !text-[13px] lg:!text-[16px] !w-auto !px-6 !h-[40px] lg:!h-[44px] text-black transition duration-300 hover:scale-105">
               View Projects
             </PrimaryBtn>
           </Link>

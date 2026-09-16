@@ -225,11 +225,11 @@ const About = () => {
           <h2
             className="
               font-heading
-              text-[21px]
+              text-[18px]
               font-[300]
               tracking-[0px]
               text-[#111]
-              lg:text-[40px]
+              lg:text-[35px]
               leading-[50px]
             "
           >

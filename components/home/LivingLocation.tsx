@@ -128,7 +128,7 @@ const LivingLocation = () => {
 
             <h2
               ref={titleRef}
-              className="font-heading text-[26px] leading-[120%] tracking-[-0.02em] text-[#111111] md:text-[28px] lg:text-[42px]"
+              className="font-heading text-[23px] leading-[120%] tracking-[-0.02em] text-[#111111] md:text-[25px] lg:text-[37px]"
             >
               A World Shaped In <br /> Every Detail
             </h2>
@@ -176,7 +176,7 @@ const LivingLocation = () => {
 
               {/* CENTER TITLE */}
               <div className="absolute inset-0 z-10 flex items-start justify-center pt-10">
-                <h2 className="font-heading text-center text-3xl text-white md:text-[39px] lg:text-4xl">
+                <h2 className="font-heading text-center text-2xl text-white md:text-[34px] lg:text-3xl">
                   {item.title}
                 </h2>
               </div>

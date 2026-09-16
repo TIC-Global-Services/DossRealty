@@ -783,7 +783,7 @@ const Navbar = () => {
                             items-center
                             justify-center
                             py-3
-                            font-small
+                            font-body
                             text-[21px]
                             font-medium
                             text-white
@@ -805,7 +805,7 @@ const Navbar = () => {
                           href={item.href}
                           onClick={closeMobileMenu}
                           className="
-                            font-small
+                            font-body
                             text-[15px]
                             text-white/70
                             transition
@@ -830,7 +830,7 @@ const Navbar = () => {
             >
               <PrimaryBtn
                 mode="dark"
-                className="mx-auto h-[52px] w-[150px] text-base"
+                className="mx-auto h-[52px] w-auto px-8 text-base"
               >
                 Get in Touch
               </PrimaryBtn>

@@ -33,7 +33,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section data-theme="dark" className="relative h-screen w-full overflow-hidden">
       <Image
         src={heroImg}
         alt="Metropettai"
@@ -50,11 +50,11 @@ const Hero = () => {
       <div className="relative z-10 flex h-full px-5 py-24 md:px-10 lg:px-16 lg:pb-20 lg:pt-0">
         <div className="mx-auto flex h-full w-full flex-col translate-x-10 translate-y-10 justify-between md:translate-x-0 md:translate-y-0 md:flex-row md:items-end">
           <div ref={leftContentRef} className="max-w-[600px]">
-            <p className="font-[600] text-[13px] text-white/80 lg:text-[22px] lg:leading-[24px]">
+            <p className=" text-[13px] text-white/80 lg:text-[22px] lg:leading-[24px]">
               Plotted Development
             </p>
 
-            <h2 className="mt-1 font-heading text-[21px] font-[300] leading-[30px] text-white lg:mt-2 lg:text-[48px] lg:leading-[56px]">
+            <h2 className="mt-1 font-heading text-[18px] font-[300] leading-[30px] text-white lg:mt-2 lg:text-[42px] lg:leading-[56px]">
               Metropettai
             </h2>
 
@@ -83,7 +83,7 @@ const Hero = () => {
 
                 <span className="h-[4px] w-[4px] rounded-full bg-[#C7A85E]" />
 
-                <span>Chennai, TN</span>
+                <span>Poonamallee, Chennai, TN</span>
               </div>
             </div>
           </div>

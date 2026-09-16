@@ -62,7 +62,7 @@ const RelatedArticles = () => {
           ref={(el) => {
             if (el) textRevealRef.current[0] = el;
           }}
-          className="font-heading text-[26px] leading-[50px] lg:tracking-[-0.05em] text-[#111111] lg:text-[42px]"
+          className="font-heading text-[23px] leading-[50px] lg:tracking-[-0.05em] text-[#111111] lg:text-[37px]"
         >
           Related articles
         </h2>

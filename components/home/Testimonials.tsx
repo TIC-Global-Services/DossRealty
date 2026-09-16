@@ -120,7 +120,7 @@ export default function TestimonialSection() {
 
           {/* Content Below */}
           <div className="mt-10">
-            <h2 className="mb-5 text-[clamp(18px,4.5vw,22px)] font-heading font-normal leading-[120%] text-[#111]">
+            <h2 className="mb-5 text-[clamp(16px,4.5vw,19px)] font-heading font-normal leading-[120%] text-[#111]">
               A Measure Of Trust
             </h2>
             

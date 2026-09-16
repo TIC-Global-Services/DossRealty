@@ -114,13 +114,13 @@ const DossEdge = () => {
             className="
               font-heading
               text-center
-              text-[30px]
+              text-[26px]
               font-[300]
               uppercase
               tracking-[-1px]
               text-[#111]
               lg:mb-[2%]
-              lg:text-[40px]
+              lg:text-[35px]
             "
           >
             THE DOSS EDGE

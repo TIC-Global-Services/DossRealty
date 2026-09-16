@@ -86,8 +86,8 @@ const Hero = () => {
               capitalize
               font-heading
               text-white
-              text-[21px]
-              md:text-[42px]
+              text-[18px]
+              md:text-[37px]
               leading-[50px]
               md:tracking-[-1.44px]
             "

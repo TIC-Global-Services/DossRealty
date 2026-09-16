@@ -211,12 +211,12 @@ export default function Gallery() {
         <h2
           className="
             font-heading
-            text-[26px]
+            text-[23px]
             font-[400]
             leading-[20px]
             tracking-[-1px]
             text-[#00256A]
-            lg:text-[42px]
+            lg:text-[37px]
           "
         >
           Gallery

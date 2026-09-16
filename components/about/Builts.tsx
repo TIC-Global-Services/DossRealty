@@ -103,7 +103,7 @@ const Builts = () => {
                 {founder.role}
               </p>
 
-              <h2 className="mt-2 font-heading font-[300] text-[25px] leading-[34px] text-[#1B2327]">
+              <h2 className="mt-2 font-heading font-[300] text-[22px] leading-[34px] text-[#1B2327]">
                 {founder.name}
               </h2>
 
@@ -157,7 +157,7 @@ const Builts = () => {
                   {founder.role}
                 </p>
 
-                <h2 className="mt-2 font-heading font-[300] text-[25px] leading-[34px] lg:text-[37px] lg:leading-[48px] text-[#1B2327]">
+                <h2 className="mt-2 font-heading font-[300] text-[22px] leading-[34px] lg:text-[33px] lg:leading-[48px] text-[#1B2327]">
                   {founder.name}
                 </h2>
 
@@ -269,7 +269,7 @@ const Builts = () => {
                 {founder.role}
               </p>
 
-              <h2 className="mt-2 font-heading font-[300] text-[25px] leading-[34px] lg:text-[37px] lg:leading-[48px] text-[#1B2327]">
+              <h2 className="mt-2 font-heading font-[300] text-[22px] leading-[34px] lg:text-[33px] lg:leading-[48px] text-[#1B2327]">
                 {founder.name}
               </h2>
 

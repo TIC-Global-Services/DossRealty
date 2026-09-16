@@ -1,10 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
-import mapImg from "@/assets/contact/map.webp";
-import locationPin from "@/assets/contact/pin.png";
-
 const Location = () => {
   return (
     <section className="py-8 lg:py-16">
@@ -36,72 +31,13 @@ const Location = () => {
               border-[#EAEAEA]
             "
           >
-            <Image
-              src={mapImg}
-              alt="Location Map"
-              fill
-              priority
-              className="object-cover"
+            <iframe
+              src="https://www.google.com/maps?q=13.0328,80.1268&z=15&output=embed"
+              title="Doss Realty Location Map"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 h-full w-full border-0"
             />
-
-            {/* Location Pin */}
-            <div
-              className="
-              absolute
-              left-1/2
-              top-1/2
-              -translate-x-1/2
-              -translate-y-1/2
-              z-10
-            "
-            >
-              <div
-                className="
-                flex
-                items-center
-                gap-2
-                rounded-full
-                bg-white
-                px-3
-                py-2
-                shadow-[0_4px_20px_rgba(0,0,0,0.12)]
-                border
-                border-[#E7E7E7]
-              "
-              >
-                <div
-                  className="
-                  flex
-                  h-8
-                  w-8
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-[#E7E7E7]
-                  bg-[#F8F8F8]
-                "
-                >
-                  <Image
-                    src={locationPin}
-                    alt="Location"
-                    width={16}
-                    height={16}
-                  />
-                </div>
-
-                <span
-                  className="
-                  text-[12px]
-                  font-medium
-                  text-[#444]
-                  whitespace-nowrap
-                "
-                >
-                  Doss Realty
-                </span>
-              </div>
-            </div>
           </div>
 
           {/* RIGHT CONTENT */}

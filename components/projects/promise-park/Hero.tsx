@@ -33,7 +33,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section data-theme="dark" className="relative h-screen w-full overflow-hidden">
       {/* Background Image */}
       <Image
         src={heroImg}
@@ -87,7 +87,6 @@ const Hero = () => {
           >
             <p
               className="
-                font-[600]
                 text-[13px]
                 text-white/80
                 lg:text-[22px]
@@ -102,11 +101,11 @@ const Hero = () => {
                 mt-1
                 lg:mt-2
                 font-heading
-                text-[21px]
+                text-[18px]
                 leading-[30px]
                 font-[300]
                 text-white
-                lg:text-[48px]
+                lg:text-[42px]
                 lg:leading-[56px]
               "
             >
@@ -176,7 +175,7 @@ const Hero = () => {
 
                 <span className="h-[4px] w-[4px] rounded-full bg-[#C7A85E]" />
 
-                <span>Chennai, TN</span>
+                <span>Kanchipuram, TN</span>
               </div>
             </div>
           </div>

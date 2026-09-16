@@ -113,8 +113,8 @@ export default function WhyWorkWithUs() {
             font-heading
             font-[300]
             text-[#39384C]
-            text-[21px] leading-[30px]
-            md:text-[44px]
+            text-[18px] leading-[30px]
+            md:text-[39px]
             md:leading-[52px]
           "
         >

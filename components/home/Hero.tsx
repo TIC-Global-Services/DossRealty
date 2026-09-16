@@ -198,7 +198,7 @@ export default function Hero() {
         navigator.userAgent
       );
 
-    ScrollTrigger.normalizeScroll(true);
+    const normalizer = ScrollTrigger.normalizeScroll(true);
 
     const ctx = gsap.context(() => {
       gsap.set(rootRef.current, {
@@ -390,7 +390,10 @@ export default function Hero() {
       ScrollTrigger.refresh()
     );
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      normalizer?.kill();
+    };
   }, []);
 
 
@@ -469,9 +472,8 @@ export default function Hero() {
                   md:tracking-tight
                   leading-[120%]
                   md:leading-[100%]
-                  text-[clamp(36px,4vw,60px)]
-                  text-white
-                  md:text-black"
+                  text-[clamp(32px,4vw,53px)]
+                  text-white"
               >
                 DISCOVER THE COLLECTION
               </h2>

@@ -34,6 +34,7 @@ export default function PrimaryBtn({
     overflow-hidden isolate
     font-medium text-[16px]
     tracking-wide
+    whitespace-nowrap
     cursor-pointer
     transition-all duration-300 ease-out
     active:scale-[0.97]

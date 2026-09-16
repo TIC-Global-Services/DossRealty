@@ -89,11 +89,11 @@ const InvestmentDesk = () => {
             <h2
               className="
                 font-heading
-                text-[21px] leading-[30px] tracking-normal
+                text-[18px] leading-[30px] tracking-normal
                 lg:leading-[50px]
                 lg:tracking-[-1.44px]
                 text-[#111111]
-                lg:text-[42px]
+                lg:text-[37px]
               "
             >
             <span className="md:block hidden">India, Within Reach.</span>

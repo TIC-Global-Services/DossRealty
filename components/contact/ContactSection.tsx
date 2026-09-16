@@ -46,14 +46,14 @@ export default function ContactSection() {
 
                 <a
                   href="tel:+919962996977"
-                  className="block text-[#717580] text-xs md:text-[16px] md:leading-[20px] font-heading font-[300] mb-3"
+                  className="block text-[#717580] text-xs md:text-[14px] md:leading-[20px] font-heading font-[300] mb-3"
                 >
                   +91 9962996977
                 </a>
 
                 <a
                   href="mailto:info@dossrealty.com"
-                  className="block text-xs md:text-[16px] md:leading-[20px] font-heading font-[300] underline"
+                  className="block text-xs md:text-[14px] md:leading-[20px] font-heading font-[300] underline"
                 >
                   info@dossrealty.in
                 </a>

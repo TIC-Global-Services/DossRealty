@@ -211,10 +211,10 @@ export default function BrochureModal({
             mb-6
             text-center
             font-heading
-            text-[23px]
+            text-[20px]
             leading-[32px]
             text-[#2F3147]
-            md:text-[40px]
+            md:text-[35px]
             md:leading-[48px]
           "
         >

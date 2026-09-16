@@ -91,8 +91,8 @@ export default function ReferFriendForm() {
           text-center
           text-[#2F3147]
           font-heading
-          text-[23px]
-          lg:text-[40px]
+          text-[20px]
+          lg:text-[35px]
           leading-[48px]
         "
       >
