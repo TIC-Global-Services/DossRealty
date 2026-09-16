@@ -164,7 +164,7 @@ html.lenis body {
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
-}
+} */
 
 .testimonial-swiper {
   overflow: visible !important;
@@ -172,7 +172,11 @@ html.lenis body {
 
 .testimonial-swiper .swiper-wrapper {
   align-items: stretch;
-} */
+}
+
+.testimonial-swiper .swiper-slide {
+  height: auto;
+}
 
 /* ===== BuildTrust Animation ===== */
 

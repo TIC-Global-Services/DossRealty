@@ -16,9 +16,11 @@ import {
 
 import "swiper/css";
 
-import profile1 from "@/assets/projects/profilePic.webp";
-import profile2 from "@/assets/projects/profilePic.webp";
-import profile3 from "@/assets/projects/profilePic.webp";
+import testimonial1 from "@/assets/home/testimonials/testimonial1.jpg";
+import testimonial3 from "@/assets/home/testimonials/testimonial3.jpg";
+import testimonial4 from "@/assets/home/testimonials/testimonial4.jpg";
+import priyaImg from "@/assets/home/testimonials/priyaImg.webp";
+import prabhuImg from "@/assets/home/testimonials/prabhuImg2.webp";
 
 type Testimonial = {
   name: string;
@@ -29,46 +31,72 @@ type Testimonial = {
 
 const testimonials: Testimonial[] = [
   {
-    name: "Anna Joy",
-    country: "United States",
-    image: profile1,
+    name: "Priya H",
+    country: "Chennai, India",
+    image: priyaImg,
     review:
-      "The team delivered a seamless experience from planning to execution. Every space felt thoughtfully designed and highly functional.",
+      "Been staying in DOSS community for 16 years now, they have provided me with a wonderful safe neighbourhood for my family.",
   },
   {
-    name: "Anna Joy",
-    country: "United States",
-    image: profile2,
+    name: "Dhilip Reddy",
+    country: "Chennai, India",
+    image: testimonial1,
     review:
-      "The team delivered a seamless experience from planning to execution. Every space felt thoughtfully designed and highly functional.",
+      "Expert investment advice, our property doubled in value in two years. The salespeople made it feel more like consultation, helping us choose the perfect unit.",
   },
   {
-    name: "Anna Joy",
-    country: "United States",
-    image: profile3,
+    name: "Chinnarasu",
+    country: "Chennai, India",
+    image: testimonial3,
     review:
-      "The team delivered a seamless experience from planning to execution. Every space felt thoughtfully designed and highly functional.",
+      "Thank you so much to the DOSS staff, I had a resale transaction after 9 years and they assisted us promptly and professionally throughout the entire process, very good customer support.",
   },
   {
-    name: "Anna Joy",
-    country: "United States",
-    image: profile1,
-    review:
-      "Exceptional planning and execution. The team transformed ideas into spaces that feel modern, premium, and welcoming.",
+    name: "Senthil Kumar",
+    country: "Chennai, India",
+    image: testimonial1,
+    review: "Bought my first plot from DOSS, good support and maintenance.",
   },
   {
-    name: "Anna Joy",
-    country: "United States",
-    image: profile1,
+    name: "Ajay Eshwar",
+    country: "Chennai, India",
+    image: testimonial3,
     review:
-      "Exceptional planning and execution. The team transformed ideas into spaces that feel modern, premium, and welcoming.",
+      "Highly impressed with the layout quality, the gated community has excellent security and is packed with tress providing a good nature living experience in the city.",
   },
   {
-    name: "Anna Joy",
-    country: "United States",
-    image: profile1,
+    name: "K Dhanasekar",
+    country: "Chennai, India",
+    image: testimonial1,
     review:
-      "Exceptional planning and execution. The team transformed ideas into spaces that feel modern, premium, and welcoming.",
+      "I’m an NRI buying from Dubai, the sales team clearly explained and assisted in all the processes, it was very smooth and easy.",
+  },
+  {
+    name: "Harikumar G",
+    country: "Chennai, India",
+    image: testimonial3,
+    review:
+      "We have seen plenty of plots, but DOSS felt instantly different. Everything felt like it was thought about, the attention to detail is spectacular. The quality stands out.",
+  },
+  {
+    name: "Archana",
+    country: "Chennai, India",
+    image: testimonial4,
+    review: "Quality of the project was definitely the key factor behind choosing DOSS.",
+  },
+  {
+    name: "Prabhu M",
+    country: "Chennai, India",
+    image: prabhuImg,
+    review:
+      "What gave us confidence was the transparency. The documentation, approvals, and process were clearly explained, which made the decision feel secure from the beginning.",
+  },
+  {
+    name: "Sanjana Shankar",
+    country: "Chennai, India",
+    image: testimonial4,
+    review:
+      "What we appreciated most was how organised everything felt. The project and the finish also just felt premium comparatively.",
   },
 ];
 
