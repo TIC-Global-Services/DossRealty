@@ -32,7 +32,7 @@ const Location = () => {
             "
           >
             <iframe
-              src="https://www.google.com/maps?q=13.0328,80.1268&z=15&output=embed"
+              src="https://www.google.com/maps?q=13.0055639,80.1092389&z=15&output=embed"
               title="Doss Realty Location Map"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -65,7 +65,7 @@ const Location = () => {
             </h2>
 
             <a
-              href="https://maps.google.com/?q=13.0328,80.1268"
+              href="https://maps.google.com/?q=13.0055639,80.1092389"
               target="_blank"
               rel="noopener noreferrer"
               className="flex justify-start"

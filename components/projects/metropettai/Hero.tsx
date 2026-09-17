@@ -47,10 +47,10 @@ const Hero = () => {
       {/* Top nav contrast gradient */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[50vh] bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
 
-      <div className="relative z-10 flex h-full px-5 py-24 md:px-10 lg:px-16 lg:pb-20 lg:pt-0">
-        <div className="mx-auto flex h-full w-full flex-col translate-x-10 translate-y-10 justify-between md:translate-x-0 md:translate-y-0 md:flex-row md:items-end">
-          <div ref={leftContentRef} className="max-w-[600px]">
-            <p className=" text-[13px] text-white/80 lg:text-[22px] lg:leading-[24px]">
+      <div className="relative z-10 flex h-full px-[6%] py-24 md:px-[8%] lg:px-[8%] lg:pb-20 lg:pt-0">
+        <div className="mx-auto flex h-full w-full flex-col justify-between md:flex-row md:items-end">
+          <div ref={leftContentRef} className="w-full max-w-[600px] lg:max-w-[460px]">
+            <p className="text-[13px] text-white/80 lg:text-[22px] lg:leading-[24px]">
               Plotted Development
             </p>
 
@@ -66,12 +66,12 @@ const Hero = () => {
 
           <div
             ref={rightContentRef}
-            className="flex items-end gap-4 pb-3 lg:gap-6 lg:pb-5"
+            className="mt-8 flex w-full items-end gap-4 pb-3 md:mt-0 md:w-auto lg:gap-6 lg:pb-5"
           >
-            <div className="h-[100px] w-[2px] bg-white lg:h-[160px]" />
+            <div className="h-[100px] w-[2px] shrink-0 bg-white lg:h-[160px]" />
 
-            <div className="md:max-w-[420px]">
-              <p className="w-[330px] text-[13px] font-light leading-[16px] text-white/90 lg:w-[44ch] lg:text-[18px] lg:leading-[20px]">
+            <div className="w-full md:max-w-[420px] lg:max-w-[560px]">
+              <p className="w-full text-[13px] font-light leading-[16px] text-white/90 lg:w-[44ch] lg:text-[18px] lg:leading-[20px]">
                 Metropettai is a strategically located community near the
                 upcoming Metro corridor, Chennai–Bengaluru Highway, and Outer
                 Ring Road, offering excellent connectivity, everyday
@@ -81,7 +81,7 @@ const Hero = () => {
               <div className="mt-3 flex items-center gap-3 text-[13px] text-[#C7A85E] lg:mt-6 lg:text-[16px]">
                 <span>Luxury Living</span>
 
-                <span className="h-[4px] w-[4px] rounded-full bg-[#C7A85E]" />
+                <span className="h-[4px] w-[4px] shrink-0 rounded-full bg-[#C7A85E]" />
 
                 <span>Poonamallee, Chennai, TN</span>
               </div>

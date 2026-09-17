@@ -227,25 +227,20 @@ const FAQ = ({
               }
               className="
                 mt-8
-                h-[40px]
-                w-[140px]
                 rounded-full
-                border
-                border-[rgba(199,168,94,1)]
-                bg-[#00256A]
+                border-none
+                bg-[#002D80]
+                px-6
+                py-2
                 text-[13px]
-                font-[700]
+                font-medium
+                leading-[20px]
                 text-white
-                shadow-[0px_4px_8px_0px_rgba(0,0,0,0.1)]
-                transition-all
-                duration-300
-                hover:scale-105
-                hover:text-black
-                md:h-[42px]
-                md:w-[165px]
-                md:text-[15px]
-                lg:h-[44px]
-                lg:w-[180px]
+                shadow-none
+                cursor-pointer
+                hover:bg-[#002D80]
+                lg:px-8
+                lg:py-3
                 lg:text-[16px]
               "
                 >
