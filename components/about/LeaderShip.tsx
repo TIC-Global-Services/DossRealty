@@ -18,7 +18,7 @@ type Leader = {
 const leaders: Leader[] = [
   {
     name: "Varun V.P",
-    role: "Managing Director",
+    role: "Director",
     image: founder1,
     subHeading: "Founder's Note",
     description: `Varun V.P. leads the strategic direction, product vision, and growth initiatives of Doss Realty. Holding a Bachelor of Engineering (Honours) in Engineering Business Management from the University of Warwick, United Kingdom, he combines entrepreneurial thinking with a deep passion for creating real estate that stands apart in quality, planning, and long-term relevance.
@@ -27,7 +27,7 @@ He believes that superior developments are created through an uncompromising com
   },
   {
     name: "Guru V.P",
-    role: "Managing Director",
+    role: "Director",
     image: founder2,
     subHeading: "Leadership & Growth",
     description: `Guru V.P. oversees the financial strategy, investment philosophy, and long-term growth initiatives of Doss Realty. Holding a Bachelor of Arts (Honours) in Political Science from O.P. Jindal Global University, New Delhi, he brings a market-oriented perspective to the company's investment and expansion decisions.
