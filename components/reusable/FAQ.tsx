@@ -220,32 +220,31 @@ const FAQ = ({
               {description}
             </p> */}
 
-            <PrimaryBtn
+            <button
               onClick={
                 buttonAction ??
                 (() => router.push("/contact"))
               }
-              className="
-                mt-8
-                rounded-full
-                border-none
-                bg-[#002D80]
-                px-6
-                py-2
-                text-[13px]
-                font-medium
-                leading-[20px]
-                text-white
-                shadow-none
-                cursor-pointer
-                hover:bg-[#002D80]
-                lg:px-8
-                lg:py-3
-                lg:text-[16px]
+               className="mt-4
+                  lg:mt-8
+                  rounded-full
+                  bg-[#002D80]
+                  px-6 py-2
+                  lg:px-8
+                  lg:py-3
+                  text-white
+                  text-[13px]
+                  leading-[20px]
+                  lg:text-[16px]
+                  font-medium
+                  transition
+                  duration-300
+                  hover:scale-105
+                  cursor-pointer
               "
                 >
               {buttonText}
-            </PrimaryBtn>
+            </button>
           </div>
         </div>
       </div>
