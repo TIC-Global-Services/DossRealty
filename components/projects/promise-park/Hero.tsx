@@ -56,10 +56,10 @@ const Hero = () => {
           z-10
           flex
           h-full
-          px-5
+          px-[6%]
           py-24
-          md:px-10
-          lg:px-16
+          md:px-[8%]
+          lg:px-[8%]
           lg:pb-20
           lg:pt-0
         "
@@ -71,11 +71,7 @@ const Hero = () => {
             h-full
             w-full
             flex-col
-            translate-x-10
-            translate-y-10
             justify-between
-            md:translate-x-0
-            md:translate-y-0
             md:flex-row
             md:items-end
           "
@@ -83,7 +79,7 @@ const Hero = () => {
           {/* LEFT CONTENT */}
           <div
             ref={leftContentRef}
-            className="max-w-[600px]"
+            className="w-full max-w-[600px] lg:max-w-[460px]"
           >
             <p
               className="
@@ -122,10 +118,14 @@ const Hero = () => {
           <div
             ref={rightContentRef}
             className="
+              mt-8
               flex
+              w-full
               items-end
               gap-4
               pb-3
+              md:mt-0
+              md:w-auto
               lg:gap-6
               lg:pb-5
             "
@@ -135,15 +135,16 @@ const Hero = () => {
               className="
                 h-[100px]
                 w-[2px]
+                shrink-0
                 bg-white
                 lg:h-[160px]
               "
             />
 
-            <div className="md:max-w-[420px]">
+            <div className="w-full md:max-w-[420px] lg:max-w-[560px]">
               <p
                 className="
-                  w-[320px]
+                  w-full
                   text-[13px]
                   font-light
                   leading-[16px]
@@ -166,14 +167,14 @@ const Hero = () => {
                   items-center
                   gap-3
                   text-[13px]
-                  text-[#C7A85E]
+                  text-[#e4a30c]
                   lg:mt-6
                   lg:text-[16px]
                 "
               >
                 <span>Luxury Living</span>
 
-                <span className="h-[4px] w-[4px] rounded-full bg-[#C7A85E]" />
+                <span className="h-[4px] w-[4px] shrink-0 rounded-full bg-[#C7A85E]" />
 
                 <span>Kanchipuram, TN</span>
               </div>

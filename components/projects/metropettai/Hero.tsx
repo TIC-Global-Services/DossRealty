@@ -78,10 +78,10 @@ const Hero = () => {
                 convenience, and long-term value.
               </p>
 
-              <div className="mt-3 flex items-center gap-3 text-[13px] text-[#C7A85E] lg:mt-6 lg:text-[16px]">
+              <div className="mt-3 flex items-center gap-3 text-[13px] text-[#e4a30c] lg:mt-6 lg:text-[16px]">
                 <span>Luxury Living</span>
 
-                <span className="h-[4px] w-[4px] shrink-0 rounded-full bg-[#C7A85E]" />
+                <span className="h-[4px] w-[4px] shrink-0 rounded-full bg-[#ffb300]" />
 
                 <span>Poonamallee, Chennai, TN</span>
               </div>
