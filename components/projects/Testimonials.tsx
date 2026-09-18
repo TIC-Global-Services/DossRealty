@@ -21,6 +21,10 @@ import testimonial3 from "@/assets/home/testimonials/testimonial3.jpg";
 import testimonial4 from "@/assets/home/testimonials/testimonial4.jpg";
 import priyaImg from "@/assets/home/testimonials/priyaImg.webp";
 import prabhuImg from "@/assets/home/testimonials/prabhuImg2.webp";
+import Dhilip from "@/assets/home/testimonials/Dhilip.jpg";
+import Ajay from "@/assets/home/testimonials/Ajay.jpg";
+import Dhanasekar from "@/assets/home/testimonials/Dhanasekhar.png";
+import Harikumar from "@/assets/home/testimonials/Harikumar.png";
 
 type Testimonial = {
   name: string;
@@ -40,7 +44,7 @@ const testimonials: Testimonial[] = [
   {
     name: "Dhilip Reddy",
     country: "Chennai, India",
-    image: testimonial1,
+    image: Dhilip,
     review:
       "Expert investment advice, our property doubled in value in two years. The salespeople made it feel more like consultation, helping us choose the perfect unit.",
   },
@@ -60,21 +64,21 @@ const testimonials: Testimonial[] = [
   {
     name: "Ajay Eshwar",
     country: "Chennai, India",
-    image: testimonial3,
+    image: Ajay,
     review:
       "Highly impressed with the layout quality, the gated community has excellent security and is packed with tress providing a good nature living experience in the city.",
   },
   {
     name: "K Dhanasekar",
     country: "Chennai, India",
-    image: testimonial1,
+    image: Dhanasekar,
     review:
       "I’m an NRI buying from Dubai, the sales team clearly explained and assisted in all the processes, it was very smooth and easy.",
   },
   {
     name: "Harikumar G",
     country: "Chennai, India",
-    image: testimonial3,
+    image: Harikumar,
     review:
       "We have seen plenty of plots, but DOSS felt instantly different. Everything felt like it was thought about, the attention to detail is spectacular. The quality stands out.",
   },

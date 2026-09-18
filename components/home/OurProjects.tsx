@@ -158,13 +158,12 @@ export default function OurProjects() {
                   />
 
                   {/* TOP OVERLAY */}
-                  <div className="absolute top-15 left-15 right-15 z-[3] flex items-start justify-between">
+                  <div className="absolute top-6 left-6 right-6  md:top-15 md:left-15 md:right-15 z-[3] flex items-center justify-between">
 
                     {/* ACTIVE STATUS */}
                     <div
                       className="
-                      flex items-center gap-2
-                      lg:h-[40px]              
+                      flex items-center gap-2 justify-center            
                     "
                     >
                       <span className="relative flex">
@@ -186,8 +185,8 @@ export default function OurProjects() {
 
                     {/* GLASS BUTTON */}
                     <div
-                      className="h-[40px]
-                      lg:h-[44px]
+                      className="
+                      py-1
                       px-5.5
                       rounded-full
                       text-white text-[13px]

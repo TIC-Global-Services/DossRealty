@@ -4,11 +4,14 @@ import Image from "next/image";
 import PrimaryBtn from "../reusable/PrimaryBtn";
 
 import testimonial1 from "@/assets/home/testimonials/testimonial1.jpg";
-import testimonial2 from "@/assets/home/testimonials/testimonial2.jpg";
 import testimonial3 from "@/assets/home/testimonials/testimonial3.jpg";
 import testimonial4 from "@/assets/home/testimonials/testimonial4.jpg";
 import priyaImg from "@/assets/home/testimonials/priyaImg.webp";
 import prabhuImg from "@/assets/home/testimonials/prabhuImg2.webp";
+import Dhilip from "@/assets/home/testimonials/Dhilip.jpg";
+import Ajay from "@/assets/home/testimonials/Ajay.jpg";
+import Dhanasekar from "@/assets/home/testimonials/Dhanasekhar.png";
+import Harikumar from "@/assets/home/testimonials/Harikumar.png";
 
 
 import Link from "next/link";
@@ -27,7 +30,7 @@ const testimonials = [
     location: "Chennai, Inida",
     text:
       "Expert investment advice, our property doubled in value in two years. The salespeople made it feel more like consultation, helping us choose the perfect unit.",
-    image: testimonial1,
+    image: Dhilip,
   },
   {
     name: "Chinnarasu",
@@ -48,21 +51,21 @@ const testimonials = [
     location: "Chennai, India",
     text:
       "Highly impressed with the layout quality, the gated community has excellent security and is packed with tress providing a good nature living experience in the city.",
-    image: testimonial3,
+    image: Ajay,
   },
   {
     name: "K Dhanasekar",
     location: "Chennai, India",
     text:
       "I’m an NRI buying from Dubai, the sales team clearly explained and assisted in all the processes, it was very smooth and easy.",
-    image: testimonial1,
+    image: Dhanasekar,
   },
   {
     name: "Harikumar G",
     location: "Chennai, India",
     text:
       "We have seen plenty of plots, but DOSS felt instantly different. Everything felt like it was thought about, the attention to detail is spectacular. The quality stands out.",
-    image: testimonial3,
+    image: Harikumar,
   },
   {
     name: "Archana",

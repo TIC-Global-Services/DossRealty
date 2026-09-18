@@ -62,6 +62,7 @@ const LinkedInIcon = ({ className }: IconProps) => (
 const footerLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
+  { name: "Projects", href: "/projects" },
   { name: "Blogs", href: "/blogs" },
   { name: "NRI", href: "/nri" },
   { name: "Contact", href: "/contact" },
@@ -84,7 +85,7 @@ const Footer = () => {
               <div className="flex justify-between gap-10">
 
                 {/* Left */}
-                <div className="max-w-[300px] lg:max-w-xl">
+                <div className="max-w-[180px] md:max-w-[220px] lg:max-w-xl">
                   <h3 className="font-heading text-[14px] lg:text-[23px] leading-none">
                  
                     <span className="text-[#B59A52]">
@@ -95,17 +96,16 @@ const Footer = () => {
 
                 {/* Right */}
                 <div className="text-right">
-                  <div className="mt-4 flex flex-wrap justify-end gap-5">
-
+                  <div className="mt-4 flex flex-nowrap justify-end gap-x-4 lg:gap-x-5">
                     {footerLinks.map((link) => {
-                      const isActive =
-                        pathname === link.href;
+                      const isActive = pathname === link.href;
 
                       return (
                         <Link
                           key={link.name}
                           href={link.href}
                           className={`
+                            whitespace-nowrap
                             text-sm
                             transition
                             duration-300
@@ -121,7 +121,6 @@ const Footer = () => {
                         </Link>
                       );
                     })}
-
                   </div>
                 </div>
               </div>
@@ -228,12 +227,10 @@ const Footer = () => {
         <div className="px-5 py-8 md:hidden">
 
           {/* Menu */}
-          <div>
-            <div className="mt-5 flex flex-wrap justify-center gap-x-10 gap-y-3">
-
-              {footerLinks.map((link) => {
-                const isActive =
-                  pathname === link.href;
+          <div className="mt-5 flex flex-col items-center gap-y-3">
+            <div className="flex flex-wrap justify-center gap-x-10 gap-y-3">
+              {footerLinks.slice(0, 4).map((link) => {
+                const isActive = pathname === link.href;
 
                 return (
                   <Link
@@ -255,7 +252,32 @@ const Footer = () => {
                   </Link>
                 );
               })}
+            </div>
 
+            <div className="flex flex-wrap justify-center gap-x-10 gap-y-3">
+              {footerLinks.slice(4).map((link) => {
+                const isActive = pathname === link.href;
+
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`
+                      text-sm
+                      transition
+                      duration-300
+                      hover:text-[#B59A52]
+                      ${
+                        isActive
+                          ? "text-[#B59A52]"
+                          : "text-[#D0D0D0]"
+                      }
+                    `}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
