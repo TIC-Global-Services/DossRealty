@@ -416,12 +416,10 @@ const Navbar = () => {
                 : "/doss_logo2.png"
             }
             alt="Doss Realty Logo"
-            width={100}
+            width={120}
             height={40}
             priority
             className="
-              h-auto
-              w-auto
               object-cover
             "
           />

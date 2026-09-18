@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbSchema, blogPostingSchema } from "@/lib/seo/schema";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo/config";
+import { blogs } from "@/data/blogs";
 import BuyingPropertyBlog from "@/components/blog-pages/ConsideredGuide";
 import NRIBlog from "@/components/blog-pages/CompleteGuide";
 import TamilNaduBlog from "@/components/blog-pages/TamilNadu";
@@ -39,11 +44,43 @@ const blogPages = {
     MultigenerationalAssetBlog,
 };
 
-export default async function Page({
-  params,
-}: {
+type Props = {
   params: Promise<{ slug: string }>;
-}) {
+};
+
+export function generateStaticParams() {
+  return Object.keys(blogPages).map((slug) => ({ slug }));
+}
+
+function findPost(slug: string) {
+  return blogs.find((post) => post.slug === slug);
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = findPost(slug);
+
+  if (!post) {
+    return { title: "Blog" };
+  }
+
+  const description = `${post.title} — insights from Doss Realty on real estate, investment, and design.`;
+
+  return {
+    title: post.title,
+    description,
+    alternates: { canonical: `/blogs/${post.slug}` },
+    openGraph: {
+      title: post.title,
+      description,
+      url: `/blogs/${post.slug}`,
+      type: "article",
+      images: [DEFAULT_OG_IMAGE],
+    },
+  };
+}
+
+export default async function Page({ params }: Props) {
   const { slug } = await params;
 
   const BlogComponent =
@@ -53,5 +90,29 @@ export default async function Page({
     notFound();
   }
 
-  return <BlogComponent />;
+  const post = findPost(slug);
+
+  return (
+    <>
+      {post ? (
+        <>
+          <JsonLd
+            data={breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Blogs", path: "/blogs" },
+              { name: post.title, path: `/blogs/${post.slug}` },
+            ])}
+          />
+          <JsonLd
+            data={blogPostingSchema({
+              title: post.title,
+              description: `${post.title} — insights from Doss Realty on real estate, investment, and design.`,
+              path: `/blogs/${post.slug}`,
+            })}
+          />
+        </>
+      ) : null}
+      <BlogComponent />
+    </>
+  );
 }
